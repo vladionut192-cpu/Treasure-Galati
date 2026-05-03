@@ -1,0 +1,554 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Digitizator cartiere Galați</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper:        #f4efe6;
+      --panel:        #fbf7ee;
+      --ink:          #1a1a1a;
+      --muted:        #6b6358;
+      --line:         #d8cdb8;
+      --line-soft:    #e7dfcd;
+      --accent:       #2c6157;
+      --accent-deep:  #1d433c;
+      --accent-soft:  #d8e4df;
+      --hot:          #b34128;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; height: 100%; }
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      -webkit-font-smoothing: antialiased;
+    }
+    .app {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      height: 100vh;
+    }
+    aside {
+      background: var(--panel);
+      border-right: 1px solid var(--line);
+      padding: 22px 22px 16px;
+      overflow: auto;
+      display: flex; flex-direction: column;
+      gap: 14px;
+    }
+    h1 {
+      font-size: 22px;
+      font-weight: 800;
+      margin: 0 0 4px;
+      letter-spacing: -0.01em;
+    }
+    .lead {
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height: 1.5;
+      margin: 0 0 6px;
+    }
+    .step {
+      border: 1px solid var(--line);
+      background: white;
+      padding: 12px 14px;
+    }
+    .step h3 {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 8px;
+      font-weight: 700;
+    }
+    label { font-size: 12px; color: var(--muted); display: block; margin-bottom: 4px; }
+    input[type="text"], select {
+      width: 100%;
+      padding: 9px 11px;
+      border: 1px solid var(--line);
+      background: white;
+      font: inherit;
+      font-size: 13px;
+      outline: none;
+      border-radius: 0;
+    }
+    input:focus, select:focus { border-color: var(--accent); }
+    .btn-row { display: flex; gap: 6px; flex-wrap: wrap; }
+    button {
+      flex: 1;
+      border: 0;
+      background: var(--accent);
+      color: white;
+      padding: 10px 12px;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background .12s;
+    }
+    button:hover:not(:disabled) { background: var(--accent-deep); }
+    button:disabled { background: #c9c2b3; cursor: not-allowed; }
+    button.secondary { background: white; color: var(--ink); border: 1px solid var(--line); }
+    button.secondary:hover:not(:disabled) { background: var(--paper); border-color: var(--accent); color: var(--accent); }
+    button.danger { background: var(--hot); }
+    button.danger:hover:not(:disabled) { background: #8d2f1c; }
+    .stat {
+      font-size: 13px;
+      color: var(--muted);
+      padding: 8px 0;
+    }
+    .stat strong { color: var(--ink); font-weight: 700; }
+    .saved {
+      max-height: 280px;
+      overflow: auto;
+      border: 1px solid var(--line);
+      background: white;
+    }
+    .saved .empty {
+      padding: 16px;
+      color: var(--muted);
+      font-size: 12px;
+      text-align: center;
+    }
+    .saved-row {
+      display: grid;
+      grid-template-columns: 14px 1fr auto auto;
+      gap: 8px;
+      align-items: center;
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--line-soft);
+      font-size: 13px;
+    }
+    .saved-row:last-child { border-bottom: 0; }
+    .saved-row .swatch {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,.2);
+    }
+    .saved-row .name { font-weight: 600; }
+    .saved-row .verts { color: var(--muted); font-size: 11.5px; font-variant-numeric: tabular-nums; }
+    .saved-row .del {
+      border: 0; background: transparent; color: var(--muted);
+      cursor: pointer; padding: 4px 6px; font-size: 16px;
+      letter-spacing: 0;
+      text-transform: none;
+      flex: none;
+    }
+    .saved-row .del:hover { color: var(--hot); background: transparent; }
+    .footer-actions { display: grid; gap: 6px; margin-top: auto; padding-top: 12px; border-top: 1px solid var(--line-soft); }
+    .keys {
+      font-size: 11px; color: var(--muted); line-height: 1.6;
+      padding-top: 6px;
+    }
+    .keys kbd {
+      background: white; border: 1px solid var(--line);
+      padding: 1px 6px; font-family: ui-monospace, monospace;
+      font-size: 10.5px;
+    }
+    #map { width: 100%; height: 100vh; }
+    .toast {
+      position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%);
+      background: var(--ink); color: white;
+      padding: 12px 22px; font-weight: 600; font-size: 13px;
+      letter-spacing: 0.04em; z-index: 5000;
+      transition: opacity .25s;
+    }
+    .toast[hidden] { display: none; }
+    .vertex-marker {
+      background: var(--hot);
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      border: 2px solid white;
+      box-shadow: 0 1px 3px rgba(0,0,0,.4);
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside>
+      <div>
+        <h1>Digitizator cartiere</h1>
+        <p class="lead">Alege un cartier, dă click pe hartă pe vertici (urmărind chenarul roșu din screenshot-ul Google Maps), apoi <strong>Salvează poligon</strong>. Repetă pentru următorul cartier. La final, <strong>Exportă</strong>.</p>
+      </div>
+
+      <div class="step">
+        <h3>1 · Cartier curent</h3>
+        <label for="cartier-input">Selectează sau scrie numele</label>
+        <input id="cartier-input" type="text" list="cartier-names" placeholder="Ex: Țiglina 2" autocomplete="off">
+        <datalist id="cartier-names">
+          <option value="Țiglina 1"></option>
+          <option value="Țiglina 2"></option>
+          <option value="Țiglina 3"></option>
+          <option value="Mazepa 1"></option>
+          <option value="Mazepa 2"></option>
+          <option value="Cartier Vânători"></option>
+          <option value="Cartier Filești"></option>
+          <option value="Cartier I.C. Frimu"></option>
+          <option value="Aurel Vlaicu"></option>
+          <option value="Centrul Vechi"></option>
+          <option value="Piața Mare"></option>
+          <option value="Zona Veche"></option>
+          <option value="Petru Rareș"></option>
+          <option value="Bădălan"></option>
+          <option value="Bariera Traian"></option>
+          <option value="Traian Nord"></option>
+          <option value="Vadul Ungurului"></option>
+          <option value="Arcașilor"></option>
+          <option value="Gara C.F.R."></option>
+          <option value="Valea Orașului"></option>
+          <option value="Port"></option>
+          <option value="Portul Mineralier"></option>
+          <option value="Șantierul Naval"></option>
+          <option value="Zona Liberă"></option>
+          <option value="Combinatul Siderurgic"></option>
+          <option value="Valea Cătușa"></option>
+          <option value="Siderurgiștilor Vest"></option>
+          <option value="Barboși"></option>
+          <option value="D. Cantemir"></option>
+          <option value="Azaclau"></option>
+          <option value="Micro 13"></option>
+          <option value="Micro 14"></option>
+          <option value="Micro 16"></option>
+          <option value="Micro 17"></option>
+          <option value="Micro 18"></option>
+          <option value="Micro 19"></option>
+          <option value="Micro 20"></option>
+          <option value="Micro 21"></option>
+          <option value="Micro 38"></option>
+          <option value="Micro 39A"></option>
+          <option value="Micro 39B"></option>
+          <option value="Micro 39C"></option>
+          <option value="Micro 40"></option>
+        </datalist>
+        <div class="stat" id="status-line">Vertici plasați: <strong id="vertex-count">0</strong></div>
+        <div class="btn-row">
+          <button class="secondary" id="undo-vertex" disabled>↶ Undo vertex</button>
+          <button class="secondary" id="reset-poly" disabled>Resetează</button>
+        </div>
+      </div>
+
+      <div class="step">
+        <h3>2 · Salvează</h3>
+        <div class="btn-row">
+          <button id="save-poly" disabled>✓ Salvează poligon</button>
+        </div>
+      </div>
+
+      <div class="step">
+        <h3>3 · Cartiere salvate (<span id="saved-count">0</span>)</h3>
+        <div class="saved" id="saved-list"><div class="empty">Niciun poligon salvat încă.</div></div>
+      </div>
+
+      <div class="footer-actions">
+        <div class="btn-row">
+          <button class="secondary" id="import-btn">Importă GeoJSON</button>
+          <button id="export-btn" disabled>Exportă cartiere.geojson</button>
+        </div>
+        <input id="import-file" type="file" accept=".geojson,.json" hidden>
+        <p class="keys">
+          <kbd>Click</kbd> pe hartă = vertex nou ·
+          <kbd>Z</kbd> sau <kbd>⌘Z</kbd> = undo vertex ·
+          <kbd>Enter</kbd> = salvează poligon ·
+          <kbd>Esc</kbd> = resetează poligon curent
+        </p>
+      </div>
+    </aside>
+    <div id="map"></div>
+  </div>
+
+  <div class="toast" id="toast" hidden></div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    // ────────────────────────────────────────────────────────────
+    // Map setup — ESRI satellite imagery (no API key, similar quality
+    // to Google for visual reference; OSM streets overlaid as guide).
+    // ────────────────────────────────────────────────────────────
+    const map = L.map('map', {
+      zoomControl: true,
+      doubleClickZoom: false,  // we use click for vertex placement
+    }).setView([45.4350, 28.0480], 14);
+
+    const sat = L.tileLayer(
+      'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+      {
+        maxZoom: 19,
+        attribution: 'Imagery © Esri',
+      }
+    ).addTo(map);
+    const labels = L.tileLayer(
+      'https://{s}.basemaps.cartocdn.com/rastertiles/voyager_only_labels/{z}/{x}/{y}{r}.png',
+      {
+        maxZoom: 19,
+        opacity: 0.9,
+        subdomains: 'abcd',
+        attribution: '© CARTO',
+      }
+    ).addTo(map);
+
+    // ────────────────────────────────────────────────────────────
+    // State
+    // ────────────────────────────────────────────────────────────
+    const STORAGE_KEY = 'galati-cartiere-digitizer-v1';
+    let saved = []; // [{ name, coords: [[lon,lat],...] }]
+    let currentVertices = []; // [{lat, lng}]
+    let currentMarkers = [];  // L.marker[]
+    let currentLine = null;   // L.polyline
+    const savedLayer = L.layerGroup().addTo(map);
+
+    // ────────────────────────────────────────────────────────────
+    // DOM refs
+    // ────────────────────────────────────────────────────────────
+    const $ = (id) => document.getElementById(id);
+    const nameInput = $('cartier-input');
+    const vertexCount = $('vertex-count');
+    const undoBtn = $('undo-vertex');
+    const resetBtn = $('reset-poly');
+    const saveBtn = $('save-poly');
+    const savedCountEl = $('saved-count');
+    const savedListEl = $('saved-list');
+    const exportBtn = $('export-btn');
+    const importBtn = $('import-btn');
+    const importFile = $('import-file');
+    const toast = $('toast');
+
+    function showToast(msg, kind) {
+      toast.textContent = msg;
+      toast.style.background = kind === 'err' ? 'var(--hot)' : 'var(--ink)';
+      toast.hidden = false;
+      clearTimeout(toast._t);
+      toast._t = setTimeout(() => { toast.hidden = true; }, 2200);
+    }
+
+    function colorFor(name) {
+      let h = 0;
+      for (let i = 0; i < name.length; i++) h = (h * 31 + name.charCodeAt(i)) | 0;
+      return `hsl(${Math.abs(h) % 360}, 55%, 50%)`;
+    }
+
+    // ────────────────────────────────────────────────────────────
+    // Current polygon drawing
+    // ────────────────────────────────────────────────────────────
+    function refreshCurrent() {
+      vertexCount.textContent = String(currentVertices.length);
+      undoBtn.disabled = currentVertices.length === 0;
+      resetBtn.disabled = currentVertices.length === 0;
+      saveBtn.disabled = currentVertices.length < 3 || !nameInput.value.trim();
+
+      if (currentLine) { map.removeLayer(currentLine); currentLine = null; }
+      if (currentVertices.length >= 2) {
+        const latlngs = currentVertices.map(v => [v.lat, v.lng]);
+        if (currentVertices.length >= 3) latlngs.push(latlngs[0]);
+        currentLine = L.polyline(latlngs, {
+          color: '#b34128',
+          weight: 2,
+          dashArray: '6 5',
+          opacity: 0.95,
+        }).addTo(map);
+      }
+    }
+
+    function addVertex(latlng) {
+      currentVertices.push(latlng);
+      const m = L.marker(latlng, {
+        icon: L.divIcon({
+          className: 'vertex-marker',
+          iconSize: [10, 10],
+          iconAnchor: [5, 5],
+        }),
+        keyboard: false,
+      }).addTo(map);
+      currentMarkers.push(m);
+      refreshCurrent();
+    }
+
+    function undoVertex() {
+      if (!currentVertices.length) return;
+      currentVertices.pop();
+      const m = currentMarkers.pop();
+      if (m) map.removeLayer(m);
+      refreshCurrent();
+    }
+
+    function resetCurrent() {
+      currentVertices = [];
+      currentMarkers.forEach(m => map.removeLayer(m));
+      currentMarkers = [];
+      refreshCurrent();
+    }
+
+    function savePolygon() {
+      const name = nameInput.value.trim();
+      if (!name) { showToast('Alege un nume de cartier', 'err'); return; }
+      if (currentVertices.length < 3) { showToast('Minim 3 vertici pentru un poligon', 'err'); return; }
+
+      // Replace if a polygon with the same name already exists.
+      const existing = saved.findIndex(s => s.name.toLowerCase() === name.toLowerCase());
+      const coords = currentVertices.map(v => [v.lng, v.lat]);
+      if (existing >= 0) {
+        if (!confirm(`„${name}" există deja. Înlocuiești poligonul vechi?`)) return;
+        saved[existing] = { name, coords };
+      } else {
+        saved.push({ name, coords });
+      }
+      persist();
+      renderSaved();
+      resetCurrent();
+      nameInput.value = '';
+      nameInput.focus();
+      showToast(`Salvat „${name}"`);
+    }
+
+    // ────────────────────────────────────────────────────────────
+    // Saved polygons list + map rendering
+    // ────────────────────────────────────────────────────────────
+    function renderSaved() {
+      savedLayer.clearLayers();
+      savedCountEl.textContent = String(saved.length);
+      exportBtn.disabled = saved.length === 0;
+      if (!saved.length) {
+        savedListEl.innerHTML = '<div class="empty">Niciun poligon salvat încă.</div>';
+        return;
+      }
+      savedListEl.innerHTML = '';
+      saved.forEach((rec, idx) => {
+        const c = colorFor(rec.name);
+        const poly = L.polygon(
+          rec.coords.map(([lon, lat]) => [lat, lon]),
+          { color: c, weight: 2, fillColor: c, fillOpacity: 0.22 }
+        );
+        poly.bindTooltip(rec.name, { permanent: true, direction: 'center', className: 'leaflet-tooltip' });
+        poly.addTo(savedLayer);
+
+        const row = document.createElement('div');
+        row.className = 'saved-row';
+        row.innerHTML = `
+          <span class="swatch" style="background:${c}"></span>
+          <span class="name">${escapeHtml(rec.name)}</span>
+          <span class="verts">${rec.coords.length} v</span>
+          <button class="del" title="Șterge" data-idx="${idx}">×</button>
+        `;
+        row.querySelector('.del').addEventListener('click', () => {
+          if (confirm(`Șterg poligonul „${rec.name}"?`)) {
+            saved.splice(idx, 1);
+            persist();
+            renderSaved();
+          }
+        });
+        row.addEventListener('dblclick', () => {
+          map.fitBounds(poly.getBounds(), { padding: [40, 40] });
+        });
+        savedListEl.appendChild(row);
+      });
+    }
+
+    function escapeHtml(s) {
+      return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+    }
+
+    // ────────────────────────────────────────────────────────────
+    // Persistence (localStorage)
+    // ────────────────────────────────────────────────────────────
+    function persist() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
+      } catch (e) { /* quota etc. */ }
+    }
+    function restore() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (Array.isArray(parsed)) saved = parsed;
+        }
+      } catch (e) { /* corrupt */ }
+    }
+
+    // ────────────────────────────────────────────────────────────
+    // Export / Import GeoJSON
+    // ────────────────────────────────────────────────────────────
+    exportBtn.addEventListener('click', () => {
+      const features = saved.map(rec => {
+        const ring = rec.coords.slice();
+        if (ring.length && (ring[0][0] !== ring[ring.length - 1][0] || ring[0][1] !== ring[ring.length - 1][1])) {
+          ring.push(ring[0]);
+        }
+        return {
+          type: 'Feature',
+          properties: { name: rec.name },
+          geometry: { type: 'Polygon', coordinates: [ring] },
+        };
+      });
+      const geojson = { type: 'FeatureCollection', features };
+      const blob = new Blob([JSON.stringify(geojson, null, 2)], { type: 'application/geo+json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'cartiere.geojson';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(a.href);
+      showToast('cartiere.geojson descărcat');
+    });
+
+    importBtn.addEventListener('click', () => importFile.click());
+    importFile.addEventListener('change', async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const text = await file.text();
+      try {
+        const data = JSON.parse(text);
+        if (data.type !== 'FeatureCollection') throw new Error('Nu e un FeatureCollection');
+        const imported = (data.features || [])
+          .filter(f => f.geometry && f.geometry.type === 'Polygon' && f.properties && f.properties.name)
+          .map(f => ({
+            name: f.properties.name,
+            coords: f.geometry.coordinates[0].slice(0, -1), // drop closing repetition
+          }));
+        if (!imported.length) throw new Error('Nu am găsit poligoane');
+        if (saved.length && !confirm(`Înlocuiești ${saved.length} poligoane salvate cu cele din fișier?`)) return;
+        saved = imported;
+        persist();
+        renderSaved();
+        showToast(`Importate ${imported.length} poligoane`);
+      } catch (err) {
+        showToast('Eroare import: ' + err.message, 'err');
+      }
+      importFile.value = '';
+    });
+
+    // ────────────────────────────────────────────────────────────
+    // Map interactions
+    // ────────────────────────────────────────────────────────────
+    map.on('click', (e) => addVertex(e.latlng));
+
+    undoBtn.addEventListener('click', undoVertex);
+    resetBtn.addEventListener('click', resetCurrent);
+    saveBtn.addEventListener('click', savePolygon);
+    nameInput.addEventListener('input', refreshCurrent);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.target.tagName === 'INPUT') return;
+      if ((e.key === 'z' || e.key === 'Z') && (e.metaKey || e.ctrlKey || true)) {
+        e.preventDefault();
+        undoVertex();
+      } else if (e.key === 'Escape') {
+        resetCurrent();
+      } else if (e.key === 'Enter') {
+        if (!saveBtn.disabled) savePolygon();
+      }
+    });
+
+    // Init
+    restore();
+    renderSaved();
+    refreshCurrent();
+  </script>
+</body>
+</html>

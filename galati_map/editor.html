@@ -1,0 +1,883 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Editor locații Galați</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper:        #f4efe6;
+      --panel:        #fbf7ee;
+      --ink:          #1a1a1a;
+      --ink-soft:     #3a3a37;
+      --muted:        #6b6358;
+      --line:         #d8cdb8;
+      --line-soft:    #e7dfcd;
+      --accent:       #2c6157;
+      --accent-deep:  #1d433c;
+      --accent-soft:  #d8e4df;
+      --hot:          #b34128;
+      --warn:         #c47a1f;
+      --ok:           #3a7a4f;
+      --shadow:       0 12px 40px rgba(36,28,12,.12);
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; height: 100%; overflow: hidden; }
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      -webkit-font-smoothing: antialiased;
+    }
+    .app {
+      display: grid;
+      grid-template-rows: auto 1fr;
+      height: 100vh;
+    }
+    header.top {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 14px 24px;
+      background: var(--panel);
+      border-bottom: 1px solid var(--line);
+    }
+    header.top h1 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+    header.top .progress {
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+    header.top .progress strong { color: var(--ink); font-weight: 700; }
+    header.top .spacer { flex: 1; }
+    .btn {
+      border: 0;
+      padding: 9px 14px;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      background: var(--accent);
+      color: white;
+      transition: background .12s;
+    }
+    .btn:hover { background: var(--accent-deep); }
+    .btn.secondary { background: white; color: var(--ink); border: 1px solid var(--line); }
+    .btn.secondary:hover { border-color: var(--accent); color: var(--accent); }
+    .btn.danger { background: var(--hot); }
+    .btn.danger:hover { background: #8d2f1c; }
+    .btn:disabled { background: #c9c2b3; cursor: not-allowed; }
+
+    main {
+      display: grid;
+      grid-template-columns: 380px 1fr;
+      overflow: hidden;
+    }
+    aside.list-panel {
+      background: var(--panel);
+      border-right: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .list-controls {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line-soft);
+      display: grid;
+      gap: 8px;
+    }
+    .list-controls input, .list-controls select {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid var(--line);
+      background: white;
+      font: inherit;
+      font-size: 13px;
+      outline: none;
+      border-radius: 0;
+    }
+    .list-controls input:focus, .list-controls select:focus { border-color: var(--accent); }
+    .list-counter {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 2px 0;
+    }
+    .list-scroll {
+      flex: 1;
+      overflow: auto;
+    }
+    .item {
+      display: grid;
+      grid-template-columns: 14px 1fr;
+      gap: 10px;
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--line-soft);
+      cursor: pointer;
+      align-items: start;
+      font-size: 13px;
+      background: transparent;
+    }
+    .item:hover { background: rgba(44,97,87,0.05); }
+    .item.active { background: var(--accent-soft); }
+    .item .marker {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      margin-top: 5px;
+      background: var(--line);
+    }
+    .item.dirty .marker { background: var(--warn); }
+    .item.overridden .marker { background: var(--ok); }
+    .item .body strong { display: block; margin-bottom: 2px; line-height: 1.25; font-weight: 600; }
+    .item .body span { display: block; color: var(--muted); font-size: 11.5px; line-height: 1.3; }
+    .item .body em {
+      display: inline-block;
+      font-style: normal;
+      font-size: 9.5px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 2px;
+      font-weight: 600;
+    }
+
+    section.editor {
+      overflow: auto;
+      padding: 24px 32px 60px;
+      background: var(--paper);
+    }
+    .empty-state {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .editor-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px 32px;
+      max-width: 1400px;
+    }
+    .editor h2 {
+      grid-column: 1 / -1;
+      margin: 0 0 4px;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.005em;
+    }
+    .editor .id-line {
+      grid-column: 1 / -1;
+      color: var(--muted);
+      font-size: 11.5px;
+      font-family: ui-monospace, monospace;
+      margin-bottom: 8px;
+    }
+    label.field { display: block; }
+    label.field .lbl {
+      display: block;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    label.field input,
+    label.field select,
+    label.field textarea {
+      width: 100%;
+      padding: 9px 11px;
+      border: 1px solid var(--line);
+      background: white;
+      font: inherit;
+      font-size: 14px;
+      outline: none;
+      border-radius: 0;
+      font-family: inherit;
+    }
+    label.field input:focus,
+    label.field select:focus,
+    label.field textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(44,97,87,.12); }
+    label.field textarea {
+      min-height: 130px;
+      resize: vertical;
+      line-height: 1.5;
+    }
+    label.field textarea.long {
+      min-height: 320px;
+      font-size: 13.5px;
+    }
+    label.field .hint {
+      display: block;
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+    .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .row-2.with-btn { grid-template-columns: 1fr 1fr auto; align-items: end; }
+    .editor .span-2 { grid-column: 1 / -1; }
+    .editor .map-area {
+      grid-row: span 4;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    #ed-map {
+      width: 100%;
+      height: 360px;
+      border: 1px solid var(--line);
+    }
+    .map-instructions {
+      font-size: 11.5px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+    .map-instructions kbd {
+      background: white;
+      border: 1px solid var(--line);
+      padding: 1px 6px;
+      font-family: ui-monospace, monospace;
+      font-size: 10.5px;
+    }
+    .actions-row {
+      grid-column: 1 / -1;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      padding-top: 12px;
+      border-top: 1px solid var(--line-soft);
+      margin-top: 8px;
+    }
+    .actions-row .status {
+      flex: 1;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .actions-row .status.dirty { color: var(--warn); font-weight: 600; }
+    .toast {
+      position: fixed;
+      bottom: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--ink);
+      color: white;
+      padding: 12px 22px;
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      z-index: 5000;
+      transition: opacity .25s;
+    }
+    .toast[hidden] { display: none; }
+    .badge {
+      display: inline-block;
+      padding: 2px 7px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-left: 8px;
+    }
+    .badge.over { background: var(--ok); color: white; }
+    .badge.dirt { background: var(--warn); color: white; }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="top">
+      <h1>Editor locații</h1>
+      <span class="progress">
+        <strong id="prog-edited">0</strong> editate ·
+        <strong id="prog-overridden">0</strong> cu override existent ·
+        <strong id="prog-total">0</strong> total
+      </span>
+      <span class="spacer"></span>
+      <input id="import-file" type="file" accept=".json,.geojson" hidden>
+      <button class="btn secondary" id="import-btn">Importă overrides…</button>
+      <button class="btn" id="export-btn">Exportă manual_overrides.json</button>
+    </header>
+
+    <main>
+      <aside class="list-panel">
+        <div class="list-controls">
+          <input id="filter-text" type="search" placeholder="Caută titlu, stradă…">
+          <div class="row-2">
+            <select id="filter-category">
+              <option value="">Toate categoriile</option>
+            </select>
+            <select id="filter-status">
+              <option value="">Toate</option>
+              <option value="dirty">Doar editate (necsalvate)</option>
+              <option value="overridden">Doar cu override</option>
+              <option value="untouched">Doar originale</option>
+            </select>
+          </div>
+          <div class="list-counter" id="list-counter"></div>
+        </div>
+        <div class="list-scroll" id="list"></div>
+      </aside>
+
+      <section class="editor">
+        <div class="empty-state" id="empty-state">Selectează o locație din lista din stânga.</div>
+        <div class="editor-grid" id="editor" hidden>
+          <h2 id="ed-headline">—</h2>
+          <div class="id-line" id="ed-idline"></div>
+
+          <label class="field span-2">
+            <span class="lbl">Titlu</span>
+            <input id="ed-title" type="text">
+          </label>
+
+          <label class="field">
+            <span class="lbl">Adresă</span>
+            <input id="ed-address" type="text" placeholder="ex: Strada Domnească nr. 79">
+          </label>
+
+          <label class="field">
+            <span class="lbl">Categorie</span>
+            <select id="ed-category"></select>
+          </label>
+
+          <div class="row-2 with-btn span-2">
+            <label class="field">
+              <span class="lbl">Latitudine</span>
+              <input id="ed-lat" type="number" step="0.000001" placeholder="45.43...">
+            </label>
+            <label class="field">
+              <span class="lbl">Longitudine</span>
+              <input id="ed-lon" type="number" step="0.000001" placeholder="28.05...">
+            </label>
+            <button class="btn secondary" id="ed-center" type="button">Centrează harta aici</button>
+          </div>
+
+          <div class="map-area span-2">
+            <div id="ed-map"></div>
+            <p class="map-instructions">
+              <kbd>Click</kbd> pe hartă = setează coord noi · marker negru = original ·
+              roșu = curent (editabil prin drag and drop sau click pe hartă)
+            </p>
+          </div>
+
+          <label class="field span-2">
+            <span class="lbl">Excerpt (popup pe hartă, ~340 chars max)</span>
+            <textarea id="ed-excerpt"></textarea>
+            <span class="hint">Dacă lași gol, se generează automat din primele cuvinte ale descrierii.</span>
+          </label>
+
+          <label class="field span-2">
+            <span class="lbl">Descriere completă (panou detaliu)</span>
+            <textarea id="ed-description" class="long"></textarea>
+            <span class="hint">
+              Folosește un rând gol între paragrafe. Linii scurte fără punct la sfârșit (ex. <em>Clădirea</em>) devin
+              automat <strong>subtitluri de secțiune</strong>. Liniile simple într-un paragraf rămân break-uri (line-break).
+            </span>
+          </label>
+
+          <div class="actions-row">
+            <span class="status" id="ed-status">Nicio modificare nesalvată.</span>
+            <button class="btn danger" id="ed-clear-override" type="button">Șterge override-ul</button>
+            <button class="btn secondary" id="ed-revert" type="button">Resetează</button>
+            <button class="btn" id="ed-save" type="button">Salvează în editor</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" hidden></div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+  // ─────────────────────────────────────────────────────────────────────
+  // State
+  // ─────────────────────────────────────────────────────────────────────
+  const STORAGE_KEY = 'galati-editor-edits-v1';
+  const FIELDS_OVERRIDABLE = ['title', 'address', 'category', 'lat', 'lon', 'excerpt', 'description'];
+
+  let originals = [];        // [{...location}, ...] (read from locations.json)
+  let originalsByArticle = {};  // article path → location
+  let serverOverrides = {};  // article path → existing manual_overrides entry
+  let edits = {};            // article path → { changedFields }  (in-memory + localStorage)
+  let activeArticle = null;
+  let mapInstance = null;
+  let originalMarker = null;
+  let editMarker = null;
+
+  const $ = (id) => document.getElementById(id);
+
+  // ─────────────────────────────────────────────────────────────────────
+  // Utils
+  // ─────────────────────────────────────────────────────────────────────
+  function escapeHtml(s) {
+    return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+  }
+
+  function showToast(msg, kind) {
+    const t = $('toast');
+    t.textContent = msg;
+    t.style.background = kind === 'err' ? 'var(--hot)' : kind === 'ok' ? 'var(--ok)' : 'var(--ink)';
+    t.hidden = false;
+    clearTimeout(t._t);
+    t._t = setTimeout(() => { t.hidden = true; }, 2400);
+  }
+
+  function persistEdits() {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(edits)); } catch (e) {}
+  }
+  function restoreEdits() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) edits = JSON.parse(raw) || {};
+    } catch (e) { edits = {}; }
+  }
+
+  /** Compute the "current" view of a location: original + server override + in-flight edits. */
+  function effective(article) {
+    const orig = originalsByArticle[article];
+    if (!orig) return null;
+    return {
+      ...orig,
+      ...(serverOverrides[article] || {}),
+      ...(edits[article] || {}),
+    };
+  }
+
+  /** Original (untouched) value of a field. */
+  function originalValue(article, field) {
+    const orig = originalsByArticle[article];
+    if (!orig) return undefined;
+    if (field === 'address') return orig.location;
+    return orig[field];
+  }
+
+  function getCurrentValue(article, field) {
+    const eff = effective(article);
+    if (!eff) return undefined;
+    if (field === 'address') return eff.location;
+    return eff[field];
+  }
+
+  function isDirty(article) {
+    return article in edits && Object.keys(edits[article]).length > 0;
+  }
+  function hasOverride(article) {
+    return article in serverOverrides && Object.keys(serverOverrides[article]).length > 0;
+  }
+
+  // ─────────────────────────────────────────────────────────────────────
+  // Loading data
+  // ─────────────────────────────────────────────────────────────────────
+  async function loadData() {
+    const [locs, ovr] = await Promise.all([
+      fetch('locations.json').then(r => r.json()),
+      fetch('manual_overrides.json').then(r => r.ok ? r.json() : {}).catch(() => ({})),
+    ]);
+    originals = locs;
+    originalsByArticle = Object.fromEntries(locs.map(l => [l.article, l]));
+    serverOverrides = ovr;
+    restoreEdits();
+
+    // Populate category dropdowns
+    const cats = [...new Set(locs.map(l => l.category).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'ro'));
+    const filterCat = $('filter-category');
+    const edCat = $('ed-category');
+    cats.forEach(c => {
+      filterCat.appendChild(Object.assign(document.createElement('option'), { value: c, textContent: c }));
+      edCat.appendChild(Object.assign(document.createElement('option'), { value: c, textContent: c }));
+    });
+    edCat.appendChild(Object.assign(document.createElement('option'), { value: '__custom__', textContent: '+ Categorie nouă...' }));
+
+    refreshList();
+    refreshProgress();
+  }
+
+  // ─────────────────────────────────────────────────────────────────────
+  // List rendering
+  // ─────────────────────────────────────────────────────────────────────
+  function refreshList() {
+    const list = $('list');
+    const q = $('filter-text').value.trim().toLowerCase();
+    const cat = $('filter-category').value;
+    const status = $('filter-status').value;
+
+    const filtered = originals.filter(l => {
+      const eff = effective(l.article);
+      if (cat && eff.category !== cat) return false;
+      if (q) {
+        const hay = `${eff.title} ${eff.location || ''} ${eff.excerpt || ''}`.toLowerCase();
+        if (!hay.includes(q)) return false;
+      }
+      if (status === 'dirty' && !isDirty(l.article)) return false;
+      if (status === 'overridden' && !hasOverride(l.article)) return false;
+      if (status === 'untouched' && (isDirty(l.article) || hasOverride(l.article))) return false;
+      return true;
+    });
+
+    $('list-counter').textContent = `${filtered.length} din ${originals.length}`;
+
+    list.innerHTML = '';
+    filtered.forEach(l => {
+      const eff = effective(l.article);
+      const dirty = isDirty(l.article);
+      const overridden = hasOverride(l.article);
+      const div = document.createElement('button');
+      div.type = 'button';
+      div.className = 'item';
+      if (dirty) div.classList.add('dirty');
+      else if (overridden) div.classList.add('overridden');
+      if (l.article === activeArticle) div.classList.add('active');
+      div.innerHTML = `
+        <span class="marker" title="${dirty ? 'editat (nesalvat)' : overridden ? 'are override' : 'original'}"></span>
+        <span class="body">
+          <em>${escapeHtml(eff.category || '')}</em>
+          <strong>${escapeHtml(eff.title)}</strong>
+          <span>${escapeHtml(eff.location || '—')}</span>
+        </span>`;
+      div.addEventListener('click', () => selectLocation(l.article));
+      list.appendChild(div);
+    });
+  }
+
+  function refreshProgress() {
+    $('prog-total').textContent = String(originals.length);
+    $('prog-edited').textContent = String(Object.keys(edits).filter(k => edits[k] && Object.keys(edits[k]).length).length);
+    $('prog-overridden').textContent = String(Object.keys(serverOverrides).length);
+  }
+
+  // ─────────────────────────────────────────────────────────────────────
+  // Editor
+  // ─────────────────────────────────────────────────────────────────────
+  function selectLocation(article) {
+    activeArticle = article;
+    const eff = effective(article);
+    if (!eff) return;
+    $('empty-state').hidden = true;
+    $('editor').hidden = false;
+
+    $('ed-headline').innerHTML = escapeHtml(eff.title) +
+      (isDirty(article) ? '<span class="badge dirt">editat</span>' : '') +
+      (hasOverride(article) ? '<span class="badge over">override</span>' : '');
+    $('ed-idline').textContent = `${eff.id} · ${article}`;
+
+    $('ed-title').value = eff.title || '';
+    $('ed-address').value = eff.location || '';
+    setSelectValue($('ed-category'), eff.category || '');
+    $('ed-lat').value = eff.lat ?? '';
+    $('ed-lon').value = eff.lon ?? '';
+    $('ed-excerpt').value = eff.excerpt || '';
+    $('ed-description').value = eff.description || '';
+
+    refreshMap();
+    refreshDirtyStatus();
+    // Refresh list visual to update active state
+    document.querySelectorAll('.item').forEach(it => it.classList.remove('active'));
+    refreshList();
+  }
+
+  function setSelectValue(select, value) {
+    if ([...select.options].some(o => o.value === value)) {
+      select.value = value;
+    } else if (value) {
+      const opt = document.createElement('option');
+      opt.value = value;
+      opt.textContent = value;
+      select.insertBefore(opt, select.firstChild);
+      select.value = value;
+    } else {
+      select.selectedIndex = 0;
+    }
+  }
+
+  function refreshMap() {
+    if (!mapInstance) {
+      mapInstance = L.map('ed-map', { zoomControl: true });
+      L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19, attribution: 'Esri' }).addTo(mapInstance);
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_only_labels/{z}/{x}/{y}{r}.png', { maxZoom: 19, opacity: 0.9, subdomains: 'abcd' }).addTo(mapInstance);
+      mapInstance.on('click', (e) => {
+        if (!activeArticle) return;
+        $('ed-lat').value = e.latlng.lat.toFixed(7);
+        $('ed-lon').value = e.latlng.lng.toFixed(7);
+        if (editMarker) editMarker.setLatLng(e.latlng);
+        markFieldDirty('lat');
+        markFieldDirty('lon');
+        refreshDirtyStatus();
+      });
+    }
+    if (!activeArticle) return;
+    const orig = originalsByArticle[activeArticle];
+    const eff = effective(activeArticle);
+
+    if (originalMarker) mapInstance.removeLayer(originalMarker);
+    if (editMarker) mapInstance.removeLayer(editMarker);
+
+    originalMarker = L.circleMarker([orig.lat, orig.lon], {
+      radius: 7, color: '#1a1a1a', weight: 2, fillColor: '#1a1a1a', fillOpacity: 0.9,
+    }).bindTooltip('original', { permanent: false }).addTo(mapInstance);
+
+    editMarker = L.marker([eff.lat, eff.lon], {
+      draggable: true,
+      icon: L.divIcon({
+        className: '',
+        html: '<div style="background:#b34128;width:14px;height:14px;border-radius:50%;border:2px solid white;box-shadow:0 1px 4px rgba(0,0,0,.4)"></div>',
+        iconSize: [14, 14],
+        iconAnchor: [7, 7],
+      })
+    }).addTo(mapInstance);
+    editMarker.on('dragend', (e) => {
+      const ll = e.target.getLatLng();
+      $('ed-lat').value = ll.lat.toFixed(7);
+      $('ed-lon').value = ll.lng.toFixed(7);
+      markFieldDirty('lat');
+      markFieldDirty('lon');
+      refreshDirtyStatus();
+    });
+
+    // Center on edit position
+    setTimeout(() => mapInstance.invalidateSize(), 50);
+    mapInstance.setView([eff.lat, eff.lon], 17);
+  }
+
+  function markFieldDirty(field) {
+    if (!activeArticle) return;
+    if (!edits[activeArticle]) edits[activeArticle] = {};
+    let value;
+    if (field === 'lat' || field === 'lon') value = parseFloat($('ed-' + field).value);
+    else if (field === 'address') value = $('ed-address').value;
+    else if (field === 'category') value = $('ed-category').value;
+    else if (field === 'title') value = $('ed-title').value;
+    else if (field === 'excerpt') value = $('ed-excerpt').value;
+    else if (field === 'description') value = $('ed-description').value;
+    const orig = originalValue(activeArticle, field);
+    const baseline = (serverOverrides[activeArticle] && field in serverOverrides[activeArticle])
+      ? serverOverrides[activeArticle][field]
+      : orig;
+    // Only store if differs from current state baseline (server override or original).
+    if (value === baseline || (typeof value === 'number' && typeof baseline === 'number' && Math.abs(value - baseline) < 1e-9)) {
+      delete edits[activeArticle][field];
+      if (Object.keys(edits[activeArticle]).length === 0) delete edits[activeArticle];
+    } else {
+      edits[activeArticle][field] = value;
+    }
+    persistEdits();
+  }
+
+  function refreshDirtyStatus() {
+    const status = $('ed-status');
+    if (!activeArticle) { status.textContent = ''; return; }
+    if (isDirty(activeArticle)) {
+      const fields = Object.keys(edits[activeArticle]);
+      status.textContent = `Modificări nesalvate: ${fields.join(', ')}`;
+      status.className = 'status dirty';
+    } else {
+      status.textContent = 'Niciun câmp modificat în această locație.';
+      status.className = 'status';
+    }
+    refreshProgress();
+  }
+
+  // ─────────────────────────────────────────────────────────────────────
+  // Wire up form fields → markFieldDirty
+  // ─────────────────────────────────────────────────────────────────────
+  function wireField(id, field) {
+    $(id).addEventListener('input', () => {
+      markFieldDirty(field);
+      refreshDirtyStatus();
+      // Live update editMarker for lat/lon
+      if (field === 'lat' || field === 'lon') {
+        const lat = parseFloat($('ed-lat').value), lon = parseFloat($('ed-lon').value);
+        if (!isNaN(lat) && !isNaN(lon) && editMarker) editMarker.setLatLng([lat, lon]);
+      }
+    });
+    $(id).addEventListener('change', () => {
+      markFieldDirty(field);
+      refreshDirtyStatus();
+    });
+  }
+  wireField('ed-title', 'title');
+  wireField('ed-address', 'address');
+  wireField('ed-category', 'category');
+  wireField('ed-lat', 'lat');
+  wireField('ed-lon', 'lon');
+  wireField('ed-excerpt', 'excerpt');
+  wireField('ed-description', 'description');
+
+  $('ed-category').addEventListener('change', (e) => {
+    if (e.target.value === '__custom__') {
+      const custom = prompt('Numele categoriei noi?');
+      if (custom && custom.trim()) {
+        const val = custom.trim();
+        const opt = Object.assign(document.createElement('option'), { value: val, textContent: val });
+        e.target.insertBefore(opt, e.target.querySelector('[value="__custom__"]'));
+        e.target.value = val;
+        markFieldDirty('category');
+        refreshDirtyStatus();
+      } else {
+        e.target.value = effective(activeArticle).category || '';
+      }
+    }
+  });
+
+  $('ed-center').addEventListener('click', () => {
+    const lat = parseFloat($('ed-lat').value), lon = parseFloat($('ed-lon').value);
+    if (!isNaN(lat) && !isNaN(lon) && mapInstance) {
+      mapInstance.setView([lat, lon], 17);
+      if (editMarker) editMarker.setLatLng([lat, lon]);
+    }
+  });
+
+  // ─────────────────────────────────────────────────────────────────────
+  // Save / revert / clear
+  // ─────────────────────────────────────────────────────────────────────
+  $('ed-save').addEventListener('click', () => {
+    if (!activeArticle) return;
+    if (!isDirty(activeArticle)) {
+      showToast('Nimic de salvat.', 'err');
+      return;
+    }
+    // Edits already persisted to localStorage on every change; this button is more
+    // of a confirmation marker. Show a confirmation.
+    showToast('Modificări memorate. Apasă „Exportă" când ai terminat tot.', 'ok');
+    refreshList();
+    refreshProgress();
+  });
+
+  $('ed-revert').addEventListener('click', () => {
+    if (!activeArticle) return;
+    if (!isDirty(activeArticle)) return;
+    delete edits[activeArticle];
+    persistEdits();
+    selectLocation(activeArticle);
+    showToast('Modificări resetate.');
+  });
+
+  $('ed-clear-override').addEventListener('click', () => {
+    if (!activeArticle) return;
+    if (!hasOverride(activeArticle)) {
+      showToast('Această locație nu are override pe server.', 'err');
+      return;
+    }
+    if (!confirm(`Marchează override-ul pentru „${effective(activeArticle).title}" ca șters? La export, acest articol va fi exclus din manual_overrides.json (revine la datele parsate din articol).`)) return;
+    if (!edits[activeArticle]) edits[activeArticle] = {};
+    edits[activeArticle].__deleteOverride = true;
+    persistEdits();
+    showToast('Marcat pentru ștergere la export.');
+    refreshList();
+    refreshProgress();
+    refreshDirtyStatus();
+  });
+
+  // ─────────────────────────────────────────────────────────────────────
+  // Export / Import
+  // ─────────────────────────────────────────────────────────────────────
+  $('export-btn').addEventListener('click', () => {
+    // Build the new manual_overrides.json:
+    //   - Start from existing serverOverrides (preserved verbatim for unchanged entries)
+    //   - For each article in `edits`:
+    //       * if __deleteOverride flag → remove from output
+    //       * else merge {title, lat, lon, address, excerpt, description, category}
+    //         (ignore category when equal to original — we don't override category server-side anyway)
+    const out = JSON.parse(JSON.stringify(serverOverrides));
+    Object.entries(edits).forEach(([article, edit]) => {
+      if (edit.__deleteOverride) {
+        delete out[article];
+        return;
+      }
+      const orig = originalsByArticle[article] || {};
+      const cur = out[article] || {};
+      const next = { ...cur };
+      // Preserve identifying fields
+      if (!next.title) next.title = orig.title;
+      // Apply each edited field unless it equals the original (then we strip it,
+      // since the script will reuse the original).
+      const fieldMap = {
+        title: ['title', orig.title],
+        address: ['address', orig.location],
+        lat: ['lat', orig.lat],
+        lon: ['lon', orig.lon],
+        excerpt: ['excerpt', orig.excerpt],
+        description: ['description', orig.description],
+      };
+      for (const [field, [outKey, originalVal]] of Object.entries(fieldMap)) {
+        if (field in edit) {
+          const v = edit[field];
+          // If the edit reverts back to the original, drop the override field.
+          if (v === originalVal || (typeof v === 'number' && typeof originalVal === 'number' && Math.abs(v - originalVal) < 1e-9)) {
+            delete next[outKey];
+          } else {
+            next[outKey] = v;
+          }
+        }
+      }
+      // If both lat & lon are present, mark as manually verified.
+      if ('lat' in next && 'lon' in next) {
+        next.note = next.note || 'Verificat manual via editor';
+      }
+      // If override has nothing to set (everything matches original), drop it.
+      const meaningful = Object.keys(next).filter(k => !['title', 'note'].includes(k));
+      if (meaningful.length === 0) {
+        delete out[article];
+      } else {
+        if (!next.title) next.title = orig.title;
+        out[article] = next;
+      }
+    });
+
+    const blob = new Blob([JSON.stringify(out, null, 2)], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'manual_overrides.json';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(a.href);
+    showToast(`Exportat ${Object.keys(out).length} overrides`, 'ok');
+  });
+
+  $('import-btn').addEventListener('click', () => $('import-file').click());
+  $('import-file').addEventListener('change', async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    try {
+      const text = await file.text();
+      const data = JSON.parse(text);
+      if (!confirm(`Importez ${Object.keys(data).length} overrides? Modificările tale curente nesalvate vor fi păstrate.`)) return;
+      serverOverrides = data;
+      // Refresh editor view if active
+      if (activeArticle) selectLocation(activeArticle);
+      refreshList();
+      refreshProgress();
+      showToast(`Import reușit (${Object.keys(data).length} overrides).`, 'ok');
+    } catch (err) {
+      showToast('Eroare import: ' + err.message, 'err');
+    }
+    e.target.value = '';
+  });
+
+  // ─────────────────────────────────────────────────────────────────────
+  // List filters
+  // ─────────────────────────────────────────────────────────────────────
+  $('filter-text').addEventListener('input', refreshList);
+  $('filter-category').addEventListener('change', refreshList);
+  $('filter-status').addEventListener('change', refreshList);
+
+  // ─────────────────────────────────────────────────────────────────────
+  // Init
+  // ─────────────────────────────────────────────────────────────────────
+  loadData().catch(err => {
+    showToast('Eroare la încărcare: ' + err.message, 'err');
+  });
+  </script>
+</body>
+</html>
