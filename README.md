@@ -57,6 +57,7 @@ Apoi:
 - editor locații — http://localhost:8000/galati_map/editor.html
 - digitizer cartiere — http://localhost:8000/galati_map/digitizer.html
 - editor tururi — http://localhost:8000/galati_map/tours_editor.html
+- **editor poziții fototecă** — http://localhost:8000/galati_map/pubcrawl_editor.html (drag-and-drop pentru cele 299 buline portocalii)
 
 ## Feature-uri pe hartă
 

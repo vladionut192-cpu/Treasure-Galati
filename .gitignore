@@ -24,6 +24,10 @@ env/
 Surse/*.pdf
 Surse/venv/
 
+# Pub Crawl - Traseu — folder sursă cu poze full-res (134MB)
+# Versiunea optimizată e în assets/images/pubcrawl/ (61MB)
+Pub Crawl - Traseu/
+
 # scripts/ working files (cache + per-user decisions/artifacts)
 scripts/.commons_cache.json
 scripts/image_decisions.json

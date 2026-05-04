@@ -584,6 +584,27 @@
     .item.is-demolished .body strong { text-decoration: line-through; text-decoration-thickness: 1px; text-decoration-color: rgba(0,0,0,.25); }
     .item.is-demolished .body em { color: var(--hot); }
     .item.is-ruin .num { background: #6f5d3f; }
+    /* Pub Crawl photo dots — buline mici colorate diferit */
+    .pubcrawl-dot {
+      width: 11px; height: 11px;
+      border-radius: 50%;
+      background: #d97706;  /* amber/orange — distinct de verdele pinurilor */
+      border: 2px solid white;
+      box-shadow: 0 1px 3px rgba(0,0,0,.4), 0 0 0 1px rgba(217,119,6,.4);
+      cursor: pointer;
+      transition: transform .08s ease, box-shadow .08s ease, opacity .2s ease;
+    }
+    .custom-marker:has(.pubcrawl-dot) { transition: opacity .2s ease; }
+    .pubcrawl-dot:hover {
+      transform: scale(1.6);
+      z-index: 1000;
+      box-shadow: 0 2px 6px rgba(0,0,0,.5), 0 0 0 3px rgba(217,119,6,.3);
+    }
+    .pubcrawl-dot.lit {
+      background: var(--hot);
+      transform: scale(1.8);
+      box-shadow: 0 0 0 4px rgba(179,65,40,.25), 0 2px 8px rgba(0,0,0,.5);
+    }
     .historic-opacity {
       margin: -6px 0 18px; padding: 8px 0 2px 42px;
       background: transparent;
@@ -2097,12 +2118,14 @@
       if (timelineYear >= 2026) timelineYear = null;
       updateTimelineDisplay();
       render();
+      if (typeof refreshPubcrawlVisibility === 'function') refreshPubcrawlVisibility();
     });
     timelineReset.addEventListener('click', () => {
       timelineYear = null;
       timelineSlider.value = 2026;
       updateTimelineDisplay();
       render();
+      if (typeof refreshPubcrawlVisibility === 'function') refreshPubcrawlVisibility();
     });
     updateTimelineDisplay();
 
@@ -2229,6 +2252,71 @@
         valLayer = null;
       }
     });
+
+    // ─── Pub Crawl Galați — fototecă (299 buline mici, mereu active) ─
+    const pubcrawlMarkers = [];  // [{marker, photo}]
+    let pubcrawlLayer = null;
+    function pubcrawlIcon() {
+      return L.divIcon({
+        className: 'custom-marker',
+        html: `<div class="pubcrawl-dot"></div>`,
+        iconSize: [11, 11],
+        iconAnchor: [5.5, 5.5],
+      });
+    }
+    function passesPubcrawlTimeline(photo) {
+      if (timelineYear === null) return true;
+      // Foto fără an extras → afișată oricând
+      if (photo.year === null || photo.year === undefined) return true;
+      // Foto cu an documentat → vizibilă doar dacă slider ≥ year
+      return photo.year <= timelineYear;
+    }
+    function refreshPubcrawlVisibility() {
+      pubcrawlMarkers.forEach(({marker, photo}) => {
+        const visible = passesPubcrawlTimeline(photo);
+        const el = marker.getElement();
+        if (el) {
+          el.style.opacity = visible ? '1' : '0';
+          el.style.pointerEvents = visible ? 'auto' : 'none';
+        }
+      });
+    }
+    async function initPubcrawl() {
+      try {
+        const r = await fetch('pubcrawl_photos.json');
+        const data = await r.json();
+        pubcrawlLayer = L.layerGroup();
+        data.forEach((photo) => {
+          const m = L.marker([photo.lat, photo.lon], {
+            icon: pubcrawlIcon(),
+            zIndexOffset: -100,
+            riseOnHover: true,
+          });
+          m.on('click', () => {
+            document.querySelectorAll('.pubcrawl-dot.lit').forEach(d => d.classList.remove('lit'));
+            const el = m.getElement();
+            if (el) el.querySelector('.pubcrawl-dot')?.classList.add('lit');
+            lightboxImg.src = photo.src;
+            lightboxImg.alt = photo.caption_ro || '';
+            const cap = photo.caption_ro || '';
+            const yearTag = photo.year ? `<span style="display:inline-block;background:#d97706;color:white;padding:1px 8px;border-radius:999px;font-size:11px;font-weight:700;letter-spacing:.05em;margin-right:8px">${photo.year}</span>` : '';
+            const folderLabel = photo.folder ? `<small style="opacity:.7;display:block;margin-top:6px;letter-spacing:.05em;text-transform:uppercase;font-size:11px">${escapeHtml(photo.folder)}</small>` : '';
+            lightboxCaption.innerHTML = `${yearTag}${escapeHtml(cap)}${folderLabel}`;
+            lightboxCaption.hidden = !cap;
+            lightbox.dataset.open = '1';
+          });
+          pubcrawlLayer.addLayer(m);
+          pubcrawlMarkers.push({marker: m, photo});
+        });
+        pubcrawlLayer.addTo(map);
+        // Aplică starea curentă a slider-ului
+        refreshPubcrawlVisibility();
+      } catch (e) {
+        console.warn('Nu pot încărca pubcrawl_photos.json:', e);
+      }
+    }
+    // Auto-load pe încărcarea hărții
+    initPubcrawl();
 
     // ─────────── Tabs ───────────
     const tabBtns = document.querySelectorAll('.tabs .tab');
