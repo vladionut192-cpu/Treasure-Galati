@@ -1,320 +1,191 @@
 [
   {
-    "title": "Casa Cavallioti",
-    "location": "Casa Cavallioti",
-    "article": "../assets/articles/casa-cavallioti/index.html",
-    "source": ""
-  },
-  {
     "title": "Dimitrie Frigator",
     "location": "Dimitrie Frigator",
     "article": "../assets/articles/dimitrie-frigator/index.html",
-    "source": ""
-  },
-  {
-    "title": "Catedrala Episcopală din Galați",
-    "location": "Catedrala Episcopală din Galați",
-    "article": "../assets/articles/catedrala-episcopala-din-galati/index.html",
-    "source": ""
-  },
-  {
-    "title": "Palatul de Justiție - Universitatea",
-    "location": "Palatul de Justiție - Universitatea",
-    "article": "../assets/articles/palatul-de-justitie-universitatea/index.html",
-    "source": ""
-  },
-  {
-    "title": "Palatul Prefectural",
-    "location": "Palatul Prefectural",
-    "article": "../assets/articles/palatul-prefectural/index.html",
-    "source": ""
+    "source": "",
+    "kind": "person"
   },
   {
     "title": "Casa Drăgănescu",
     "location": "Casa Drăgănescu",
     "article": "../assets/articles/casa-draganescu/index.html",
-    "source": ""
-  },
-  {
-    "title": "Casa BALȘ",
-    "location": "Casa BALȘ",
-    "article": "../assets/articles/casa-bals/index.html",
-    "source": ""
-  },
-  {
-    "title": "Casa Gheorghiadis",
-    "location": "Casa Gheorghiadis",
-    "article": "../assets/articles/casa-gheorghiadis/index.html",
-    "source": ""
-  },
-  {
-    "title": "Casa Auschnitt",
-    "location": "Casa Auschnitt",
-    "article": "../assets/articles/casa-auschnitt/index.html",
-    "source": ""
+    "source": "",
+    "kind": "place"
   },
   {
     "title": "Casa Carp",
     "location": "Casa Carp",
     "article": "../assets/articles/casa-carp/index.html",
-    "source": ""
-  },
-  {
-    "title": "Pescărille statului",
-    "location": "Pescărille statului",
-    "article": "../assets/articles/pescarille-statului/index.html",
-    "source": ""
+    "source": "",
+    "kind": "place"
   },
   {
     "title": "Casa Cordali",
     "location": "Casa Cordali",
     "article": "../assets/articles/casa-cordali/index.html",
-    "source": ""
-  },
-  {
-    "title": "Rezidența Regală la Galați în timpul dictaturii carliste",
-    "location": "Rezidența Regală la Galați în timpul dictaturii carliste",
-    "article": "../assets/articles/rezidenta-regala-la-galati-in-timpul-dictaturii-carliste/index.html",
-    "source": ""
-  },
-  {
-    "title": "Catedrala Episcopală din Galați",
-    "location": "Catedrala Episcopală din Galați",
-    "article": "../assets/articles/catedrala-episcopala-din-gala/index.html",
-    "source": ""
+    "source": "",
+    "kind": "place"
   },
   {
     "title": "Ioan D. Prodrom - primar al Galațiului",
     "location": "Ioan D. Prodrom - primar al Galațiului",
     "article": "../assets/articles/ioan-d-prodrom/index.html",
-    "source": ""
-  },
-  {
-    "title": "SPITALUL ISRAELIT (str. Nicolae Alexandrescu nr. 99)",
-    "location": "str. Nicolae Alexandrescu nr. 99",
-    "article": "../assets/articles/spitalul-israelit-str-nicolae-alexandrescu-nr-99/index.html",
-    "source": ""
-  },
-  {
-    "title": "TEMPLUL MESERIAȘILOR (str. Dornei nr. 7-11)",
-    "location": "str. Dornei nr. 7-11",
-    "article": "../assets/articles/templul-meseriasilor-str-dornei-nr-7-11/index.html",
-    "source": ""
+    "source": "",
+    "kind": "person"
   },
   {
     "title": "Casa lui NICOLAE DUMITRESCU-MAICAN, contra-amiral al Marinei Militare Române (str. Domnească nr. 89bis)",
     "location": "str. Domnească nr. 89bis",
     "article": "../assets/articles/casa-lui-nicolae-dumitrescu-maican-contra-amiral-al-marinei-militare-romane-str-domneasca-nr-89bis/index.html",
-    "source": ""
+    "source": "",
+    "kind": "place"
   },
   {
     "title": "MANDANIS ȘI BERILĂ",
     "location": "MANDANIS ȘI BERILĂ",
     "article": "../assets/articles/mandanis-si-berila/index.html",
-    "source": ""
-  },
-  {
-    "title": "PALATUL SOCIETĂȚII CULTURALE „V. A. URECHIA” (astăzi Teatrul Dramatic „Fani Tardini”, str. Domnească 59)",
-    "location": "PALATUL SOCIETĂȚII CULTURALE „V. A. URECHIA” (astăzi Teatrul Dramatic „Fani Tardini”, str. Domnească 59)",
-    "article": "../assets/articles/palatul-societatii-culturale-v-a-urechia-astazi-teatrul-dramatic-fani-tardini-str-domneasca-59/index.html",
-    "source": ""
-  },
-  {
-    "title": "PALATUL COMERCIAL AL LUI SIMION GHEORGHIU (str. Domnească cc str. Gamulea)",
-    "location": "str. Domnească colț cu str. Gamulea",
-    "article": "../assets/articles/palatul-comercial-al-lui-simion-gheorghiu-str-domneasca-cc-str-gamulea/index.html",
-    "source": ""
-  },
-  {
-    "title": "FÂNTÎNA ARTEZIANĂ „PUFUL DE PĂPĂDIE” (str. Brăilei, intersecția cu str. Coșbuc)",
-    "location": "str. Brăilei, intersecția cu str. Coșbuc",
-    "article": "../assets/articles/fantina-arteziana-puful-de-papadie-str-brailei-intersectia-cu-str-cosbuc/index.html",
-    "source": ""
+    "source": "",
+    "kind": "place"
   },
   {
     "title": "Proiectul edilitar al Țiglinei",
     "location": "Proiectul edilitar al Țiglinei",
     "article": "../assets/articles/proiectul-edilitar-al-tiglinei/index.html",
-    "source": ""
+    "source": "",
+    "kind": "topic"
   },
   {
     "title": "Vadurile Galațiului",
     "location": "Vadurile Galațiului",
     "article": "../assets/articles/vadurile-galatiului/index.html",
-    "source": ""
-  },
-  {
-    "title": "IOAN D. PRODROM (str. Domnească nr. 23-25)",
-    "location": "str. Domnească nr. 23-25",
-    "article": "../assets/articles/ioan-d-prodrom-str-domneasca-nr-23-25/index.html",
-    "source": ""
-  },
-  {
-    "title": "FAMILIA ȘI CASELE PLESNILĂ",
-    "location": "FAMILIA ȘI CASELE PLESNILĂ",
-    "article": "../assets/articles/familia-si-casele-plesnila/index.html",
-    "source": ""
-  },
-  {
-    "title": "CASA GHEORGHE RADU / BĂNICĂ GRIGORESCU",
-    "location": "CASA GHEORGHE RADU / BĂNICĂ GRIGORESCU",
-    "article": "../assets/articles/casa-gheorghe-radu-banica-grigorescu/index.html",
-    "source": ""
+    "source": "",
+    "kind": "topic"
   },
   {
     "title": "DESPRE CONSULATUL RUSESC DIN GALAȚI",
     "location": "DESPRE CONSULATUL RUSESC DIN GALAȚI",
     "article": "../assets/articles/despre-consulatul-rusesc-din-galati/index.html",
-    "source": ""
+    "source": "",
+    "kind": "topic"
   },
   {
     "title": "DALL'ORSO",
     "location": "DALL'ORSO",
     "article": "../assets/articles/dallorso/index.html",
-    "source": ""
-  },
-  {
-    "title": "Biserica Apostolică Ortodoxă Armeană „Sfânta Maria” (Bld. Prelungirea Traian nr. 13)",
-    "location": "Bld. Prelungirea Traian nr. 13",
-    "article": "../assets/articles/biserica-apostolica-ortodoxa-armeana-sfanta-maria-hram-adormirea-maicii-domnului-bld-prelungirea-traian-nr-13/index.html",
-    "source": ""
-  },
-  {
-    "title": "BISERICA LIPOVENEASCĂ – hram Sf. Nicolae (str. Episcop Melchisedec Ștefănescu nr. 30-32, cc. str. Științei)",
-    "location": "str. Episcop Melchisedec Ștefănescu nr. 30-32",
-    "article": "../assets/articles/biserica-lipoveneasca-hram-sf-nicolae-str-episcop-melchisedec-stefanescu-nr-30-32-cc-str-stiintei/index.html",
-    "source": ""
-  },
-  {
-    "title": "BISERICA MAVROMOL – hram Adormirea Maicii Domnului (Aleea Mavromol cc. str. Nicolae Bălcescu)",
-    "location": "Aleea Mavromol colț cu str. Nicolae Bălcescu",
-    "article": "../assets/articles/biserica-mavromol-hram-adormirea-maicii-domnului-aleea-mavromol-cc-str-nicolae-balcescu/index.html",
-    "source": ""
-  },
-  {
-    "title": "AZILUL DE BĂTRÂNI AL LUI DIMITRIE FRIGATOR (str. Domnească nr. 160C)",
-    "location": "str. Domnească nr. 160C",
-    "article": "../assets/articles/azilul-de-batrani-al-lui-dimitrie-frigator-str-domneasca-nr-160c/index.html",
-    "source": ""
-  },
-  {
-    "title": "FOSCOLO, comercianți și diplomați",
-    "location": "FOSCOLO, comercianți și diplomați",
-    "article": "../assets/articles/foscolo-comercianti-si-diplomati/index.html",
-    "source": ""
+    "source": "",
+    "kind": "family"
   },
   {
     "title": "DESPRE CHARLES CUNNINGHAM ȘI REPREZENTANȚA CONSULARĂ BRITANICĂ LA GALAȚI ÎN SECOLUL AL XIX-LEA",
     "location": "DESPRE CHARLES CUNNINGHAM ȘI REPREZENTANȚA CONSULARĂ BRITANICĂ LA GALAȚI ÎN SECOLUL AL XIX-LEA",
     "article": "../assets/articles/despre-charles-cunningham-si-reprezentanta-consulara-britanica-la-galati-in-secolul-al-xix-lea/index.html",
-    "source": ""
-  },
-  {
-    "title": "CASA CUZA (strada Al. I. Cuza nr. 80)",
-    "location": "strada Al. I. Cuza nr. 80",
-    "article": "../assets/articles/casa-cuza-strada-al-i-cuza-nr-80/index.html",
-    "source": ""
-  },
-  {
-    "title": "MONUMENTUL UNIRII / AL DOMNITORULUI ALEXANDRU IOAN CUZA (str. Domnească, rondoul Grădinii Publice)",
-    "location": "str. Domnească, rondoul Grădinii Publice",
-    "article": "../assets/articles/monumentul-unirii-al-domnitorului-alexandru-ioan-cuza-str-domneasca-rondoul-gradinii-publice/index.html",
-    "source": ""
-  },
-  {
-    "title": "INDUSTRIAȘUL MAX FISCHER (str. Al. I. Cuza nr. 53 – casa reședință; ibidem, nr. 71 – casă 2)",
-    "location": "str. Al. I. Cuza nr. 53 – casa reședință; ibidem, nr. 71 – casă 2",
-    "article": "../assets/articles/industriasul-max-fischer-str-al-i-cuza-nr-53-casa-resedinta-ibidem-nr-71-casa-2/index.html",
-    "source": ""
-  },
-  {
-    "title": "„CASA ROȘIE” (blvd. Siderurgiștilor cc. str. Gheorghe Asachi)",
-    "location": "blvd. Siderurgiștilor colț cu str. Gheorghe Asachi",
-    "article": "../assets/articles/casa-rosie-blvd-siderurgistilor-cc-str-gheorghe-asachi/index.html",
-    "source": ""
-  },
-  {
-    "title": "MONUMENTUL DOCHERILOR (promenadă Faleza Dunării, latura estică a Palatului Navigației)",
-    "location": "promenadă Faleza Dunării, latura estică a Palatului Navigației",
-    "article": "../assets/articles/monumentul-docherilor-promenada-faleza-dunarii-latura-estica-a-palatului-navigatiei/index.html",
-    "source": ""
-  },
-  {
-    "title": "MONUMENT 13 IUNIE 1916 (str. Portului cc. str. George Enescu)",
-    "location": "str. Portului colț cu str. George Enescu",
-    "article": "../assets/articles/monument-13-iunie-1916-str-portului-cc-str-george-enescu/index.html",
-    "source": ""
-  },
-  {
-    "title": "CASA SEBASTIAN EUSTAȚIU (str. Melchisedec Ștefănescu cc Mihai Bravu)",
-    "location": "str. Melchisedec Ștefănescu colț cu Mihai Bravu",
-    "article": "../assets/articles/casa-sebastian-eustatiu-str-melchisedec-stefanescu-cc-mihai-bravu/index.html",
-    "source": ""
+    "source": "",
+    "kind": "topic"
   },
   {
     "title": "Figuri din familia DRĂGĂNESCU",
     "location": "Figuri din familia DRĂGĂNESCU",
     "article": "../assets/articles/figuri-din-familia-draganescu/index.html",
-    "source": ""
-  },
-  {
-    "title": "GRAND HOTEL, ridicat de ELIE CLIMIS (str. Domnească nr. 30-36)",
-    "location": "str. Domnească nr. 30-36",
-    "article": "../assets/articles/grand-hotel-ridicat-de-elie-climis-str-domneasca-nr-30-36/index.html",
-    "source": ""
-  },
-  {
-    "title": "Tabăra de sculptură în metal - Faleza Dunării",
-    "location": "Tabăra de sculptură în metal - Faleza Dunării",
-    "article": "../assets/articles/tabara-de-sculptura-in-metal-faleza-dunarii/index.html",
-    "source": ""
-  },
-  {
-    "title": "BISERICA FORTIFICATĂ SF. GHEORGHE (dispărută, inițial aflată pe promontoriul falezei Dunării, în linie directă V-E cu biserica Sf. Precista)",
-    "location": "BISERICA FORTIFICATĂ SF. GHEORGHE (dispărută, inițial aflată pe promontoriul falezei Dunării, în linie directă V-E cu biserica Sf. Precista)",
-    "article": "../assets/articles/biserica-fortificata-sf-gheorghe-disparuta-initial-aflata-pe-promontoriul-falezei-dunarii-in-linie-directa-v-e-cu-biserica-sf-precista/index.html",
-    "source": ""
-  },
-  {
-    "title": "BISERICA SF. IERARH SPIRIDON (str. Sf. Spiridon nr. 13)",
-    "location": "str. Sf. Spiridon nr. 13",
-    "article": "../assets/articles/biserica-sf-ierarh-spiridon-str-sf-spiridon-nr-13/index.html",
-    "source": ""
+    "source": "",
+    "kind": "family"
   },
   {
     "title": "(Foto) Vaporul „Principesa Maria” în Portul Galați",
     "location": "(Foto) Vaporul „Principesa Maria” în Portul Galați",
     "article": "../assets/articles/foto-vaporul-principesa-maria-in-portul-galati/index.html",
-    "source": ""
+    "source": "",
+    "kind": "photo"
   },
   {
     "title": "MEDICUL ARISTIDE SERFIOTI",
     "location": "MEDICUL ARISTIDE SERFIOTI",
     "article": "../assets/articles/medicul-aristide-serfioti/index.html",
-    "source": ""
+    "source": "",
+    "kind": "person"
   },
   {
     "title": "Bătălia de la Galați - 1918",
     "location": "Bătălia de la Galați - 1918",
     "article": "../assets/articles/batalia-de-la-galati-1918/index.html",
-    "source": ""
-  },
-  {
-    "title": "INSTITUTUL CATOLIC / PENSIONUL DE FETE NOTRE DAME DE SION (în prezent sediul mai multor facultăți din cadrul Universității „Dunărea de Jos” din Galați)",
-    "location": "INSTITUTUL CATOLIC / PENSIONUL DE FETE NOTRE DAME DE SION (în prezent sediul mai multor facultăți din cadrul Universității „Dunărea de Jos” din Galați)",
-    "article": "../assets/articles/institutul-catolic-pensionul-de-fete-notre-dame-de-sion-in-prezent-sediul-mai-multor-facultati-din-cadrul-universitatii-dunarea-de-jos-din-galati/index.html",
-    "source": ""
+    "source": "",
+    "kind": "event"
   },
   {
     "title": "PALATUL ȘCOLILOR COMERCIALE",
     "location": "PALATUL ȘCOLILOR COMERCIALE",
     "article": "../assets/articles/palatul-scolilor-comerciale/index.html",
-    "source": ""
+    "source": "",
+    "kind": "place"
   },
   {
-    "title": "Alegoriile Industria și Agricultura - sculptor Frederic Storck",
-    "location": "Alegoriile Industria și Agricultura - sculptor Frederic Storck",
-    "article": "../assets/articles/alegoriile-industria-si-agricultura-sculptor-frederic-storck-galati/index.html",
-    "source": ""
+    "title": "Hotel Dacia (în casele Calergi) [adresă aproximativă]",
+    "location": "casele Calergi (loc al primei sucursale BNR Galați, 1881)",
+    "article": "../assets/articles/hotel-dacia-casele-calergi/index.html",
+    "source": "Sandel Dumitru, vol. VII p.7120: în 18 martie 1881 BNR deschide sucursala „în localul casei Calergi (Hotel Dacia)”",
+    "kind": "place"
+  },
+  {
+    "title": "Hotel Victoria [adresă aproximativă]",
+    "location": "str. Brașoveni (zonă demolată; aproape de fostul Teatru Papadopol)",
+    "article": "../assets/articles/hotel-victoria-strada-brasoveni/index.html",
+    "source": "Sandel Dumitru, vol. VI p.14898: „Pe această stradă a fost Teatrul Papadopol, distrus de un incendiu, şi Hotel Victoria.”",
+    "kind": "place"
+  },
+  {
+    "title": "Sala Alcazar (a fraților Antachi) [adresă aproximativă]",
+    "location": "str. Domnească (intrare prin curte interioară din str. Lupeni — fostă Antachi)",
+    "article": "../assets/articles/sala-alcazar-fratii-antachi/index.html",
+    "source": "Sandel Dumitru, vol. VI p.13001-13019: „Marea sală Alcazar, cea mai spațioasă din Galați” / „La Galați sala Alcazar aparținea fraților Antachi”",
+    "kind": "place"
+  },
+  {
+    "title": "Cinema Trianon (azi „Republica”) [adresă aproximativă]",
+    "location": "str. Domnească, zona centrală",
+    "article": "../assets/articles/cinema-trianon-republica/index.html",
+    "source": "Sandel Dumitru, vol. VII p.1179: „pentru cinema Trianon (astăzi Republica)”",
+    "kind": "place"
+  },
+  {
+    "title": "Cinema Scala [adresă aproximativă]",
+    "location": "str. I. C. Brătianu",
+    "article": "../assets/articles/cinema-scala-strada-bratianu/index.html",
+    "source": "Sandel Dumitru, vol. VII p.9676: „Brătianu, vizavi de cinematograful Scala”",
+    "kind": "place"
+  },
+  {
+    "title": "Banca Marmorosch Blank & Co. (3 sedii) [adresă aproximativă]",
+    "location": "Galați — 3 sedii necunoscute punctual",
+    "article": "../assets/articles/banca-marmorosch-blank-co/index.html",
+    "source": "Sandel Dumitru, vol. VI p.12659: „Banca Marmorosch Blank care avea trei sedii în Galaţi” — finanțator pentru Casa Goetz (1888) și tunelul Barboși-Galați (1882-1892)",
+    "kind": "place"
+  },
+  {
+    "title": "Fabrica de cherestea Goetz & Co. (1895) [adresă aproximativă]",
+    "location": "Galați (zona portuară Bădălan)",
+    "article": "../assets/articles/fabrica-cherestea-goetz-co/index.html",
+    "source": "Sandel Dumitru, vol. IX p.9327: „Fabrica de cherestea Goetz cu un capital de 31.000.000 lei şi cu 970 de muncitori, considerată cea mai mare din ţară”",
+    "kind": "place"
+  },
+  {
+    "title": "Fabrica de ambalaje metalice „Albina” (fostă Max Fischer & Comp., 1887) [adresă aproximativă]",
+    "location": "Galați — adresă necunoscută",
+    "article": "../assets/articles/fabrica-albina-max-fischer/index.html",
+    "source": "Sandel Dumitru, vol. IX p.9327: „Fabrica de ambalaje metalice Albina, fostă Max Fischer & Comp. din 1887 cu 183 muncitori”",
+    "kind": "place"
+  },
+  {
+    "title": "Templul Coral (sinagogă demolată 1942) [adresă aproximativă]",
+    "location": "str. Cuza Vodă (= actuala str. Alexandru Ioan Cuza), număr necunoscut",
+    "article": "../assets/articles/templul-coral-sinagoga-cuza-voda/index.html",
+    "source": "Sandel Dumitru, vol. VI p.12643: „Templul Coral a fost inaugurat în 1885 şi demolat în 1942, clădirea fiind avariată în urma cutremurului din noiembrie 1940”",
+    "kind": "place"
+  },
+  {
+    "title": "Sinagoga din str. Războieni (fostă str. Israelită) [adresă aproximativă]",
+    "location": "str. Războieni (mahalaua evreiască istorică), număr necunoscut",
+    "article": "../assets/articles/sinagoga-strada-razboieni-israelita/index.html",
+    "source": "RDJ nr. 214/2019 p.2587-2588 (lista străzilor evreiești istorice din Galați)",
+    "kind": "place"
   }
 ]
