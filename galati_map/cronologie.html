@@ -60,7 +60,7 @@
     }
 
     .topbar {
-      position: sticky; top: 0; z-index: 50;
+      position: sticky; top: 0; z-index: 1200;
       display: flex; align-items: stretch;
       height: var(--topbar-h);
       background: var(--panel);
@@ -71,7 +71,14 @@
       display: flex; align-items: center;
       font-weight: 800; font-size: 13px;
       letter-spacing: .18em; text-transform: uppercase;
-      gap: 9px;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--ink);
+      white-space: nowrap;
+      flex-shrink: 1;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .topbar .logo .logo-mark {
       width: 30px; height: 30px;
@@ -81,9 +88,9 @@
       mask: url(../assets/logo-sigiliu.svg) center / contain no-repeat;
       -webkit-mask: url(../assets/logo-sigiliu.svg) center / contain no-repeat;
     }
-    .topbar .logo { gap: 10px; text-decoration: none; color: var(--ink); }
+    .topbar .logo .logo-text { overflow: hidden; text-overflow: ellipsis; }
     .topbar .logo:hover { color: var(--accent-deep); }
-    .topbar nav { display: flex; gap: 0; margin-left: auto; align-items: stretch; }
+    .topbar nav { display: flex; gap: 0; margin-left: auto; align-items: stretch; max-width: 100%; }
     .topbar nav a {
       display: inline-flex; align-items: center;
       padding: 0 16px;
@@ -92,6 +99,7 @@
       color: var(--muted);
       text-decoration: none;
       position: relative;
+      white-space: nowrap;
     }
     .topbar nav a:hover { color: var(--ink); }
     .topbar nav a.active { color: var(--ink); }
@@ -100,9 +108,62 @@
       left: 16px; right: 16px; bottom: -1px;
       height: 2px; background: var(--ink);
     }
-    @media (max-width: 700px) {
-      .topbar { padding: 0 14px; }
-      .topbar nav a { padding: 0 10px; font-size: 11.5px; }
+
+    /* Hamburger pe mobil — același pattern ca index.html */
+    .topbar-burger {
+      display: none;
+      background: transparent;
+      border: 0;
+      padding: 8px;
+      margin-left: auto;
+      color: var(--ink);
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+    }
+    .topbar-burger svg { width: 22px; height: 22px; }
+
+    @media (max-width: 720px) {
+      .topbar { padding: 0 14px; overflow: visible; }
+      .topbar .logo { font-size: 12px; letter-spacing: .14em; }
+      .topbar-burger { display: inline-flex; }
+      .topbar nav {
+        position: fixed;
+        top: var(--topbar-h);
+        left: 0; right: 0;
+        flex-direction: column;
+        gap: 0;
+        background: var(--panel);
+        border-bottom: 1px solid var(--line);
+        box-shadow: 0 8px 16px rgba(0,0,0,.06);
+        padding: 6px 0;
+        margin-left: 0;
+        max-width: 100%;
+        transform: translateY(-12px);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity .18s ease, transform .18s ease;
+        z-index: 1199;
+      }
+      .topbar nav.open {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+      .topbar nav a {
+        width: 100%;
+        padding: 14px 22px;
+        justify-content: flex-start;
+        font-size: 14px;
+        letter-spacing: .04em;
+        text-transform: none;
+      }
+      .topbar nav a.active::after {
+        left: 0; right: auto;
+        bottom: 0; top: 0;
+        width: 3px; height: auto;
+        background: var(--accent);
+      }
     }
 
     main {
@@ -331,11 +392,14 @@
   <header class="topbar">
     <a class="logo" href="./index.html#map" aria-label="Heritage Galați — pagina principală">
       <span class="logo-mark" aria-hidden="true"></span>
-      <span>Heritage Galați</span>
+      <span class="logo-text">Heritage Galați</span>
     </a>
-    <nav>
+    <button class="topbar-burger" id="topbar-burger" type="button" aria-label="Meniu" aria-expanded="false" aria-controls="topbar-nav">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+    </button>
+    <nav id="topbar-nav">
       <a href="./index.html#map">Hartă</a>
-      <a href="./index.html#events">Evenimente</a>
+      <a href="./index.html#events">Povești</a>
       <a href="./cronologie.html" class="active">Liste</a>
       <a href="./index.html#about">Despre</a>
       <a href="./index.html#trivia">Știați că?</a>
@@ -355,6 +419,32 @@
 
     <div class="lists" id="lists"></div>
   </main>
+
+  <script>
+    // Hamburger menu — același pattern ca index.html
+    (function () {
+      const burger = document.getElementById('topbar-burger');
+      const nav = document.getElementById('topbar-nav');
+      if (!burger || !nav) return;
+      function close() {
+        nav.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+      }
+      burger.addEventListener('click', () => {
+        const open = nav.classList.toggle('open');
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      nav.addEventListener('click', (e) => { if (e.target.closest('a')) close(); });
+      document.addEventListener('click', (e) => {
+        if (!nav.classList.contains('open')) return;
+        if (e.target.closest('.topbar')) return;
+        close();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && nav.classList.contains('open')) close();
+      });
+    })();
+  </script>
 
   <script type="module">
     const data = await fetch('./cronologie.json').then(r => r.json());
