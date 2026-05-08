@@ -2833,5 +2833,32 @@
     "lat": 45.427371,
     "lon": 28.049201,
     "year": 1970
+  },
+  {
+    "src": "../assets/images/local/strada-portului-spre-palatul-navigatiei-pe-fundal-casele-h-s-e02c77a2.jpg",
+    "caption_ro": "Strada Portului spre Palatul Navigației, pe fundal casele H. Ștefan - anii '30",
+    "caption_en": "",
+    "folder": "local",
+    "lat": 45.432412,
+    "lon": 28.062842,
+    "year": 1930
+  },
+  {
+    "src": "../assets/images/local/prin-fata-parcului-municipal-hotel-bristol-casele-gheuca-in--d6ff7ae2.jpg",
+    "caption_ro": "Prin fața Parcului Municipal, hotel Bristol, casele Gheuca în stânga - anul 1906",
+    "caption_en": "",
+    "folder": "local",
+    "lat": 45.436092,
+    "lon": 28.05552,
+    "year": 1906
+  },
+  {
+    "src": "../assets/images/local/parcul-municipal-spre-strada-domneasca-pe-fundal-hotel-brist-5c8689db.jpg",
+    "caption_ro": "Parcul Municipal spre strada Domnească / pe fundal Hotel Bristol, casele Gheuca, restaurantul Sure și Confiseria Universală / Elizee mai târziu",
+    "caption_en": "",
+    "folder": "local",
+    "lat": 45.436295,
+    "lon": 28.054474,
+    "year": 1901
   }
 ]
