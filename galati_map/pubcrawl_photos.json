@@ -2797,5 +2797,23 @@
     "lat": 45.402382,
     "lon": 27.988583,
     "year": null
+  },
+  {
+    "src": "../assets/images/local/inceputul-anilor-80-se-lucra-la-fundatia-cinematografului-da-6262d86b.jpg",
+    "caption_ro": "începutul anilor '80 Se lucra la fundația cinematografului Dacia",
+    "caption_en": "",
+    "folder": "local",
+    "lat": 45.412284,
+    "lon": 28.016269,
+    "year": null
+  },
+  {
+    "src": "../assets/images/local/fostul-cinema-dunarea-anii-90-83973f17.jpg",
+    "caption_ro": "fostul Cinema Dunărea anii '90",
+    "caption_en": "",
+    "folder": "local",
+    "lat": 45.433003,
+    "lon": 28.05107,
+    "year": null
   }
 ]
