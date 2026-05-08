@@ -2,5 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /_admin/
 
-# Bonus: indică conținutul principal
-# Sitemap-ul poate fi adăugat după ce e definit domeniul de deploy.
+Sitemap: https://heritage-galati.ro/galati_map/sitemap.xml

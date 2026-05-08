@@ -33,3 +33,6 @@ scripts/.commons_cache.json
 scripts/image_decisions.json
 scripts/image_candidates.json
 scripts/image_review.html
+
+# Deploy archive (rebuildable: python3 scripts/make_deploy_archive.py)
+deploy/*.zip
