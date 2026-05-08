@@ -2815,5 +2815,23 @@
     "lat": 45.433003,
     "lon": 28.05107,
     "year": null
+  },
+  {
+    "src": "../assets/images/local/stadion-dunarea-anii-60-503e89ab.jpg",
+    "caption_ro": "Stadion Dunarea anii 60",
+    "caption_en": "",
+    "folder": "local",
+    "lat": 45.422002,
+    "lon": 28.026316,
+    "year": 1960
+  },
+  {
+    "src": "../assets/images/local/restaurant-pescarul-anii-70-e7a3a5f4.jpg",
+    "caption_ro": "Restaurant Pescarul anii 70",
+    "caption_en": "",
+    "folder": "local",
+    "lat": 45.427371,
+    "lon": 28.049201,
+    "year": 1970
   }
 ]
