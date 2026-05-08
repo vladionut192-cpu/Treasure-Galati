@@ -3205,7 +3205,7 @@
       <section>
         <p class="label-eyebrow">Autor</p>
         <h2>Realizat de</h2>
-        <p>Vlad Ionuț — <a href="http://ionpeblog.ro/" target="_blank" rel="noopener">ionpeblog.ro</a>.</p>
+        <p>Vlad Ionuț — <a href="https://ionpeblog.ro/" target="_blank" rel="noopener">ionpeblog.ro</a>.</p>
       </section>
 
       <section>
@@ -4750,6 +4750,10 @@
     });
     layersClose?.addEventListener('click', closeLayersSheet);
     layersBackdrop?.addEventListener('click', closeLayersSheet);
+    // Esc închide sheet-ul (paritate cu meniul hamburger)
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && layersSheet?.classList.contains('open')) closeLayersSheet();
+    });
     // Pe schimbarea breakpoint-ului, închide sheet-ul dacă e deschis
     mqMobile.addEventListener('change', (e) => {
       if (!e.matches) closeLayersSheet();
