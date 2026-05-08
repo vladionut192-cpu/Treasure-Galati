@@ -2528,12 +2528,14 @@
       #map { position: absolute; inset: 0; }
     }
 
-    /* Mobile layer FAB + bottom sheet — ascunse pe desktop. Plasat în
-       top-left ca să nu conflict cu year-overlay (top-right la timeline engaged). */
-    .layers-fab {
+    /* Mobile FAB-uri pentru straturi + tururi — ascunse pe desktop.
+       Plasate în bottom-left ca să nu conflict cu Leaflet zoom (top-left)
+       sau year-overlay (top-right la timeline engaged). */
+    .layers-fab,
+    .tours-fab {
       display: none;
       position: absolute;
-      top: 12px; left: 12px;
+      left: 12px;
       z-index: 880;
       width: 44px; height: 44px;
       border-radius: 50%;
@@ -2545,8 +2547,12 @@
       align-items: center; justify-content: center;
       transition: transform .12s ease, background .12s;
     }
-    .layers-fab svg { width: 20px; height: 20px; }
-    .layers-fab[aria-expanded="true"] {
+    .layers-fab { bottom: 16px; }
+    .tours-fab  { bottom: 72px; }
+    .layers-fab svg,
+    .tours-fab svg { width: 20px; height: 20px; }
+    .layers-fab[aria-expanded="true"],
+    .tours-fab[aria-expanded="true"] {
       background: var(--accent-deep);
       color: #fff;
     }
@@ -2608,15 +2614,23 @@
     .layers-sheet-backdrop.open { opacity: 1; }
 
     @media (max-width: 720px) {
-      /* FAB-ul de straturi vizibil pe mobil */
-      .layers-fab { display: flex; }
+      /* FAB-urile de straturi + tururi vizibile pe mobil */
+      .layers-fab,
+      .tours-fab { display: flex; }
       /* Toggle-urile mutate în sheet preiau alt padding */
       .layers-sheet-body .toggle-overlay { border-top: 0; padding: 14px 0; }
       .layers-sheet-body .toggle-overlay + .toggle-overlay,
       .layers-sheet-body .historic-opacity + .toggle-overlay {
         border-top: 1px solid var(--line-soft);
       }
-      /* FAB-urile de admin/poziție jos relativ la timeline-ul mutat */
+      /* Tours panel portat în sheet — forțăm vizibilitatea (indiferent
+         de starea tab-urilor desktop care îl pun pe `hidden`). */
+      .layers-sheet-body #panel-tours { display: block !important; }
+      /* În sheet-ul mobil, tour-cards merge pe coloană simplă, nu pe grilă. */
+      .layers-sheet-body .tour-cards { display: block; }
+      .layers-sheet-body .tour-cards > * { margin-bottom: 14px; }
+      /* FAB-urile de admin (dev only) — la dreapta-jos ca să nu colideze
+         cu layers/tours FAB de la stânga-jos. */
       .add-pin-fab { bottom: 16px; right: 16px; }
       .add-photo-fab { bottom: 76px; right: 16px; }
     }
@@ -2827,7 +2841,10 @@
       <!-- Event tag (bottom-right of map, shown when slider near an event) -->
       <div class="timeline-current-event" id="timeline-current-event" hidden></div>
 
-      <!-- Mobile-only: layers FAB + bottom-sheet panel containing layer toggles -->
+      <!-- Mobile-only: FAB-uri + bottom-sheet pentru straturi și tururi -->
+      <button class="tours-fab" id="tours-fab" type="button" aria-label="Tururi tematice" aria-expanded="false" aria-controls="mobile-tours-panel">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+      </button>
       <button class="layers-fab" id="layers-fab" type="button" aria-label="Straturi hartă" aria-expanded="false" aria-controls="mobile-layers-panel">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 22 8 12 14 2 8 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
       </button>
@@ -2837,6 +2854,13 @@
           <button class="layers-sheet-close" id="layers-sheet-close" type="button" aria-label="Închide">×</button>
         </div>
         <div class="layers-sheet-body" id="mobile-layers-slot"><!-- #layer-controls is moved here on mobile --></div>
+      </div>
+      <div class="layers-sheet" id="mobile-tours-panel" hidden>
+        <div class="layers-sheet-header">
+          <h3>Tururi tematice</h3>
+          <button class="layers-sheet-close" id="tours-sheet-close" type="button" aria-label="Închide">×</button>
+        </div>
+        <div class="layers-sheet-body" id="mobile-tours-slot"><!-- #panel-tours is moved here on mobile --></div>
       </div>
       <div class="layers-sheet-backdrop" id="layers-sheet-backdrop" hidden></div>
 
@@ -3808,6 +3832,9 @@
     function openDetail(id) {
       const item = locations.find(l => l.id === id);
       if (!item) return;
+      // Pe mobil, dacă un bottom-sheet (straturi/tururi) e deschis, îl închidem
+      // ca să fie vizibil panel-ul detail care alunecă din dreapta.
+      if (typeof closeAllSheets === 'function') closeAllSheets();
       activeId = id;
       crumbs.textContent = item.category || 'Obiectiv';
       const heroImg = item.image
@@ -4721,64 +4748,104 @@
       if (e.key === 'Escape' && topbarNav?.classList.contains('open')) closeBurger();
     });
 
-    // ─── Mobile: layer-controls portal (sidebar ↔ bottom sheet) ──
+    // ─── Mobile: portal pentru sidebar controls ↔ bottom sheets ──
     // Mutăm același nod DOM între sidebar (desktop) și sheet-ul flotant
     // (mobil) ca să nu duplicăm event listeners sau state-ul controalelor.
-    const layerCtrl = document.getElementById('layer-controls');
-    const mobileSlot = document.getElementById('mobile-layers-slot');
-    const sidebarParent = layerCtrl?.parentElement;
-    const sidebarAnchor = document.getElementById('count'); // re-insert before this
-    const layersFab = document.getElementById('layers-fab');
-    const layersSheet = document.getElementById('mobile-layers-panel');
-    const layersBackdrop = document.getElementById('layers-sheet-backdrop');
-    const layersClose = document.getElementById('layers-sheet-close');
     const mqMobile = window.matchMedia('(max-width: 720px)');
+    const layersBackdrop = document.getElementById('layers-sheet-backdrop');
 
-    function placeLayerControls() {
-      if (!layerCtrl || !mobileSlot || !sidebarParent || !sidebarAnchor) return;
-      const inMobile = layerCtrl.parentElement === mobileSlot;
-      if (mqMobile.matches && !inMobile) {
-        mobileSlot.appendChild(layerCtrl);
-      } else if (!mqMobile.matches && inMobile) {
-        sidebarParent.insertBefore(layerCtrl, sidebarAnchor);
+    // Configurarea portal-urilor: nod sursă, slot mobil, ancoră de re-inserare
+    const portals = [
+      {
+        node:    document.getElementById('layer-controls'),
+        slot:    document.getElementById('mobile-layers-slot'),
+        anchor:  document.getElementById('count'),
+      },
+      {
+        node:    document.getElementById('panel-tours'),
+        slot:    document.getElementById('mobile-tours-slot'),
+        // Tours panel revine după layer-controls în sidebar (la final)
+        anchor:  null, // appendChild la sidebarParent
+      },
+    ].map(p => ({ ...p, sidebarParent: p.node?.parentElement }));
+
+    function applyPortals() {
+      portals.forEach(p => {
+        if (!p.node || !p.slot || !p.sidebarParent) return;
+        const inMobile = p.node.parentElement === p.slot;
+        if (mqMobile.matches && !inMobile) {
+          p.slot.appendChild(p.node);
+        } else if (!mqMobile.matches && inMobile) {
+          if (p.anchor && p.anchor.parentElement === p.sidebarParent) {
+            p.sidebarParent.insertBefore(p.node, p.anchor);
+          } else {
+            p.sidebarParent.appendChild(p.node);
+          }
+        }
+      });
+    }
+    applyPortals();
+    mqMobile.addEventListener('change', applyPortals);
+
+    // Bottom sheet generic — un singur backdrop, mai multe sheet-uri.
+    // Doar un sheet poate fi deschis simultan. `onOpen` e o lazy hook care
+    // re-randă conținutul (ex: tour cards) la deschidere.
+    const sheets = [
+      { sheet: document.getElementById('mobile-layers-panel'),
+        fab:   document.getElementById('layers-fab'),
+        close: document.getElementById('layers-sheet-close'),
+        onOpen: null },
+      { sheet: document.getElementById('mobile-tours-panel'),
+        fab:   document.getElementById('tours-fab'),
+        close: document.getElementById('tours-sheet-close'),
+        // Re-randăm tour browse de fiecare dată — funcția e idempotentă.
+        // Pe desktop e apelată când user click pe tab; pe mobil tab-urile
+        // sunt ascunse, deci sheet-ul preia rolul de declanșator.
+        onOpen: () => { if (typeof renderTourBrowse === 'function') renderTourBrowse(); } },
+    ];
+
+    function openSheet(target) {
+      // Închide orice alt sheet deschis
+      sheets.forEach(s => { if (s.sheet && s.sheet !== target.sheet) closeSheet(s, /*skipBackdrop*/ true); });
+      if (!target.sheet) return;
+      target.sheet.hidden = false;
+      layersBackdrop.hidden = false;
+      void target.sheet.offsetWidth; // force reflow
+      target.sheet.classList.add('open');
+      layersBackdrop.classList.add('open');
+      target.fab?.setAttribute('aria-expanded', 'true');
+      target.onOpen?.();
+    }
+    function closeSheet(target, skipBackdrop) {
+      if (!target.sheet) return;
+      target.sheet.classList.remove('open');
+      target.fab?.setAttribute('aria-expanded', 'false');
+      setTimeout(() => { target.sheet.hidden = true; }, 250);
+      if (!skipBackdrop) {
+        layersBackdrop.classList.remove('open');
+        setTimeout(() => { layersBackdrop.hidden = true; }, 250);
       }
     }
-    placeLayerControls();
-    mqMobile.addEventListener('change', placeLayerControls);
-
-    function openLayersSheet() {
-      if (!layersSheet) return;
-      layersSheet.hidden = false;
-      layersBackdrop.hidden = false;
-      // Force reflow before adding open class so transition fires
-      void layersSheet.offsetWidth;
-      layersSheet.classList.add('open');
-      layersBackdrop.classList.add('open');
-      layersFab.setAttribute('aria-expanded', 'true');
+    function closeAllSheets() {
+      sheets.forEach(s => closeSheet(s));
     }
-    function closeLayersSheet() {
-      if (!layersSheet) return;
-      layersSheet.classList.remove('open');
-      layersBackdrop.classList.remove('open');
-      layersFab.setAttribute('aria-expanded', 'false');
-      setTimeout(() => {
-        layersSheet.hidden = true;
-        layersBackdrop.hidden = true;
-      }, 250);
-    }
-    layersFab?.addEventListener('click', () => {
-      const open = layersSheet?.classList.contains('open');
-      if (open) closeLayersSheet(); else openLayersSheet();
+    sheets.forEach(s => {
+      s.fab?.addEventListener('click', () => {
+        const isOpen = s.sheet?.classList.contains('open');
+        if (isOpen) closeSheet(s); else openSheet(s);
+      });
+      s.close?.addEventListener('click', () => closeSheet(s));
     });
-    layersClose?.addEventListener('click', closeLayersSheet);
-    layersBackdrop?.addEventListener('click', closeLayersSheet);
-    // Esc închide sheet-ul (paritate cu meniul hamburger)
+    layersBackdrop?.addEventListener('click', closeAllSheets);
+    // Esc închide orice sheet deschis (paritate cu meniul hamburger)
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && layersSheet?.classList.contains('open')) closeLayersSheet();
+      if (e.key !== 'Escape') return;
+      const anyOpen = sheets.some(s => s.sheet?.classList.contains('open'));
+      if (anyOpen) closeAllSheets();
     });
-    // Pe schimbarea breakpoint-ului, închide sheet-ul dacă e deschis
+    // Pe schimbarea breakpoint-ului, închide sheet-urile dacă sunt deschise
     mqMobile.addEventListener('change', (e) => {
-      if (!e.matches) closeLayersSheet();
+      if (!e.matches) closeAllSheets();
     });
 
     // Pin links from any article (battle page etc.) → switch to map and open detail

@@ -5,7 +5,7 @@
 //   - Tile-uri OpenStreetMap/CARTO: cache-first cu TTL lung
 //   - Imagini: cache-first
 
-const CACHE_VERSION = 'tg-v3';
+const CACHE_VERSION = 'tg-v4';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const DATA_CACHE = `${CACHE_VERSION}-data`;
 const IMAGE_CACHE = `${CACHE_VERSION}-images`;
