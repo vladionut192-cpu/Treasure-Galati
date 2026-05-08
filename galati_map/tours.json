@@ -114,6 +114,108 @@
           "note": "Cimitirul „Eternitatea” — bonus cosmopolit: aici e îngropat Shintaro Tsutsumi, samurai japonez de 24 de ani, ajuns la Galați cu nava „Kilimaru” la 3 ani după Primul Război Mondial. Piatra de mormânt e scrisă în japoneză și franceză. La Muzeul de Istorie se păstrează „sabia de seppuku” care i-ar fi aparținut. Final: înapoi la Hops Gallery — ai văzut Galațiul de 1.800 de ani (de la Tirighina romană la Combinat)."
         }
       ]
+    },
+    {
+      "id": "tour-diplomatic",
+      "title": "Galațiul cosmopolit — circuit consular",
+      "subtitle": "12 consulate · 1 oră de mers · pe Domnească și străzile vecine",
+      "description": "Înainte de Primul Război Mondial, Galațiul avea 21 de consulate și vice-consulate active — densitate diplomatică mai mare decât au astăzi multe capitale. Statutul de port-liber (1837–1882) și sediul Comisiei Europene a Dunării (din 1856) făceau din oraș o piață diplomatică cosmopolită: consuli sau agenți comerciali din toată Europa, plus Persia și SUA.\n\nTurul parcurge 12 reședințe consulare păstrate, de la sud la nord, mai ales pe Domnească. Multe au fost construite ca vile private de comercianți greci, evrei sau italieni și apoi închiriate puterilor europene. Astăzi le recunoști după blazonul de pe fațadă, după placa comemorativă sau după detalii eclectice (frontoane, cariatide, vitralii).",
+      "cover": "",
+      "category": "Diplomație și consulate",
+      "color": "#1d4480",
+      "stops": [
+        {
+          "article": "../assets/articles/consulatul-greciei-str-a-i-cuza-nr-15/index.html",
+          "note": "Consulatul Greciei — pe Domnească 30, devenit ulterior și pe A.I. Cuza 15. Comunitatea greacă era cea mai veche și mai bogată din oraș. Vasile Karavia, conducătorul revoluției grecești de la 1821, a atacat garnizoana otomană din Galați în februarie 1821 — orașul a fost prima victorie a Eteriei pe pământ românesc."
+        },
+        {
+          "article": "../assets/articles/consulatul-belgiei-str-universitatii-nr-20/index.html",
+          "note": "Consulatul Belgiei — Belgia a fost a doua țară care a deschis consulat la Galați (după Franța, 1828). Comerțul cu cărbune din Anvers și Liège trecea pe aici spre Marea Neagră. Refugiații belgieni au sosit în august 1914 (după invazia germană) — Cinema Louvru le-a organizat o seară dansantă caritabilă."
+        },
+        {
+          "article": "../assets/articles/consulatul-cehoslovaciei-str-eroilor-nr-7/index.html",
+          "note": "Consulatul Cehoslovaciei — pe Eroilor 7, deschis după 1918 (la fondarea Cehoslovaciei). Berea Ploll era cehă (proprietar Josef Ploll, din 1860). Mulți tehnicieni cehi și slovaci au lucrat la Șantierele Navale și la fabrica de bere — comunitate mică dar solidă."
+        },
+        {
+          "article": "../assets/articles/consulatul-turciei-inainte-de-primul-razboi-mondial-str-eroilor-nr-14/index.html",
+          "note": "Consulatul Turciei — peste drum de cel cehoslovac, până la Primul Război. Galați a fost stăpânit de turci între 1538 și 1829, apoi raialaua Brăila (din care făcea parte) a fost cedată Țării Românești prin Pacea de la Adrianopol. După 1878 (independența României), turcii au revenit ca parteneri comerciali — exportau ulei și fructe uscate, importau cereale gălățene."
+        },
+        {
+          "article": "../assets/articles/consulatul-germaniei-str-nicolae-holban/index.html",
+          "note": "Consulatul Prusiei (înainte de 1871) → Germaniei (după unificare). Pe strada N. Holban, fosta str. Holban. Prusia a fost a treia putere care a deschis consulat la Galați (1834). Comerțul cu Hamburg și Bremen a făcut din oraș un nod de export pentru cereale spre Europa de Nord. În 1944, retragerea germană a devastat Piața Regală."
+        },
+        {
+          "article": "../assets/articles/consulatul-spaniei-interbelic-str-domneasca-nr-79-colt-cu-str-culturii/index.html",
+          "note": "Consulatul Spaniei — Domnească 79, colț cu Culturii. Reședință interbelică, după ce comunitatea sefardă (evrei spanioli) crescuse la Galați. Multe familii sefarde — emigrate din Spania după 1492 — au păstrat ladino ca limbă casnică. Evreii sefarzi controlau o parte din comerțul cu textile și exportul de cereale."
+        },
+        {
+          "article": "../assets/articles/consulatul-portugaliei-strada-domneasca-nr-80/index.html",
+          "note": "Consulatul Portugaliei — Domnească 80, alături de Casa Cuza Vodă. Portugalia avea consulate doar în puține porturi europene — Galații era pe ruta Marsilia–Lisabona–Constantinopol pentru comerțul cu cereale. Consulul era de obicei un negustor local cu cetățenie portugheză onorifică."
+        },
+        {
+          "article": "../assets/articles/consulatul-sardiniei-italiei-str-garii-nr-38/index.html",
+          "note": "Consulatul Regatului Sardiniei (până 1861) → Italiei. Pe Strada Gării 38. Italia a deschis consulat la Galați în 1860 — chiar înainte de unificarea italiană. Mulți comercianți italieni (Fanciotti, Cavallioti, Negroponte) și-au făcut averea la Galați. Casa Fanciotti pe Domnească 45 e una din cele mai frumoase reședințe italiene din oraș."
+        },
+        {
+          "article": "../assets/articles/consulatul-frantei-str-domneasca-nr-90/index.html",
+          "note": "Consulatul Franței — pe Domnească 90, primul consulat deschis la Galați (1828). Franța a fost cel mai influent stat în CED (Comisia Europeană a Dunării, fondată 1856). Tot inginerii francezi (Charles Hartley, britanic dar trimis de CED) au săpat canalul Sulina, transformând Galațiul în port maritim accesibil vapoarelor mari."
+        },
+        {
+          "article": "../assets/articles/consulatul-elvetiei-str-basarabiei-nr-11/index.html",
+          "note": "Consulatul Elveției — pe Basarabiei 11. Elveția n-avea interese coloniale, dar era o destinație de business pentru elita evreiască și greacă din Galați. Mulți industriași gălățeni își țineau averea în bănci elvețiene — clasa din care făceau parte Auschnitt, Steuerman, Fischer."
+        },
+        {
+          "article": "../assets/articles/consulatul-norvegiei-si-suediei-str-domneasca-nr-106/index.html",
+          "note": "Consulatul Norvegiei și Suediei — Domnească 106, până la separarea Suediei și Norvegiei (1905). După aceea, doar Norvegia a păstrat reprezentanța, până în anii '30. Cherestea, hering și ulei de balenă din Norvegia veneau pe Dunăre la Galați; cereale și sare plecau spre Bergen."
+        },
+        {
+          "article": "../assets/articles/consulatul-poloniei-str-vultur-nr-18/index.html",
+          "note": "Consulatul Poloniei — pe str. Vultur 18, deschis în interbelic (după 1918, când Polonia s-a refondat). Refugiații polonezi au ajuns la Galați în septembrie 1939, după invazia germano-sovietică, fugind pe Dunăre prin Cernăuți și Galați spre Marea Neagră. Galațiul a fost pentru ei ultima oprire înainte de Constanța și exilul în Marea Britanie."
+        }
+      ]
+    },
+    {
+      "id": "tour-patrimoniu-evreiesc",
+      "title": "Patrimoniul evreiesc gălățean",
+      "subtitle": "8 opriri · 2,5 ore · de la sinagogă la cimitir",
+      "description": "La apogeul ei interbelic, comunitatea evreiască din Galați număra peste 20.000 de membri (cca 22% din populație) — a doua cea mai mare comunitate evreiască din România, după București. Stăpânea șantierul naval Mendel, fabricile chimice și de textile, exportul de cereale, sistemul medical privat și o rețea de școli proprii.\n\nDin cele 22 de sinagogi care funcționau la 1900, doar una mai e activă astăzi (Templul Meseriașilor). După Holocaust și emigrația din anii '50–'70 (mai ales spre Israel), comunitatea s-a redus la câteva zeci de membri. Turul reconstituie patrimoniul lăsat: locuri de cult, case de comercianți, școli, spital, cofetărie, fabrici și cimitirul — memoria unei lumi dispărute care a modelat orașul mai mult decât oricare altă comunitate.",
+      "cover": "",
+      "category": "Patrimoniu evreiesc",
+      "color": "#7a3d8a",
+      "stops": [
+        {
+          "article": "../assets/articles/liceul-israelit-fundatura-scolii-nr-3/index.html",
+          "note": "START — Liceul Israelit (Fundătura Școlii 3). Fondat la sfârșitul sec. XIX, era una din cele mai prestigioase școli evreiești din oraș. Curriculum dublu — română oficială + ebraică, idiș și istorie iudaică. A format generații de comercianți, juriști și medici care au modelat clasa de mijloc gălățeană. Închisă brutal în 1948, când statul a naționalizat toate școlile confesionale."
+        },
+        {
+          "article": "../assets/articles/industriasul-max-fischer-str-al-i-cuza-nr-53-casa-resedinta-ibidem-nr-71-casa-2/index.html",
+          "note": "Casa industriașului Max Fischer — A.I. Cuza 53 (reședința) + 71 (a doua casă). Fischer deținea o fabrică de textile și o moară de cereale. Tipic pentru elita evreiască interbelică: două case în același cartier, una pentru locuit, una pentru afaceri sau familia extinsă. Fațadă eclectică cu detalii Art Nouveau."
+        },
+        {
+          "article": "../assets/articles/templul-meseriasilor-str-dornei-nr-7-11/index.html",
+          "note": "Sinagoga „Templul Meseriașilor” (Dornei 7-11) — singura activă din cele 22 de sinagogi ale Galațiului. Construită în 1875, reconstruită 1927-1929, restaurată complet în 2014 (cu fonduri europene + comunitatea locală). Numele vine de la breasla meșteșugarilor evrei (croitori, cizmari, fierari) care au finanțat-o. Astăzi adăpostește și un mic muzeu al comunității evreiești."
+        },
+        {
+          "article": "../assets/articles/casa-comerciantului-evreu-jean-steuerman-astazi-liceul-tehnologic-simion-mehedinti-str-nicolae-balcescu-nr-19/index.html",
+          "note": "Casa comerciantului Jean Steuerman (Bălcescu 19) — astăzi Liceul Tehnologic „Simion Mehedinți”. Clădire interbelică elegantă, achiziționată după naționalizare (1948) pentru școala tehnică. Steuerman era unul din importatorii de mașini și utilaje agricole — face parte din generația de evrei germanofili educați la Viena și Berlin."
+        },
+        {
+          "article": "../assets/articles/cofetaria-centrala-carol-ettinger/index.html",
+          "note": "Cofetăria Centrală (Carol Ettinger) — pe Domnească 30/34, alături de Hotel Bristol. Punct de întâlnire al elitei interbelice. Ettinger, evreu vienez, vindea Sachertorte, prăjituri cu fructe glasate, ciocolată „Belgia”. În 1918, trupele române victorioase au defilat pe Domnească și au luat cafea aici și la Cofetăria „Principele Mihai”."
+        },
+        {
+          "article": "../assets/articles/osias-auschnitt-str-nicolae-balcescu-nr-82-si-max-auschnitt-str-domneasca-nr-70/index.html",
+          "note": "Casele Auschnitt (Bălcescu 82 + Domnească 70). Familia Auschnitt — Osias (tatăl) și Max (fiul) — controlau Uzinele de Fier Reșița și „Titan-Nădrag-Călan”, plus un imperiu industrial care rivaliza cu Malaxa și Berthelot. Max Auschnitt a fost arestat de Carol II în 1939 (criza politică), apoi a fugit din România în 1941. Reședința de pe Domnească 70 e una din cele mai impunătoare case interbelice."
+        },
+        {
+          "article": "../assets/articles/spitalul-israelit-str-nicolae-alexandrescu-nr-99/index.html",
+          "note": "Spitalul Israelit (str. dr. Nicolae Alexandrescu 99). Una din cele mai moderne instituții medicale gălățene interbelice — finanțat exclusiv din donații ale comunității. Tratamente gratuite pentru evreii săraci, plătite pentru ne-evrei. Naționalizat în 1948, reconvertit în spital de stat. Mulți medici evrei au fost dați afară în campania anti-cosmopolită din 1952."
+        },
+        {
+          "article": "../assets/articles/cimitirul-evreiesc-str-stefan-cel-mare-nr-34/index.html",
+          "note": "FINAL — Cimitirul Evreiesc (Ștefan cel Mare 34). Înființat în prima jumătate a sec. XIX, cu peste 8.000 de morminte. Inscripții în ebraică, idiș și română. Aici sunt îngropate generații întregi de comercianți, rabini, medici, antreprenori. Include un memorial al victimelor pogromului din ianuarie 1941 (Iași–Galați) și ale Holocaustului din Transnistria. Astăzi îngrijit de comunitatea redusă (sub 100 de membri), cu sprijin de la Federația Comunităților Evreiești din România."
+        }
+      ]
     }
   ]
 }

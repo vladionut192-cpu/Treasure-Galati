@@ -1,0 +1,7 @@
+# Admin tools — local-only.
+# Deny public access on cPanel/Apache.
+# Pe localhost editorul e accesibil normal (fără .htaccess parsat).
+<RequireAll>
+    Require ip 127.0.0.1
+    Require ip ::1
+</RequireAll>

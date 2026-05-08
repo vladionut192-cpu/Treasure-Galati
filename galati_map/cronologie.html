@@ -1,0 +1,723 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Liste · Heritage Galați</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/logo-sigiliu.svg">
+  <link rel="apple-touch-icon" href="../assets/logo-sigiliu.svg">
+  <link rel="stylesheet" href="vendor/inter/inter.css">
+  <style>
+    :root {
+      color-scheme: light;
+      --paper:        #efeeea;
+      --paper-deep:   #e3e1da;
+      --panel:        #f7f5ef;
+      --ink:          #0f0f0e;
+      --ink-soft:     #2a2a28;
+      --muted:        #8a8780;
+      --line:         #d4d1c8;
+      --line-soft:    #e3e0d6;
+      --accent:       #2c6157;
+      --accent-deep:  #1d433c;
+      --accent-soft:  #dce6e1;
+      --hot:          #b34128;
+      --topbar-h:     58px;
+      --max-w:        1080px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.55;
+    }
+    a { color: var(--accent-deep); text-decoration: underline; text-underline-offset: 2px; }
+    a:hover { color: var(--hot); }
+
+    /* Unified chrome — same primitives as index.html */
+    *::-webkit-scrollbar { width: 6px; height: 6px; }
+    *::-webkit-scrollbar-track { background: transparent; }
+    *::-webkit-scrollbar-thumb { background: rgba(15,15,14,.18); border-radius: 0; }
+    *::-webkit-scrollbar-thumb:hover { background: rgba(15,15,14,.34); }
+    * { scrollbar-width: thin; scrollbar-color: rgba(15,15,14,.22) transparent; }
+    ::selection { background: var(--accent); color: #fff; }
+    :focus-visible { outline: 1px solid var(--accent); outline-offset: 2px; }
+    button, input, select, textarea {
+      font: inherit; color: inherit; letter-spacing: inherit;
+    }
+    select {
+      appearance: none; -webkit-appearance: none;
+      background-image: linear-gradient(45deg, transparent 50%, currentColor 50%),
+                         linear-gradient(135deg, currentColor 50%, transparent 50%);
+      background-position: calc(100% - 14px) center, calc(100% - 9px) center;
+      background-size: 5px 5px, 5px 5px;
+      background-repeat: no-repeat;
+      padding-right: 28px !important;
+      cursor: pointer;
+    }
+
+    .topbar {
+      position: sticky; top: 0; z-index: 50;
+      display: flex; align-items: stretch;
+      height: var(--topbar-h);
+      background: var(--panel);
+      border-bottom: 1px solid var(--line);
+      padding: 0 24px;
+    }
+    .topbar .logo {
+      display: flex; align-items: center;
+      font-weight: 800; font-size: 13px;
+      letter-spacing: .18em; text-transform: uppercase;
+      gap: 9px;
+    }
+    .topbar .logo .logo-mark {
+      width: 30px; height: 30px;
+      background-color: currentColor;
+      flex-shrink: 0;
+      display: block;
+      mask: url(../assets/logo-sigiliu.svg) center / contain no-repeat;
+      -webkit-mask: url(../assets/logo-sigiliu.svg) center / contain no-repeat;
+    }
+    .topbar .logo { gap: 10px; text-decoration: none; color: var(--ink); }
+    .topbar .logo:hover { color: var(--accent-deep); }
+    .topbar nav { display: flex; gap: 0; margin-left: auto; align-items: stretch; }
+    .topbar nav a {
+      display: inline-flex; align-items: center;
+      padding: 0 16px;
+      font-size: 12.5px; font-weight: 600;
+      letter-spacing: .06em;
+      color: var(--muted);
+      text-decoration: none;
+      position: relative;
+    }
+    .topbar nav a:hover { color: var(--ink); }
+    .topbar nav a.active { color: var(--ink); }
+    .topbar nav a.active::after {
+      content: ''; position: absolute;
+      left: 16px; right: 16px; bottom: -1px;
+      height: 2px; background: var(--ink);
+    }
+    @media (max-width: 700px) {
+      .topbar { padding: 0 14px; }
+      .topbar nav a { padding: 0 10px; font-size: 11.5px; }
+    }
+
+    main {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 28px 24px 80px;
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 36px;
+    }
+    @media (max-width: 800px) {
+      main { grid-template-columns: 1fr; gap: 18px; }
+    }
+
+    .hero { grid-column: 1 / -1; margin-bottom: 4px; }
+    .hero .eyebrow {
+      font-size: 11px; font-weight: 800;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: var(--accent); margin: 0 0 8px;
+    }
+    .hero h1 {
+      margin: 0 0 8px;
+      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+      font-weight: 800;
+      font-size: clamp(32px, 5vw, 48px);
+      line-height: 1.05;
+      letter-spacing: -.018em;
+    }
+    .hero .lead { color: var(--ink-soft); font-size: 15px; max-width: 64ch; margin: 0 0 12px; }
+    .hero .meta { color: var(--muted); font-size: 12.5px; margin: 0; font-feature-settings: "tnum"; }
+
+    .toc {
+      position: sticky;
+      top: calc(var(--topbar-h) + 18px);
+      align-self: start;
+      max-height: calc(100vh - var(--topbar-h) - 36px);
+      overflow-y: auto;
+      padding-right: 8px;
+    }
+    .toc-title {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 12px;
+    }
+    .toc ul { margin: 0; padding: 0; list-style: none; }
+    .toc li { margin: 0 0 4px; }
+    .toc a {
+      display: flex; align-items: baseline;
+      gap: 8px;
+      text-decoration: none;
+      color: var(--ink-soft);
+      padding: 5px 8px;
+      font-size: 13px;
+      border-left: 2px solid transparent;
+    }
+    .toc a:hover {
+      background: var(--panel);
+      color: var(--ink);
+    }
+    .toc a.active {
+      border-left-color: var(--accent);
+      background: var(--panel);
+      color: var(--ink);
+      font-weight: 700;
+    }
+    .toc a .n {
+      margin-left: auto;
+      color: var(--muted);
+      font-size: 11px;
+      font-feature-settings: "tnum";
+    }
+    @media (max-width: 800px) {
+      .toc { position: static; max-height: none; overflow: visible; }
+    }
+
+    .lists { min-width: 0; }
+
+    /* Accordion sections — each list collapses into a single hairline row.
+       Pattern: <details class="list-section"><summary>label · count</summary>
+       <div class="list-body">…table…</div></details> */
+    section.list-section,
+    details.list-section {
+      margin: 0;
+      border-top: 1px solid var(--line);
+      scroll-margin-top: calc(var(--topbar-h) + 18px);
+    }
+    details.list-section:last-of-type { border-bottom: 1px solid var(--line); }
+    details.list-section > summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 18px 8px 18px 0;
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      align-items: baseline;
+      gap: 16px;
+      user-select: none;
+      transition: background .12s;
+    }
+    details.list-section > summary::-webkit-details-marker { display: none; }
+    details.list-section > summary:hover { background: rgba(44,97,87,0.04); }
+    details.list-section > summary .ls-label {
+      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+      font-size: clamp(18px, 2.2vw, 22px);
+      font-weight: 800;
+      letter-spacing: -.01em;
+      color: var(--ink);
+    }
+    details.list-section > summary .ls-count {
+      font-family: Inter, ui-sans-serif, sans-serif;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-feature-settings: "tnum";
+    }
+    details.list-section > summary .ls-chevron {
+      width: 12px; height: 12px;
+      border-right: 1.5px solid var(--ink-soft);
+      border-bottom: 1.5px solid var(--ink-soft);
+      transform: rotate(45deg);
+      transition: transform .2s ease;
+      margin: 0 4px 4px 0;
+    }
+    details.list-section[open] > summary .ls-chevron {
+      transform: rotate(-135deg);
+      margin-bottom: -2px;
+    }
+    details.list-section .list-body {
+      padding: 0 0 28px;
+    }
+    details.list-section .list-body .desc {
+      color: var(--muted);
+      font-size: 13px;
+      margin: -4px 0 16px;
+      max-width: 64ch;
+    }
+
+    table.list {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+    }
+    table.list th, table.list td {
+      padding: 10px 12px 10px 0;
+      vertical-align: top;
+      text-align: left;
+    }
+    table.list thead th {
+      border-bottom: 1px solid var(--ink);
+      font-weight: 800;
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding-bottom: 6px;
+    }
+    table.list tbody tr {
+      border-bottom: 1px dashed var(--line-soft);
+    }
+    table.list tbody tr:last-child { border-bottom: 0; }
+    table.list td.year {
+      font-feature-settings: "tnum";
+      color: var(--accent-deep);
+      font-weight: 700;
+      min-width: 80px;
+      white-space: nowrap;
+    }
+    table.list td.year .span {
+      display: block;
+      font-size: 11.5px;
+      color: var(--muted);
+      font-weight: 600;
+      letter-spacing: .01em;
+    }
+    table.list td.value {
+      font-feature-settings: "tnum";
+      font-weight: 700;
+      width: 110px;
+      white-space: nowrap;
+    }
+    table.list td.value .unit {
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 500;
+      margin-left: 4px;
+    }
+    table.list td.kind {
+      width: 100px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--accent-deep);
+      font-weight: 700;
+    }
+    table.list td.text {
+      color: var(--ink-soft);
+    }
+    table.list .empty {
+      color: var(--muted);
+      font-style: italic;
+      padding: 20px 0;
+    }
+
+    .filter-bar {
+      margin: 0 0 18px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .filter-bar input {
+      flex: 1;
+      padding: 9px 12px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      font: inherit;
+      font-size: 13.5px;
+    }
+    .filter-bar input:focus { outline: 0; border-color: var(--accent); }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="logo" href="./index.html#map" aria-label="Heritage Galați — pagina principală">
+      <span class="logo-mark" aria-hidden="true"></span>
+      <span>Heritage Galați</span>
+    </a>
+    <nav>
+      <a href="./index.html#map">Hartă</a>
+      <a href="./index.html#events">Evenimente</a>
+      <a href="./cronologie.html" class="active">Liste</a>
+      <a href="./index.html#about">Despre</a>
+      <a href="./index.html#trivia">Știați că?</a>
+      <a href="./index.html#contribute">Contribuie</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow">Liste pe ani · Galați 1445 – prezent</p>
+      <h1>Pârcălabi, primari, populație, fabrici, dezastre.</h1>
+      <p class="lead">Compilație din volumele „Cronologii subiective" (Cilinca Săndel, Ileana Dinu) — extrase și grupate pe categorii. Cronologia an cu an e disponibilă pe <a href="./index.html#map">timeline-ul de pe hartă</a>; aici sunt doar agregări.</p>
+      <p class="meta" id="meta">Se încarcă…</p>
+    </section>
+
+    <aside class="toc" id="toc"></aside>
+
+    <div class="lists" id="lists"></div>
+  </main>
+
+  <script type="module">
+    const data = await fetch('./cronologie.json').then(r => r.json());
+    const entries = data.entries;
+    const r = data.rosters;
+
+    // ───────── Population augmentation ─────────
+    // Curated population data lives in index.html for the map tooltip; we
+    // rebuild the same source-of-truth here so the Liste page is consistent.
+    const curatedPopulation = [
+      {year: 1800, pop: 7000,   src: 'Populația Galațiului: 7.000 (cronologie)'},
+      {year: 1818, pop: 5000,   src: 'Populația oraşului: 5.000 (cronologie 1818)'},
+      {year: 1829, pop: 7000,   src: 'Populația oraşului: 7.000 (cronologie 1829)'},
+      {year: 1831, pop: 8605,   src: 'statistica administrației Kiseleff (cronologie 1831)'},
+      {year: 1836, pop: 9908,   src: 'Populația oraşului: 9.908 (cronologie 1836)'},
+      {year: 1842, pop: 18066,  src: 'Populația oraşului era de 18.066 (cronologie 1842)'},
+      {year: 1843, pop: 20000,  src: 'Populația orașului trecea de 20.000 (cronologie 1843)'},
+      {year: 1845, pop: 24000,  src: 'catagrafia 1845'},
+      {year: 1859, pop: 40105,  src: 'primul recensământ serios (Moise Pacu, Cartea jud. Covurlui)'},
+      {year: 1861, pop: 30000,  src: 'Populația Galaților numără 30.000 (cronologie 1861)'},
+      {year: 1866, pop: 48799,  src: 'recensământ 1866'},
+      {year: 1871, pop: 48789,  src: '48.789 locuitori (raport Alex. Moruzzi 1871)'},
+      {year: 1879, pop: 40022,  src: 'populație stabilă de 40.022 (cronologie 1879)'},
+      {year: 1881, pop: 40022,  src: 'recensământ 1881'},
+      {year: 1885, pop: 44096,  src: 'recensământ 1885'},
+      {year: 1895, pop: 56420,  src: 'recensământ 1895'},
+      {year: 1899, pop: 62545,  src: 'catagrafia 1899'},
+      {year: 1900, pop: 62678,  src: 'Populația oraşului: 62.678 (cronologie 1900)'},
+    ];
+    const houses = (r.population || [])
+      .filter(p => p.kind === 'households')
+      .sort((a,b) => a.year - b.year);
+
+    // ───────── Curated mayor list ─────────
+    // Source: https://ro.wikipedia.org/wiki/Lista_primarilor_din_Galați
+    // (1864 → present). Replaces the partial OCR-extracted list from the
+    // chronology, which only covered 1864-1900 and was sometimes garbled.
+    const curatedPrimari = [
+      { start: '1864', end: '1865', name: 'Ion Vizzu', role: 'institutor' },
+      { start: '1866', end: '1867', name: 'Mantu Rufu', role: 'comerciant' },
+      { start: '1867', end: '1868', name: 'Procopie S. Grumala', role: 'profesor' },
+      { start: '1869', end: '1870', name: 'Iancu Panaitescu' },
+      { start: '1870', end: '1871', name: 'P. Zamaria', role: 'comerciant' },
+      { start: '1872', end: '1874', name: 'Alexandru D. Moruzi', role: 'proprietar rural' },
+      { start: '1874', end: '1875', name: 'Gheorghe Voleti', role: 'avocat' },
+      { start: '1875', end: '1876', name: 'Petrache Botezatu' },
+      { start: '1876', end: '1876', name: 'Ștefan V. Nenițescu', role: 'comerciant' },
+      { start: '1877', end: '1879', name: 'Gheorghe P. Mantu', role: 'comerciant' },
+      { start: '1880', end: '1881', name: 'Costache Vârlan', role: 'avocat' },
+      { start: '1881', end: 'ian. 1883', name: 'Dumitru Vizzu', role: 'avocat' },
+      { start: 'feb. 1883', end: 'mar. 1883', name: 'Gheorghe Mihăilescu', role: 'profesor' },
+      { start: 'mar. 1883', end: 'apr. 1884', name: 'Gheorghe Fulger', role: 'proprietar rural, comerciant' },
+      { start: 'apr. 1884', end: 'feb. 1885', name: 'Gheorghe N. Cavallioti', role: 'avocat, proprietar urban' },
+      { start: 'feb. 1885', end: 'feb. 1885', name: 'Costin Vârlan', role: 'avocat' },
+      { start: 'feb. 1885', end: 'feb. 1885', name: 'Andreiaș Panaitescu', role: 'fost perceptor fiscal' },
+      { start: 'apr. 1885', end: 'nov. 1886', name: 'M. Hagi Nicola', role: 'comerciant' },
+      { start: 'nov. 1886', end: 'mar. 1887', name: 'Constantin A. Ressu', role: 'avocat' },
+      { start: 'mar. 1887', end: 'iun. 1887', name: 'M. Hagi Nicola', role: 'comerciant' },
+      { start: 'iun. 1887', end: 'iul. 1888', name: 'Limeoleon Nebunelli', role: 'librar' },
+      { start: 'iul. 1888', end: 'sep. 1890', name: 'Constantin A. Ressu', role: 'avocat' },
+      { start: 'sep. 1890', end: 'feb. 1891', name: 'Constantin A. Ressu', role: 'avocat' },
+      { start: 'feb. 1891', end: 'aug. 1892', name: 'Gheorghe C. Robescu', role: 'avocat' },
+      { start: 'aug. 1892', end: 'nov. 1892', name: 'Stavrică Mantu', role: 'proprietar urban' },
+      { start: 'nov. 1892', end: 'sep. 1894', name: 'Virgil G. Poenaru', role: 'avocat' },
+      { start: 'sep. 1894', end: 'oct. 1895', name: 'Constantin A. Ressu', role: 'avocat' },
+      { start: 'oct. 1895', end: 'oct. 1896', name: 'Costache P. Malaxa', role: 'proprietar rural' },
+      { start: 'oct. 1896', end: 'dec. 1899', name: 'Gheorghe Nicolescu', role: 'avocat' },
+      { start: 'dec. 1896', end: 'mar. 1898', name: 'Costache G. Plesnilă', role: 'avocat' },
+      { start: 'mar. 1898', end: 'iun. 1899', name: 'Constantin Ținc', role: 'farmacist' },
+      { start: 'nov. 1898', end: 'iun. 1899', name: 'Mihail G. Orleanu', role: 'avocat' },
+      { start: 'iun. 1899', end: 'nov. 1899', name: 'Zaharia Chiriac', role: 'avocat' },
+      { start: 'nov. 1899', end: 'feb. 1901', name: 'Gheorghe L. Aslan' },
+      { start: 'feb. 1901', end: 'nov. 1902', name: 'Mihail G. Orleanu' },
+      { start: 'nov. 1902', end: 'sep. 1904', name: 'Ion E. Bastache', role: 'avocat' },
+      { start: 'sep. 1904', end: 'dec. 1904', name: 'Constantin Ținc', role: 'farmacist' },
+      { start: 'ian. 1905', end: 'iul. 1905', name: 'Alexandru Nicolescu', role: 'profesor' },
+      { start: 'iul. 1905', end: 'apr. 1907', name: 'Emil Vulpe', role: 'avocat' },
+      { start: 'apr. 1907', end: 'ian. 1909', name: 'Gheorghe N. Gamulea', role: 'avocat' },
+      { start: 'feb. 1909', end: 'ian. 1911', name: 'Pandeli D. Petrovici', role: 'profesor' },
+      { start: 'ian. 1911', end: 'mar. 1911', name: 'Costache G. Plesnilă' },
+      { start: 'mar. 1911', end: 'oct. 1912', name: 'Alexandru G. Nicolescu' },
+      { start: 'oct. 1912', end: 'ian. 1914', name: 'Nicolae Filipide', role: 'profesor' },
+      { start: 'ian. 1914', end: 'mar. 1914', name: 'August Frățilă', role: 'profesor' },
+      { start: 'mar. 1914', end: 'oct. 1917', name: 'Constantin Ținc', role: 'farmacist' },
+      { start: 'oct. 1917', end: 'feb. 1918', name: 'Vasile Bălășescu' },
+      { start: 'feb. 1918', end: 'mar. 1918', name: 'Eugeniu M. Bonache', role: 'jurist' },
+      { start: 'mar. 1918', end: 'sep. 1918', name: 'Teodor Missir', role: 'avocat' },
+      { start: 'sep. 1918', end: 'sep. 1918', name: 'Ion N. Coltofeanu', role: 'comerciant' },
+      { start: 'sep. 1918', end: 'nov. 1918', name: 'Al. Sideri', role: 'ofițer' },
+      { start: 'nov. 1918', end: 'ian. 1919', name: 'Nae Dumitrescu', role: 'jurist' },
+      { start: 'ian. 1919', end: 'mar. 1919', name: 'Alecu Ignat', role: 'avocat' },
+      { start: 'mar. 1919', end: 'ian. 1920', name: 'Zamfir Filoti', role: 'avocat' },
+      { start: 'ian. 1920', end: 'apr. 1920', name: 'Ion Tohăneanu', role: 'profesor' },
+      { start: 'apr. 1920', end: 'iul. 1920', name: 'Nicolae Alexandrescu', role: 'medic' },
+      { start: 'iul. 1920', end: 'nov. 1920', name: 'Ion Sachetari', role: 'farmacist' },
+      { start: 'nov. 1920', end: 'dec. 1921', name: 'Gheorghe H. Iorgala', role: 'avocat' },
+      { start: 'dec. 1921', end: 'ian. 1922', name: 'Ion D. Popovici', role: 'inginer' },
+      { start: 'ian. 1922', end: 'mar. 1923', name: 'Teodor I. Thenea', role: 'avocat' },
+      { start: 'mar. 1923', end: 'ian. 1925', name: 'Iancu D. Prodom', role: 'comerciant' },
+      { start: 'ian. 1925', end: 'iul. 1926', name: 'Ștefan H. Ștefan', role: 'avocat' },
+      { start: 'iul. 1926', end: 'iul. 1926', name: 'Eugen Răutu', role: 'medic' },
+      { start: 'iul. 1926', end: 'nov. 1927', name: 'Grigore P. Mihăilescu', role: 'avocat' },
+      { start: 'nov. 1927', end: 'dec. 1928', name: 'Emil Codreanu', role: 'avocat' },
+      { start: 'dec. 1928', end: 'mai 1931', name: 'Christache Teodoru', role: 'avocat' },
+      { start: 'mai 1931', end: 'iun. 1932', name: 'Emil Codreanu', role: 'avocat' },
+      { start: 'iun. 1932', end: 'oct. 1932', name: 'Gheorghe C. Plesnilă' },
+      { start: 'oct. 1932', end: 'nov. 1933', name: 'Christache Teodoru', role: 'avocat' },
+      { start: 'feb. 1936', end: 'ian. 1937', name: 'Al. Nestor Măcelaru', role: 'medic' },
+      { start: 'ian. 1937', end: 'ian. 1938', name: 'Gh. H. Dumitrescu' },
+      { start: '5 ian. 1938', end: '11 feb. 1938', name: 'Grigore P. Mihăilescu' },
+      { start: '11 feb. 1938', end: '16 feb. 1938', name: 'Dimitrie C. Nanu' },
+      { start: 'feb. 1938', end: 'oct. 1938', name: 'Theodor Atanasiu' },
+      { start: 'oct. 1938', end: 'iun. 1940', name: 'Traian Gruescu' },
+      { start: 'nov. 1940', end: 'dec. 1940', name: 'Constantin Stoiov' },
+      { start: 'dec. 1940', end: 'ian. 1941', name: 'Aurel Ibrăileanu', party: 'Legiune' },
+      { start: 'ian. 1941', end: 'feb. 1942', name: 'Romulus Burbea' },
+      { start: 'feb. 1942', end: 'dec. 1942', name: 'Ghiță Vasiliu' },
+      { start: 'dec. 1942', end: 'aug. 1944', name: 'Dan Sărățeanu' },
+      { start: 'aug. 1944', end: 'sep. 1944', name: 'Ilie Gheorghiu' },
+      { start: 'aug. 1944', end: 'sep. 1944', name: 'Gheorghe Ullea' },
+      { start: 'nov. 1944', end: 'iun. 1945', name: 'Ilie Gheorghiu' },
+      { start: 'iul. 1945', end: 'iun. 1946', name: 'Constantin Mârza' },
+      { start: 'iun. 1946', end: 'apr. 1948', name: 'Ilie D. Rainici' },
+      { start: 'apr. 1948', end: 'mar. 1949', name: 'Sandu D. Constantin', party: 'PCR' },
+      { start: 'apr. 1949', end: 'dec. 1950', name: 'Ionescu Istrate', party: 'PCR' },
+      { start: 'ian. 1951', end: 'aug. 1951', name: 'Hristache Scarlat', party: 'PCR' },
+      { start: 'sep. 1951', end: 'aug. 1952', name: 'Radu Hrehoreț', party: 'PCR' },
+      { start: 'aug. 1952', end: 'ian. 1954', name: 'Hristache Scarlat', party: 'PCR' },
+      { start: 'ian. 1954', end: 'nov. 1954', name: 'Nicolae Nicola', party: 'PMR' },
+      { start: 'nov. 1954', end: 'sep. 1955', name: 'Vasiliu Alexandru', party: 'PMR' },
+      { start: 'sep. 1955', end: 'mar. 1956', name: 'Nicolae Nicola', party: 'PMR' },
+      { start: 'mar. 1956', end: 'dec. 1957', name: 'State Aurel', party: 'PMR' },
+      { start: 'ian. 1958', end: 'feb. 1961', name: 'Rusu Nicolae', party: 'PMR' },
+      { start: 'feb. 1961', end: 'mai 1963', name: 'Zapis Vasile', party: 'PMR' },
+      { start: 'mai 1963', end: 'feb. 1968', name: 'Stan Alecu', party: 'PMR / PCR' },
+      { start: 'feb. 1968', end: '1972', name: 'Chiriță George', party: 'PCR' },
+      { start: '1972', end: '1979', name: 'Bejan Ioan', party: 'PCR' },
+      { start: '1979', end: '1982', name: 'Cojocaru Vasile', party: 'PCR' },
+      { start: '1982', end: '1984', name: 'Dumitru Vasile', party: 'PCR' },
+      { start: '1984', end: '1989', name: 'Caranghel Ion', party: 'PCR' },
+      { start: 'ian. 1990', end: 'ian. 1990', name: 'Ion Mușat', role: 'inginer', party: 'CFSN' },
+      { start: 'ian. 1990', end: 'mar. 1990', name: '— vacanț —' },
+      { start: 'mar. 1990', end: 'aug. 1990', name: 'Florea Oprea', role: 'profesor universitar', party: 'FSN' },
+      { start: 'aug. 1990', end: 'mar. 1992', name: 'Samoilă Pătrașcu', role: 'inginer', party: 'FSN' },
+      { start: '1992', end: '2000', name: 'Eugen Durbacă', role: 'inginer', party: 'ApR / PUR / PC' },
+      { start: '2000', end: '2012', name: 'Dumitru Nicolae', role: 'inginer', party: 'PSD' },
+      { start: '2012', end: '2016', name: 'Marius Stan', role: 'inginer metalurg', party: 'PNL' },
+      { start: '2016', end: 'prezent', name: 'Ionuț-Florin Pucheanu', role: 'jurist', party: 'PSD' },
+    ];
+
+    // Section definitions: id, label, description, render function.
+    const SECTIONS = [
+      {
+        id: 'parcalabi',
+        label: 'Pârcălabi',
+        desc: 'Pârcălabii (administratorii) ținutului Covurlui, ai cărui sediu era Galațiul, atestați în surse documentare.',
+        count: r.parcalabi.length,
+        render: () => renderTable(
+          ['An / mandat', 'Nume'],
+          r.parcalabi.map(p => [
+            { class: 'year', html: p.spans.length ? `<span class="span">${p.spans.join(', ')}</span>` : '?' },
+            { class: 'text', html: escapeHtml(p.name) },
+          ])
+        )
+      },
+      {
+        id: 'primari',
+        label: 'Primari',
+        desc: 'Primari ai oraşului Galați din 1864 până în prezent. Sursa: Wikipedia, „Lista primarilor din Galați".',
+        count: curatedPrimari.length,
+        render: () => renderTable(
+          ['Mandat', 'Nume', 'Profesie / Partid'],
+          curatedPrimari.map(p => {
+            const span = p.start === p.end ? p.start : `${p.start} – ${p.end}`;
+            const meta = [p.role, p.party].filter(Boolean).join(' · ');
+            return [
+              { class: 'year', html: `<span class="span">${escapeHtml(span)}</span>` },
+              { class: 'text', html: `<strong>${escapeHtml(p.name)}</strong>` },
+              { class: 'text', html: escapeHtml(meta) || '—' },
+            ];
+          })
+        )
+      },
+      {
+        id: 'populatie',
+        label: 'Populație',
+        desc: 'Atestări demografice cu sursă identificabilă. Estimările pre-1800 (Verbiceanu 15.000 în 1596, „călătorul armean" 15.000 în 1683) sunt aproape sigur exagerate și nu apar aici.',
+        count: curatedPopulation.length,
+        render: () => renderTable(
+          ['An', 'Locuitori', 'Sursă'],
+          curatedPopulation.map(p => [
+            { class: 'year', html: String(p.year) },
+            { class: 'value', html: `${formatNum(p.pop)}<span class="unit">loc.</span>` },
+            { class: 'text', html: escapeHtml(p.src) },
+          ])
+        )
+      },
+      {
+        id: 'case',
+        label: 'Nr. case',
+        desc: 'Recensăminte și statistici de gospodării. La un raport mediu de 4-5 locuitori/casă pentru sec. XIX, cifrele oferă o verificare încrucișată cu populația raportată.',
+        count: houses.length,
+        render: () => renderTable(
+          ['An', 'Case', 'Context'],
+          houses.map(p => [
+            { class: 'year', html: String(p.year) },
+            { class: 'value', html: `${formatNum(p.value)}<span class="unit">case</span>` },
+            { class: 'text', html: escapeHtml(p.ctx) },
+          ])
+        )
+      },
+      {
+        id: 'cutremure',
+        label: 'Cutremure',
+        desc: 'Cutremure semnalate în cronologie ca resimțite la Galați (Vrancea — sursă seismică principală).',
+        count: r.disasters.filter(d => d.kind === 'cutremur').length,
+        render: () => renderDisasterTable('cutremur')
+      },
+      {
+        id: 'razboaie',
+        label: 'Războaie / invazii',
+        desc: 'Invazii tătare, războaie ruso-turce, ocupații, distrugeri militare ale orașului.',
+        count: r.disasters.filter(d => d.kind === 'război').length,
+        render: () => renderDisasterTable('război')
+      },
+      {
+        id: 'epidemii',
+        label: 'Epidemii',
+        desc: 'Ciuma, holera și alte epidemii care au lovit Galațiul. Ciuma 1729-1739 și „Anul holerei" 1831 sunt episoadele cu cea mai mare amploare.',
+        count: r.disasters.filter(d => d.kind === 'ciumă' || d.kind === 'holeră').length,
+        render: () => renderDisasterTable(['ciumă', 'holeră'])
+      },
+      {
+        id: 'incendii',
+        label: 'Incendii',
+        desc: 'Incendii istorice mari — în special cele din 1596 (tătari), 1789 (război ruso-turc), 1821 (Eteria) sunt punctele de cotitură ale evoluției urbane.',
+        count: r.disasters.filter(d => d.kind === 'incendiu').length,
+        render: () => renderDisasterTable('incendiu')
+      },
+      {
+        id: 'inundatii',
+        label: 'Inundații',
+        desc: 'Inundații ale Dunării și Prutului semnalate în cronologie.',
+        count: r.disasters.filter(d => d.kind === 'inundație').length,
+        render: () => renderDisasterTable('inundație')
+      },
+      {
+        id: 'fabrici',
+        label: 'Fabrici / uzine',
+        desc: 'Atestări de fabrici, uzine, șantiere navale, mori și tipografii — boom-ul industrial începe după declararea portului liber (1837) și culminează în perioada interbelică.',
+        count: r.factories.length,
+        render: () => renderTable(
+          ['An', 'Atestare'],
+          r.factories
+            .sort((a,b) => a.year - b.year)
+            .map(f => [
+              { class: 'year', html: String(f.year) },
+              { class: 'text', html: escapeHtml(f.text) },
+            ])
+        )
+      },
+    ];
+
+    // Render TOC + sections
+    const tocEl = document.getElementById('toc');
+    tocEl.innerHTML = '<p class="toc-title">Categorii</p><ul>' +
+      SECTIONS.map(s => `<li><a href="#${s.id}" data-id="${s.id}">${s.label}<span class="n">${s.count}</span></a></li>`).join('') +
+      '</ul>';
+
+    const listsEl = document.getElementById('lists');
+    listsEl.innerHTML = SECTIONS.map(s => `
+      <details class="list-section" id="${s.id}">
+        <summary>
+          <span class="ls-label">${escapeHtml(s.label)}</span>
+          <span class="ls-count">${s.count}</span>
+          <span class="ls-chevron" aria-hidden="true"></span>
+        </summary>
+        <div class="list-body" data-id="${s.id}">
+          <p class="desc">${escapeHtml(s.desc)}</p>
+          <div class="list-body-table" data-id="${s.id}"></div>
+        </div>
+      </details>
+    `).join('');
+
+    SECTIONS.forEach(s => {
+      const slot = listsEl.querySelector(`.list-body-table[data-id="${s.id}"]`);
+      if (slot) slot.innerHTML = s.render();
+    });
+
+    // Meta
+    const totalEntries = entries.length;
+    document.getElementById('meta').textContent =
+      `${totalEntries} ani documentați · ${SECTIONS.reduce((acc,s) => acc+s.count, 0)} înregistrări extrase pe ${SECTIONS.length} liste`;
+
+    // TOC navigation — open accordion + scroll to it
+    const tocLinks = [...tocEl.querySelectorAll('a')];
+    const sectionEls = SECTIONS.map(s => document.getElementById(s.id));
+    tocLinks.forEach((a) => {
+      a.addEventListener('click', (e) => {
+        const id = a.dataset.id;
+        const sec = document.getElementById(id);
+        if (!sec) return;
+        e.preventDefault();
+        sec.open = true;
+        // Defer scroll until details has expanded so offsetTop is accurate
+        requestAnimationFrame(() => {
+          const top = sec.getBoundingClientRect().top + window.scrollY - 80;
+          window.scrollTo({ top, behavior: 'smooth' });
+        });
+        if (history.replaceState) history.replaceState(null, '', '#' + id);
+      });
+    });
+    function updateActive() {
+      const fromTop = window.scrollY + 100;
+      let activeIdx = 0;
+      sectionEls.forEach((el, i) => {
+        if (el && el.offsetTop <= fromTop) activeIdx = i;
+      });
+      tocLinks.forEach((a, i) => a.classList.toggle('active', i === activeIdx));
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+    // Honour URL hash on load: open the matching section
+    const initialId = (location.hash || '').replace('#', '');
+    if (initialId) {
+      const sec = document.getElementById(initialId);
+      if (sec && sec.tagName === 'DETAILS') sec.open = true;
+    }
+
+    function renderTable(headers, rows) {
+      if (!rows.length) {
+        return '<div class="empty">Nimic în această listă.</div>';
+      }
+      return `<table class="list">
+        <thead><tr>${headers.map(h => `<th>${h}</th>`).join('')}</tr></thead>
+        <tbody>${rows.map(cells =>
+          '<tr>' + cells.map(c => `<td class="${c.class || ''}">${c.html}</td>`).join('') + '</tr>'
+        ).join('')}</tbody>
+      </table>`;
+    }
+
+    function renderDisasterTable(kindOrKinds) {
+      const kinds = Array.isArray(kindOrKinds) ? kindOrKinds : [kindOrKinds];
+      const rows = r.disasters
+        .filter(d => kinds.includes(d.kind))
+        .sort((a,b) => a.year - b.year)
+        .map(d => [
+          { class: 'year', html: String(d.year) },
+          ...(kinds.length > 1 ? [{ class: 'kind', html: escapeHtml(d.kind) }] : []),
+          { class: 'text', html: escapeHtml(d.text) },
+        ]);
+      const headers = kinds.length > 1
+        ? ['An', 'Tip', 'Descriere']
+        : ['An', 'Descriere'];
+      return renderTable(headers, rows);
+    }
+
+    function formatNum(n) {
+      return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    }
+    function escapeHtml(s) {
+      return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    }
+  </script>
+</body>
+</html>

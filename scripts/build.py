@@ -1,14 +1,12 @@
 #!/usr/bin/env python3
-"""Build script — sincronizează `galati_map/locations.json` în array-ul
-embedded `const locations = [...]` din `galati_map/index.html` și validează
-datele.
+"""Build script — validează `galati_map/locations.json` și `galati_map/tours.json`.
 
-Rulează din rădăcina proiectului:
-    python3 scripts/build.py            # validează + sync
-    python3 scripts/build.py --check    # doar validează (exit 1 dacă probleme)
+De la versiunea cu fetch-async, `index.html` nu mai conține datele inline —
+le citește la runtime din `locations.json`, `cartiere.geojson`, `tours.json`.
+Așa că build-ul este 100% validare. Se rulează din rădăcina proiectului:
 
-`locations.json` este sursa de adevăr. `index.html` este artefact generat —
-modificările directe în array-ul lui se pierd la următorul build.
+    python3 scripts/build.py            # validează ambele fișiere
+    python3 scripts/build.py --check    # alias (potrivit pentru pre-commit)
 """
 import argparse
 import json
@@ -19,6 +17,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 LOC_JSON = ROOT / "galati_map" / "locations.json"
+TOURS_JSON = ROOT / "galati_map" / "tours.json"
 INDEX_HTML = ROOT / "galati_map" / "index.html"
 
 # Constrângeri de validare — includ și județul Galați (Tirighina la sud-vest,
@@ -44,10 +43,6 @@ ALLOWED_PERIODS = {
     "belle-epoque", "interbelic", "communist", "modern",
 }
 REQUIRED_FIELDS = {"id", "title", "lat", "lon", "category"}
-
-
-class ValidationError(Exception):
-    pass
 
 
 def validate(locations):
@@ -120,20 +115,20 @@ def validate(locations):
     return issues
 
 
-def sync_index_html(locations):
-    html = INDEX_HTML.read_text(encoding="utf-8")
-    pattern = re.compile(r"const locations = (\[.*?\]);", re.DOTALL)
-    m = pattern.search(html)
-    if not m:
-        raise ValidationError(
-            "Nu am găsit `const locations = [...];` în index.html — fișierul a fost editat?"
-        )
-    new_array = json.dumps(locations, ensure_ascii=False, separators=(", ", ": "))
-    new_html = html[: m.start()] + f"const locations = {new_array};" + html[m.end() :]
-    if new_html == html:
-        return False  # no change
-    INDEX_HTML.write_text(new_html, encoding="utf-8")
-    return True
+def validate_tours(tours_data, articles_set):
+    """Validează tours.json — opriri să refere articole reale."""
+    issues = []
+    for t in tours_data.get("tours", []):
+        tid = t.get("id", "<no-id>")
+        if not t.get("title"):
+            issues.append(("warn", f"tur {tid}: titlu lipsă"))
+        for i, stop in enumerate(t.get("stops", [])):
+            art = stop.get("article")
+            if not art:
+                issues.append(("error", f"tur {tid}, oprire {i}: lipsește 'article'"))
+            elif art not in articles_set:
+                issues.append(("error", f"tur {tid}, oprire {i}: article necunoscut: {art}"))
+    return issues
 
 
 def main():
@@ -141,18 +136,34 @@ def main():
     parser.add_argument(
         "--check",
         action="store_true",
-        help="Validează și ieși; nu modifica fișiere.",
+        help="Alias istoric — comportamentul e identic cu rularea fără flag.",
     )
-    args = parser.parse_args()
+    parser.parse_args()
 
     with open(LOC_JSON, encoding="utf-8") as f:
         locations = json.load(f)
 
+    tours_data = None
+    if TOURS_JSON.exists():
+        try:
+            with open(TOURS_JSON, encoding="utf-8") as f:
+                tours_data = json.load(f)
+        except json.JSONDecodeError as e:
+            print(f"⚠️  tours.json invalid ({e}); se ignoră.")
+
     issues = validate(locations)
+    if tours_data is not None:
+        articles = {l.get("article") for l in locations if l.get("article")}
+        issues += validate_tours(tours_data, articles)
+
     errors = [i for i in issues if i[0] == "error"]
     warnings = [i for i in issues if i[0] == "warn"]
 
     print(f"📍 {len(locations)} locații în locations.json")
+    if tours_data is not None:
+        n_tours = len(tours_data.get("tours", []))
+        n_stops = sum(len(t.get("stops", [])) for t in tours_data.get("tours", []))
+        print(f"🗺️  {n_tours} tururi cu {n_stops} opriri în tours.json")
     if warnings:
         print(f"⚠️  {len(warnings)} avertizări:")
         for _, msg in warnings:
@@ -163,15 +174,7 @@ def main():
             print(f"    {msg}")
         sys.exit(1)
 
-    if args.check:
-        print("✅ Validare OK")
-        return
-
-    changed = sync_index_html(locations)
-    if changed:
-        print(f"✏️  index.html sincronizat ({INDEX_HTML.relative_to(ROOT)})")
-    else:
-        print("✅ index.html era deja la zi")
+    print("✅ Validare OK")
 
 
 if __name__ == "__main__":
