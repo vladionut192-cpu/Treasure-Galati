@@ -229,34 +229,65 @@
       .topbar nav button { padding: 0 12px; }
       .topbar nav button.active::after { left: 12px; right: 12px; }
     }
+    /* ───── Mobile topbar: hamburger menu instead of inline nav ───── */
+    .topbar-burger {
+      display: none;
+      background: transparent;
+      border: 0;
+      padding: 8px;
+      margin-left: auto;
+      color: var(--ink);
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+    }
+    .topbar-burger svg { width: 22px; height: 22px; }
     @media (max-width: 720px) {
-      .topbar { padding: 0 8px; }
-      .topbar .logo { display: none; }
+      .topbar { padding: 0 14px; overflow: visible; }
+      .topbar .logo .logo-text { display: inline; font-size: 12px; letter-spacing: .14em; }
+      .topbar-burger { display: inline-flex; }
       .topbar nav {
-        width: 100%;
+        position: fixed;
+        top: var(--topbar-h);
+        left: 0; right: 0;
+        flex-direction: column;
+        gap: 0;
+        background: var(--panel);
+        border-bottom: 1px solid var(--line);
+        box-shadow: 0 8px 16px rgba(0,0,0,.06);
+        padding: 6px 0;
         margin-left: 0;
-        justify-content: space-between;
+        max-width: 100%;
+        transform: translateY(-12px);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity .18s ease, transform .18s ease;
+        z-index: 1199;
       }
-      .topbar nav button {
-        flex: 1 1 0;
-        padding: 0 6px;
-        font-size: 11px;
-        letter-spacing: 0;
+      .topbar nav.open {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
       }
-      .topbar nav button.active::after { left: 6px; right: 6px; }
-    }
-    @media (max-width: 540px) {
-      .topbar { padding: 0 6px; }
-      .topbar nav button {
-        padding: 0 4px;
-        font-size: 10.5px;
+      .topbar nav button,
+      .topbar nav a.nav-link {
+        width: 100%;
+        padding: 14px 22px;
+        justify-content: flex-start;
+        font-size: 14px;
+        letter-spacing: .04em;
+        flex: 0 0 auto;
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
+        text-transform: none;
       }
-      .topbar nav button.active::after { left: 4px; right: 4px; }
-    }
-    @media (max-width: 380px) {
-      .topbar { padding: 0 4px; }
-      .topbar nav button { padding: 0 2px; font-size: 10px; }
-      .topbar nav button.active::after { left: 2px; right: 2px; }
+      .topbar nav button.active::after {
+        left: 0; right: auto;
+        bottom: 0; top: 0;
+        width: 3px; height: auto;
+        background: var(--accent);
+      }
     }
 
     /* ────────── PAGES ────────── */
@@ -2446,6 +2477,128 @@
         display: none;
       }
     }
+
+    /* ───── Mobile (≤720px): hartă full-screen, sidebar ascuns,
+       timeline în jos, layer-toggles pe FAB. ───── */
+    @media (max-width: 720px) {
+      /* Page-map devine flex column: app sus, timeline jos */
+      body.map-mode #page-map {
+        display: flex;
+        flex-direction: column;
+        height: calc(100vh - var(--topbar-h));
+      }
+      body.map-mode #page-map > .timeline {
+        order: 2;
+        flex: 0 0 auto;
+        border-top: 1px solid var(--line);
+        border-bottom: 0;
+      }
+      body.map-mode #page-map > main.app {
+        order: 1;
+        flex: 1 1 auto;
+        min-height: 0;
+        height: auto;
+        grid-template-rows: 1fr;
+      }
+      /* Sidebar complet ascuns; harta ocupă tot */
+      aside.sidebar { display: none !important; }
+      main.map-area { height: 100%; }
+      #map { position: absolute; inset: 0; }
+    }
+
+    /* Mobile layer FAB + bottom sheet — ascunse pe desktop. Plasat în
+       top-left ca să nu conflict cu year-overlay (top-right la timeline engaged). */
+    .layers-fab {
+      display: none;
+      position: absolute;
+      top: 12px; left: 12px;
+      z-index: 880;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: var(--panel);
+      color: var(--accent-deep);
+      border: 1px solid var(--line);
+      box-shadow: 0 4px 12px rgba(0,0,0,.12);
+      cursor: pointer;
+      align-items: center; justify-content: center;
+      transition: transform .12s ease, background .12s;
+    }
+    .layers-fab svg { width: 20px; height: 20px; }
+    .layers-fab[aria-expanded="true"] {
+      background: var(--accent-deep);
+      color: #fff;
+    }
+    .layers-sheet {
+      display: none;
+      position: fixed;
+      left: 0; right: 0;
+      bottom: 0;
+      z-index: 1300;
+      background: var(--panel);
+      border-top: 1px solid var(--line);
+      border-radius: 16px 16px 0 0;
+      box-shadow: 0 -8px 24px rgba(0,0,0,.18);
+      max-height: 70vh;
+      overflow: hidden;
+      flex-direction: column;
+      transform: translateY(100%);
+      transition: transform .25s cubic-bezier(.21,.61,.34,1);
+    }
+    .layers-sheet:not([hidden]) { display: flex; }
+    .layers-sheet.open { transform: translateY(0); }
+    .layers-sheet-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px 10px;
+      border-bottom: 1px solid var(--line-soft);
+    }
+    .layers-sheet-header h3 {
+      margin: 0;
+      font-size: 12px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 700;
+    }
+    .layers-sheet-close {
+      background: transparent;
+      border: 0;
+      font-size: 24px;
+      line-height: 1;
+      color: var(--muted);
+      cursor: pointer;
+      padding: 0 4px;
+    }
+    .layers-sheet-body {
+      padding: 8px 18px 22px;
+      overflow-y: auto;
+    }
+    .layers-sheet-backdrop {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.32);
+      z-index: 1290;
+      opacity: 0;
+      transition: opacity .25s;
+    }
+    .layers-sheet-backdrop:not([hidden]) { display: block; }
+    .layers-sheet-backdrop.open { opacity: 1; }
+
+    @media (max-width: 720px) {
+      /* FAB-ul de straturi vizibil pe mobil */
+      .layers-fab { display: flex; }
+      /* Toggle-urile mutate în sheet preiau alt padding */
+      .layers-sheet-body .toggle-overlay { border-top: 0; padding: 14px 0; }
+      .layers-sheet-body .toggle-overlay + .toggle-overlay,
+      .layers-sheet-body .historic-opacity + .toggle-overlay {
+        border-top: 1px solid var(--line-soft);
+      }
+      /* FAB-urile de admin/poziție jos relativ la timeline-ul mutat */
+      .add-pin-fab { bottom: 16px; right: 16px; }
+      .add-photo-fab { bottom: 76px; right: 16px; }
+    }
+
     @media (max-width: 520px) {
       aside.sidebar { padding: 22px 16px 28px; }
       .tabs .tab {
@@ -2478,7 +2631,10 @@
       <span class="logo-mark" aria-hidden="true"></span>
       <span class="logo-text">Heritage Galați</span>
     </a>
-    <nav>
+    <button class="topbar-burger" id="topbar-burger" type="button" aria-label="Meniu" aria-expanded="false" aria-controls="topbar-nav">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+    </button>
+    <nav id="topbar-nav">
       <button class="active" data-page="map" type="button">Hartă</button>
       <button data-page="events" type="button">Povești</button>
       <a href="./cronologie.html" class="nav-link" type="button">Liste</a>
@@ -2567,38 +2723,40 @@
             </div>
           </div>
         </div>
-        <button class="toggle-overlay" id="toggle-cartiere" type="button" aria-pressed="false">
-          <span class="pill" aria-hidden="true"></span>
-          <span class="lbl">Afișează cartierele</span>
-          <span class="lbl-meta" id="cartiere-count"></span>
-        </button>
-        <button class="toggle-overlay" id="toggle-historic-map" type="button" aria-pressed="false">
-          <span class="pill" aria-hidden="true"></span>
-          <span class="lbl">Hartă istorică suprapusă</span>
-          <span class="lbl-meta" id="historic-meta">eHarta WMS</span>
-        </button>
-        <div class="historic-opacity" id="historic-opacity-control" hidden>
-          <label class="historic-select-wrap" for="historic-layer-select">
-            <select id="historic-layer-select" class="historic-layer-select">
-              <option value="mozaic_planuri_tragere_20k" data-period="1916–1959">Plan Director Tragere · 1:20k (RO, 1916–1959)</option>
-              <option value="mozaic_austrian_200k" data-period="~1900">Hărți austriece · 1:200k (~1900)</option>
-              <option value="misc_charta_telegrafo_postala" data-period="1865">Charta telegrafo-poștală (1865)</option>
-              <option value="mozaic_soviet_100k_marea_neagra" data-period="~1950">Sovietic Marea Neagră · 1:100k (~1950)</option>
-              <option value="mozaic_soviet100k" data-period="~1950">Sovietic 1:100k (~1950)</option>
-              <option value="mozaic_soviet_200k" data-period="~1950">Sovietic 1:200k (~1950)</option>
-            </select>
-          </label>
-          <label class="timeline-row" style="margin-top:8px">
-            <span class="lbl">Opacitate:</span>
-            <output id="historic-opacity-out">75%</output>
-          </label>
-          <input id="historic-opacity-slider" type="range" min="10" max="100" step="5" value="75">
+        <div class="layer-controls" id="layer-controls">
+          <button class="toggle-overlay" id="toggle-cartiere" type="button" aria-pressed="false">
+            <span class="pill" aria-hidden="true"></span>
+            <span class="lbl">Afișează cartierele</span>
+            <span class="lbl-meta" id="cartiere-count"></span>
+          </button>
+          <button class="toggle-overlay" id="toggle-historic-map" type="button" aria-pressed="false">
+            <span class="pill" aria-hidden="true"></span>
+            <span class="lbl">Hartă istorică suprapusă</span>
+            <span class="lbl-meta" id="historic-meta">eHarta WMS</span>
+          </button>
+          <div class="historic-opacity" id="historic-opacity-control" hidden>
+            <label class="historic-select-wrap" for="historic-layer-select">
+              <select id="historic-layer-select" class="historic-layer-select">
+                <option value="mozaic_planuri_tragere_20k" data-period="1916–1959">Plan Director Tragere · 1:20k (RO, 1916–1959)</option>
+                <option value="mozaic_austrian_200k" data-period="~1900">Hărți austriece · 1:200k (~1900)</option>
+                <option value="misc_charta_telegrafo_postala" data-period="1865">Charta telegrafo-poștală (1865)</option>
+                <option value="mozaic_soviet_100k_marea_neagra" data-period="~1950">Sovietic Marea Neagră · 1:100k (~1950)</option>
+                <option value="mozaic_soviet100k" data-period="~1950">Sovietic 1:100k (~1950)</option>
+                <option value="mozaic_soviet_200k" data-period="~1950">Sovietic 1:200k (~1950)</option>
+              </select>
+            </label>
+            <label class="timeline-row" style="margin-top:8px">
+              <span class="lbl">Opacitate:</span>
+              <output id="historic-opacity-out">75%</output>
+            </label>
+            <input id="historic-opacity-slider" type="range" min="10" max="100" step="5" value="75">
+          </div>
+          <button class="toggle-overlay" id="toggle-valuri" type="button" aria-pressed="false">
+            <span class="pill" aria-hidden="true"></span>
+            <span class="lbl">Fortificații romane antice</span>
+            <span class="lbl-meta">Val Traian + Dinogetia</span>
+          </button>
         </div>
-        <button class="toggle-overlay" id="toggle-valuri" type="button" aria-pressed="false">
-          <span class="pill" aria-hidden="true"></span>
-          <span class="lbl">Fortificații romane antice</span>
-          <span class="lbl-meta">Val Traian + Dinogetia</span>
-        </button>
         <div class="count" id="count"></div>
         <ol class="list" id="list"></ol>
       </section>
@@ -2646,6 +2804,19 @@
       </div>
       <!-- Event tag (bottom-right of map, shown when slider near an event) -->
       <div class="timeline-current-event" id="timeline-current-event" hidden></div>
+
+      <!-- Mobile-only: layers FAB + bottom-sheet panel containing layer toggles -->
+      <button class="layers-fab" id="layers-fab" type="button" aria-label="Straturi hartă" aria-expanded="false" aria-controls="mobile-layers-panel">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 22 8 12 14 2 8 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+      </button>
+      <div class="layers-sheet" id="mobile-layers-panel" hidden>
+        <div class="layers-sheet-header">
+          <h3>Straturi hartă</h3>
+          <button class="layers-sheet-close" id="layers-sheet-close" type="button" aria-label="Închide">×</button>
+        </div>
+        <div class="layers-sheet-body" id="mobile-layers-slot"><!-- #layer-controls is moved here on mobile --></div>
+      </div>
+      <div class="layers-sheet-backdrop" id="layers-sheet-backdrop" hidden></div>
 
       <!-- Add-pin floating button + place-mode banner -->
       <button class="add-pin-fab" id="add-pin-fab" type="button" aria-label="Adaugă obiectiv nou" title="Adaugă obiectiv nou (pin verde de categorie)">
@@ -4501,6 +4672,88 @@
       });
     }
     navBtns.forEach(btn => btn.addEventListener('click', () => activatePage(btn.dataset.page)));
+
+    // ─── Mobile topbar: hamburger menu ──────────────────────────
+    const burgerBtn = document.getElementById('topbar-burger');
+    const topbarNav = document.getElementById('topbar-nav');
+    function closeBurger() {
+      topbarNav.classList.remove('open');
+      burgerBtn?.setAttribute('aria-expanded', 'false');
+    }
+    burgerBtn?.addEventListener('click', () => {
+      const open = topbarNav.classList.toggle('open');
+      burgerBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    // Click pe orice item din nav închide meniul (atât pe button cât și pe link)
+    topbarNav?.addEventListener('click', (e) => {
+      if (e.target.closest('button, a')) closeBurger();
+    });
+    // Click în afară închide meniul
+    document.addEventListener('click', (e) => {
+      if (!topbarNav?.classList.contains('open')) return;
+      if (e.target.closest('.topbar')) return;
+      closeBurger();
+    });
+    // ESC închide meniul
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && topbarNav?.classList.contains('open')) closeBurger();
+    });
+
+    // ─── Mobile: layer-controls portal (sidebar ↔ bottom sheet) ──
+    // Mutăm același nod DOM între sidebar (desktop) și sheet-ul flotant
+    // (mobil) ca să nu duplicăm event listeners sau state-ul controalelor.
+    const layerCtrl = document.getElementById('layer-controls');
+    const mobileSlot = document.getElementById('mobile-layers-slot');
+    const sidebarParent = layerCtrl?.parentElement;
+    const sidebarAnchor = document.getElementById('count'); // re-insert before this
+    const layersFab = document.getElementById('layers-fab');
+    const layersSheet = document.getElementById('mobile-layers-panel');
+    const layersBackdrop = document.getElementById('layers-sheet-backdrop');
+    const layersClose = document.getElementById('layers-sheet-close');
+    const mqMobile = window.matchMedia('(max-width: 720px)');
+
+    function placeLayerControls() {
+      if (!layerCtrl || !mobileSlot || !sidebarParent || !sidebarAnchor) return;
+      const inMobile = layerCtrl.parentElement === mobileSlot;
+      if (mqMobile.matches && !inMobile) {
+        mobileSlot.appendChild(layerCtrl);
+      } else if (!mqMobile.matches && inMobile) {
+        sidebarParent.insertBefore(layerCtrl, sidebarAnchor);
+      }
+    }
+    placeLayerControls();
+    mqMobile.addEventListener('change', placeLayerControls);
+
+    function openLayersSheet() {
+      if (!layersSheet) return;
+      layersSheet.hidden = false;
+      layersBackdrop.hidden = false;
+      // Force reflow before adding open class so transition fires
+      void layersSheet.offsetWidth;
+      layersSheet.classList.add('open');
+      layersBackdrop.classList.add('open');
+      layersFab.setAttribute('aria-expanded', 'true');
+    }
+    function closeLayersSheet() {
+      if (!layersSheet) return;
+      layersSheet.classList.remove('open');
+      layersBackdrop.classList.remove('open');
+      layersFab.setAttribute('aria-expanded', 'false');
+      setTimeout(() => {
+        layersSheet.hidden = true;
+        layersBackdrop.hidden = true;
+      }, 250);
+    }
+    layersFab?.addEventListener('click', () => {
+      const open = layersSheet?.classList.contains('open');
+      if (open) closeLayersSheet(); else openLayersSheet();
+    });
+    layersClose?.addEventListener('click', closeLayersSheet);
+    layersBackdrop?.addEventListener('click', closeLayersSheet);
+    // Pe schimbarea breakpoint-ului, închide sheet-ul dacă e deschis
+    mqMobile.addEventListener('change', (e) => {
+      if (!e.matches) closeLayersSheet();
+    });
 
     // Pin links from any article (battle page etc.) → switch to map and open detail
     document.addEventListener('click', (e) => {
