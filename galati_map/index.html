@@ -521,7 +521,7 @@
       color: var(--ink);
     }
     .contribute-list p { margin: 0; font-size: 14.5px; color: var(--ink-soft); }
-    #page-events {
+    #page-stories {
       min-height: calc(100vh - var(--topbar-h));
       background: var(--paper);
       color: var(--ink);
@@ -529,11 +529,11 @@
       overflow-y: auto;
       max-height: calc(100vh - var(--topbar-h));
     }
-    #page-events .battle-wrap {
+    #page-stories .battle-wrap {
       width: min(1440px, 100%);
       margin: 0 auto;
     }
-    #page-events .battle-article {
+    #page-stories .battle-article {
       width: min(820px, 100%);
       margin: 48px auto 0;
       padding: 0 12px;
@@ -542,7 +542,7 @@
       line-height: 1.72;
       font-size: 15.5px;
     }
-    #page-events .battle-article .eyebrow {
+    #page-stories .battle-article .eyebrow {
       display: block;
       font-size: 11px;
       letter-spacing: 0.18em;
@@ -551,7 +551,7 @@
       color: var(--accent);
       margin-bottom: 14px;
     }
-    #page-events .battle-article h1 {
+    #page-stories .battle-article h1 {
       font-size: clamp(28px, 4vw, 40px);
       font-weight: 800;
       letter-spacing: -0.015em;
@@ -559,25 +559,25 @@
       margin: 0 0 8px;
       color: var(--ink);
     }
-    #page-events .battle-article .subtitle {
+    #page-stories .battle-article .subtitle {
       font-size: 17px;
       color: var(--ink-soft);
       font-weight: 500;
       margin: 0 0 36px;
       font-style: italic;
     }
-    #page-events .battle-article .events-toc {
+    #page-stories .battle-article .events-toc {
       list-style: none;
       padding: 14px 0;
       margin: 0 0 32px;
       border-top: 1px solid var(--line);
       border-bottom: 1px solid var(--line);
     }
-    #page-events .battle-article .events-toc li {
+    #page-stories .battle-article .events-toc li {
       margin: 0;
       padding: 4px 0;
     }
-    #page-events .battle-article .events-toc a {
+    #page-stories .battle-article .events-toc a {
       display: inline-flex;
       align-items: baseline;
       gap: 12px;
@@ -586,25 +586,25 @@
       text-decoration: none;
       font-size: 16px;
     }
-    #page-events .battle-article .events-toc a:hover { color: var(--hot); }
-    #page-events .battle-article .ev-divider {
+    #page-stories .battle-article .events-toc a:hover { color: var(--hot); }
+    #page-stories .battle-article .ev-divider {
       border: 0;
       border-top: 1px solid var(--line);
       margin: 36px 0 28px;
     }
-    #page-events .events-hero {
+    #page-stories .events-hero {
       width: min(1100px, 100%);
       margin: 48px auto 24px;
       padding: 0 12px;
     }
     /* Hero-ul folosește `battle-article` pentru tipografie, dar trebuie să
        se întindă la fel ca grila de carduri de mai jos. */
-    #page-events .events-hero .battle-article {
+    #page-stories .events-hero .battle-article {
       width: 100%;
       max-width: none;
       margin: 0;
     }
-    #page-events .events-grid {
+    #page-stories .events-grid {
       width: min(1100px, 100%);
       margin: 0 auto 60px;
       padding: 0 12px;
@@ -615,11 +615,11 @@
     /* CSS `display: grid` (and similar) overrides the user-agent default
        `[hidden] { display: none }`, so re-assert it for the toggleable
        containers in this page. */
-    #page-events .events-grid[hidden],
-    #page-events .events-hero[hidden],
-    #page-events .ev-single[hidden],
-    #page-events .ev-content[hidden] { display: none !important; }
-    #page-events .ev-card {
+    #page-stories .events-grid[hidden],
+    #page-stories .events-hero[hidden],
+    #page-stories .ev-single[hidden],
+    #page-stories .ev-content[hidden] { display: none !important; }
+    #page-stories .ev-card {
       display: flex;
       flex-direction: column;
       gap: 10px;
@@ -632,18 +632,18 @@
       font: inherit;
       color: var(--ink);
     }
-    #page-events .ev-card:hover {
+    #page-stories .ev-card:hover {
       transform: translateY(-2px);
       border-color: var(--accent);
       background: #fff;
     }
-    #page-events .ev-card .card-year {
+    #page-stories .ev-card .card-year {
       font-size: 13px;
       font-weight: 800;
       letter-spacing: .14em;
       color: var(--accent);
     }
-    #page-events .ev-card .card-title {
+    #page-stories .ev-card .card-title {
       font-size: 20px;
       font-weight: 800;
       line-height: 1.2;
@@ -651,14 +651,14 @@
       color: var(--ink);
       margin: 0;
     }
-    #page-events .ev-card .card-hook {
+    #page-stories .ev-card .card-hook {
       font-size: 13.5px;
       line-height: 1.55;
       color: var(--ink-soft);
       margin: 0;
       flex: 1;
     }
-    #page-events .ev-card .card-status {
+    #page-stories .ev-card .card-status {
       margin-top: 6px;
       display: inline-flex;
       align-items: center;
@@ -668,10 +668,10 @@
       letter-spacing: .12em;
       text-transform: uppercase;
     }
-    #page-events .ev-card[data-status="ready"] .card-status { color: var(--accent-deep); }
-    #page-events .ev-card[data-status="soon"]  .card-status { color: var(--muted); }
-    #page-events .ev-card[data-status="soon"]  { opacity: .92; }
-    #page-events .ev-back {
+    #page-stories .ev-card[data-status="ready"] .card-status { color: var(--accent-deep); }
+    #page-stories .ev-card[data-status="soon"]  .card-status { color: var(--muted); }
+    #page-stories .ev-card[data-status="soon"]  { opacity: .92; }
+    #page-stories .ev-back {
       display: inline-block;
       margin: 30px auto 4px;
       width: min(820px, 100%);
@@ -685,8 +685,8 @@
       letter-spacing: .04em;
       cursor: pointer;
     }
-    #page-events .ev-back:hover { color: var(--hot); }
-    #page-events .ev-soon .ev-soon-banner {
+    #page-stories .ev-back:hover { color: var(--hot); }
+    #page-stories .ev-soon .ev-soon-banner {
       margin: 8px 0 28px;
       padding: 14px 18px;
       background: var(--accent-soft);
@@ -694,7 +694,7 @@
       color: var(--ink-soft);
       font-size: 14px;
     }
-    #page-events .battle-article .ev-note {
+    #page-stories .battle-article .ev-note {
       margin: -6px 0 18px;
       font-size: 13.5px;
       font-style: italic;
@@ -702,29 +702,29 @@
     }
 
     /* ── Comic reader (1918 article) ── */
-    #page-events .comic-reader {
+    #page-stories .comic-reader {
       margin: 8px 0 36px;
       background: var(--panel);
       border: 1px solid var(--line);
       padding: 16px 16px 14px;
       width: 100%;
     }
-    #page-events .comic-header {
+    #page-stories .comic-header {
       display: flex; align-items: center; justify-content: space-between;
       gap: 12px;
       margin-bottom: 12px;
       flex-wrap: wrap;
     }
-    #page-events .comic-title {
+    #page-stories .comic-title {
       font-family: "Inter", sans-serif;
       font-size: 11px; font-weight: 800;
       letter-spacing: .18em; text-transform: uppercase;
       color: var(--accent);
       margin: 0;
     }
-    #page-events .comic-actions { display: flex; gap: 8px; align-items: center; }
-    #page-events .comic-actions a,
-    #page-events .comic-actions button {
+    #page-stories .comic-actions { display: flex; gap: 8px; align-items: center; }
+    #page-stories .comic-actions a,
+    #page-stories .comic-actions button {
       padding: 7px 12px;
       border: 1px solid var(--line);
       background: transparent;
@@ -738,19 +738,19 @@
       cursor: pointer;
       transition: background .12s, color .12s, border-color .12s;
     }
-    #page-events .comic-actions a:hover,
-    #page-events .comic-actions button:hover {
+    #page-stories .comic-actions a:hover,
+    #page-stories .comic-actions button:hover {
       background: var(--ink);
       border-color: var(--ink);
       color: var(--paper);
     }
-    #page-events .comic-stage {
+    #page-stories .comic-stage {
       position: relative;
       background: var(--paper-deep);
       display: flex; align-items: center; justify-content: center;
       min-height: 320px;
     }
-    #page-events .comic-stage img {
+    #page-stories .comic-stage img {
       display: block;
       max-width: 100%;
       max-height: 78vh;
@@ -758,7 +758,7 @@
       height: auto;
       box-shadow: 0 4px 20px rgba(0,0,0,.18);
     }
-    #page-events .comic-nav {
+    #page-stories .comic-nav {
       position: absolute; top: 0; bottom: 0;
       width: 18%;
       background: transparent;
@@ -770,13 +770,13 @@
       font-weight: 700;
       transition: background .12s, color .12s;
     }
-    #page-events .comic-nav:hover { background: linear-gradient(to right, rgba(15,15,14,.12), transparent); color: var(--ink); }
-    #page-events .comic-nav.next { right: 0; }
-    #page-events .comic-nav.next:hover { background: linear-gradient(to left, rgba(15,15,14,.12), transparent); }
-    #page-events .comic-nav.prev { left: 0; }
-    #page-events .comic-nav:disabled { opacity: .25; cursor: not-allowed; }
-    #page-events .comic-nav:disabled:hover { background: transparent; color: var(--muted); }
-    #page-events .comic-counter {
+    #page-stories .comic-nav:hover { background: linear-gradient(to right, rgba(15,15,14,.12), transparent); color: var(--ink); }
+    #page-stories .comic-nav.next { right: 0; }
+    #page-stories .comic-nav.next:hover { background: linear-gradient(to left, rgba(15,15,14,.12), transparent); }
+    #page-stories .comic-nav.prev { left: 0; }
+    #page-stories .comic-nav:disabled { opacity: .25; cursor: not-allowed; }
+    #page-stories .comic-nav:disabled:hover { background: transparent; color: var(--muted); }
+    #page-stories .comic-counter {
       margin-top: 10px;
       text-align: center;
       font-size: 12px;
@@ -784,7 +784,7 @@
       letter-spacing: .12em;
       color: var(--muted);
     }
-    #page-events .comic-thumbs {
+    #page-stories .comic-thumbs {
       display: flex;
       gap: 4px;
       margin-top: 12px;
@@ -792,27 +792,27 @@
       padding-bottom: 4px;
       scrollbar-width: thin;
     }
-    #page-events .comic-thumbs::-webkit-scrollbar { height: 6px; }
-    #page-events .comic-thumbs::-webkit-scrollbar-thumb { background: rgba(15,15,14,.22); }
-    #page-events .comic-thumbs button {
+    #page-stories .comic-thumbs::-webkit-scrollbar { height: 6px; }
+    #page-stories .comic-thumbs::-webkit-scrollbar-thumb { background: rgba(15,15,14,.22); }
+    #page-stories .comic-thumbs button {
       flex: 0 0 auto;
       padding: 0;
       border: 2px solid transparent;
       background: transparent;
       cursor: pointer;
     }
-    #page-events .comic-thumbs button img {
+    #page-stories .comic-thumbs button img {
       display: block;
       width: 56px; height: 80px;
       object-fit: cover;
       opacity: .55;
       transition: opacity .12s;
     }
-    #page-events .comic-thumbs button:hover img { opacity: .9; }
-    #page-events .comic-thumbs button.active { border-color: var(--accent); }
-    #page-events .comic-thumbs button.active img { opacity: 1; }
+    #page-stories .comic-thumbs button:hover img { opacity: .9; }
+    #page-stories .comic-thumbs button.active { border-color: var(--accent); }
+    #page-stories .comic-thumbs button.active img { opacity: 1; }
     /* Fullscreen mode */
-    #page-events .comic-reader.fullscreen {
+    #page-stories .comic-reader.fullscreen {
       position: fixed;
       inset: 0;
       z-index: 2000;
@@ -821,10 +821,10 @@
       overflow-y: auto;
       background: var(--paper);
     }
-    #page-events .comic-reader.fullscreen .comic-stage img { max-height: 92vh; }
+    #page-stories .comic-reader.fullscreen .comic-stage img { max-height: 92vh; }
 
     /* Hero image on full single-article view */
-    #page-events .ev-content .ev-hero {
+    #page-stories .ev-content .ev-hero {
       display: block;
       width: 100%;
       max-height: 540px;
@@ -832,8 +832,8 @@
       margin: 0 0 28px;
       border: 1px solid var(--line);
     }
-    #page-events .ev-content .ev-hero[hidden] { display: none; }
-    #page-events .ev-content .article-lede {
+    #page-stories .ev-content .ev-hero[hidden] { display: none; }
+    #page-stories .ev-content .article-lede {
       font-size: 17.5px;
       line-height: 1.65;
       color: var(--ink-soft);
@@ -841,25 +841,25 @@
     }
 
     /* Featured cover on the 1918 events card */
-    #page-events .ev-card.has-cover { padding: 0; overflow: hidden; }
-    #page-events .ev-card.has-cover .card-cover {
+    #page-stories .ev-card.has-cover { padding: 0; overflow: hidden; }
+    #page-stories .ev-card.has-cover .card-cover {
       width: 100%;
       aspect-ratio: 3 / 4.2;
       object-fit: cover;
       display: block;
     }
-    #page-events .ev-card.has-cover .card-body {
+    #page-stories .ev-card.has-cover .card-body {
       padding: 18px 22px 20px;
       display: flex; flex-direction: column; gap: 8px;
     }
-    #page-events .battle-article h2 {
+    #page-stories .battle-article h2 {
       font-size: 22px;
       font-weight: 700;
       color: var(--ink);
       margin: 48px 0 14px;
       letter-spacing: -0.005em;
     }
-    #page-events .battle-article h2::before {
+    #page-stories .battle-article h2::before {
       content: "";
       display: block;
       width: 32px;
@@ -867,24 +867,24 @@
       background: var(--accent);
       margin-bottom: 10px;
     }
-    #page-events .battle-article h3 {
+    #page-stories .battle-article h3 {
       font-size: 16px;
       font-weight: 700;
       color: var(--ink);
       margin: 28px 0 10px;
     }
-    #page-events .battle-article p { margin: 0 0 16px; }
-    #page-events .battle-article strong { color: var(--ink); font-weight: 700; }
-    #page-events .battle-article em { color: var(--accent-deep); }
-    #page-events .battle-article ul, #page-events .battle-article ol {
+    #page-stories .battle-article p { margin: 0 0 16px; }
+    #page-stories .battle-article strong { color: var(--ink); font-weight: 700; }
+    #page-stories .battle-article em { color: var(--accent-deep); }
+    #page-stories .battle-article ul, #page-stories .battle-article ol {
       margin: 0 0 18px; padding-left: 22px;
     }
-    #page-events .battle-article li { margin-bottom: 7px; }
-    #page-events .battle-article a {
+    #page-stories .battle-article li { margin-bottom: 7px; }
+    #page-stories .battle-article a {
       color: var(--accent-deep); text-decoration: underline; text-underline-offset: 3px;
     }
-    #page-events .battle-article a:hover { color: var(--hot); }
-    #page-events .battle-article blockquote {
+    #page-stories .battle-article a:hover { color: var(--hot); }
+    #page-stories .battle-article blockquote {
       margin: 24px 0;
       padding: 14px 22px;
       border-left: 3px solid var(--accent);
@@ -893,7 +893,7 @@
       color: var(--ink-soft);
       font-size: 15px;
     }
-    #page-events .battle-article blockquote cite {
+    #page-stories .battle-article blockquote cite {
       display: block;
       margin-top: 8px;
       font-style: normal;
@@ -901,18 +901,18 @@
       color: var(--muted);
       letter-spacing: 0.04em;
     }
-    #page-events .battle-article .stats-row {
+    #page-stories .battle-article .stats-row {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
       gap: 14px;
       margin: 26px 0;
     }
-    #page-events .battle-article .stat {
+    #page-stories .battle-article .stat {
       padding: 16px 14px;
       background: var(--panel);
       border: 1px solid var(--line);
     }
-    #page-events .battle-article .stat .num {
+    #page-stories .battle-article .stat .num {
       display: block;
       font-size: 28px;
       font-weight: 800;
@@ -920,7 +920,7 @@
       line-height: 1;
       letter-spacing: -0.02em;
     }
-    #page-events .battle-article .stat .lbl {
+    #page-stories .battle-article .stat .lbl {
       display: block;
       margin-top: 6px;
       font-size: 11.5px;
@@ -928,15 +928,15 @@
       text-transform: uppercase;
       letter-spacing: 0.08em;
     }
-    #page-events .battle-article .sources {
+    #page-stories .battle-article .sources {
       margin-top: 56px;
       padding-top: 24px;
       border-top: 1px solid var(--line);
       font-size: 13.5px;
       color: var(--muted);
     }
-    #page-events .battle-article .sources strong { color: var(--accent-deep); }
-    #page-events .battle-article .pin-link {
+    #page-stories .battle-article .sources strong { color: var(--accent-deep); }
+    #page-stories .battle-article .pin-link {
       display: inline-block;
       padding: 1px 7px;
       margin-left: 4px;
@@ -948,7 +948,7 @@
       text-decoration: none;
       letter-spacing: 0.02em;
     }
-    #page-events .battle-article .pin-link:hover {
+    #page-stories .battle-article .pin-link:hover {
       background: var(--accent);
       color: #fff;
       border-color: var(--accent);
@@ -2672,8 +2672,8 @@
     </button>
     <nav id="topbar-nav">
       <button class="active" data-page="map" type="button">Hartă</button>
-      <button data-page="events" type="button">Povești</button>
-      <a href="./cronologie.html" class="nav-link" type="button">Liste</a>
+      <button data-page="stories" type="button">Povești</button>
+      <a href="./lists.html" class="nav-link" type="button">Liste</a>
       <button data-page="about" type="button">Despre</button>
       <button data-page="trivia" type="button">Știați că?</button>
       <button data-page="contribute" type="button">Contribuie</button>
@@ -3027,7 +3027,7 @@
   </main>
   </div><!-- /#page-map -->
 
-  <div class="page" id="page-events">
+  <div class="page" id="page-stories">
     <div class="events-hero" id="events-hero">
       <article class="battle-article" style="padding-top:0;margin-top:0">
         <span class="eyebrow">Povești · Galați</span>
@@ -4869,7 +4869,7 @@
     // (apelat la finalul blocului events ca să evite temporal-dead-zone).
     const initialHash = (location.hash || '#map').replace('#', '');
     const initialBase = initialHash.split('/')[0];
-    if (['map','events','battle','about','trivia','contribute'].includes(initialBase)) {
+    if (['map','stories','battle','about','trivia','contribute'].includes(initialBase)) {
       activatePage(initialBase);
     }
     window.addEventListener('load', resetDocumentScroll);
@@ -4965,11 +4965,11 @@
 
           <h2>Flăcările se extind în Covurlui</h2>
           <p>Furia țăranilor a lovit violent conacele boierești și fermele arendașilor din împrejurimile Galațiului. Arhivele consemnează că satele județului s-au ridicat rând pe rând. Un exemplu notabil este satul <strong>Țepu</strong>, unde țăranii s-au organizat și au susținut activ răscoala, cerând <em>„dreptate și pământ"</em>. Conacele incendiate, hambarele jefuite, registrele de arendă rupte — același tipar din toată Moldova.</p>
-          <p>Galațiul era la acea vreme un <strong>pol de bogăție</strong>, cu peste 20 de consulate și o economie industrială înfloritoare datorită Comisiei Europene a Dunării <a class="pin-link" href="#events/1856">vezi articol</a> și porto-francului recent încheiat. Dar satele din jurul său trăiau într-o sărăcie lucie, într-un contrast aproape medieval. Teama că masele de țărani înfuriați ar putea invada marele port comercial a forțat autoritățile locale să ceară <strong>intervenția imediată a armatei</strong>.</p>
+          <p>Galațiul era la acea vreme un <strong>pol de bogăție</strong>, cu peste 20 de consulate și o economie industrială înfloritoare datorită Comisiei Europene a Dunării <a class="pin-link" href="#stories/1856">vezi articol</a> și porto-francului recent încheiat. Dar satele din jurul său trăiau într-o sărăcie lucie, într-un contrast aproape medieval. Teama că masele de țărani înfuriați ar putea invada marele port comercial a forțat autoritățile locale să ceară <strong>intervenția imediată a armatei</strong>.</p>
 
           <h2>Tragedia Regimentului 11 Dorobanți „Siret"</h2>
           <p>Pentru a înăbuși revolta, guvernul de la București (sub conducerea lui Dimitrie A. Sturdza, format în martie 1907) a ordonat reprimarea armată fără milă a răsculaților. La Galați, această sarcină ingrată și tragică i-a revenit legendarei unități locale: <strong>Regimentul 11 Dorobanți „Siret"</strong>.</p>
-          <p>Înființat în <strong>1872</strong>, acesta era regimentul de elită al orașului, glorificat pentru eroismul său la <strong>Grivița</strong> în Războiul de Independență (1877). Avea să participe ulterior la toate marile conflicte ale României: cele Două Războaie Balcanice, Primul Război Mondial (inclusiv Bătălia de la Galați din 1918 <a class="pin-link" href="#events/1918">vezi articol</a>), campania din 1919 și Al Doilea Război Mondial.</p>
+          <p>Înființat în <strong>1872</strong>, acesta era regimentul de elită al orașului, glorificat pentru eroismul său la <strong>Grivița</strong> în Războiul de Independență (1877). Avea să participe ulterior la toate marile conflicte ale României: cele Două Războaie Balcanice, Primul Război Mondial (inclusiv Bătălia de la Galați din 1918 <a class="pin-link" href="#stories/1918">vezi articol</a>), campania din 1919 și Al Doilea Război Mondial.</p>
           <p>Tragedia anului 1907: în martie, ofițerii și soldații gălățeni — mulți dintre ei proveniți chiar din satele aflate în revoltă — au primit <strong>ordinul cumplit de a trage în frații și părinții lor</strong>.</p>
 
           <h2>Împușcarea în masă</h2>
@@ -4977,7 +4977,7 @@
 
           <h2>Epilogul unui martie sângeros</h2>
           <p>Până la sfârșitul lunii martie, liniștea fusese restabilită — dar era liniștea mormintelor. Răscoala de la 1907 a lăsat o cicatrice adâncă în societatea românească. Soldații din Regimentul 11 Dorobanți au rămas cu trauma executării unui ordin nefiresc, iar țăranii din Covurlui au fost reduși la tăcere, așteptând încă un deceniu — până la <strong>Primul Război Mondial</strong> și <strong>reforma agrară din 1921</strong> (sub guvernul Averescu) — pentru a fi, în sfârșit, împroprietăriți cu pământ.</p>
-          <p>Un paradox al istoriei: aceiași soldați care în martie 1907 reprimaseră răsculații aveau să devină, doar 11 ani mai târziu, eroii apărării Galațiului împotriva Corpului 4 Siberian bolșevizat <a class="pin-link" href="#events/1918">vezi Bătălia 1918</a>. Tragedia de la 1907 a fost preludiul tăcut al unei mobilizări masive care a culminat în Marele Război.</p>
+          <p>Un paradox al istoriei: aceiași soldați care în martie 1907 reprimaseră răsculații aveau să devină, doar 11 ani mai târziu, eroii apărării Galațiului împotriva Corpului 4 Siberian bolșevizat <a class="pin-link" href="#stories/1918">vezi Bătălia 1918</a>. Tragedia de la 1907 a fost preludiul tăcut al unei mobilizări masive care a culminat în Marele Război.</p>
 
           <div class="sources">
             <p><strong>Surse</strong></p>
@@ -5123,7 +5123,7 @@
       eventsGrid.querySelectorAll('.ev-card').forEach(card => {
         card.addEventListener('click', () => {
           const id = card.dataset.event;
-          location.hash = '#events/' + id;
+          location.hash = '#stories/' + id;
         });
       });
     }
@@ -5181,7 +5181,7 @@
       document.addEventListener('keydown', (e) => {
         const onPage = !reader.closest('.ev-content[hidden]') && (
           reader.classList.contains('fullscreen') ||
-          (location.hash || '').startsWith('#events/1918')
+          (location.hash || '').startsWith('#stories/1918')
         );
         if (!onPage) return;
         // Don't hijack arrows when typing in inputs
@@ -5234,7 +5234,7 @@
         const meta = EVENT_ARTICLES.find(e => e.id === id);
         if (!meta) {
           // Unknown id → fall back to grid
-          location.hash = '#events';
+          location.hash = '#stories';
           return;
         }
         // Article with full HTML content (e.g. 1944) → use ev-full template
@@ -5272,22 +5272,22 @@
     }
     function syncEventsRoute() {
       const h = location.hash || '';
-      const m = h.match(/^#events\/([\w-]+)$/);
+      const m = h.match(/^#stories\/([\w-]+)$/);
       if (m) {
         showEventArticle(m[1]);
       } else {
         showEventsGrid();
       }
     }
-    if (evBack) evBack.addEventListener('click', () => { location.hash = '#events'; });
+    if (evBack) evBack.addEventListener('click', () => { location.hash = '#stories'; });
     window.addEventListener('hashchange', syncEventsRoute);
     // Initial sync — preserve any sub-route the user may have landed on
     // (activatePage above may have stripped it via replaceState).
     {
       const subAtBoot = (typeof initialHash !== 'undefined') ? initialHash.split('/').slice(1).join('/') : '';
       const baseAtBoot = (typeof initialHash !== 'undefined') ? initialHash.split('/')[0] : '';
-      if (baseAtBoot === 'events' && subAtBoot) {
-        if (history.replaceState) history.replaceState(null, '', '#events/' + subAtBoot);
+      if (baseAtBoot === 'stories' && subAtBoot) {
+        if (history.replaceState) history.replaceState(null, '', '#stories/' + subAtBoot);
         showEventArticle(subAtBoot);
       } else {
         syncEventsRoute();

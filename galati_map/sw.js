@@ -5,7 +5,7 @@
 //   - Tile-uri OpenStreetMap/CARTO: cache-first cu TTL lung
 //   - Imagini: cache-first
 
-const CACHE_VERSION = 'tg-v4';
+const CACHE_VERSION = 'tg-v5';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const DATA_CACHE = `${CACHE_VERSION}-data`;
 const IMAGE_CACHE = `${CACHE_VERSION}-images`;
@@ -15,7 +15,7 @@ const TILE_CACHE = `${CACHE_VERSION}-tiles`;
 const PRECACHE_URLS = [
   './',
   'index.html',
-  'cronologie.html',
+  'lists.html',
   'batalia-galati-1918.html',
   'vendor/leaflet/leaflet.css',
   'vendor/leaflet/leaflet.js',
