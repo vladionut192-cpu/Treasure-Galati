@@ -5,7 +5,7 @@
       "title": "Pub Crawl Cultural prin Galați",
       "subtitle": "5 etape · ~4-4.5 ore · de la Țiglina la Faleză și înapoi",
       "description": "Tur tematic în 5 etape care îmbină istoria orașului-port cu o rută de baruri pe traseul Hops Gallery → Bodega → Union Jack (Faleză) → DAily → Craft → înapoi la Hops Gallery. La fiecare oprire pe hartă vei găsi povestea aferentă — de la cărămizi comuniste din Țiglina la castrul roman Tirighina, de la berea Ploll la portul liber, de la legenda tunelului de sub Dunăre la Bătălia de la Galați 1918.\n\nSursa narativă: cheatsheet-ul ghidului oficial al pub-crawl-ului (Surse/cheatsheet.txt). Adaptează ritmul cum vrei — fiecare oprire e o piatră de hotar, nu o constrângere.",
-      "cover": "",
+      "cover": "../assets/images/Casa-de-Cultura-a-Sindicatelor-1024x683-943371c39533.jpg",
       "category": "Cultural",
       "color": "#c44d2e",
       "stops": [
@@ -113,7 +113,181 @@
           "article": "../assets/articles/cimitirul-eternitatea-si-mormantul-shintaro-tsutsumi/index.html",
           "note": "Cimitirul „Eternitatea” — bonus cosmopolit: aici e îngropat Shintaro Tsutsumi, samurai japonez de 24 de ani, ajuns la Galați cu nava „Kilimaru” la 3 ani după Primul Război Mondial. Piatra de mormânt e scrisă în japoneză și franceză. La Muzeul de Istorie se păstrează „sabia de seppuku” care i-ar fi aparținut. Final: înapoi la Hops Gallery — ai văzut Galațiul de 1.800 de ani (de la Tirighina romană la Combinat)."
         }
-      ]
+      ],
+      "i18n": {
+        "en": {
+          "title": "Cultural Pub Crawl through Galați",
+          "subtitle": "5 stages · ~4-4.5 h · from Țiglina to the Riverfront and back",
+          "category": "Cultural",
+          "description": "A 5-stage themed walk that blends the history of the port-city with a route of pubs along Hops Gallery → Bodega → Union Jack (Riverfront) → DAily → Craft → back to Hops Gallery. At each map stop you'll find the matching story — from the communist bricks of Țiglina to the Roman fortress of Tirighina, from Ploll beer to the free port, from the legend of the Danube tunnel to the Battle of Galați 1918.\n\nNarrative source: the official pub-crawl guide cheatsheet (Surse/cheatsheet.txt). Pace it as you wish — each stop is a milestone, not a constraint.",
+          "stops": [
+            {
+              "note": "STAGE 1 — Hops Gallery (start). The Țiglina Cinema, opened on 13 April 1964, with an 800-seat Cinemascope hall and air conditioning — spectacular for its time. Above Hops Gallery there used to be the 'Galați' restaurant, nicknamed 'The Destroyer' because steelworkers walked in on payday and walked out destroyed."
+            },
+            {
+              "note": "The 'Progresul' monumental column, raised in 1966 by Péter Balogh — sculpted registers with scenes of work in industry and agriculture. Classic 1960s propaganda visual language, but artistically interesting."
+            },
+            {
+              "note": "(Looking south-west) Tirighina-Bărboși — the Roman fortress on Tirighina hill (1st-2nd c. AD), which controlled the confluence of the Siret with the Danube. The name 'Țiglina' does NOT come from the Romans, but from the old tile factories. Curiosity: above the Roman fort lies a paleontological reserve with mollusk fossils 400,000 years old."
+            },
+            {
+              "note": "House of Culture of the Trade Unions, inaugurated 4 October 1969, dedicated at its opening to Gheorghe Gheorghiu-Dej. On the esplanade, between 1971-1989, stood the bust of Dej — torn down by the crowd on 22 December 1989."
+            },
+            {
+              "note": "In front of today's House of Culture stood the 'Saint Sophia' Church — foundation stone laid in 1872, demolished 'with a tank' in December 1963, in the depths of winter. A typical victim of communist systematizations."
+            },
+            {
+              "note": "'Costache Negri' National College — founded in 1877 in Ismail (today Ukraine) on the initiative of V. A. Urechia. Moved to Galați in 1878 after the reoccupation of southern Bessarabia. Spiru Haret secured one million lei for its own building."
+            },
+            {
+              "note": "STAGE 2 — Ploll Brewery, the first brewery in Galați (1842, Marcu Schein), taken over after 1860 by the Czech Josef Ploll. By the end of the 19th century it was the most expensive Romanian beer — a litre cost double the price of wine. Delivery with 24 horses and 12 pairs of oxen. The Ploll factory → Petrina family → Trancu-Iași Hospital → Children's Home."
+            },
+            {
+              "note": "Palace of the European Commission of the Danube (today the V.A. Urechia Library). The European Commission of the Danube began its activity in 1856 in Galați — the first European supranational organisation in Romania. Its own flag, employees from many countries, status of extraterritoriality. A piece of Galați was 'European soil' 100 years before the EU."
+            },
+            {
+              "note": "Cuza Vodă House (Cuza Museum, Domnească 80). Before the Union, Cuza and Costache Negri seriously considered Galați as the new capital of the Principalities — the city was Moldavia's largest commercial port and host to the ECD."
+            },
+            {
+              "note": "STAGE 3 — Precista Church (1643-1647, Vasile Lupu). The oldest building in Galați. Not just a church — a fortress: walls 1.80 m thick, fortified bridge with 28 loopholes, watchtower. THE LEGEND OF THE TUNNEL UNDER THE DANUBE: Moldavian boyars supposedly dug a tunnel under the Danube to keep their fortunes safe from the Turks. The kernel of truth: the Museum's director confirms a real 300 m gallery between Precista and St. George."
+            },
+            {
+              "note": "St. George fortified church (vanished 1962). A pair with Precista, 300 m to the east. The Cossack hetman Ivan Mazepa, the anti-Russian Ukrainian hero, was buried here in 1709 (he appears today on the Ukrainian 10-hryvnia banknote). Brutal demolition: Navrom employees pulled the church into the Danube with tugboats after the walls resisted water injection under the foundation."
+            },
+            {
+              "note": "Statue of Ion C. Brătianu, on the Riverfront. Free-port bonus: between 1837 and 1882 Galați was a free port — any ship could dock without taxes. Lines departed from here to Marseille, Genoa, Istanbul, Alexandria, Piraeus and even New York (with a stopover)."
+            },
+            {
+              "note": "Navigation Palace — the institution that coordinated river traffic. Galați had, at its peak, 21 consulates and vice-consulates, and before the First World War 16 were active — diplomatic density greater than many European capitals have today."
+            },
+            {
+              "note": "Dockworkers' Monument — on the promenade, east side of the Navigation Palace. Around 1912, a young man named Gheorghe Gheorghiu-Dej worked as a dockworker in the port of Galați. He then went through the CFR workshops, the Grivița strike, and ended up leading communist Romania."
+            },
+            {
+              "note": "Hotel Bristol (Domnească 30/34) — owned by Spirache Caravelas, vis-à-vis the Municipal Park. In 1907 it hosted the banquet in honour of G. Panu; in 1918 the victorious Romanian troops paraded down Domnească next to Bristol and the 'Prince Mihai' Pâtisserie."
+            },
+            {
+              "note": "'Where do the elite of Galați meet? At Restaurant, Brewery and Bodega Suré!' — May 1931 ad in 'Vocea Galaţilor'. The Suré brothers had Luther beer and high prices. On 7 August 1932 a fire consumed part of the building — the rival pâtissier Manzavinatos was blamed. By 1 September Suré was reopening, 'Very low prices, entry through the garden'."
+            },
+            {
+              "note": "Cinema Louvru — in Royal Square, the heart of the free-port city, officially named in 1884. In August 1914 it hosted a dance evening for Belgian refugees. Royal Square was devastated on the night of 24-25 August 1944 by the retreating German army and was never rebuilt."
+            },
+            {
+              "note": "STAGE 4 — Greek Church 'Transfiguration' (begun 1866, consecrated 1872). Built to the plans of the German architect Knab, with German, Greek and Romanian workers — a symbol of Galați's multiculturalism. The Greek community was the spark of the 1821 revolution: Vasile Karavia's men attacked the Ottoman garrison in February."
+            },
+            {
+              "note": "Café Trocadero — right opposite the Greek Church. 'A favoured meeting place for discreet, business encounters' (Sandel Dumitru). Frequented by grain exporters, consular agents, lawyers, marine officers."
+            },
+            {
+              "note": "Synagogue 'Templul Meseriașilor' — the only one still active out of the 22 synagogues of the city. Built 1875, rebuilt 1927-1929, fully restored 2014. The Jewish community was over 20% of the population at its peak, controlling the Mendel shipyard, chemical factories and grain exports."
+            },
+            {
+              "note": "Apostolic Armenian Church 'Saint Mary' (1858). Armenians have been present in Galați since the 17th c. The first church (wooden) was burned by the Turks in 1821. Many Galați Armenians are descendants of survivors of the 1915 Genocide. Armenian churches have no painted walls — Armenians took their saints with them across the world, in portable icons."
+            },
+            {
+              "note": "Mavromol Church (1700, founded by Antioh Cantemir). The name comes from the Greek 'mavros molos' (black stone). Centre of the old Greek-merchant community. Mavromol Alley — leading to the church — keeps the name even after the 20th-century systematizations."
+            },
+            {
+              "note": "STAGE 5 — '13 June 1916' Monument. The only 'triple' battle in Romanian history: in January 1918, 500 Romanian soldiers, sailors and firefighters defeated 12,000 Russian Bolshevik soldiers. The only time air, land and naval forces fought together in a single battle. Galați received 'Croce di Guerra' (Italy) and 'Croix de Guerre' (France)."
+            },
+            {
+              "note": "Union Monument / Cuza Statue, at the Public Garden roundabout. Cuza was pârcălab of Covurlui (with residence in Galați) between 1856 and 1859. Imagine: had the decision gone the other way, today's capital of Romania would be Galați."
+            },
+            {
+              "note": "Statue of Mihai Eminescu by Frederic Storck — the first Eminescu statue in Romania. Storck is also the author of the 'Industria' and 'Agricultura' allegories on the façade of the Administrative Palace."
+            },
+            {
+              "note": "'Eternitatea' Cemetery — cosmopolitan bonus: here is buried Shintaro Tsutsumi, a 24-year-old Japanese samurai, who arrived in Galați on the ship 'Kilimaru' three years after the First World War. The tombstone is written in Japanese and French. The Museum of History keeps the 'seppuku sword' said to have belonged to him. End: back to Hops Gallery — you have seen Galați of 1,800 years (from Roman Tirighina to the steel Combinat)."
+            }
+          ]
+        },
+        "fr": {
+          "title": "Pub Crawl Culturel à Galați",
+          "subtitle": "5 étapes · ~4-4,5 h · de Țiglina au front de Danube et retour",
+          "category": "Culturel",
+          "description": "Une promenade thématique en 5 étapes qui mêle l'histoire de la ville-port à un parcours de bars : Hops Gallery → Bodega → Union Jack (front du Danube) → DAily → Craft → retour à Hops Gallery. À chaque arrêt sur la carte, l'histoire correspondante — des briques communistes de Țiglina au camp romain de Tirighina, de la bière Ploll au port franc, de la légende du tunnel sous le Danube à la Bataille de Galați 1918.\n\nSource narrative : le cheatsheet du guide officiel du pub-crawl (Surse/cheatsheet.txt). Adaptez le rythme — chaque arrêt est un jalon, pas une contrainte.",
+          "stops": [
+            {
+              "note": "ÉTAPE 1 — Hops Gallery (départ). Le cinéma Țiglina, ouvert le 13 avril 1964, avec une salle Cinemascope de 800 places et l'air conditionné — spectaculaire pour l'époque. Au-dessus de Hops Gallery se trouvait le restaurant « Galați », surnommé « Le Destructeur » : les ouvriers du Combinat y entraient le jour de la paie et en ressortaient détruits."
+            },
+            {
+              "note": "La colonne monumentale « Progresul », érigée en 1966 par Péter Balogh — registres sculptés avec des scènes de travail dans l'industrie et l'agriculture. Langage propagandiste classique des années 1960, mais artistiquement intéressant."
+            },
+            {
+              "note": "(Vue vers le sud-ouest) Tirighina-Bărboși — le camp romain sur la colline de Tirighina (Ier-IIe s. ap. J.-C.), qui contrôlait la confluence du Siret avec le Danube. Le nom « Țiglina » ne vient PAS des Romains, mais des anciennes briqueteries. Curiosité : au-dessus du camp romain repose une réserve paléontologique avec des fossiles de mollusques vieux de 400 000 ans."
+            },
+            {
+              "note": "Maison de la Culture des Syndicats, inaugurée le 4 octobre 1969, dédiée à son ouverture à Gheorghe Gheorghiu-Dej. Sur l'esplanade, entre 1971 et 1989, se trouvait le buste de Dej — abattu par la foule le 22 décembre 1989."
+            },
+            {
+              "note": "Devant l'actuelle Maison de la Culture se trouvait l'église « Sainte Sophie » — pierre fondatrice posée en 1872, démolie « au tank » en décembre 1963, en plein hiver. Une victime typique des systematisations communistes."
+            },
+            {
+              "note": "Collège National « Costache Negri » — fondé en 1877 à Ismaïl (aujourd'hui en Ukraine) sur l'initiative de V. A. Urechia. Transféré à Galați en 1878 après la réoccupation du sud de la Bessarabie. Spiru Haret a obtenu un million de lei pour son propre bâtiment."
+            },
+            {
+              "note": "ÉTAPE 2 — Brasserie Ploll, première brasserie de Galați (1842, Marcu Schein), reprise après 1860 par le Tchèque Josef Ploll. À la fin du XIXe siècle, c'était la bière roumaine la plus chère — un litre coûtait le double du vin. Livraison avec 24 chevaux et 12 paires de bœufs. L'usine Ploll → famille Petrina → Hôpital Trancu-Iași → Maison de l'Enfant."
+            },
+            {
+              "note": "Palais de la Commission Européenne du Danube (aujourd'hui Bibliothèque V.A. Urechia). La Commission Européenne du Danube a commencé son activité en 1856 à Galați — première organisation supranationale européenne en Roumanie. Drapeau propre, employés de plusieurs pays, statut d'extraterritorialité. Un morceau de Galați était « territoire européen » 100 ans avant l'UE."
+            },
+            {
+              "note": "Maison Cuza Vodă (Musée Cuza, Domnească 80). Avant l'Union, Cuza et Costache Negri envisageaient sérieusement Galați comme nouvelle capitale des Principautés — la ville était le plus grand port commercial de Moldavie et siège de la CED."
+            },
+            {
+              "note": "ÉTAPE 3 — Église Precista (1643-1647, Vasile Lupu). Le plus ancien bâtiment de Galați. Pas seulement une église — une forteresse : murs de 1,80 m d'épaisseur, pont fortifié avec 28 meurtrières, tour de guet. LA LÉGENDE DU TUNNEL SOUS LE DANUBE : les boyards moldaves auraient creusé un tunnel sous le Danube pour mettre leurs fortunes à l'abri des Turcs. Le noyau de vérité : le directeur du Musée confirme une véritable galerie de 300 m entre Precista et Saint-Georges."
+            },
+            {
+              "note": "Église fortifiée Saint-Georges (disparue en 1962). Couplée avec Precista, à 300 m à l'est. Le hetman cosaque Ivan Mazepa, héros anti-russe ukrainien, y fut enterré en 1709 (il figure aujourd'hui sur le billet ukrainien de 10 hryvnias). Démolition brutale : les employés de Navrom ont tiré l'église dans le Danube avec des remorqueurs après que les murs aient résisté à l'injection d'eau sous la fondation."
+            },
+            {
+              "note": "Statue d'Ion C. Brătianu, sur le front de Danube. Bonus port franc : entre 1837 et 1882, Galați était un port franc — tout navire pouvait accoster sans taxes. Des lignes partaient d'ici vers Marseille, Gênes, Istanbul, Alexandrie, Le Pirée et même New York (avec escale)."
+            },
+            {
+              "note": "Palais de la Navigation — l'institution qui coordonnait le trafic fluvial. Galați comptait, à son apogée, 21 consulats et vice-consulats, et avant la Première Guerre mondiale 16 étaient actifs — densité diplomatique supérieure à beaucoup de capitales européennes actuelles."
+            },
+            {
+              "note": "Monument des Dockers — sur la promenade, côté est du Palais de la Navigation. Vers 1912, un jeune homme nommé Gheorghe Gheorghiu-Dej travaillait comme docker dans le port de Galați. Il passa ensuite par les ateliers CFR, par la grève de Grivița, et finit par diriger la Roumanie communiste."
+            },
+            {
+              "note": "Hôtel Bristol (Domnească 30/34) — propriété de Spirache Caravelas, en face du Parc Municipal. En 1907, il accueillit le banquet en l'honneur de G. Panu ; en 1918, les troupes roumaines victorieuses défilèrent sur Domnească près du Bristol et de la pâtisserie « Prince Mihai »."
+            },
+            {
+              "note": "« Où se rencontre l'élite de Galați ? Au Restaurant, Brasserie et Bodega Suré ! » — pub. de mai 1931 dans « Vocea Galaţilor ». Les frères Suré servaient de la bière Luther à des prix élevés. Le 7 août 1932, un incendie a consumé une partie de l'immeuble — le pâtissier rival Manzavinatos fut accusé. Le 1er septembre, Suré rouvrait déjà : « Prix très réduits, entrée par le jardin »."
+            },
+            {
+              "note": "Cinéma Louvru — dans la Place Royale, cœur de la ville port-franc, baptisée officiellement en 1884. En août 1914, il a accueilli une soirée dansante pour les réfugiés belges. La Place Royale a été dévastée dans la nuit du 24 au 25 août 1944 par l'armée allemande en retraite et n'a jamais été reconstruite."
+            },
+            {
+              "note": "ÉTAPE 4 — Église Grecque « Transfiguration » (commencée en 1866, consacrée en 1872). Construite sur les plans de l'architecte allemand Knab, avec des ouvriers allemands, grecs et roumains — symbole du multiculturalisme galatzien. La communauté grecque fut l'étincelle de la révolution de 1821 : les hommes de Vasile Karavia attaquèrent en février la garnison ottomane de la ville."
+            },
+            {
+              "note": "Café Trocadero — juste en face de l'Église Grecque. « Lieu privilégié des rencontres discrètes, d'affaires » (Sandel Dumitru). Fréquenté par les exportateurs de céréales, agents consulaires, avocats, officiers de marine."
+            },
+            {
+              "note": "Synagogue « Templul Meseriașilor » — la seule active des 22 synagogues de la ville. Construite en 1875, reconstruite en 1927-1929, restaurée intégralement en 2014. La communauté juive représentait plus de 20 % de la population à son apogée, contrôlant le chantier naval Mendel, les fabriques chimiques et les exports de céréales."
+            },
+            {
+              "note": "Église Apostolique Arménienne « Sainte Marie » (1858). Les Arméniens sont présents à Galați depuis le XVIIe s. La première église (en bois) a été brûlée par les Turcs en 1821. De nombreux Arméniens galatziens sont les descendants des survivants du génocide de 1915. Les églises arméniennes n'ont pas de murs peints — les Arméniens ont emporté leurs saints avec eux à travers le monde, dans des icônes portatives."
+            },
+            {
+              "note": "Église Mavromol (1700, fondation d'Antioh Cantemir). Le nom vient du grec « mavros molos » (pierre noire). Centre de la vieille communauté gréco-commerciale. L'allée Mavromol — qui mène à l'église — a gardé son nom malgré les systematisations du XXe siècle."
+            },
+            {
+              "note": "ÉTAPE 5 — Monument « 13 juin 1916 ». La seule bataille « triple » de l'histoire roumaine : en janvier 1918, 500 soldats, marins et pompiers roumains ont vaincu 12 000 soldats bolcheviques russes. La seule fois où les forces aériennes, terrestres et navales ont combattu ensemble dans une seule bataille. Galați reçut la « Croce di Guerra » (Italie) et la « Croix de Guerre » (France)."
+            },
+            {
+              "note": "Monument de l'Union / Statue de Cuza, au rond-point du Jardin Public. Cuza fut pârcălab de Covurlui (avec résidence à Galați) entre 1856 et 1859. Imaginez : si la décision avait été autre, la capitale roumaine d'aujourd'hui serait Galați."
+            },
+            {
+              "note": "Statue de Mihai Eminescu par Frederic Storck — première statue d'Eminescu en Roumanie. Storck est aussi l'auteur des allégories « Industria » et « Agricultura » sur la façade du Palais Administratif."
+            },
+            {
+              "note": "Cimetière « Eternitatea » — bonus cosmopolite : ici repose Shintaro Tsutsumi, samouraï japonais de 24 ans, arrivé à Galați avec le navire « Kilimaru » trois ans après la Première Guerre mondiale. La pierre tombale est gravée en japonais et en français. Au Musée d'Histoire est conservé le « sabre de seppuku » qui lui aurait appartenu. Final : retour à Hops Gallery — vous avez vu Galați sur 1 800 ans (de la Tirighina romaine au Combinat sidérurgique)."
+            }
+          ]
+        }
+      }
     },
     {
       "id": "tour-palatele-galati",
@@ -122,7 +296,7 @@
       "category": "arhitectură",
       "description": "Tur al palatelor istorice din Galați — clădirile monumentale care au definit profilul orașului-port în secolele XIX-XX. De la Palatul Navigației construit pentru flota fluvială română la Palatul Comisiei Europene a Dunării (azi Biblioteca V. A. Urechia), traseul acoperă instituțiile administrative, comerciale și culturale care au fost adevărate „palate\" ale Galațiului.",
       "color": "#2c6157",
-      "cover": "../assets/images/Palatul-Comsiei-Europene-1-1024x859-13b5dbb10816.jpg",
+      "cover": "../assets/images/Palatul-Comsiei-Europene-1-1024x859-5a9acc9657cf.jpg",
       "stops": [
         {
           "article": "../assets/articles/palatul-navigatiei/index.html",
@@ -164,7 +338,85 @@
           "article": "../assets/articles/palatul-scolilor-comerciale/index.html",
           "note": "10. Palatul Școlilor Comerciale — Strada Gării 63-65."
         }
-      ]
+      ],
+      "i18n": {
+        "en": {
+          "title": "The Palaces of Galați",
+          "subtitle": "10 stops · ~3 h · on foot",
+          "category": "architecture",
+          "description": "A tour of Galați's historic palaces — the monumental buildings that defined the profile of the port-city in the 19th-20th centuries. From the Navigation Palace built for the Romanian river fleet to the Palace of the European Commission of the Danube (today the V. A. Urechia Library), the route covers the administrative, commercial and cultural institutions that were true 'palaces' of Galați.",
+          "stops": [
+            {
+              "note": "1. Navigation Palace — seat of the Romanian River Navigation (1909-1912), architect Petre Antonescu."
+            },
+            {
+              "note": "2. Postal Palace — the official post office building."
+            },
+            {
+              "note": "3. Commercial Palace of Simion Gheorghiu."
+            },
+            {
+              "note": "4. Administrative Palace — Domnească 56."
+            },
+            {
+              "note": "5. ECD Palace — today the V. A. Urechia Library."
+            },
+            {
+              "note": "6. Robescu Palace — today the Children's Palace, work of Ion Mincu."
+            },
+            {
+              "note": "7. Theological Seminary."
+            },
+            {
+              "note": "8. Episcopal Palace — today the Museum of Christian Spirituality."
+            },
+            {
+              "note": "9. Catholic Institute 'Notre Dame de Sion' — founded 1867."
+            },
+            {
+              "note": "10. Palace of Commercial Schools — Strada Gării 63-65."
+            }
+          ]
+        },
+        "fr": {
+          "title": "Les Palais de Galați",
+          "subtitle": "10 arrêts · ~3 h · à pied",
+          "category": "architecture",
+          "description": "Un parcours des palais historiques de Galați — les bâtiments monumentaux qui ont défini le profil de la ville-port aux XIXe-XXe siècles. Du Palais de la Navigation construit pour la flotte fluviale roumaine au Palais de la Commission Européenne du Danube (aujourd'hui la Bibliothèque V. A. Urechia), l'itinéraire couvre les institutions administratives, commerciales et culturelles qui ont été de véritables « palais » de Galați.",
+          "stops": [
+            {
+              "note": "1. Palais de la Navigation — siège de la Navigation Fluviale Roumaine (1909-1912), architecte Petre Antonescu."
+            },
+            {
+              "note": "2. Palais des Postes — bâtiment de la poste officielle."
+            },
+            {
+              "note": "3. Palais Commercial de Simion Gheorghiu."
+            },
+            {
+              "note": "4. Palais Administratif — Domnească 56."
+            },
+            {
+              "note": "5. Palais de la CED — aujourd'hui Bibliothèque V. A. Urechia."
+            },
+            {
+              "note": "6. Palais Robescu — aujourd'hui Palais des Enfants, œuvre d'Ion Mincu."
+            },
+            {
+              "note": "7. Séminaire Théologique."
+            },
+            {
+              "note": "8. Palais Épiscopal — aujourd'hui Musée de la Spiritualité Chrétienne."
+            },
+            {
+              "note": "9. Institut Catholique « Notre Dame de Sion » — fondé en 1867."
+            },
+            {
+              "note": "10. Palais des Écoles Commerciales — Strada Gării 63-65."
+            }
+          ]
+        }
+      }
     },
     {
       "id": "tour-personalitatile-galati",
@@ -173,7 +425,7 @@
       "category": "biografii",
       "description": "Cel mai cuprinzător tur al orașului — 22 de case, monumente și locuri legate de marile personalități: industriași, doctori, artiști, actori, politicieni, comercianți care au modelat orașul de la mijlocul secolului XIX până la mijlocul secolului XX.",
       "color": "#8b1e22",
-      "cover": "../assets/images/Casa-Negropontes-1024x683-3b6019a1cc08.jpg",
+      "cover": "../assets/images/Casa-Negropontes-1024x683-dc5a82b1a003.jpg",
       "stops": [
         {
           "article": "../assets/articles/monumentul-unirii-al-domnitorului-alexandru-ioan-cuza-str-domneasca-rondoul-gradinii-publice/index.html",
@@ -263,7 +515,157 @@
           "article": "../assets/articles/statuia-lui-ion-c-bratianu-faleza-dunarii/index.html",
           "note": "22. Statuia lui Ion C. Brătianu."
         }
-      ]
+      ],
+      "i18n": {
+        "en": {
+          "title": "The Personalities of Galați",
+          "subtitle": "22 stops · ~5 h · on foot",
+          "category": "biographies",
+          "description": "The most comprehensive city tour — 22 houses, monuments and places linked to great personalities: industrialists, doctors, artists, actors, politicians, merchants who shaped the city from the mid-19th to the mid-20th century.",
+          "stops": [
+            {
+              "note": "1. Union Monument / Cuza Statue."
+            },
+            {
+              "note": "2. Negroponte House — Domnească 82."
+            },
+            {
+              "note": "3. Max Fischer Houses."
+            },
+            {
+              "note": "4. Nae Leonard House — the Galați tenor (1886-1928)."
+            },
+            {
+              "note": "5. Ioan D. Prodrom House — mayor."
+            },
+            {
+              "note": "6. Cavallioti Houses."
+            },
+            {
+              "note": "7. Aburel Pharmacy."
+            },
+            {
+              "note": "8. Hristo Botev House — commemorative plaque."
+            },
+            {
+              "note": "9. Dr. Nicolae Alexandrescu House."
+            },
+            {
+              "note": "10. Osias Auschnitt House."
+            },
+            {
+              "note": "11. Max Auschnitt House."
+            },
+            {
+              "note": "12. Plesnilă Houses."
+            },
+            {
+              "note": "13. Dumitru Drăgănescu House."
+            },
+            {
+              "note": "14. Malaxa Houses."
+            },
+            {
+              "note": "15. Serfioti House."
+            },
+            {
+              "note": "16. Monferatto House — PNL headquarters."
+            },
+            {
+              "note": "17. Grand Hotel."
+            },
+            {
+              "note": "18. Vincenzo Fanciotti House."
+            },
+            {
+              "note": "19. Fernic Houses — founders of the Mechanical Works (1893)."
+            },
+            {
+              "note": "20. House and workshop of George Maksay — sculptor."
+            },
+            {
+              "note": "21. Statue of Costache Negri."
+            },
+            {
+              "note": "22. Statue of Ion C. Brătianu."
+            }
+          ]
+        },
+        "fr": {
+          "title": "Les Personnalités de Galați",
+          "subtitle": "22 arrêts · ~5 h · à pied",
+          "category": "biographies",
+          "description": "Le tour le plus complet de la ville — 22 maisons, monuments et lieux liés aux grandes personnalités : industriels, médecins, artistes, acteurs, hommes politiques, commerçants qui ont façonné la ville du milieu du XIXe au milieu du XXe siècle.",
+          "stops": [
+            {
+              "note": "1. Monument de l'Union / Statue de Cuza."
+            },
+            {
+              "note": "2. Maison Negroponte — Domnească 82."
+            },
+            {
+              "note": "3. Maisons Max Fischer."
+            },
+            {
+              "note": "4. Maison Nae Leonard — le ténor galatzien (1886-1928)."
+            },
+            {
+              "note": "5. Maison Ioan D. Prodrom — maire."
+            },
+            {
+              "note": "6. Maisons Cavallioti."
+            },
+            {
+              "note": "7. Pharmacie Aburel."
+            },
+            {
+              "note": "8. Maison Hristo Botev — plaque commémorative."
+            },
+            {
+              "note": "9. Maison du Dr. Nicolae Alexandrescu."
+            },
+            {
+              "note": "10. Maison Osias Auschnitt."
+            },
+            {
+              "note": "11. Maison Max Auschnitt."
+            },
+            {
+              "note": "12. Maisons Plesnilă."
+            },
+            {
+              "note": "13. Maison Dumitru Drăgănescu."
+            },
+            {
+              "note": "14. Maisons Malaxa."
+            },
+            {
+              "note": "15. Maison Serfioti."
+            },
+            {
+              "note": "16. Maison Monferatto — siège du PNL."
+            },
+            {
+              "note": "17. Grand Hôtel."
+            },
+            {
+              "note": "18. Maison Vincenzo Fanciotti."
+            },
+            {
+              "note": "19. Maisons Fernic — fondateurs des Usines Mécaniques (1893)."
+            },
+            {
+              "note": "20. Maison et atelier de George Maksay — sculpteur."
+            },
+            {
+              "note": "21. Statue de Costache Negri."
+            },
+            {
+              "note": "22. Statue d'Ion C. Brătianu."
+            }
+          ]
+        }
+      }
     },
     {
       "id": "tour-masonic",
@@ -290,7 +692,49 @@
           "article": "../assets/articles/casa-serfioti/index.html",
           "note": "4. Casa Serfioti — dr. Aristide Serfioti, fondatorul Comitetului Filantropic."
         }
-      ]
+      ],
+      "i18n": {
+        "en": {
+          "title": "Galați's Masonic Heritage",
+          "subtitle": "4 stops · ~1 h · on foot",
+          "category": "freemasonry",
+          "description": "A short tour through the buildings associated with the masonic lodge 'The Disciples of Pythagoras' — the only lodge in Romania whose statute, signed by Prince Cuza himself, is preserved intact at the County Library in Galați.",
+          "stops": [
+            {
+              "note": "1. Balș House — boyar residence."
+            },
+            {
+              "note": "2. Max Fischer Houses."
+            },
+            {
+              "note": "3. Cuza Vodă House — Cuza Museum, signatory of the 'Disciples'' statute."
+            },
+            {
+              "note": "4. Serfioti House — Dr. Aristide Serfioti, founder of the Philanthropic Committee."
+            }
+          ]
+        },
+        "fr": {
+          "title": "Le patrimoine maçonnique de Galați",
+          "subtitle": "4 arrêts · ~1 h · à pied",
+          "category": "franc-maçonnerie",
+          "description": "Un court parcours à travers les bâtiments associés à la loge maçonnique « Les Disciples de Pythagore » — la seule loge de Roumanie dont le statut, signé par le Prince Cuza lui-même, est conservé intact à la Bibliothèque Départementale de Galați.",
+          "stops": [
+            {
+              "note": "1. Maison Balș — demeure boyarde."
+            },
+            {
+              "note": "2. Maisons Max Fischer."
+            },
+            {
+              "note": "3. Maison Cuza Vodă — Musée Cuza, signataire du statut des « Disciples »."
+            },
+            {
+              "note": "4. Maison Serfioti — Dr. Aristide Serfioti, fondateur du Comité Philanthropique."
+            }
+          ]
+        }
+      }
     },
     {
       "id": "tour-grec",
@@ -299,7 +743,7 @@
       "category": "comunități",
       "description": "Tur al moștenirii grecești la Galați — comunitate prosperă cu rol esențial în comerțul maritim. Casele și hotelurile aparținând marilor familii grecești au modelat fațada centrală.",
       "color": "#1f2c4a",
-      "cover": "../assets/images/Cavoul-Serfiotti-1-1024x734-7ba26112d841.jpg",
+      "cover": "../assets/images/Cavoul-Serfiotti-1-1024x734-07bfe0ec9193.jpg",
       "stops": [
         {
           "article": "../assets/articles/casa-gheorghiade-str-domneasca-nr-61-astazi-centrul-cultural-dunarea-de-jos/index.html",
@@ -321,7 +765,55 @@
           "article": "../assets/articles/casele-cavallioti-str-maior-iancu-fotea-nr-2-si-nr-36/index.html",
           "note": "5. Casele Cavallioti."
         }
-      ]
+      ],
+      "i18n": {
+        "en": {
+          "title": "Galați's Greek Heritage",
+          "subtitle": "5 stops · ~1.5 h · on foot",
+          "category": "communities",
+          "description": "A tour of the Greek heritage in Galați — a prosperous community with an essential role in maritime trade. The houses and hotels of the great Greek families shaped the central façade.",
+          "stops": [
+            {
+              "note": "1. Gheorghiadis House."
+            },
+            {
+              "note": "2. Serfioti House — Aristide Serfioti, doctor of Greek origin."
+            },
+            {
+              "note": "3. Epaminonda Lambrinidi House."
+            },
+            {
+              "note": "4. Grand Hotel — owner Elie Climi (Climis), Greek."
+            },
+            {
+              "note": "5. Cavallioti Houses."
+            }
+          ]
+        },
+        "fr": {
+          "title": "Le patrimoine grec de Galați",
+          "subtitle": "5 arrêts · ~1,5 h · à pied",
+          "category": "communautés",
+          "description": "Un parcours du patrimoine grec à Galați — une communauté prospère ayant joué un rôle essentiel dans le commerce maritime. Les maisons et hôtels des grandes familles grecques ont façonné la façade centrale.",
+          "stops": [
+            {
+              "note": "1. Maison Gheorghiadis."
+            },
+            {
+              "note": "2. Maison Serfioti — Aristide Serfioti, médecin d'origine grecque."
+            },
+            {
+              "note": "3. Maison Epaminonda Lambrinidi."
+            },
+            {
+              "note": "4. Grand Hôtel — propriétaire Elie Climi (Climis), Grec."
+            },
+            {
+              "note": "5. Maisons Cavallioti."
+            }
+          ]
+        }
+      }
     },
     {
       "id": "tour-biserici",
@@ -388,7 +880,109 @@
           "article": "../assets/articles/biserica-fortificata-sf-precista-hram-adormirea-maicii-domnului-str-traian-nr-1/index.html",
           "note": "14. Biserica fortificată „Sfânta Precista\" (sec. XVII)."
         }
-      ]
+      ],
+      "i18n": {
+        "en": {
+          "title": "Galați's Historic Churches",
+          "subtitle": "14 stops · ~3.5 h · on foot",
+          "category": "places of worship",
+          "description": "A comprehensive tour of the historic places of worship — a cosmopolitan city with Orthodox, Catholic, Lipovan, Evangelical, Calvinist, Armenian Christian communities. The oldest church is Precista (17th c.).",
+          "stops": [
+            {
+              "note": "1. Episcopal Cathedral of St. Nicholas."
+            },
+            {
+              "note": "2. Lipovan Church — the Russian Old-Rite community."
+            },
+            {
+              "note": "3. Protestant Evangelical Church."
+            },
+            {
+              "note": "4. Roman Catholic Church."
+            },
+            {
+              "note": "5. 'Sts. Apostles Peter and Paul' Church (of the Fishermen)."
+            },
+            {
+              "note": "6. 'Holy Archangels Michael and Gabriel' Church (Metoc)."
+            },
+            {
+              "note": "7. St. Spiridon Church."
+            },
+            {
+              "note": "8. Mavromol Church — 'Black Stone' (1702)."
+            },
+            {
+              "note": "9. Greek Church (1872)."
+            },
+            {
+              "note": "10. Vovidenia Church."
+            },
+            {
+              "note": "11. Calvinist Reformed Church."
+            },
+            {
+              "note": "12. Bust of Spiridon Vrânceanu."
+            },
+            {
+              "note": "13. Apostolic Armenian Church 'Saint Mary'."
+            },
+            {
+              "note": "14. Fortified Church 'Saint Precista' (17th c.)."
+            }
+          ]
+        },
+        "fr": {
+          "title": "Les églises historiques de Galați",
+          "subtitle": "14 arrêts · ~3,5 h · à pied",
+          "category": "lieux de culte",
+          "description": "Un parcours complet des lieux de culte historiques — une ville cosmopolite avec des communautés chrétiennes orthodoxes, catholiques, lipovanes, évangéliques, calvinistes, arméniennes. La plus ancienne église est Precista (XVIIe s.).",
+          "stops": [
+            {
+              "note": "1. Cathédrale Épiscopale Saint-Nicolas."
+            },
+            {
+              "note": "2. Église Lipovane — la communauté russe du vieux-rite."
+            },
+            {
+              "note": "3. Église Protestante Évangélique."
+            },
+            {
+              "note": "4. Église Romaine-Catholique."
+            },
+            {
+              "note": "5. Église des Saints Apôtres Pierre et Paul (des Pêcheurs)."
+            },
+            {
+              "note": "6. Église des Saints Archanges Michel et Gabriel (Metoc)."
+            },
+            {
+              "note": "7. Église Saint-Spiridon."
+            },
+            {
+              "note": "8. Église Mavromol — « Pierre Noire » (1702)."
+            },
+            {
+              "note": "9. Église Grecque (1872)."
+            },
+            {
+              "note": "10. Église Vovidenia."
+            },
+            {
+              "note": "11. Église Réformée Calviniste."
+            },
+            {
+              "note": "12. Buste de Spiridon Vrânceanu."
+            },
+            {
+              "note": "13. Église Apostolique Arménienne « Sainte Marie »."
+            },
+            {
+              "note": "14. Église fortifiée « Sainte Precista » (XVIIe s.)."
+            }
+          ]
+        }
+      }
     },
     {
       "id": "tour-consulate",
@@ -397,7 +991,7 @@
       "category": "consulate",
       "description": "Tur al fostelor sedii diplomatice. La apogeul portului liber (1837-1882), Galațiul găzduia 21 de consulate — densitate diplomatică unică, mai mare decât Bruxelles-ul de azi.",
       "color": "#2c6157",
-      "cover": "../assets/images/Consulat-Franta-d4cd0d0c10bf.jpg",
+      "cover": "../assets/images/Consulat-Franta-0bbc7789b8d5.jpg",
       "stops": [
         {
           "article": "../assets/articles/consulatul-poloniei-str-vultur-nr-18/index.html",
@@ -443,7 +1037,91 @@
           "article": "../assets/articles/consulatul-greciei-str-a-i-cuza-nr-15/index.html",
           "note": "11. Consulatul Greciei."
         }
-      ]
+      ],
+      "i18n": {
+        "en": {
+          "title": "Galați's Historic Consulates",
+          "subtitle": "11 stops · ~3 h · on foot",
+          "category": "consulates",
+          "description": "A tour of the former diplomatic seats. At the apogee of the free port (1837-1882), Galați hosted 21 consulates — a unique diplomatic density, greater than today's Brussels.",
+          "stops": [
+            {
+              "note": "1. Consulate of Poland."
+            },
+            {
+              "note": "2. Consulate of Sweden and Norway."
+            },
+            {
+              "note": "3. Consulate of Switzerland."
+            },
+            {
+              "note": "4. Consulate of France."
+            },
+            {
+              "note": "5. Macri House."
+            },
+            {
+              "note": "6. Consulate of Prussia (later Germany)."
+            },
+            {
+              "note": "7. Consulate of Russia."
+            },
+            {
+              "note": "8. Consulate of Czechoslovakia."
+            },
+            {
+              "note": "9. Consulate of Turkey."
+            },
+            {
+              "note": "10. Consulate of Belgium."
+            },
+            {
+              "note": "11. Consulate of Greece."
+            }
+          ]
+        },
+        "fr": {
+          "title": "Les consulats historiques de Galați",
+          "subtitle": "11 arrêts · ~3 h · à pied",
+          "category": "consulats",
+          "description": "Un parcours des anciens sièges diplomatiques. À l'apogée du port franc (1837-1882), Galați abritait 21 consulats — densité diplomatique unique, plus grande que le Bruxelles d'aujourd'hui.",
+          "stops": [
+            {
+              "note": "1. Consulat de Pologne."
+            },
+            {
+              "note": "2. Consulat de Suède et de Norvège."
+            },
+            {
+              "note": "3. Consulat de Suisse."
+            },
+            {
+              "note": "4. Consulat de France."
+            },
+            {
+              "note": "5. Maison Macri."
+            },
+            {
+              "note": "6. Consulat de Prusse (puis d'Allemagne)."
+            },
+            {
+              "note": "7. Consulat de Russie."
+            },
+            {
+              "note": "8. Consulat de Tchécoslovaquie."
+            },
+            {
+              "note": "9. Consulat de Turquie."
+            },
+            {
+              "note": "10. Consulat de Belgique."
+            },
+            {
+              "note": "11. Consulat de Grèce."
+            }
+          ]
+        }
+      }
     },
     {
       "id": "tour-romanesc",
@@ -452,7 +1130,7 @@
       "category": "patrimoniu",
       "description": "Tur al instituțiilor și clădirilor românești emblematice — palatele administrative ridicate după Marea Unire, seminarul ortodox, Grădina Publică amenajată în stil englezesc.",
       "color": "#b34128",
-      "cover": "../assets/images/Palatul-Episcopal-1024x683-90981f67016a.jpg",
+      "cover": "../assets/images/Palatul-Episcopal-1024x683-0f900edea234.jpg",
       "stops": [
         {
           "article": "../assets/articles/palatul-comercial-al-lui-simion-gheorghiu-str-domneasca-cc-str-gamulea/index.html",
@@ -482,7 +1160,67 @@
           "article": "../assets/articles/gradina-publica/index.html",
           "note": "7. Grădina Publică (1846)."
         }
-      ]
+      ],
+      "i18n": {
+        "en": {
+          "title": "Romanian Heritage in Galați",
+          "subtitle": "7 stops · ~2 h · on foot",
+          "category": "heritage",
+          "description": "A tour of emblematic Romanian institutions and buildings — the administrative palaces raised after the Great Union, the Orthodox seminary, the Public Garden laid out in English style.",
+          "stops": [
+            {
+              "note": "1. Simion Gheorghiu Commercial Palace."
+            },
+            {
+              "note": "2. Justice Palace — today the rectorate of UDJ."
+            },
+            {
+              "note": "3. Fisheries Palace."
+            },
+            {
+              "note": "4. Robescu Palace."
+            },
+            {
+              "note": "5. Theological Seminary."
+            },
+            {
+              "note": "6. Episcopal Palace."
+            },
+            {
+              "note": "7. Public Garden (1846)."
+            }
+          ]
+        },
+        "fr": {
+          "title": "Le patrimoine roumain à Galați",
+          "subtitle": "7 arrêts · ~2 h · à pied",
+          "category": "patrimoine",
+          "description": "Un parcours des institutions et bâtiments roumains emblématiques — les palais administratifs édifiés après la Grande Union, le séminaire orthodoxe, le Jardin Public aménagé à l'anglaise.",
+          "stops": [
+            {
+              "note": "1. Palais Commercial Simion Gheorghiu."
+            },
+            {
+              "note": "2. Palais de Justice — aujourd'hui rectorat de l'UDJ."
+            },
+            {
+              "note": "3. Palais des Pêcheries."
+            },
+            {
+              "note": "4. Palais Robescu."
+            },
+            {
+              "note": "5. Séminaire Théologique."
+            },
+            {
+              "note": "6. Palais Épiscopal."
+            },
+            {
+              "note": "7. Jardin Public (1846)."
+            }
+          ]
+        }
+      }
     },
     {
       "id": "tour-comunism",
@@ -491,7 +1229,7 @@
       "category": "sec. XX",
       "description": "Tur al monumentelor și ansamblurilor urbane lăsate de regimul comunist (1945-1989) — de la Combinatul Siderurgic la cartierele Țiglina și Mazepa, fântânile arteziene moderniste și Turnul TV.",
       "color": "#7a2818",
-      "cover": "../assets/images/Turn-TV-683x1024-a5d5b2e0b9a4.jpg",
+      "cover": "../assets/images/Turn-TV-683x1024-118b39429659.jpg",
       "stops": [
         {
           "article": "../assets/articles/monument-13-iunie-1916-str-portului-cc-str-george-enescu/index.html",
@@ -509,7 +1247,49 @@
           "article": "../assets/articles/turnul-de-televiziune-str-victor-valcovici-nr-2/index.html",
           "note": "4. Turnul de Televiziune."
         }
-      ]
+      ],
+      "i18n": {
+        "en": {
+          "title": "Communism in Galați",
+          "subtitle": "4 stops · ~1.5 h · on foot or by tram",
+          "category": "20th c.",
+          "description": "A tour of the monuments and urban ensembles left by the communist regime (1945-1989) — from the Steel Combinat to the Țiglina and Mazepa neighbourhoods, the modernist fountains and the TV Tower.",
+          "stops": [
+            {
+              "note": "1. '13 June 1916' Monument."
+            },
+            {
+              "note": "2. 'Dandelion Puff' Fountain — modernist emblem."
+            },
+            {
+              "note": "3. Țiglina urban-community project."
+            },
+            {
+              "note": "4. Television Tower."
+            }
+          ]
+        },
+        "fr": {
+          "title": "Le communisme à Galați",
+          "subtitle": "4 arrêts · ~1,5 h · à pied ou en tram",
+          "category": "XXe s.",
+          "description": "Un parcours des monuments et ensembles urbains laissés par le régime communiste (1945-1989) — du Combinat sidérurgique aux quartiers Țiglina et Mazepa, en passant par les fontaines modernistes et la Tour TV.",
+          "stops": [
+            {
+              "note": "1. Monument « 13 juin 1916 »."
+            },
+            {
+              "note": "2. Fontaine « Pissenlit » — emblème moderniste."
+            },
+            {
+              "note": "3. Projet urbain-communautaire Țiglina."
+            },
+            {
+              "note": "4. Tour de Télévision."
+            }
+          ]
+        }
+      }
     },
     {
       "id": "tour-diversitate-etnica",
@@ -518,7 +1298,7 @@
       "category": "comunități",
       "description": "Tur scurt prin urmele comunităților etnice — bulgari, evrei, italieni, francezi. La 1900: 36.7% români, 22% evrei, 7% greci, 3.4% italieni — densitate cosmopolită rară pentru Europa de Est.",
       "color": "#1f2c4a",
-      "cover": "../assets/images/Casa-Hristo-Botev-2-683x1024-3ad493125142.jpg",
+      "cover": "../assets/images/Casa-Hristo-Botev-2-683x1024-a7a212753f92.jpg",
       "stops": [
         {
           "article": "../assets/articles/grand-hotel/index.html",
@@ -536,7 +1316,49 @@
           "article": "../assets/articles/atlantic-filatura-egrenare-si-tesatorie-de-bumbac-str-lozoveni-nr-115-astazi-sediu-dlc-grup/index.html",
           "note": "4. Fabrica Atlantic — filatura de bumbac, fondată de comunitatea evreiască."
         }
-      ]
+      ],
+      "i18n": {
+        "en": {
+          "title": "Galați's Ethnic Diversity",
+          "subtitle": "4 stops · ~1.5 h · on foot",
+          "category": "communities",
+          "description": "A short tour through the traces of the ethnic communities — Bulgarians, Jews, Italians, French. In 1900: 36.7% Romanians, 22% Jews, 7% Greeks, 3.4% Italians — cosmopolitan density rare for Eastern Europe.",
+          "stops": [
+            {
+              "note": "1. Grand Hotel — founded by the Swiss Climi/Climis."
+            },
+            {
+              "note": "2. Hristo Botev House — the Bulgarian poet-revolutionary (1871-1872)."
+            },
+            {
+              "note": "3. Catholic Institute 'Notre Dame de Sion' — French nuns."
+            },
+            {
+              "note": "4. Atlantic Factory — cotton mill, founded by the Jewish community."
+            }
+          ]
+        },
+        "fr": {
+          "title": "La diversité ethnique de Galați",
+          "subtitle": "4 arrêts · ~1,5 h · à pied",
+          "category": "communautés",
+          "description": "Un court parcours à travers les traces des communautés ethniques — Bulgares, Juifs, Italiens, Français. En 1900 : 36,7 % Roumains, 22 % Juifs, 7 % Grecs, 3,4 % Italiens — densité cosmopolite rare pour l'Europe de l'Est.",
+          "stops": [
+            {
+              "note": "1. Grand Hôtel — fondé par le Suisse Climi/Climis."
+            },
+            {
+              "note": "2. Maison Hristo Botev — le poète-révolutionnaire bulgare (1871-1872)."
+            },
+            {
+              "note": "3. Institut Catholique « Notre Dame de Sion » — religieuses françaises."
+            },
+            {
+              "note": "4. Usine Atlantic — filature de coton, fondée par la communauté juive."
+            }
+          ]
+        }
+      }
     },
     {
       "id": "tour-scoli",
@@ -545,7 +1367,7 @@
       "category": "educație",
       "description": "Tur al instituțiilor de învățământ care au format generațiile gălățene din secolele XIX-XX — Seminarul Teologic, Notre Dame de Sion, Liceele Comerciale, Vasile Alecsandri, Școala Normală.",
       "color": "#2c6157",
-      "cover": "../assets/images/Liceul-Israelit-scaled-1024x683-07b48403511d.jpg",
+      "cover": "../assets/images/Liceul-Israelit-scaled-1024x683-cf13030f84fc.jpg",
       "stops": [
         {
           "article": "../assets/articles/seminarul-teologic/index.html",
@@ -575,7 +1397,67 @@
           "article": "../assets/articles/scoala-normala-costache-negri-str-brailei-nr-134/index.html",
           "note": "7. Școala Normală „Costache Negri\"."
         }
-      ]
+      ],
+      "i18n": {
+        "en": {
+          "title": "Galați's Historic Schools",
+          "subtitle": "7 stops · ~2 h · on foot",
+          "category": "education",
+          "description": "A tour of the educational institutions that formed Galați's generations in the 19th-20th centuries — the Theological Seminary, Notre Dame de Sion, the Commercial High Schools, Vasile Alecsandri, the Normal School.",
+          "stops": [
+            {
+              "note": "1. Theological Seminary."
+            },
+            {
+              "note": "2. Notre Dame de Sion (for girls)."
+            },
+            {
+              "note": "3. Boys' high school 'Notre Dame de Sion'."
+            },
+            {
+              "note": "4. German School / Evangelical Community School."
+            },
+            {
+              "note": "5. Palace of Commercial Schools."
+            },
+            {
+              "note": "6. 'Vasile Alecsandri' National College."
+            },
+            {
+              "note": "7. 'Costache Negri' Normal School."
+            }
+          ]
+        },
+        "fr": {
+          "title": "Les écoles historiques de Galați",
+          "subtitle": "7 arrêts · ~2 h · à pied",
+          "category": "éducation",
+          "description": "Un parcours des établissements scolaires qui ont formé les générations galatziennes aux XIXe-XXe siècles — Séminaire Théologique, Notre Dame de Sion, lycées commerciaux, Vasile Alecsandri, École Normale.",
+          "stops": [
+            {
+              "note": "1. Séminaire Théologique."
+            },
+            {
+              "note": "2. Notre Dame de Sion (pour jeunes filles)."
+            },
+            {
+              "note": "3. Lycée de garçons « Notre Dame de Sion »."
+            },
+            {
+              "note": "4. École Allemande / de la Communauté Évangélique."
+            },
+            {
+              "note": "5. Palais des Écoles Commerciales."
+            },
+            {
+              "note": "6. Collège National « Vasile Alecsandri »."
+            },
+            {
+              "note": "7. École Normale « Costache Negri »."
+            }
+          ]
+        }
+      }
     },
     {
       "id": "tour-antreprenoriat",
@@ -584,7 +1466,7 @@
       "category": "industrie & comerț",
       "description": "Tur al fabricilor, atelierelor și caselor antreprenoriale care au făcut din Galați un pol industrial — Atlantic (filatura), Năvodul (frânghii), Fleming (ulei), farmacia Aburel.",
       "color": "#b9956a",
-      "cover": "../assets/images/Fabrica-Dunareana-2-1024x698-b0e95b783126.jpg",
+      "cover": "../assets/images/Fabrica-Dunareana-2-1024x698-e7f7fbec43fc.jpg",
       "stops": [
         {
           "article": "../assets/articles/atlantic-filatura-egrenare-si-tesatorie-de-bumbac-str-lozoveni-nr-115-astazi-sediu-dlc-grup/index.html",
@@ -626,7 +1508,85 @@
           "article": "../assets/articles/farmacia-aburel/index.html",
           "note": "10. Farmacia Aburel."
         }
-      ]
+      ],
+      "i18n": {
+        "en": {
+          "title": "Galați Entrepreneurship",
+          "subtitle": "10 stops · ~3 h · on foot",
+          "category": "industry & trade",
+          "description": "A tour of the factories, workshops and entrepreneurial houses that made Galați an industrial pole — Atlantic (cotton mill), Năvodul (ropes), Fleming (oil), Aburel pharmacy.",
+          "stops": [
+            {
+              "note": "1. Atlantic Factory — cotton mill."
+            },
+            {
+              "note": "2. 'Năvodul' Factory — Heinrich Juster ropes."
+            },
+            {
+              "note": "3. Guiller House."
+            },
+            {
+              "note": "4. Gheorghiadis House."
+            },
+            {
+              "note": "5. Max Fischer Houses."
+            },
+            {
+              "note": "6. Fleming oil factory ('Prutul')."
+            },
+            {
+              "note": "7. Grand Hotel."
+            },
+            {
+              "note": "8. Epaminonda Lambrinidi House."
+            },
+            {
+              "note": "9. Malaxa Houses."
+            },
+            {
+              "note": "10. Aburel Pharmacy."
+            }
+          ]
+        },
+        "fr": {
+          "title": "L'entrepreneuriat galatzien",
+          "subtitle": "10 arrêts · ~3 h · à pied",
+          "category": "industrie & commerce",
+          "description": "Un parcours des fabriques, ateliers et maisons entrepreneuriales qui ont fait de Galați un pôle industriel — Atlantic (filature), Năvodul (cordages), Fleming (huile), pharmacie Aburel.",
+          "stops": [
+            {
+              "note": "1. Usine Atlantic — filature de coton."
+            },
+            {
+              "note": "2. Fabrique « Năvodul » — cordages Heinrich Juster."
+            },
+            {
+              "note": "3. Maison Guiller."
+            },
+            {
+              "note": "4. Maison Gheorghiadis."
+            },
+            {
+              "note": "5. Maisons Max Fischer."
+            },
+            {
+              "note": "6. Huilerie Fleming (« Prutul »)."
+            },
+            {
+              "note": "7. Grand Hôtel."
+            },
+            {
+              "note": "8. Maison Epaminonda Lambrinidi."
+            },
+            {
+              "note": "9. Maisons Malaxa."
+            },
+            {
+              "note": "10. Pharmacie Aburel."
+            }
+          ]
+        }
+      }
     },
     {
       "id": "tour-evreiesc",
@@ -665,7 +1625,67 @@
           "article": "../assets/articles/cimitirul-evreiesc-str-stefan-cel-mare-nr-34/index.html",
           "note": "7. Cimitirul Evreiesc."
         }
-      ]
+      ],
+      "i18n": {
+        "en": {
+          "title": "Galați's Jewish Heritage",
+          "subtitle": "7 stops · ~2 h · on foot",
+          "category": "communities",
+          "description": "A tour of the Jewish heritage — in 1900 the ~19,000 Jews out of 95,000 inhabitants (20%) made Galați one of the largest Jewish communities in the region. Today around 100 remain.",
+          "stops": [
+            {
+              "note": "1. House of a Jewish merchant (to be identified)."
+            },
+            {
+              "note": "2. Osias Auschnitt House."
+            },
+            {
+              "note": "3. Max Auschnitt House — Domnească 70."
+            },
+            {
+              "note": "4. Max Fischer Houses."
+            },
+            {
+              "note": "5. Consulate of France — building with Jewish history."
+            },
+            {
+              "note": "6. Jewish Hospital."
+            },
+            {
+              "note": "7. Jewish Cemetery."
+            }
+          ]
+        },
+        "fr": {
+          "title": "Le patrimoine juif de Galați",
+          "subtitle": "7 arrêts · ~2 h · à pied",
+          "category": "communautés",
+          "description": "Un parcours du patrimoine juif — en 1900, les ~19 000 Juifs sur 95 000 habitants (20 %) faisaient de Galați l'une des plus grandes communautés juives de la région. Aujourd'hui il en reste environ 100.",
+          "stops": [
+            {
+              "note": "1. Maison d'un marchand juif (à identifier)."
+            },
+            {
+              "note": "2. Maison Osias Auschnitt."
+            },
+            {
+              "note": "3. Maison Max Auschnitt — Domnească 70."
+            },
+            {
+              "note": "4. Maisons Max Fischer."
+            },
+            {
+              "note": "5. Consulat de France — bâtiment à histoire juive."
+            },
+            {
+              "note": "6. Hôpital Juif."
+            },
+            {
+              "note": "7. Cimetière Juif."
+            }
+          ]
+        }
+      }
     }
   ]
 }

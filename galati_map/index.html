@@ -1915,6 +1915,35 @@
       cursor: pointer; text-align: left;
     }
     .exit-tour:hover { color: var(--accent-deep); text-decoration: underline; }
+    /* Language switcher (tururi ghidate) */
+    .tour-lang-bar {
+      display: flex; gap: 6px; align-items: center;
+      margin: 0 0 14px;
+      flex-wrap: wrap;
+    }
+    .tour-lang-bar .lbl {
+      font-size: 10.5px; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--muted);
+      font-weight: 700; margin-right: 4px;
+    }
+    .tour-lang-bar button {
+      border: 1px solid var(--line);
+      background: var(--paper);
+      color: var(--ink-soft);
+      font: inherit; font-size: 12px; font-weight: 600;
+      padding: 4px 10px; border-radius: 999px;
+      cursor: pointer; line-height: 1.2;
+      transition: background .15s, color .15s, border-color .15s;
+    }
+    .tour-lang-bar button:hover {
+      border-color: var(--accent);
+      color: var(--accent-deep);
+    }
+    .tour-lang-bar button.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
     .tour-cover {
       width: 100%; max-height: 180px; object-fit: cover;
       background: var(--paper-deep); display: block;
@@ -3333,17 +3362,29 @@
       </section>
       <section class="tab-panel" id="panel-tours" hidden>
         <div id="tour-browse">
-          <p class="tab-intro">Tururi gândite pentru o singură poveste, parcurse pe jos. Click pe un tur ca să-l urmărești pe hartă.</p>
+          <p class="tab-intro" id="tour-browse-intro">Tururi gândite pentru o singură poveste, parcurse pe jos. Click pe un tur ca să-l urmărești pe hartă.</p>
+          <div class="tour-lang-bar" role="group" aria-label="Limba tururilor ghidate">
+            <span class="lbl" id="tour-lang-label-browse">Limbă:</span>
+            <button type="button" data-lang="ro" class="tour-lang-btn active">Română</button>
+            <button type="button" data-lang="en" class="tour-lang-btn">English</button>
+            <button type="button" data-lang="fr" class="tour-lang-btn">Français</button>
+          </div>
           <div class="tour-cards" id="tour-cards"></div>
         </div>
         <article id="tour-active" hidden>
           <button class="exit-tour" id="exit-tour" type="button">← Înapoi la lista de tururi</button>
+          <div class="tour-lang-bar" role="group" aria-label="Limba turului">
+            <span class="lbl" id="tour-lang-label-active">Limbă:</span>
+            <button type="button" data-lang="ro" class="tour-lang-btn active">Română</button>
+            <button type="button" data-lang="en" class="tour-lang-btn">English</button>
+            <button type="button" data-lang="fr" class="tour-lang-btn">Français</button>
+          </div>
           <img class="tour-cover" id="tour-cover" alt="" hidden loading="lazy" decoding="async">
           <p class="tour-meta" id="tour-category"></p>
           <h2 class="tour-title" id="tour-title"></h2>
           <p class="tour-subtitle" id="tour-subtitle"></p>
           <p class="tour-description" id="tour-description"></p>
-          <h3 class="tour-stops-heading">Traseu — <span id="tour-stops-count">0 opriri</span></h3>
+          <h3 class="tour-stops-heading"><span id="tour-stops-heading-label">Traseu</span> — <span id="tour-stops-count">0 opriri</span></h3>
           <ol class="tour-stops" id="tour-stops"></ol>
         </article>
       </section>
@@ -5195,13 +5236,107 @@
     const tourStopsEl = document.getElementById('tour-stops');
     const tourStopsCountEl = document.getElementById('tour-stops-count');
     const exitTourBtn = document.getElementById('exit-tour');
+    const tourBrowseIntroEl = document.getElementById('tour-browse-intro');
+    const tourStopsHeadingLabelEl = document.getElementById('tour-stops-heading-label');
+    const tourLangLabelBrowseEl = document.getElementById('tour-lang-label-browse');
+    const tourLangLabelActiveEl = document.getElementById('tour-lang-label-active');
+
+    // Language i18n strings (UI + fallbacks for tours.json content)
+    const TOUR_LANGS = ['ro', 'en', 'fr'];
+    const TOUR_UI_STRINGS = {
+      ro: {
+        browseIntro: 'Tururi gândite pentru o singură poveste, parcurse pe jos. Click pe un tur ca să-l urmărești pe hartă.',
+        empty: 'Niciun tur încă.',
+        backToList: '← Înapoi la lista de tururi',
+        stopsHeading: 'Traseu',
+        stopOne: 'oprire', stopMany: 'opriri',
+        defaultCategory: 'Tur tematic',
+        untitled: '(fără titlu)',
+        langLabel: 'Limbă:',
+        of: 'opriri',
+      },
+      en: {
+        browseIntro: 'Tours built around a single story, walked on foot. Click a tour to follow it on the map.',
+        empty: 'No tours yet.',
+        backToList: '← Back to tour list',
+        stopsHeading: 'Route',
+        stopOne: 'stop', stopMany: 'stops',
+        defaultCategory: 'Themed tour',
+        untitled: '(untitled)',
+        langLabel: 'Language:',
+        of: 'stops',
+      },
+      fr: {
+        browseIntro: 'Des parcours construits autour d’une seule histoire, à faire à pied. Cliquez sur un tour pour le suivre sur la carte.',
+        empty: 'Aucun tour pour l’instant.',
+        backToList: '← Retour à la liste des tours',
+        stopsHeading: 'Itinéraire',
+        stopOne: 'arrêt', stopMany: 'arrêts',
+        defaultCategory: 'Tour thématique',
+        untitled: '(sans titre)',
+        langLabel: 'Langue :',
+        of: 'arrêts',
+      },
+    };
+
+    function getTourLang() {
+      try {
+        const v = localStorage.getItem('tg.tour.lang');
+        if (v && TOUR_LANGS.includes(v)) return v;
+      } catch (e) {}
+      return 'ro';
+    }
+    function setTourLang(lang) {
+      if (!TOUR_LANGS.includes(lang)) return;
+      try { localStorage.setItem('tg.tour.lang', lang); } catch (e) {}
+      tourLang = lang;
+      // Sync all language buttons
+      document.querySelectorAll('.tour-lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+      });
+      // Update UI labels
+      const ui = TOUR_UI_STRINGS[lang] || TOUR_UI_STRINGS.ro;
+      if (tourBrowseIntroEl) tourBrowseIntroEl.textContent = ui.browseIntro;
+      if (exitTourBtn) exitTourBtn.textContent = ui.backToList;
+      if (tourStopsHeadingLabelEl) tourStopsHeadingLabelEl.textContent = ui.stopsHeading;
+      if (tourLangLabelBrowseEl) tourLangLabelBrowseEl.textContent = ui.langLabel;
+      if (tourLangLabelActiveEl) tourLangLabelActiveEl.textContent = ui.langLabel;
+      // Re-render whichever view is open
+      if (activeTour) enterTour(activeTour, /*keepLang*/ true);
+      else renderTourBrowse();
+    }
+    let tourLang = getTourLang();
+
+    // Helpers: read translated tour fields with fallback to Romanian source.
+    function txTour(t, field) {
+      if (tourLang !== 'ro' && t.i18n && t.i18n[tourLang] && t.i18n[tourLang][field] != null) {
+        return t.i18n[tourLang][field];
+      }
+      return t[field];
+    }
+    function txStop(t, idx, field) {
+      if (tourLang !== 'ro' && t.i18n && t.i18n[tourLang] && Array.isArray(t.i18n[tourLang].stops)) {
+        const s = t.i18n[tourLang].stops[idx];
+        if (s && s[field] != null) return s[field];
+      }
+      const orig = (t.stops || [])[idx];
+      return orig ? orig[field] : '';
+    }
+
+    // Wire up language buttons (delegated)
+    document.querySelectorAll('.tour-lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => setTourLang(btn.dataset.lang));
+    });
+    // Apply persisted language on load
+    setTourLang(tourLang);
 
     function renderTourBrowse() {
       tourBrowseEl.hidden = false;
       tourActiveEl.hidden = true;
       tourCardsEl.innerHTML = '';
+      const ui = TOUR_UI_STRINGS[tourLang] || TOUR_UI_STRINGS.ro;
       if (!tours.length) {
-        tourCardsEl.innerHTML = '<p class="tab-intro" style="text-align:center;color:var(--muted);font-style:italic;">Niciun tur încă.</p>';
+        tourCardsEl.innerHTML = `<p class="tab-intro" style="text-align:center;color:var(--muted);font-style:italic;">${escapeHtml(ui.empty)}</p>`;
         return;
       }
       tours.forEach(t => {
@@ -5209,15 +5344,19 @@
         const card = document.createElement('button');
         card.className = 'tour-card';
         card.type = 'button';
+        const titleStr = txTour(t, 'title') || ui.untitled;
+        const subtitleStr = txTour(t, 'subtitle') || '';
+        const categoryStr = txTour(t, 'category') || '';
         const coverHtml = t.cover
           ? `<img class="cover" src="${escapeHtml(t.cover)}" alt="" loading="lazy" decoding="async">`
-          : `<div class="cover-fallback" style="background:${escapeHtml(t.color || '#d8e4df')};color:white">${escapeHtml((t.title || '?').charAt(0))}</div>`;
+          : `<div class="cover-fallback" style="background:${escapeHtml(t.color || '#d8e4df')};color:white">${escapeHtml((titleStr || '?').charAt(0))}</div>`;
+        const stopsLabel = validStops.length === 1 ? ui.stopOne : ui.stopMany;
         card.innerHTML = `
           ${coverHtml}
           <div class="body">
-            ${t.category ? `<em>${escapeHtml(t.category)}</em>` : ''}
-            <strong>${escapeHtml(t.title || '(fără titlu)')}</strong>
-            <span>${validStops.length} opriri${t.subtitle ? ' · ' + escapeHtml(t.subtitle) : ''}</span>
+            ${categoryStr ? `<em>${escapeHtml(categoryStr)}</em>` : ''}
+            <strong>${escapeHtml(titleStr)}</strong>
+            <span>${validStops.length} ${escapeHtml(stopsLabel)}${subtitleStr ? ' · ' + escapeHtml(subtitleStr) : ''}</span>
           </div>
         `;
         card.addEventListener('click', () => enterTour(t));
@@ -5225,29 +5364,35 @@
       });
     }
 
-    function enterTour(tour) {
+    function enterTour(tour, keepLang) {
       activeTour = tour;
       tourBrowseEl.hidden = true;
       tourActiveEl.hidden = false;
+      const ui = TOUR_UI_STRINGS[tourLang] || TOUR_UI_STRINGS.ro;
+      const titleStr = txTour(tour, 'title') || ui.untitled;
+      const subtitleStr = txTour(tour, 'subtitle') || '';
+      const categoryStr = txTour(tour, 'category') || ui.defaultCategory;
+      const descriptionStr = txTour(tour, 'description') || '';
       // Populate tour-active panel
       if (tour.cover) {
         tourCoverEl.src = tour.cover;
-        tourCoverEl.alt = tour.title || '';
+        tourCoverEl.alt = titleStr;
         tourCoverEl.hidden = false;
       } else {
         tourCoverEl.hidden = true;
       }
-      tourCategoryEl.textContent = tour.category || 'Tur tematic';
+      tourCategoryEl.textContent = categoryStr;
       tourCategoryEl.style.color = tour.color || '';
-      tourTitleEl.textContent = tour.title || '(fără titlu)';
-      tourSubtitleEl.textContent = tour.subtitle || '';
-      tourSubtitleEl.hidden = !tour.subtitle;
-      tourDescriptionEl.textContent = tour.description || '';
-      tourDescriptionEl.hidden = !tour.description;
+      tourTitleEl.textContent = titleStr;
+      tourSubtitleEl.textContent = subtitleStr;
+      tourSubtitleEl.hidden = !subtitleStr;
+      tourDescriptionEl.textContent = descriptionStr;
+      tourDescriptionEl.hidden = !descriptionStr;
       // Render stops list
       tourStopsEl.innerHTML = '';
       const validStops = (tour.stops || []).filter(s => locsByArticle[s.article]);
-      tourStopsCountEl.textContent = `${validStops.length} ${validStops.length === 1 ? 'oprire' : 'opriri'}`;
+      const stopsLabel = validStops.length === 1 ? ui.stopOne : ui.stopMany;
+      tourStopsCountEl.textContent = `${validStops.length} ${stopsLabel}`;
       validStops.forEach((s, idx) => {
         const loc = locsByArticle[s.article];
         const li = document.createElement('li');
@@ -5269,8 +5414,10 @@
         li.appendChild(btn);
         tourStopsEl.appendChild(li);
       });
-      activeId = null;
-      render();
+      if (!keepLang) {
+        activeId = null;
+        render();
+      }
     }
 
     function exitTour() {

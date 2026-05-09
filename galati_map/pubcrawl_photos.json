@@ -2869,5 +2869,14 @@
     "lat": 45.442334,
     "lon": 28.05868,
     "year": 1970
+  },
+  {
+    "src": "../assets/images/local/vedeta-de-razboi-numarul-5-maior-gheorghe-sontu-1916-d23e28da.jpg",
+    "caption_ro": "Vedeta de razboi numarul 5 – Maior Gheorghe Sontu 1916",
+    "caption_en": "",
+    "folder": "local",
+    "lat": 45.426799,
+    "lon": 28.05258,
+    "year": 1916
   }
 ]
