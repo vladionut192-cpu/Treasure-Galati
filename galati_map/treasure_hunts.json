@@ -905,6 +905,278 @@
           "next_clue": null
         }
       ]
+    },
+    {
+      "id": "visteria-piratilor",
+      "title": "Visteria Piraților",
+      "subtitle": "9 obiective · ~2.5h · solo",
+      "description": "Anul este 1484, iar turcii cuceresc cetățile Chilia și Cetatea Albă. Galațiul rămâne singurul port la Dunăre al Moldovei, iar micul târg devine esențial pentru comerțul moldovenesc. Aici se descarcă tot felul de mărfuri și se distribuie mai departe pe cale terestră. Acest aspect a atras atenția unui grup de nelegiuiți cu o afinitate pentru jaf — Pirații.",
+      "story": "Orașul-port putea găzdui vase mari maritime. Locuitorii deveneau din ce în ce mai înstăriți. În această aventură, vei face parte dintr-un grup de răzeși însărcinat de însuși Ștefan cel Mare cu paza portului și cu prinderea piraților care au fugit cu o captură importantă. Avem niște indicii spre locul în care pirații își țin visteria plină de furăciuni.",
+      "color": "#1a3a5c",
+      "estimated_minutes": 150,
+      "start": {
+        "name": "Palatul Navigației",
+        "lat": 45.4315,
+        "lon": 28.0618
+      },
+      "treasure": {
+        "title": "Visteria piraților recuperată",
+        "location": "La velier-ul cu steag negru de pe malul Dunării",
+        "narrative": "Ajunși la zidul mare, priviți în zare spre Dunăre și vedeți tot felul de corăbii. La mal e acostat un velier învechit, cu steag negru rupt cu 2 iatagane încrucișate. Piratii se ceartă între ei — îi arestați. Întorși triumfători la curtea lui Ștefan cel Mare, domnitorul te numește vornic al Moldovei. Comoara recuperată întărește orașul Galați. Ești sărbătorit ca un erou."
+      },
+      "checkpoints": [
+        {
+          "id": "cp1",
+          "order": 1,
+          "title": "Statuia „Fata pe Valuri” (Nespălata)",
+          "lat": 45.4329,
+          "lon": 28.0511,
+          "loc_id": "loc-168",
+          "intro": "Dimineața, în orașul Galați, razele soarelui pătrund printre clădirile de piatră. Pe străzile înguste, ecourile activității din port se amestecă cu zumzetul oamenilor care se trezesc la o nouă zi de muncă. Corăbiile maritime sosesc în port, una după alta, descărcându-și mărfurile prețioase.",
+          "clue": {
+            "kind": "image",
+            "hint": "Imaginea sugerează numele popular al statuii.",
+            "decoded": "NESPALATA",
+            "image": "../assets/images/hunts/visteria-piratilor/cp1-in.jpg"
+          },
+          "find_hint": "În acest decor vibrant, tu și ceilalți răzeși începeți căutarea. Primul indiciu pe care îl aveți este desenul unei fântâni cu o figură feminină.",
+          "riddle": {
+            "question": "Când a fost instalată Statuia „Fata pe Valuri”?",
+            "options": [
+              "1940",
+              "1966",
+              "1976",
+              "1922"
+            ],
+            "correct": 1,
+            "points": 100
+          },
+          "next_clue": {
+            "kind": "map",
+            "hint": "O foaie mototolită cu un fragment de hartă și un cerc roșu marcând următoarea destinație.",
+            "decoded": "STRADA FALEZEI",
+            "image": "../assets/images/hunts/visteria-piratilor/cp1-out.jpg"
+          }
+        },
+        {
+          "id": "cp2",
+          "order": 2,
+          "title": "Casa veche de pe Strada Falezei",
+          "lat": 45.4275,
+          "lon": 28.049,
+          "loc_id": "loc-169",
+          "intro": "Soarele începe să coboare pe cer, aruncând umbre lungi pe străduțele înguste ale orașului. Aerul era încărcat de praful făcut de negustori în drum spre port.",
+          "clue": null,
+          "find_hint": "Pe măsură ce te apropii de statuia fetei pe valuri, simți că ceva e în neregulă. O foaie mototolită îți atrage atenția, părând a fi o restanță uitată dintr-un manifest de mărfuri.",
+          "riddle": {
+            "question": "Câte geamuri sunt deasupra ușii de la intrarea în casă?",
+            "options": [
+              "2",
+              "3",
+              "4",
+              "5"
+            ],
+            "correct": 1,
+            "points": 100
+          },
+          "next_clue": {
+            "kind": "anagram-grid",
+            "hint": "Anagramă: scrie literele „SUAAELCLDAAGIPNL” pe rânduri într-un grid 4×4, apoi citește pe coloane.",
+            "decoded": "SEDIUL APA CANAL GL",
+            "image": "../assets/images/hunts/visteria-piratilor/cp2-out.jpg"
+          }
+        },
+        {
+          "id": "cp3",
+          "order": 3,
+          "title": "Sediul Apă-Canal Galați",
+          "lat": 45.431,
+          "lon": 28.042,
+          "loc_id": "loc-170",
+          "intro": "Pășești în hanul local, un loc cu pereți din lemn întunecat și mese robuste, pline de personaje pitorești. Marinari bătrâni, negustori cu priviri ascuțite, călători obosiți. Barmanul cu privire înțeleaptă și barbă argintie îți întinde o foaie fără un cuvânt.",
+          "clue": null,
+          "find_hint": "Anagramă găsită pe foaia barmanului: „SUAAELCLDAAGIPNL” — scrie pe rânduri, citește pe coloane.",
+          "riddle": {
+            "question": "Ce simboluri ale Galațiului sunt pe muralul din fața sediului Apă-Canal?",
+            "options": [
+              "Fructul Soarelui și Biserica Precista",
+              "Turnul de televiziune și Fructul Soarelui",
+              "Universitatea și Turnul de televiziune",
+              "Biserica Precista și Universitatea"
+            ],
+            "correct": 1,
+            "points": 100
+          },
+          "next_clue": {
+            "kind": "pigpen",
+            "hint": "Cifrul pigpen-style cu marcaje E și U — descifrează mesajul pentru a afla următoarea destinație.",
+            "decoded": "BISERICA SF SPIRIDON",
+            "image": "../assets/images/hunts/visteria-piratilor/cp3-out.jpg"
+          }
+        },
+        {
+          "id": "cp4",
+          "order": 4,
+          "title": "Biserica Sfântul Ierarh Spiridon",
+          "lat": 45.434,
+          "lon": 28.0499,
+          "loc_id": "loc-95",
+          "intro": "Dimineața se ridicase deja peste Galați, aducând cu ea un nou val de activitate. Soarele strălucea puternic, inundând străzile cu o lumină caldă. Pe măsură ce te îndrepți spre Conac, observi cum orașul se trezește la viață.",
+          "clue": null,
+          "find_hint": "Conacul, o clădire impunătoare cu ziduri groase din piatră și ferestre mari, stătea mândru. În acest tablou liniștit, birjarul îți strecoară o foaie mototolită șoptindu-ți „Grăbește-te”.",
+          "riddle": {
+            "question": "Câte bănci sunt în curtea bisericii?",
+            "options": [
+              "9",
+              "10",
+              "8",
+              "5"
+            ],
+            "correct": 1,
+            "points": 100
+          },
+          "next_clue": {
+            "kind": "turkish-text",
+            "hint": "Text scris în turcă otomană: „Precista adIndaki eski kiliseye dogru yola çıktım” — am pornit spre vechea biserică numită Precista.",
+            "decoded": "BISERICA PRECISTA",
+            "image": "../assets/images/hunts/visteria-piratilor/cp4-out.jpg"
+          }
+        },
+        {
+          "id": "cp5",
+          "order": 5,
+          "title": "Biserica fortificată Precista",
+          "lat": 45.4294,
+          "lon": 28.0533,
+          "loc_id": "loc-4",
+          "intro": "Străzile erau acum mai liniștite, cu umbrele alungite ale clădirilor odihnindu-se peste pavajul vechi. Te îndrepți spre biserica Sf. Ierarh Spiridon, o clădire veche și impunătoare, cu vitralii colorate.",
+          "clue": null,
+          "find_hint": "În fața bisericii Precista, sub arcadele vechi, vezi o măicuță stând pe trepte într-o rugăciune mută. Îți povestește despre o bandă de nelegiuiți care a intrat în biserică, furând zestrea bisericească și fugind apoi spre est. Îți arată o foaie pe care a găsit-o lângă altar.",
+          "riddle": {
+            "question": "Ce se reazemă de gardul de beton al bisericii?",
+            "options": [
+              "Un copac",
+              "Pietre de mormânt",
+              "O cruce",
+              "Un ochi într-un triunghi"
+            ],
+            "correct": 1,
+            "points": 100
+          },
+          "next_clue": {
+            "kind": "drawn-map",
+            "hint": "Hartă desenată de mână, marcând traseul piraților printr-o linie roșie întreruptă, de la Precista spre o casă din nord.",
+            "decoded": "CASA STRADA INSTRUCTIEI",
+            "image": "../assets/images/hunts/visteria-piratilor/cp5-out.jpg"
+          }
+        },
+        {
+          "id": "cp6",
+          "order": 6,
+          "title": "Casa de pe strada Instrucției",
+          "lat": 45.4361,
+          "lon": 28.049,
+          "loc_id": "loc-171",
+          "intro": "Soarele începea să apună, aruncând nuanțe arămii pe cerul orașului Galați. Pe măsură ce te îndrepți spre Biserica Precista, simți o liniște neobișnuită.",
+          "clue": null,
+          "find_hint": "În curtea bisericii, un staret cu hainele prăfuite se îndreaptă rapid spre tine. Îți povestește cum pirații au invadat biserica. Un băiat de vreo 12 ani apare după gardul bisericii cu o hartă desenată — staretul l-a trimis să urmărească pe bandiți.",
+          "riddle": {
+            "question": "Câte turnulețe are casa albă?",
+            "options": [
+              "4",
+              "2",
+              "3",
+              "5"
+            ],
+            "correct": 1,
+            "points": 100
+          },
+          "next_clue": {
+            "kind": "jigsaw",
+            "hint": "Un puzzle din piese cu literele „a”, „i”, „o”, „s” risipite — așază-le pentru a descoperi următoarea destinație.",
+            "decoded": "POARTA HANULUI OTOMAN",
+            "image": "../assets/images/hunts/visteria-piratilor/cp6-out.jpg"
+          }
+        },
+        {
+          "id": "cp7",
+          "order": 7,
+          "title": "Poarta Hanului Otoman",
+          "lat": 45.4346,
+          "lon": 28.0535,
+          "loc_id": "loc-157",
+          "intro": "Noaptea se așternea complet peste Galați, cu o lună plină strălucind în cer. Aerul era răcoros, cu un vânt subtil. Ajungeți la casa indicată pe hartă — o clădire veche cu ziduri albe și ferestre mici, parțial ascunsă de vegetația sălbatică.",
+          "clue": null,
+          "find_hint": "Bandiții dormeau peste tot, rupți de beție. Dați buzna și îi arestați. Interogatoriul dezvăluie că nu sunt pirații căutați, ci doar o bandă de spărgători de biserici. Unul, sub presiune, recunoaște legătura cu pirații și îți oferă o foaie cu un puzzle.",
+          "riddle": {
+            "question": "Din ce secol datează poarta hanului turcesc?",
+            "options": [
+              "XVIII",
+              "XIX",
+              "XX",
+              "XVII"
+            ],
+            "correct": 1,
+            "points": 100
+          },
+          "next_clue": {
+            "kind": "asl",
+            "hint": "Limbajul semnelor americane (ASL) — fiecare mână e o literă. Decodifică pentru a afla următoarea destinație.",
+            "decoded": "BECIUL STRADA MARASESTI",
+            "image": "../assets/images/hunts/visteria-piratilor/cp7-out.jpg"
+          }
+        },
+        {
+          "id": "cp8",
+          "order": 8,
+          "title": "Beciul de pe strada Mărășești",
+          "lat": 45.4292,
+          "lon": 28.0489,
+          "loc_id": "loc-172",
+          "intro": "Galați începea să fie învăluit într-o ceață subțire. Pe măsură ce te îndrepți spre poarta hanului turcesc, simți un amestec de emoții: nerăbdare, curiozitate, dar și o ușoară tensiune.",
+          "clue": null,
+          "find_hint": "Hanul turcesc era un loc cunoscut. La intrare, dai peste o bătaie generală. Întrebi calm despre pirați, dar omul cu ochi vânat îți spune că pirații au plecat acum câteva ore. O fetiță de vreo 12 ani de sub tejghea îți face semne — limbajul semnelor.",
+          "riddle": {
+            "question": "Cu ce stradă se intersectează Strada Mărășești?",
+            "options": [
+              "Regiment 11 Siret",
+              "Roșiori",
+              "Alexandru Cernat",
+              "Ciprian Porumbescu"
+            ],
+            "correct": 1,
+            "points": 100
+          },
+          "next_clue": {
+            "kind": "music-notes",
+            "hint": "Note muzicale cu marcaje B, K, V — o substituție bazată pe poziția notelor pe portativ.",
+            "decoded": "ZIDU MARE",
+            "image": "../assets/images/hunts/visteria-piratilor/cp8-out.jpg"
+          }
+        },
+        {
+          "id": "cp9",
+          "order": 9,
+          "title": "Zidu Mare (Faleza Dunării) — Finalul",
+          "lat": 45.4288,
+          "lon": 28.0552,
+          "loc_id": "loc-173",
+          "intro": "Cu inima plină de speranță și curaj, te îndrepți spre casa indicată în indiciu — o construcție veche și umbroasă, ascunsă printre copaci bătrâni. Auzi zgomote slabe din beci. Cobori scările scârțâitoare. Găsești lăzi goale deschise. Investigând, găsești o foaie cu note muzicale.",
+          "clue": null,
+          "find_hint": "Ajunși la zidul mare, priviți în zare spre Dunăre și vedeți tot felul de corăbii. La mal este acostat un velier învechit, iar arborat este un steag negru rupt ce pare a avea 2 iatagane încrucișate.",
+          "riddle": {
+            "question": "Portretul cărui domnitor NU este atârnat pe zid?",
+            "options": [
+              "Ștefan cel Mare",
+              "Mircea cel Bătrân",
+              "Alexandru Ioan Cuza"
+            ],
+            "correct": 1,
+            "points": 100
+          },
+          "next_clue": null
+        }
+      ]
     }
   ]
 }
