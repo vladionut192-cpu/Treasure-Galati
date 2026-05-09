@@ -5372,11 +5372,16 @@
       if (huntLayer) { map.removeLayer(huntLayer); }
       huntLayer = L.layerGroup().addTo(map);
       const progress = loadHuntProgress(activeHunt) || newHuntProgress();
+      // Pe hartă afișăm DOAR checkpoint-urile descoperite (rezolvate sau curent
+      // dar verificat). Restul rămân ascunse — userul trebuie să le găsească
+      // prin cifruri și verificare locație.
+      const visiblePts = [];
       activeHunt.checkpoints.forEach((cp, idx) => {
         const isSolved = progress.solved.includes(cp.id);
         const isCurrent = idx === progress.currentIdx && !isSolved;
-        const isLocked = idx > progress.currentIdx && !isSolved;
-        const cls = isSolved ? 'solved' : isCurrent ? 'current' : (isLocked ? 'locked' : '');
+        const isVerifiedCurrent = isCurrent && progress.currentVerified === true;
+        if (!isSolved && !isVerifiedCurrent) return;  // ascuns
+        const cls = isSolved ? 'solved' : 'current';
         const icon = L.divIcon({
           className: 'custom-marker',
           html: `<div class="marker-bubble hunt-cp ${cls}" data-num="${idx + 1}" title="${escapeHtml(cp.title)}"></div>`,
@@ -5385,23 +5390,22 @@
         });
         const m = L.marker([cp.lat, cp.lon], { icon }).addTo(huntLayer);
         m.on('click', () => {
-          // Click on marker: if it's the current one, scroll to riddle in sidebar
-          if (idx === progress.currentIdx) {
-            map.setView([cp.lat, cp.lon], Math.max(map.getZoom(), 17), { animate: true });
-            const cpEl = huntCheckpointEl;
-            if (cpEl) cpEl.scrollIntoView({ block: 'start', behavior: 'smooth' });
-          } else if (isSolved) {
-            // popup with quick recap
-            m.bindPopup(`<article class="popup"><h3>${escapeHtml(cp.title)}</h3><p>Checkpoint rezolvat ✓</p></article>`).openPopup();
-          } else {
-            m.bindPopup(`<article class="popup"><h3>${escapeHtml(cp.title)}</h3><p>Trebuie să rezolvi mai întâi checkpoint-urile anterioare.</p></article>`).openPopup();
+          map.setView([cp.lat, cp.lon], Math.max(map.getZoom(), 17), { animate: true });
+          // Pentru solved: deschidem detaliul locației (din locations.json)
+          if (isSolved && cp.loc_id && typeof openDetail === 'function') {
+            openDetail(cp.loc_id);
+            return;
+          }
+          // Pentru current verificat: scroll spre ghicitoare în sidebar
+          if (isCurrent && huntCheckpointEl) {
+            huntCheckpointEl.scrollIntoView({ block: 'start', behavior: 'smooth' });
           }
         });
+        visiblePts.push([cp.lat, cp.lon]);
       });
-      // Polyline through solved + current checkpoint
-      const visiblePts = activeHunt.checkpoints.slice(0, progress.currentIdx + 1).map(c => [c.lat, c.lon]);
+      // Polyline doar prin punctele descoperite
+      if (huntRouteLayer) { map.removeLayer(huntRouteLayer); huntRouteLayer = null; }
       if (visiblePts.length >= 2) {
-        if (huntRouteLayer) map.removeLayer(huntRouteLayer);
         huntRouteLayer = L.polyline(visiblePts, {
           color: activeHunt.color || '#8b1e22',
           weight: 4, opacity: 0.7, dashArray: '8 6'
@@ -5417,16 +5421,33 @@
         const isSolved = progress.solved.includes(cp.id);
         const isCurrent = idx === progress.currentIdx && !isSolved;
         const isLocked = idx > progress.currentIdx && !isSolved;
+        const isVerifiedCurrent = isCurrent && progress.currentVerified === true;
         const cls = isSolved ? 'solved' : isCurrent ? 'current' : (isLocked ? 'locked' : '');
+        // Anti-spoiler: titlul se vede doar dacă e rezolvat sau curent+verificat
+        const showTitle = isSolved || isVerifiedCurrent;
+        const displayName = showTitle
+          ? escapeHtml(cp.title)
+          : (isCurrent
+              ? '<em style="color:var(--muted);font-style:italic">— de descoperit —</em>'
+              : '<em style="color:var(--muted);font-style:italic">— încuiat —</em>');
         const li = document.createElement('li');
         li.className = cls;
         li.innerHTML = `
           <span class="num"><span>${idx + 1}</span></span>
-          <span class="name">${escapeHtml(cp.title)}</span>
+          <span class="name">${displayName}</span>
         `;
-        li.addEventListener('click', () => {
-          map.setView([cp.lat, cp.lon], Math.max(map.getZoom(), 16), { animate: true });
-        });
+        if (showTitle) {
+          li.style.cursor = 'pointer';
+          li.addEventListener('click', () => {
+            map.setView([cp.lat, cp.lon], Math.max(map.getZoom(), 16), { animate: true });
+            // Click pe checkpoint rezolvat → deschide detaliul locației pe map
+            if (isSolved && cp.loc_id && typeof openDetail === 'function') {
+              openDetail(cp.loc_id);
+            }
+          });
+        } else {
+          li.style.cursor = 'default';
+        }
         huntStopsEl.appendChild(li);
       });
       // Progress bar
@@ -5504,11 +5525,20 @@
           <div class="cp-actions" id="cp-actions-${cp.id}"></div>
         </div>
       `;
+      // Anti-spoiler: pre-verificare, ascundem titlul + intro-ul (ele descriu
+      // momentul „post-sosire" și pot leak-ui locația). Userul are doar
+      // imaginea-cifru și CTA-ul de verificare.
+      const headingHtml = isVerified
+        ? `<h3>${escapeHtml(cp.title)}</h3>`
+        : `<h3 style="color:var(--muted);font-weight:700;font-style:italic">— Următorul obiectiv —</h3>`;
+      const introHtml = (isVerified && cp.intro)
+        ? `<p class="cp-intro">${escapeHtml(cp.intro)}</p>`
+        : '';
       huntCheckpointEl.innerHTML = `
         <div class="cp-current">
           <div class="cp-num-row">Punct ${progress.currentIdx + 1} din ${total}</div>
-          <h3>${escapeHtml(cp.title)}</h3>
-          ${cp.intro ? `<p class="cp-intro">${escapeHtml(cp.intro)}</p>` : ''}
+          ${headingHtml}
+          ${introHtml}
           ${cipherHtml}
           ${isVerified ? unlockedSection : lockedSection}
         </div>
@@ -5663,7 +5693,8 @@
 
     function openVerifyModal(cp) {
       verifyTargetCp = cp;
-      verifyTitle.textContent = `Marchează unde se află „${cp.title}"`;
+      // Anti-spoiler: nu menționăm numele obiectivului în titlu
+      verifyTitle.textContent = 'Marchează pe hartă unde crezi că se află obiectivul';
       verifyFeedback.textContent = 'Click/tap pe hartă pentru a plasa pinul, apoi apasă Verifică.';
       verifyFeedback.className = '';
       verifyCheck.disabled = true;
@@ -5738,6 +5769,8 @@
         setTimeout(() => {
           closeVerifyModal();
           renderHuntCheckpoint();
+          renderHuntMarkers();   // marker-ul curent apare acum pe hartă
+          renderHuntStopList();  // titlul apare în lista de etape
         }, 1200);
       } else {
         verifyFeedback.className = 'error';
