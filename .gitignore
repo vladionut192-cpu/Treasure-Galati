@@ -36,3 +36,7 @@ scripts/image_review.html
 
 # Deploy archive (rebuildable: python3 scripts/make_deploy_archive.py)
 deploy/*.zip
+
+# Aplicația Treasure Galați — sursă mobilă/backend (~30MB, 460 fișiere) folosită
+# ca referință pentru content-ul Treasure Hunts. Nu e parte din site-ul web.
+Aplicatia Treasure Galati/

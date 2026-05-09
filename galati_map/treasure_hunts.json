@@ -1,0 +1,256 @@
+{
+  "hunts": [
+    {
+      "id": "pe-urmele-domnesti",
+      "title": "Pe urmele domnești",
+      "subtitle": "10 obiective · ~2h · solo",
+      "description": "Aventura ne întoarce în timp pe vremea lui Alexandru Ioan Cuza. Galațiul era un oraș modern, cosmopolit, dichisit, plin de viață. Liniștea orașului dunărean este brusc întreruptă de un jaf. Coroana viitorului domnitor a fost furată de un haiduc faimos.",
+      "story": "La 1 ianuarie 1859, Alexandru Ioan Cuza, viitorul domn al Moldovei, intră în Moldova debarcând în portul din Galați. În drumul său spre a fi încoronat la Iași ca domn al Moldovei, a adus cu el sute de soldați, zestrea domniței, lăzi cu aur și toată curtea domnească. În una din cele câteva nopți petrecute în Galați, coroana domnitorului fusese furată. La locul faptei, tâlharul lăsase un indiciu cu un semn straniu care părea a fi semnătura faimosului haiduc, Valeriu Grozea. Problema era că Grozea fusese spânzurat de Cuza în urmă cu 10 ani. Domnitorul a promis una din comorile lui pentru cine îi aduce coroana înapoi.",
+      "color": "#8b1e22",
+      "estimated_minutes": 120,
+      "start": {
+        "name": "Zidul Mare",
+        "lat": 45.42884728494573,
+        "lon": 28.05524079571449
+      },
+      "treasure": {
+        "title": "Coroana domnitorului Cuza",
+        "location": "La baza statuii lui Mihai Eminescu, în Parcul Eminescu",
+        "narrative": "În parc, la baza statuii lui Eminescu, era îngropată coroana domnitorului. Bravii aventurieri înapoiaseră prețiosul obiect și primiră în schimb aprecierea eternă și ordinul de cavaleri ai orașului Galați."
+      },
+      "checkpoints": [
+        {
+          "id": "cp1",
+          "order": 1,
+          "title": "Biserica fortificată Precista",
+          "lat": 45.429440848122304,
+          "lon": 28.053296689675896,
+          "loc_id": "loc-4",
+          "intro": "Tâlharul a lăsat un mesaj cifrat pe locul jafului. Decifrează-l pentru a afla unde să cauți primul indiciu.",
+          "clue": {
+            "kind": "rot13",
+            "label": "C E R P V F G N",
+            "hint": "Mesajul este criptat. Fiecare literă a fost rotită cu 13 poziții în alfabet — un truc pe care Cuza l-a învățat de la căpitanii italieni din portul Galați.",
+            "decoded": "PRECISTA"
+          },
+          "monument": "La construcția bisericii s-au folosit piatră de la Bărboși, lemn din pădurile Covurluiului, cărămidă și var. Are plan triconc cu patru încăperi — pridvor, naos, pronaos și altar — și a fost construită într-o concepție originală, cu turnul clopotniță inclus în corpul bisericii și cu pod întărit, care i-a creat o a doua funcție: refugiu și apărare. La interior, turnul are o cameră pentru ascunderea valorilor, două metereze și o ușă de acces. Biserica Precista a suportat toate vitregiile vremurilor, fiind arsă în 1711 de către otomani, distrusă în războaiele ruso-otomano-austriece din 1735–1739 și 1769–1774.",
+          "find_hint": "Primul indiciu i-a adus pe investigatori la Biserica Precista. Aici urma ca domnitorul Cuza să primească binecuvântare înainte de drumul lung spre Iași. În curtea bisericii, lângă o piatră, investigatorii găsiseră un plic cu semnul lui Grozea.",
+          "riddle": {
+            "question": "Pe partea estică a bisericii, pe un stâlp este o cutie electrică. Ce număr este scris pe cutia electrică?",
+            "options": ["334", "245", "984", "112"],
+            "correct": 0,
+            "points": 100
+          },
+          "next_clue": {
+            "kind": "symbols",
+            "hint": "Plicul găsit conținea un alfabet străvechi, cu un indiciu între litera C și U — inițialele domnitorului. Decodează simbolurile pentru a afla unde mergi.",
+            "decoded": "PALATUL NAVIGATIEI"
+          }
+        },
+        {
+          "id": "cp2",
+          "order": 2,
+          "title": "Palatul Navigației",
+          "lat": 45.4315,
+          "lon": 28.0618,
+          "loc_id": "loc-76",
+          "intro": "Simbolurile te-au condus către portul gălățean — locul unde Cuza a debarcat în 1859.",
+          "clue": null,
+          "monument": "La începutul secolului al XX-lea, Primăria și comunitatea locală din Galați au ridicat un edificiu impozant care să adăpostească Navigația Fluvială Română. Construit între 1909–1912 după planurile lui Petre Antonescu (discipol al lui Ion Mincu). Astăzi face parte din lista monumentelor istorice (cod GL-II-m-B-03064), sub numele de Gara Fluvială Galați, strada Portului numărul 34.",
+          "find_hint": "La Palatul Navigației, grupul de investigatori a găsit un plic cu poza primei școli publice din Galați — locul unde a fost elev în copilărie tâlharul Grozea.",
+          "riddle": {
+            "question": "Câți piloni de susținere din lemn are acoperișul intrării în palat dinspre faleză?",
+            "options": ["12", "8", "5", "20"],
+            "correct": 0,
+            "points": 100
+          },
+          "next_clue": {
+            "kind": "photo",
+            "hint": "În plic era o poză veche cu o clădire școlară din portul Galațiului. Recunoști școala domnească?",
+            "decoded": "PRIMA SCOALA PUBLICA"
+          }
+        },
+        {
+          "id": "cp3",
+          "order": 3,
+          "title": "Prima Școală Publică",
+          "lat": 45.4344,
+          "lon": 28.0535,
+          "loc_id": null,
+          "intro": "Poza te-a adus la prima școală publică din Galați, fondată în 1832 sub Mihail Sturdza.",
+          "clue": null,
+          "monument": "Școala Gimnazială nr. 24 „Sf. Arhangheli Mihail și Gavriil” a fost fondată în anul 1832, în două chilii ale mănăstirii omonime, sub denumirea de „Metoc”. Prima școală națională organizată după necesitățile vremii este înființată în 1832 conform ordinului Epitropiei Școalelor Iași din 22 septembrie 1832. Și-a deschis cursurile la 8 noiembrie 1832, cu 20 elevi, primii învățători au fost Toma Giușcă și Ion Vizzu. Clădirea principală, existentă și astăzi, a fost inaugurată la 16 aprilie 1853.",
+          "find_hint": "Ajunși la Școala Publică, vânătorii de comori găsiseră ascuns un cufăr lângă simbolul hoțului. În cufăr era o cruce pe care era inscripționat „Stânca Neagră” în limba greacă.",
+          "riddle": {
+            "question": "La ce dată a fost pusă placa memorială de la intrarea din școală?",
+            "options": ["3 ianuarie 1890", "8 noiembrie 1997", "24 octombrie 1992", "4 mai 2007"],
+            "correct": 1,
+            "points": 100
+          },
+          "next_clue": {
+            "kind": "translation",
+            "hint": "Stânca Neagră — în greacă: „Mavromol”. Caută o biserică ce poartă acest nume.",
+            "decoded": "BISERICA MAVROMOL"
+          }
+        },
+        {
+          "id": "cp4",
+          "order": 4,
+          "title": "Biserica Mavromol",
+          "lat": 45.434542,
+          "lon": 28.0532678,
+          "loc_id": "loc-92",
+          "intro": "„Mavromol” înseamnă „Stânca Neagră” în greacă — o aluzie la temeliile vechi ale mănăstirii.",
+          "clue": null,
+          "monument": "Biserica Mavromol din Galați poartă hramul „Adormirea Maicii Domnului”. Construcția a fost începută de domnitorul Gheorghe Duca (1678–1683) și terminată în 1702 de fiul său, voievodul Constantin Duca. Are un plan bazilical necompartimentat, cu două turle. La exterior, intrarea se face pe latura de sud, printr-o ușă marcată de un portal cu icoana de hram și simboluri heraldice — capul de bour și doi lei. Construcția actuală datează din perioada 1858–1861.",
+          "find_hint": "Aventurierii au găsit în fața Mănăstirii Mavromol, la poarta cu blazonul Moldovei, un plic cu următorul indiciu — o stea cu șase colțuri și text în ebraică.",
+          "riddle": {
+            "question": "Ce animale sunt pe blazonul de pe intrarea în biserică?",
+            "options": ["2 lei și un zimbru", "Un vultur pleșuv", "2 cai și o cruce", "2 pești"],
+            "correct": 0,
+            "points": 100
+          },
+          "next_clue": {
+            "kind": "translation",
+            "hint": "Steaua lui David și textul ebraic „ללכת לבית הכנסת” (a merge la sinagogă) te conduc clar la următorul obiectiv.",
+            "decoded": "SINAGOGA GALATI"
+          }
+        },
+        {
+          "id": "cp5",
+          "order": 5,
+          "title": "Sinagoga Galați (Templul Meseriașilor)",
+          "lat": 45.4361594,
+          "lon": 28.0516317,
+          "loc_id": "loc-91",
+          "intro": "Comunitatea evreiască din Galați era una dintre cele mai mari din regiune — la 1900 avea ~19.000 din 95.000 de locuitori.",
+          "clue": null,
+          "monument": "Clădirea datează după unele surse din 1875, iar după altele din 1896, și a fost construită de „Societatea Meseriașilor”. A rezistat mai multor cutremure, dar și de natură politică, în perioada celui de-al doilea război mondial fiind lagăr pentru prizonierii evrei. Structura de rezistență a templului începuse să dea semne de degradare și în 2009 Federația Comunităților Evreiești din România (FCER) a decis să înceapă consolidarea, lucrări care au fost terminate în 2014.",
+          "find_hint": "La poarta Templului, grupul a zărit jos o vedere însângerată — o poză veche cu strada Traian.",
+          "riddle": {
+            "question": "Ce scrie pe Sinagogă (frontonul principal)?",
+            "options": ["Templul Soc. Meseriașilor", "Sinagoga Galați", "Templul Evreilor", "INRI"],
+            "correct": 0,
+            "points": 100
+          },
+          "next_clue": {
+            "kind": "photo",
+            "hint": "Vederea ensângerată arată Strada Traian și o farmacie istorică — caută Casa Ținc.",
+            "decoded": "CASA TINC"
+          }
+        },
+        {
+          "id": "cp6",
+          "order": 6,
+          "title": "Casa Ținc (fosta Farmacie Ținc)",
+          "lat": 45.4407,
+          "lon": 28.0490,
+          "loc_id": null,
+          "intro": "Constantin Ținc (n. 1857) a fost farmacist gălățean și primar al orașului în 3 mandate scurte: 1898, 1904 și 1914–1917.",
+          "clue": null,
+          "monument": "Constantin Ținc s-a născut la Giurgiu în anul 1857. La 5 mai 1899, primește autorizația de a construi clădirea de pe strada Traian-Codreanu-Spitalului, pentru a servi drept farmacie. Arhitectura clădirii este de influență vieneză, cu bogate decorații florale realizate în stuc. Astăzi se regăsește în lista monumentelor istorice pe anul 2004 din județul Galați, pe strada Eroilor, numărul 64. Restaurată între 1994–2006, clădirea a fost transformată în „Muzeul Colecțiilor”.",
+          "find_hint": "În podul casei Ținc, căutătorii găsiseră încă un plic — de data aceasta cu un mesaj scris în cod binar.",
+          "riddle": {
+            "question": "Ce scrie pe fațada casei Ținc?",
+            "options": ["Farmacie", "Mens sana in corpore sano", "Drogherie", "Carpe diem"],
+            "correct": 0,
+            "points": 100
+          },
+          "next_clue": {
+            "kind": "binary",
+            "hint": "Codul binar conține coordonate GPS în ASCII. Decodează-le și ai locația următoare.",
+            "decoded": "CONSILIUL JUDETEAN GALATI"
+          }
+        },
+        {
+          "id": "cp7",
+          "order": 7,
+          "title": "Consiliul Județean Galați",
+          "lat": 45.4404,
+          "lon": 28.0540,
+          "loc_id": null,
+          "intro": "Coordonatele te-au dus la fosta Casă a Artei — astăzi Consiliul Județean Galați.",
+          "clue": null,
+          "monument": "Strada Eroilor nr. 5, fosta Primăverii, Vasanski și Codreanu. În 1910, pe Codreanu la nr. 7 (devenit 5), Leon Herpen a ridicat un imobil impunător. În 1936 este vândut statului cehoslovac pentru a adăposti consulatul, iar după ocuparea țării de către Germania Nazistă, locul a devenit Consulatul Germaniei. În perioada comunistă a fost folosită drept casă de oaspeți a Partidului Comunist Român (numită și „Casa lui Ceaușescu”). Din 2000 este sediul Consiliului Județean Galați.",
+          "find_hint": "În părculeț, sub o bancă, căutătorii găsiseră cuvintele scrise pe o scândură.",
+          "riddle": {
+            "question": "Ce formă are iazul din părculețul de lângă clădirea Consiliului Județean?",
+            "options": ["Pește", "Cerc", "Romb", "Fluture"],
+            "correct": 0,
+            "points": 100
+          },
+          "next_clue": {
+            "kind": "text",
+            "hint": "Scândura era inscripționată cu numele unui imobil construit în anii '30, pe colț cu Vadul Carabuș.",
+            "decoded": "CASA STRATIA"
+          }
+        },
+        {
+          "id": "cp8",
+          "order": 8,
+          "title": "Casa A. Stratia",
+          "lat": 45.4374,
+          "lon": 28.0556,
+          "loc_id": null,
+          "intro": "Alexandru Stratia și-a construit aici o casă în 1935, pe colț cu Vadul Carabuș — naționalizată în 1950.",
+          "clue": null,
+          "monument": "Aici, la fostele nr. 46 și 48, dețineau în 1911 câte un imobil frații Marcu și Moritz Wecsler. În 1934, Moritz își vinde proprietatea lui Alexandru Stratia, care își construiește aici în 1935 un imobil pe colțul cu Vadul Carabuș. Ambele imobile, atât al lui Marcu cât și al lui Stratia, sunt trecute în proprietatea statului cu decretul 92/1950.",
+          "find_hint": "La Casa A. Stratia, căutătorii găsiseră după o cărămidă din zid un bilețel cu un mesaj în cod Morse.",
+          "riddle": {
+            "question": "Pe casa A. Stratia este un blazon cu literele „SA”. Sub ele ce an apare?",
+            "options": ["1935", "1899", "2001", "1902"],
+            "correct": 0,
+            "points": 100
+          },
+          "next_clue": {
+            "kind": "morse",
+            "hint": "Codul Morse: --.  .-.  .-  -.  -..   /   ....  ---  -  .  .-..",
+            "decoded": "GRAND HOTEL"
+          }
+        },
+        {
+          "id": "cp9",
+          "order": 9,
+          "title": "Grand Hotel",
+          "lat": 45.4382421,
+          "lon": 28.056548,
+          "loc_id": "loc-65",
+          "intro": "Codul Morse decodat: GRAND HOTEL — fosta inimă a vieții cosmopolite gălățene.",
+          "clue": null,
+          "monument": "Imobilul din strada Domnească (nr. 38) este o construcție de la începutul secolului al XX-lea (1911–1912), ridicată la inițiativa marelui proprietar Elie (Ilie) Climi (Climis). Grand Hotel este o clădire în stil compozit, cu elemente de decorație neoclasice și baroce. Două bowindow-uri dispuse simetric față de intrarea principală. După al doilea război mondial a fost sediu al administrației Partidului Comunist, iar după 1990 a devenit sediul Primăriei Municipiului Galați. Astăzi se regăsește pe lista monumentelor istorice (cod GL-II-m-B-03012).",
+          "find_hint": "La Grand Hotel, în spatele statuii din părculeț, era inscripționată următoarea strofă: «Cobori în jos, luceafăr blând, / Alunecând pe-o rază, / Pătrunde-n casă și în gând / Și viața-mi luminează!»",
+          "riddle": {
+            "question": "Cine este imortalizat pe statuia din părculețul de la Grand Hotel?",
+            "options": ["Julius Caesar", "Marc Aurelius", "Traian", "Augustus"],
+            "correct": 2,
+            "points": 100
+          },
+          "next_clue": {
+            "kind": "poem",
+            "hint": "Strofa din «Luceafărul» de Mihai Eminescu te conduce la parcul cu numele lui.",
+            "decoded": "PARCUL EMINESCU"
+          }
+        },
+        {
+          "id": "cp10",
+          "order": 10,
+          "title": "Parcul Eminescu — Finalul",
+          "lat": 45.43614277229779,
+          "lon": 28.054557945408416,
+          "loc_id": "loc-113",
+          "intro": "Ultimul popas. Aici, în fața statuii poetului, se ascunde comoara.",
+          "clue": null,
+          "monument": "Parcul Eminescu a fost amenajat între 1880–1881, iar în 1913 s-au realizat o serie de lucrări de sistematizare și înfrumusețare, fiind asemănat cu parcurile englezești. A fost făcut să semene cu Parcul Ioanid din București. La lucrări s-a folosit piatră de Ulmeni, un lac, un pod rustic peste lac, o grotă cu cascadă. Astăzi găzduiește prima statuie a lui Mihai Eminescu din România, sculptată de Frederic Storck.",
+          "find_hint": "În parc, la baza statuii lui Eminescu, era îngropată coroana domnitorului. Lângă statua lui Eminescu se află și statuia Veronicăi Micle.",
+          "riddle": {
+            "question": "Ce ține în mână Veronica Micle?",
+            "options": ["Coroana", "Torța", "Un măr", "Un sandvici"],
+            "correct": 1,
+            "points": 100
+          },
+          "next_clue": null
+        }
+      ]
+    }
+  ]
+}

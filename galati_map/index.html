@@ -1987,6 +1987,307 @@
     .marker-bubble.tour-stop.last { background: var(--hot); }
     .marker-bubble.tour-stop svg { display: none; }
     .marker-bubble.tour-stop::before { content: attr(data-num); }
+
+    /* ─────────── Treasure Hunts UI ─────────── */
+    .hunt-cards { display: grid; gap: 10px; }
+    .hunt-card {
+      display: grid;
+      grid-template-columns: 60px 1fr;
+      gap: 12px;
+      align-items: center;
+      padding: 12px 12px 12px 14px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-left: 4px solid #8b1e22;
+      cursor: pointer;
+      text-align: left;
+      font: inherit;
+      width: 100%;
+      transition: transform .12s ease, border-color .12s, background .12s;
+    }
+    .hunt-card:hover {
+      transform: translateY(-1px);
+      background: #fff;
+      border-color: var(--accent);
+    }
+    .hunt-card .crest {
+      width: 56px; height: 56px;
+      display: grid; place-items: center;
+      background: var(--accent-deep);
+      color: var(--paper);
+      font-size: 26px;
+      font-weight: 800;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .hunt-card .body strong {
+      display: block; font-weight: 800; font-size: 14.5px;
+      color: var(--ink); letter-spacing: -0.005em; margin-bottom: 2px;
+    }
+    .hunt-card .body em {
+      font-style: normal; color: var(--muted); font-size: 11.5px;
+      letter-spacing: 0.04em; text-transform: uppercase; font-weight: 600;
+    }
+    .hunt-card .body span {
+      display: block; color: var(--ink-soft); font-size: 13px;
+      line-height: 1.4; margin-top: 4px;
+    }
+    .hunt-card .badge-progress {
+      display: inline-block;
+      margin-top: 6px;
+      padding: 1px 8px;
+      background: var(--accent-soft);
+      color: var(--accent-deep);
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+    .hunt-story {
+      margin: 10px 0 14px;
+      padding: 8px 0;
+      border-top: 1px solid var(--line-soft);
+      border-bottom: 1px solid var(--line-soft);
+    }
+    .hunt-story summary {
+      cursor: pointer;
+      font-size: 12px; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--muted);
+      padding: 4px 0;
+    }
+    .hunt-story[open] summary { color: var(--accent-deep); }
+    .hunt-story p {
+      margin: 8px 0 0;
+      font-size: 13.5px;
+      color: var(--ink-soft);
+      line-height: 1.55;
+      font-style: italic;
+    }
+    .hunt-progress-bar {
+      width: 100%; height: 6px;
+      background: var(--line-soft);
+      margin: 14px 0 6px;
+      overflow: hidden;
+    }
+    .hunt-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #8b1e22, var(--accent));
+      transition: width .35s ease;
+    }
+    .hunt-progress-text {
+      font-size: 11.5px; color: var(--muted);
+      letter-spacing: 0.04em; text-transform: uppercase;
+      font-weight: 600;
+      margin: 0 0 14px;
+    }
+    /* Hunt checkpoint card (current) */
+    .cp-current {
+      background: var(--panel);
+      padding: 14px 14px 16px;
+      margin: 8px 0 18px;
+      border-left: 3px solid #8b1e22;
+    }
+    .cp-current .cp-num-row {
+      display: flex; align-items: baseline; gap: 8px;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: #8b1e22; margin-bottom: 4px;
+    }
+    .cp-current h3 {
+      font-size: 18px; font-weight: 800;
+      color: var(--ink); margin: 0 0 10px;
+      letter-spacing: -0.005em;
+    }
+    .cp-current .cp-intro,
+    .cp-current .cp-monument,
+    .cp-current .cp-find-hint {
+      font-size: 13.5px; line-height: 1.55;
+      color: var(--ink-soft);
+      margin: 0 0 12px;
+    }
+    .cp-current .cp-monument { color: var(--ink); }
+    .cp-current .cp-find-hint {
+      font-style: italic;
+      padding: 10px 12px;
+      background: rgba(139, 30, 34, 0.05);
+      border-left: 2px solid #8b1e22;
+    }
+    .cp-current .cp-cipher {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 14px;
+      letter-spacing: 0.18em;
+      text-align: center;
+      padding: 12px;
+      background: #f4ebd9;
+      color: #3d2914;
+      margin: 8px 0;
+      border: 1px dashed #b9956a;
+    }
+    .cp-current .cp-cipher.binary,
+    .cp-current .cp-cipher.morse {
+      font-size: 12px; letter-spacing: 0.14em;
+      word-break: break-all;
+    }
+    .cp-current .cp-cipher-hint {
+      font-size: 12px; color: var(--muted);
+      margin: 4px 0 12px;
+      line-height: 1.45;
+    }
+    .cp-riddle {
+      margin-top: 14px;
+      padding: 14px 14px 16px;
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+    .cp-riddle .label {
+      display: block;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--accent-deep); margin-bottom: 6px;
+    }
+    .cp-riddle .question {
+      font-size: 14.5px; font-weight: 700;
+      color: var(--ink); margin: 0 0 12px;
+      line-height: 1.4;
+    }
+    .cp-options { list-style: none; padding: 0; margin: 0; }
+    .cp-option {
+      display: block;
+      padding: 10px 12px;
+      margin: 0 0 6px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      cursor: pointer;
+      font: inherit;
+      font-size: 13.5px;
+      width: 100%;
+      text-align: left;
+      transition: border-color .12s, background .12s, color .12s;
+    }
+    .cp-option:hover { border-color: var(--accent); background: var(--accent-soft); }
+    .cp-option.selected { border-color: var(--accent-deep); background: var(--accent-soft); color: var(--accent-deep); font-weight: 600; }
+    .cp-option.correct { border-color: #2c7a4d; background: #e6f4ec; color: #1a5230; }
+    .cp-option.wrong   { border-color: #b34128; background: #fbeae5; color: #7a2818; }
+    .cp-option:disabled { cursor: default; }
+    .cp-feedback {
+      margin: 10px 0 4px;
+      padding: 10px 12px;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+    .cp-feedback.success {
+      background: #e6f4ec; color: #1a5230;
+      border-left: 3px solid #2c7a4d;
+    }
+    .cp-feedback.error {
+      background: #fbeae5; color: #7a2818;
+      border-left: 3px solid #b34128;
+    }
+    .cp-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+    .cp-actions button {
+      padding: 9px 14px;
+      background: var(--ink);
+      color: var(--paper);
+      border: 0;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: background .12s;
+    }
+    .cp-actions button:hover { background: var(--accent-deep); }
+    .cp-actions button.secondary {
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--line);
+    }
+    .cp-actions button.secondary:hover {
+      background: var(--panel); border-color: var(--accent);
+    }
+    /* Solved checkpoint chip in stops list */
+    .hunt-stops { list-style: none; padding: 0; margin: 14px 0 0; counter-reset: none; }
+    .hunt-stops li {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--line-soft);
+      align-items: center;
+      font-size: 12.5px;
+    }
+    .hunt-stops .num {
+      width: 24px; height: 24px;
+      display: inline-flex; align-items: center; justify-content: center;
+      background: var(--line);
+      color: var(--muted);
+      font-weight: 700; font-size: 11px;
+      border-radius: 50%;
+    }
+    .hunt-stops li.solved .num { background: #2c7a4d; color: #fff; }
+    .hunt-stops li.solved .num::before { content: '✓'; }
+    .hunt-stops li.solved .num span { display: none; }
+    .hunt-stops li.current { background: rgba(139, 30, 34, 0.05); }
+    .hunt-stops li.current .num { background: #8b1e22; color: #fff; }
+    .hunt-stops li.locked { opacity: .6; }
+    .hunt-stops .name { color: var(--ink-soft); }
+    .hunt-stops li.solved .name { color: var(--ink); }
+    .hunt-stops li.current .name { color: var(--ink); font-weight: 700; }
+    .hunt-completed {
+      padding: 18px;
+      margin: 14px 0;
+      background: linear-gradient(135deg, #f4ebd9 0%, #e8d4a8 100%);
+      border: 2px solid #b9956a;
+      text-align: center;
+    }
+    .hunt-completed h3 {
+      font-size: 22px; font-weight: 800;
+      color: #3d2914; margin: 0 0 8px;
+      letter-spacing: -0.01em;
+    }
+    .hunt-completed p {
+      font-size: 14px; line-height: 1.5;
+      color: #5d3f1a; margin: 0 0 8px;
+      font-style: italic;
+    }
+    .hunt-completed .score {
+      font-size: 28px; font-weight: 800;
+      color: #8b1e22; margin: 12px 0 6px;
+    }
+    .hunt-reset {
+      width: 100%;
+      padding: 8px;
+      margin-top: 18px;
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid var(--line-soft);
+      font: inherit; font-size: 12px;
+      cursor: pointer;
+    }
+    .hunt-reset:hover { color: var(--hot); border-color: var(--hot); }
+
+    /* Hunt markers — numbered with state colors */
+    .marker-bubble.hunt-cp {
+      background: var(--muted);
+      font-weight: 800;
+      font-size: 13px;
+      width: 32px; height: 32px;
+      border-color: #fff;
+    }
+    .marker-bubble.hunt-cp svg { display: none; }
+    .marker-bubble.hunt-cp::before { content: attr(data-num); }
+    .marker-bubble.hunt-cp.solved { background: #2c7a4d; }
+    .marker-bubble.hunt-cp.current {
+      background: #8b1e22;
+      animation: cp-pulse 1.6s ease-in-out infinite;
+    }
+    .marker-bubble.hunt-cp.locked { opacity: .5; }
+    @keyframes cp-pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(139, 30, 34, .55); }
+      50%      { box-shadow: 0 0 0 14px rgba(139, 30, 34, 0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .marker-bubble.hunt-cp.current { animation: none; }
+    }
     .toggle-overlay {
       display: flex;
       align-items: center;
@@ -2557,11 +2858,12 @@
       #map { position: absolute; inset: 0; }
     }
 
-    /* Mobile FAB-uri pentru straturi + tururi — ascunse pe desktop.
+    /* Mobile FAB-uri pentru straturi + tururi + aventuri — ascunse pe desktop.
        Plasate în bottom-left ca să nu conflict cu Leaflet zoom (top-left)
        sau year-overlay (top-right la timeline engaged). */
     .layers-fab,
-    .tours-fab {
+    .tours-fab,
+    .hunts-fab {
       display: none;
       position: absolute;
       left: 12px;
@@ -2578,11 +2880,17 @@
     }
     .layers-fab { bottom: 16px; }
     .tours-fab  { bottom: 72px; }
+    .hunts-fab  { bottom: 128px; color: #8b1e22; }
     .layers-fab svg,
-    .tours-fab svg { width: 20px; height: 20px; }
+    .tours-fab svg,
+    .hunts-fab svg { width: 20px; height: 20px; }
     .layers-fab[aria-expanded="true"],
     .tours-fab[aria-expanded="true"] {
       background: var(--accent-deep);
+      color: #fff;
+    }
+    .hunts-fab[aria-expanded="true"] {
+      background: #8b1e22;
       color: #fff;
     }
     .layers-sheet {
@@ -2643,23 +2951,27 @@
     .layers-sheet-backdrop.open { opacity: 1; }
 
     @media (max-width: 720px) {
-      /* FAB-urile de straturi + tururi vizibile pe mobil */
+      /* FAB-urile de straturi + tururi + aventuri vizibile pe mobil */
       .layers-fab,
-      .tours-fab { display: flex; }
+      .tours-fab,
+      .hunts-fab { display: flex; }
       /* Toggle-urile mutate în sheet preiau alt padding */
       .layers-sheet-body .toggle-overlay { border-top: 0; padding: 14px 0; }
       .layers-sheet-body .toggle-overlay + .toggle-overlay,
       .layers-sheet-body .historic-opacity + .toggle-overlay {
         border-top: 1px solid var(--line-soft);
       }
-      /* Tours panel portat în sheet — forțăm vizibilitatea (indiferent
-         de starea tab-urilor desktop care îl pun pe `hidden`). */
-      .layers-sheet-body #panel-tours { display: block !important; }
-      /* În sheet-ul mobil, tour-cards merge pe coloană simplă, nu pe grilă. */
-      .layers-sheet-body .tour-cards { display: block; }
-      .layers-sheet-body .tour-cards > * { margin-bottom: 14px; }
+      /* Tours panel + Hunts panel portat în sheet — forțăm vizibilitatea
+         (indiferent de starea tab-urilor desktop care îi pun pe `hidden`). */
+      .layers-sheet-body #panel-tours,
+      .layers-sheet-body #panel-hunts { display: block !important; }
+      /* În sheet-ul mobil, tour-cards / hunt-cards merg pe coloană simplă. */
+      .layers-sheet-body .tour-cards,
+      .layers-sheet-body .hunt-cards { display: block; }
+      .layers-sheet-body .tour-cards > *,
+      .layers-sheet-body .hunt-cards > * { margin-bottom: 14px; }
       /* FAB-urile de admin (dev only) — la dreapta-jos ca să nu colideze
-         cu layers/tours FAB de la stânga-jos. */
+         cu layers/tours/hunts FAB de la stânga-jos. */
       .add-pin-fab { bottom: 16px; right: 16px; }
       .add-photo-fab { bottom: 76px; right: 16px; }
     }
@@ -2764,8 +3076,9 @@
   <main class="app">
     <aside class="sidebar">
       <div class="tabs" role="tablist">
-        <button class="tab active" data-tab="locations" role="tab" aria-selected="true">Toate locațiile</button>
-        <button class="tab" data-tab="tours" role="tab" aria-selected="false">Tururi tematice</button>
+        <button class="tab active" data-tab="locations" role="tab" aria-selected="true">Locații</button>
+        <button class="tab" data-tab="tours" role="tab" aria-selected="false">Tururi</button>
+        <button class="tab" data-tab="hunts" role="tab" aria-selected="false">Aventuri</button>
       </div>
       <section class="tab-panel" id="panel-locations">
         <div class="controls">
@@ -2841,6 +3154,31 @@
           <ol class="tour-stops" id="tour-stops"></ol>
         </article>
       </section>
+      <section class="tab-panel" id="panel-hunts" hidden>
+        <div id="hunt-browse">
+          <p class="tab-intro">Aventuri tematice cu ghicitori, indicii și o comoară de descoperit. Pornești solo, mergi pe teren cu telefonul în mână și rezolvi pas cu pas. Progresul se salvează automat.</p>
+          <div class="hunt-cards" id="hunt-cards"></div>
+        </div>
+        <article id="hunt-active" hidden>
+          <button class="exit-tour" id="hunt-exit" type="button">← Înapoi la lista de aventuri</button>
+          <p class="tour-meta" id="hunt-meta"></p>
+          <h2 class="tour-title" id="hunt-title"></h2>
+          <p class="tour-subtitle" id="hunt-subtitle"></p>
+          <details class="hunt-story" id="hunt-story-wrap">
+            <summary>Citește povestea</summary>
+            <p id="hunt-story"></p>
+          </details>
+          <div class="hunt-progress-bar" id="hunt-progress-bar" aria-label="Progres">
+            <div class="hunt-progress-fill" id="hunt-progress-fill"></div>
+          </div>
+          <p class="hunt-progress-text" id="hunt-progress-text"></p>
+          <div id="hunt-checkpoint">
+            <!-- populated by JS -->
+          </div>
+          <ol class="hunt-stops" id="hunt-stops"></ol>
+          <button class="hunt-reset" id="hunt-reset" type="button">Resetează progresul</button>
+        </article>
+      </section>
       <div class="footer-note">
         <p>Acest proiect are <strong>caracter non-profit</strong> și este complet <strong>neafiliat politic</strong>. A fost realizat din pasiune pentru istoria și patrimoniul orașului Galați, cu scopul de a promova și valorifica memoria culturală locală.</p>
         <p>Deși informațiile publicate sunt documentate cu bună-credință, pot exista erori, inadvertențe sau informații incomplete ori inexacte. Conținutul are un caracter informativ și este într-un proces continuu de actualizare și îmbunătățire.</p>
@@ -2870,7 +3208,10 @@
       <!-- Event tag (bottom-right of map, shown when slider near an event) -->
       <div class="timeline-current-event" id="timeline-current-event" hidden></div>
 
-      <!-- Mobile-only: FAB-uri + bottom-sheet pentru straturi și tururi -->
+      <!-- Mobile-only: FAB-uri + bottom-sheet pentru straturi, tururi și aventuri -->
+      <button class="hunts-fab" id="hunts-fab" type="button" aria-label="Treasure Hunts" aria-expanded="false" aria-controls="mobile-hunts-panel">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l3-4h12l3 4-9 14L3 7z"/><path d="M3 7h18"/><path d="M9 7l3-4 3 4"/></svg>
+      </button>
       <button class="tours-fab" id="tours-fab" type="button" aria-label="Tururi tematice" aria-expanded="false" aria-controls="mobile-tours-panel">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
       </button>
@@ -2890,6 +3231,13 @@
           <button class="layers-sheet-close" id="tours-sheet-close" type="button" aria-label="Închide">×</button>
         </div>
         <div class="layers-sheet-body" id="mobile-tours-slot"><!-- #panel-tours is moved here on mobile --></div>
+      </div>
+      <div class="layers-sheet" id="mobile-hunts-panel" hidden>
+        <div class="layers-sheet-header">
+          <h3>Treasure Hunts</h3>
+          <button class="layers-sheet-close" id="hunts-sheet-close" type="button" aria-label="Închide">×</button>
+        </div>
+        <div class="layers-sheet-body" id="mobile-hunts-slot"><!-- #panel-hunts is moved here on mobile --></div>
       </div>
       <div class="layers-sheet-backdrop" id="layers-sheet-backdrop" hidden></div>
 
@@ -3501,13 +3849,14 @@
         if (!r.ok) throw new Error(`Failed to load ${url}: ${r.status}`);
         return r.json();
       });
-      let locations, cartiere, toursData, toursRoutes;
+      let locations, cartiere, toursData, toursRoutes, huntsData;
       try {
-        [locations, cartiere, toursData, toursRoutes] = await Promise.all([
+        [locations, cartiere, toursData, toursRoutes, huntsData] = await Promise.all([
           fetchJson('locations.json'),
           fetchJson('cartiere.geojson'),
           fetchJson('tours.json'),
           fetchJson('tours_routes.json').catch(() => ({ tours: {} })), // optional
+          fetchJson('treasure_hunts.json').catch(() => ({ hunts: [] })), // optional
         ]);
       } catch (err) {
         console.error('Eroare la încărcare date:', err);
@@ -4599,6 +4948,7 @@
     const tabBtns = document.querySelectorAll('.tabs .tab');
     const panelLocations = document.getElementById('panel-locations');
     const panelTours = document.getElementById('panel-tours');
+    const panelHunts = document.getElementById('panel-hunts');
     tabBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         const target = btn.dataset.tab;
@@ -4606,14 +4956,18 @@
           b.classList.toggle('active', b === btn);
           b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
         });
+        panelLocations.hidden = (target !== 'locations');
+        panelTours.hidden     = (target !== 'tours');
+        panelHunts.hidden     = (target !== 'hunts');
         if (target === 'locations') {
-          panelLocations.hidden = false;
-          panelTours.hidden = true;
           if (activeTour) exitTour();
-        } else {
-          panelLocations.hidden = true;
-          panelTours.hidden = false;
+          if (typeof exitHunt === 'function' && activeHunt) exitHunt();
+        } else if (target === 'tours') {
+          if (typeof exitHunt === 'function' && activeHunt) exitHunt();
           renderTourBrowse();
+        } else if (target === 'hunts') {
+          if (activeTour) exitTour();
+          if (typeof renderHuntBrowse === 'function') renderHuntBrowse();
         }
       });
     });
@@ -4717,6 +5071,327 @@
     }
 
     exitTourBtn.addEventListener('click', exitTour);
+
+    // ─────────── Treasure Hunts ───────────
+    // Single-player hunt engine: load hunts from treasure_hunts.json, render
+    // browse list + active checkpoint UI, manage progress in localStorage.
+    const hunts = (huntsData && huntsData.hunts) || [];
+    const huntCardsEl = document.getElementById('hunt-cards');
+    const huntBrowseEl = document.getElementById('hunt-browse');
+    const huntActiveEl = document.getElementById('hunt-active');
+    const huntMetaEl = document.getElementById('hunt-meta');
+    const huntTitleEl = document.getElementById('hunt-title');
+    const huntSubtitleEl = document.getElementById('hunt-subtitle');
+    const huntStoryEl = document.getElementById('hunt-story');
+    const huntStoryWrap = document.getElementById('hunt-story-wrap');
+    const huntProgressFill = document.getElementById('hunt-progress-fill');
+    const huntProgressText = document.getElementById('hunt-progress-text');
+    const huntCheckpointEl = document.getElementById('hunt-checkpoint');
+    const huntStopsEl = document.getElementById('hunt-stops');
+    const huntExitBtn = document.getElementById('hunt-exit');
+    const huntResetBtn = document.getElementById('hunt-reset');
+
+    let activeHunt = null;
+    let huntLayer = null;          // markers
+    let huntRouteLayer = null;     // polyline between solved/current
+
+    function huntStorageKey(hunt) { return `tg.hunt.${hunt.id}`; }
+    function loadHuntProgress(hunt) {
+      try {
+        const raw = localStorage.getItem(huntStorageKey(hunt));
+        if (!raw) return null;
+        return JSON.parse(raw);
+      } catch (e) { return null; }
+    }
+    function saveHuntProgress(hunt, progress) {
+      try { localStorage.setItem(huntStorageKey(hunt), JSON.stringify(progress)); }
+      catch (e) { /* quota / private mode */ }
+    }
+    function clearHuntProgress(hunt) {
+      try { localStorage.removeItem(huntStorageKey(hunt)); } catch (e) {}
+    }
+    function newHuntProgress() {
+      return { solved: [], currentIdx: 0, score: 0, startedAt: Date.now() };
+    }
+
+    function renderHuntBrowse() {
+      huntBrowseEl.hidden = false;
+      huntActiveEl.hidden = true;
+      huntCardsEl.innerHTML = '';
+      if (huntLayer) { map.removeLayer(huntLayer); huntLayer = null; }
+      if (huntRouteLayer) { map.removeLayer(huntRouteLayer); huntRouteLayer = null; }
+      activeHunt = null;
+      if (!hunts.length) {
+        huntCardsEl.innerHTML = '<p class="tab-intro" style="text-align:center;color:var(--muted);font-style:italic;">Nicio aventură încă.</p>';
+        return;
+      }
+      hunts.forEach(h => {
+        const progress = loadHuntProgress(h);
+        const total = h.checkpoints.length;
+        const done = progress ? progress.solved.length : 0;
+        const card = document.createElement('button');
+        card.className = 'hunt-card';
+        card.type = 'button';
+        const initial = (h.title || '?').charAt(0).toUpperCase();
+        const progressBadge = done > 0
+          ? `<span class="badge-progress">${done === total ? 'COMPLET' : `${done}/${total}`}</span>`
+          : '';
+        card.innerHTML = `
+          <span class="crest" aria-hidden="true">${escapeHtml(initial)}</span>
+          <span class="body">
+            <em>${escapeHtml(h.subtitle || '')}</em>
+            <strong>${escapeHtml(h.title)}</strong>
+            <span>${escapeHtml(h.description || '').slice(0, 140)}${(h.description || '').length > 140 ? '…' : ''}</span>
+            ${progressBadge}
+          </span>
+        `;
+        card.addEventListener('click', () => enterHunt(h));
+        huntCardsEl.appendChild(card);
+      });
+    }
+
+    function enterHunt(hunt) {
+      activeHunt = hunt;
+      huntBrowseEl.hidden = true;
+      huntActiveEl.hidden = false;
+      huntMetaEl.textContent = hunt.subtitle || '';
+      huntTitleEl.textContent = hunt.title || '';
+      huntSubtitleEl.textContent = hunt.description || '';
+      huntSubtitleEl.hidden = !hunt.description;
+      huntStoryEl.textContent = hunt.story || '';
+      huntStoryWrap.hidden = !hunt.story;
+      // Render the markers + initial state
+      renderHuntMarkers();
+      renderHuntCheckpoint();
+      renderHuntStopList();
+      // Fit map bounds to all checkpoints
+      if (hunt.checkpoints && hunt.checkpoints.length) {
+        const bounds = L.latLngBounds(hunt.checkpoints.map(c => [c.lat, c.lon]));
+        map.fitBounds(bounds, { padding: [60, 60], maxZoom: 16 });
+      }
+    }
+
+    function exitHunt() {
+      activeHunt = null;
+      huntBrowseEl.hidden = false;
+      huntActiveEl.hidden = true;
+      if (huntLayer) { map.removeLayer(huntLayer); huntLayer = null; }
+      if (huntRouteLayer) { map.removeLayer(huntRouteLayer); huntRouteLayer = null; }
+    }
+
+    function renderHuntMarkers() {
+      if (!activeHunt) return;
+      if (huntLayer) { map.removeLayer(huntLayer); }
+      huntLayer = L.layerGroup().addTo(map);
+      const progress = loadHuntProgress(activeHunt) || newHuntProgress();
+      activeHunt.checkpoints.forEach((cp, idx) => {
+        const isSolved = progress.solved.includes(cp.id);
+        const isCurrent = idx === progress.currentIdx && !isSolved;
+        const isLocked = idx > progress.currentIdx && !isSolved;
+        const cls = isSolved ? 'solved' : isCurrent ? 'current' : (isLocked ? 'locked' : '');
+        const icon = L.divIcon({
+          className: 'custom-marker',
+          html: `<div class="marker-bubble hunt-cp ${cls}" data-num="${idx + 1}" title="${escapeHtml(cp.title)}"></div>`,
+          iconSize: [32, 32],
+          iconAnchor: [16, 16],
+        });
+        const m = L.marker([cp.lat, cp.lon], { icon }).addTo(huntLayer);
+        m.on('click', () => {
+          // Click on marker: if it's the current one, scroll to riddle in sidebar
+          if (idx === progress.currentIdx) {
+            map.setView([cp.lat, cp.lon], Math.max(map.getZoom(), 17), { animate: true });
+            const cpEl = huntCheckpointEl;
+            if (cpEl) cpEl.scrollIntoView({ block: 'start', behavior: 'smooth' });
+          } else if (isSolved) {
+            // popup with quick recap
+            m.bindPopup(`<article class="popup"><h3>${escapeHtml(cp.title)}</h3><p>Checkpoint rezolvat ✓</p></article>`).openPopup();
+          } else {
+            m.bindPopup(`<article class="popup"><h3>${escapeHtml(cp.title)}</h3><p>Trebuie să rezolvi mai întâi checkpoint-urile anterioare.</p></article>`).openPopup();
+          }
+        });
+      });
+      // Polyline through solved + current checkpoint
+      const visiblePts = activeHunt.checkpoints.slice(0, progress.currentIdx + 1).map(c => [c.lat, c.lon]);
+      if (visiblePts.length >= 2) {
+        if (huntRouteLayer) map.removeLayer(huntRouteLayer);
+        huntRouteLayer = L.polyline(visiblePts, {
+          color: activeHunt.color || '#8b1e22',
+          weight: 4, opacity: 0.7, dashArray: '8 6'
+        }).addTo(map);
+      }
+    }
+
+    function renderHuntStopList() {
+      if (!activeHunt) return;
+      const progress = loadHuntProgress(activeHunt) || newHuntProgress();
+      huntStopsEl.innerHTML = '';
+      activeHunt.checkpoints.forEach((cp, idx) => {
+        const isSolved = progress.solved.includes(cp.id);
+        const isCurrent = idx === progress.currentIdx && !isSolved;
+        const isLocked = idx > progress.currentIdx && !isSolved;
+        const cls = isSolved ? 'solved' : isCurrent ? 'current' : (isLocked ? 'locked' : '');
+        const li = document.createElement('li');
+        li.className = cls;
+        li.innerHTML = `
+          <span class="num"><span>${idx + 1}</span></span>
+          <span class="name">${escapeHtml(cp.title)}</span>
+        `;
+        li.addEventListener('click', () => {
+          map.setView([cp.lat, cp.lon], Math.max(map.getZoom(), 16), { animate: true });
+        });
+        huntStopsEl.appendChild(li);
+      });
+      // Progress bar
+      const total = activeHunt.checkpoints.length;
+      const done = progress.solved.length;
+      huntProgressFill.style.width = `${(done / total) * 100}%`;
+      huntProgressText.textContent = `${done} / ${total} obiective · ${progress.score} puncte`;
+    }
+
+    function renderHuntCheckpoint() {
+      if (!activeHunt) return;
+      const progress = loadHuntProgress(activeHunt) || newHuntProgress();
+      const total = activeHunt.checkpoints.length;
+      const done = progress.solved.length;
+      huntCheckpointEl.innerHTML = '';
+      // Completion screen
+      if (done >= total) {
+        const minutes = Math.round((Date.now() - (progress.startedAt || Date.now())) / 60000);
+        huntCheckpointEl.innerHTML = `
+          <div class="hunt-completed">
+            <h3>${escapeHtml(activeHunt.treasure?.title || 'Comoara descoperită!')}</h3>
+            <p>${escapeHtml(activeHunt.treasure?.narrative || 'Felicitări!')}</p>
+            <div class="score">${progress.score} puncte</div>
+            <p style="font-size:12px;color:#5d3f1a;margin:0;">finalizat în ~${minutes} minute</p>
+          </div>
+        `;
+        return;
+      }
+      // Active checkpoint
+      const cp = activeHunt.checkpoints[progress.currentIdx];
+      if (!cp) return;
+      const cipherHtml = cp.clue
+        ? `
+          <div class="cp-cipher ${cp.clue.kind === 'binary' ? 'binary' : cp.clue.kind === 'morse' ? 'morse' : ''}">${escapeHtml(cp.clue.label || cp.clue.hint || '')}</div>
+          ${cp.clue.hint && cp.clue.label ? `<p class="cp-cipher-hint">${escapeHtml(cp.clue.hint)}</p>` : ''}
+        `
+        : '';
+      huntCheckpointEl.innerHTML = `
+        <div class="cp-current">
+          <div class="cp-num-row">Punct ${progress.currentIdx + 1} din ${total}</div>
+          <h3>${escapeHtml(cp.title)}</h3>
+          ${cp.intro ? `<p class="cp-intro">${escapeHtml(cp.intro)}</p>` : ''}
+          ${cipherHtml}
+          ${cp.monument ? `<p class="cp-monument">${escapeHtml(cp.monument)}</p>` : ''}
+          ${cp.find_hint ? `<p class="cp-find-hint">${escapeHtml(cp.find_hint)}</p>` : ''}
+          <div class="cp-riddle">
+            <span class="label">Ghicitoarea</span>
+            <p class="question">${escapeHtml(cp.riddle.question)}</p>
+            <ul class="cp-options" id="cp-options-${cp.id}">
+              ${cp.riddle.options.map((opt, i) => `
+                <li><button type="button" class="cp-option" data-idx="${i}">${escapeHtml(opt)}</button></li>
+              `).join('')}
+            </ul>
+            <div class="cp-feedback" id="cp-feedback-${cp.id}" hidden></div>
+            <div class="cp-actions" id="cp-actions-${cp.id}"></div>
+          </div>
+        </div>
+      `;
+      // Wire up option buttons
+      const optionsContainer = huntCheckpointEl.querySelector(`#cp-options-${cp.id}`);
+      const feedback = huntCheckpointEl.querySelector(`#cp-feedback-${cp.id}`);
+      const actions = huntCheckpointEl.querySelector(`#cp-actions-${cp.id}`);
+      let selectedIdx = null;
+      optionsContainer.querySelectorAll('button.cp-option').forEach(btn => {
+        btn.addEventListener('click', () => {
+          if (btn.disabled) return;
+          // Toggle selection
+          optionsContainer.querySelectorAll('button.cp-option').forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+          selectedIdx = parseInt(btn.dataset.idx, 10);
+          // Show submit button if not already
+          if (!actions.querySelector('button.submit')) {
+            actions.innerHTML = '<button type="button" class="submit">Verifică răspunsul</button>';
+            actions.querySelector('button.submit').addEventListener('click', () => {
+              submitRiddleAnswer(cp, selectedIdx, optionsContainer, feedback, actions);
+            });
+          }
+        });
+      });
+      // Center map on this checkpoint
+      map.setView([cp.lat, cp.lon], Math.max(map.getZoom(), 15), { animate: true });
+    }
+
+    function submitRiddleAnswer(cp, selectedIdx, optionsContainer, feedback, actions) {
+      const isCorrect = selectedIdx === cp.riddle.correct;
+      const buttons = optionsContainer.querySelectorAll('button.cp-option');
+      buttons.forEach((btn, i) => {
+        btn.disabled = true;
+        btn.classList.remove('selected');
+        if (i === cp.riddle.correct) btn.classList.add('correct');
+        else if (i === selectedIdx) btn.classList.add('wrong');
+      });
+      feedback.hidden = false;
+      if (isCorrect) {
+        feedback.className = 'cp-feedback success';
+        const nextClueText = cp.next_clue ? `<br><br><strong>Indiciu pentru următorul obiectiv:</strong> ${escapeHtml(cp.next_clue.hint || '')}` : '';
+        feedback.innerHTML = `Răspuns corect! Ai câștigat ${cp.riddle.points} puncte.${nextClueText}`;
+        // Save progress
+        const progress = loadHuntProgress(activeHunt) || newHuntProgress();
+        if (!progress.solved.includes(cp.id)) progress.solved.push(cp.id);
+        progress.score += cp.riddle.points;
+        progress.currentIdx = Math.min(progress.currentIdx + 1, activeHunt.checkpoints.length);
+        saveHuntProgress(activeHunt, progress);
+        // Show "next" button
+        actions.innerHTML = '';
+        const nextBtn = document.createElement('button');
+        nextBtn.type = 'button';
+        nextBtn.textContent = progress.solved.length >= activeHunt.checkpoints.length
+          ? 'Vezi comoara'
+          : 'Continuă spre următorul punct';
+        nextBtn.addEventListener('click', () => {
+          renderHuntCheckpoint();
+          renderHuntMarkers();
+          renderHuntStopList();
+        });
+        actions.appendChild(nextBtn);
+      } else {
+        feedback.className = 'cp-feedback error';
+        feedback.textContent = 'Răspuns greșit. Încearcă din nou.';
+        // Re-enable buttons after a beat
+        actions.innerHTML = '';
+        const retryBtn = document.createElement('button');
+        retryBtn.type = 'button';
+        retryBtn.className = 'secondary';
+        retryBtn.textContent = 'Încearcă din nou';
+        retryBtn.addEventListener('click', () => {
+          buttons.forEach(b => { b.disabled = false; b.classList.remove('correct', 'wrong'); });
+          feedback.hidden = true;
+          actions.innerHTML = '';
+        });
+        actions.appendChild(retryBtn);
+      }
+    }
+
+    huntExitBtn.addEventListener('click', () => {
+      exitHunt();
+      // Switch tab back to hunts list view (panel-hunts stays visible)
+      panelHunts.hidden = false;
+      panelLocations.hidden = true;
+      panelTours.hidden = true;
+      // Tab buttons stay as they are; no need to re-toggle
+      renderHuntBrowse();
+    });
+
+    huntResetBtn.addEventListener('click', () => {
+      if (!activeHunt) return;
+      if (!confirm(`Sigur resetezi progresul pentru „${activeHunt.title}"? Vei pierde toate punctele și checkpoint-urile rezolvate.`)) return;
+      clearHuntProgress(activeHunt);
+      // Re-render
+      renderHuntCheckpoint();
+      renderHuntMarkers();
+      renderHuntStopList();
+    });
 
     render();
 
@@ -4849,8 +5524,12 @@
       {
         node:    document.getElementById('panel-tours'),
         slot:    document.getElementById('mobile-tours-slot'),
-        // Tours panel revine după layer-controls în sidebar (la final)
         anchor:  null, // appendChild la sidebarParent
+      },
+      {
+        node:    document.getElementById('panel-hunts'),
+        slot:    document.getElementById('mobile-hunts-slot'),
+        anchor:  null,
       },
     ].map(p => ({ ...p, sidebarParent: p.node?.parentElement }));
 
@@ -4887,6 +5566,10 @@
         // Pe desktop e apelată când user click pe tab; pe mobil tab-urile
         // sunt ascunse, deci sheet-ul preia rolul de declanșator.
         onOpen: () => { if (typeof renderTourBrowse === 'function') renderTourBrowse(); } },
+      { sheet: document.getElementById('mobile-hunts-panel'),
+        fab:   document.getElementById('hunts-fab'),
+        close: document.getElementById('hunts-sheet-close'),
+        onOpen: () => { if (typeof renderHuntBrowse === 'function') renderHuntBrowse(); } },
     ];
 
     function openSheet(target) {
