@@ -26,9 +26,11 @@
        sistem font și Inter e gestionat de `font-display: swap`. -->
   <link rel="preload" href="vendor/inter/inter.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <link rel="preload" href="vendor/leaflet/leaflet.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="vendor/leaflet/MarkerCluster.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript>
     <link rel="stylesheet" href="vendor/inter/inter.css">
     <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+    <link rel="stylesheet" href="vendor/leaflet/MarkerCluster.css">
   </noscript>
   <link rel="preload" href="vendor/inter/inter-600-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="vendor/inter/inter-400-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
@@ -2158,6 +2160,33 @@
       background: transparent !important;
       border: 0 !important;
     }
+
+    /* Cluster bubble — overrides default markercluster look (orange/yellow)
+       cu paleta brand-ului. Două variante: locații (verde) și pubcrawl (portocaliu). */
+    .marker-cluster {
+      background: transparent !important;
+    }
+    .marker-cluster div {
+      background: var(--accent-deep);
+      color: var(--paper);
+      border: 3px solid var(--paper);
+      box-shadow: 0 2px 6px rgba(0,0,0,.18);
+      width: 36px; height: 36px;
+      margin-left: 2px; margin-top: 2px;
+      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+    }
+    .marker-cluster-small div { background: var(--accent); }
+    .marker-cluster-medium div { background: var(--accent-deep); }
+    .marker-cluster-large div { background: var(--ink); }
+    /* Pubcrawl photo cluster — culoare portocalie (orange) ca dot-ul */
+    .pubcrawl-cluster .marker-cluster div,
+    .marker-cluster.pubcrawl-cluster div {
+      background: #d97706;
+      color: #fff;
+      border-color: rgba(255,255,255,.85);
+    }
     .marker-bubble {
       width: 34px; height: 34px;
       border-radius: 50%;
@@ -3450,6 +3479,7 @@
   </div>
 
   <script src="vendor/leaflet/leaflet.js"></script>
+  <script src="vendor/leaflet/leaflet.markercluster.js"></script>
   <script>
     // Detect local dev (serve.py rulează) ca să afișăm UI-ul de admin (FAB-uri,
     // butoane edit/delete). În prod (cPanel) acele butoane sunt ascunse complet
@@ -3563,7 +3593,30 @@
     });
 
     const markers = new Map();
-    const layer = L.layerGroup().addTo(map);
+    // Cluster pentru locații: reduce numărul de DOM nodes la zoom mic și
+    // nu randează în afara viewport-ului — fix pentru jank pe mobil cu ~460
+    // pinuri totale (148 locații + ~311 fotografii pubcrawl).
+    function makeLocationCluster() {
+      return L.markerClusterGroup({
+        maxClusterRadius: 60,
+        disableClusteringAtZoom: 15,
+        spiderfyOnMaxZoom: true,
+        showCoverageOnHover: false,
+        zoomToBoundsOnClick: true,
+        chunkedLoading: true,
+        removeOutsideVisibleBounds: true,
+        iconCreateFunction: (cluster) => {
+          const n = cluster.getChildCount();
+          const sz = n < 10 ? 'small' : n < 30 ? 'medium' : 'large';
+          return L.divIcon({
+            html: `<div><span>${n}</span></div>`,
+            className: `marker-cluster marker-cluster-${sz}`,
+            iconSize: L.point(40, 40),
+          });
+        },
+      });
+    }
+    let layer = makeLocationCluster().addTo(map);
     const list = document.getElementById('list');
     const search = document.getElementById('search');
     const category = document.getElementById('category');
@@ -3755,10 +3808,14 @@
         count.textContent = `${filtered.length} din ${locations.length} obiective`;
       }
 
+      // Batch toate marker-ele într-un array și le adăugăm cu addLayers (mult
+      // mai eficient decât addLayer pentru 148 markers — un singur recompute
+      // de cluster în loc de 148).
+      const batch = [];
       filtered.forEach(item => {
         const marker = L.marker([item.lat, item.lon], { icon: buildIcon(item, item.id === activeId) })
           .bindPopup(popupHtml(item), { closeButton: true, autoPan: true });
-        marker.addTo(layer);
+        batch.push(marker);
         markers.set(item.id, marker);
         marker.on('popupopen', (e) => {
           const popEl = e.popup.getElement();
@@ -3798,6 +3855,10 @@
         li.appendChild(btn);
         list.appendChild(li);
       });
+
+      // Adaugăm toate marker-ele într-un singur apel — clusterul recalculează
+      // o singură dată în loc de N ori.
+      if (batch.length) layer.addLayers(batch);
 
       // Draw the route polyline if in tour mode
       drawTourRoute();
@@ -4463,20 +4524,44 @@
       return photo.year <= timelineYear;
     }
     function refreshPubcrawlVisibility() {
+      // Cu clustering, controlăm vizibilitatea prin add/remove din cluster
+      // (nu mai merge CSS opacity — markeri în cluster nu au DOM element).
+      // Batch operations pentru perf: acumulăm diff-ul și-l aplicăm o dată.
+      if (!pubcrawlLayer) return;
+      const toAdd = [];
+      const toRemove = [];
       pubcrawlMarkers.forEach(({marker, photo}) => {
         const visible = passesPubcrawlTimeline(photo);
-        const el = marker.getElement();
-        if (el) {
-          el.style.opacity = visible ? '1' : '0';
-          el.style.pointerEvents = visible ? 'auto' : 'none';
-        }
+        const inLayer = pubcrawlLayer.hasLayer(marker);
+        if (visible && !inLayer) toAdd.push(marker);
+        else if (!visible && inLayer) toRemove.push(marker);
       });
+      if (toRemove.length) pubcrawlLayer.removeLayers(toRemove);
+      if (toAdd.length) pubcrawlLayer.addLayers(toAdd);
     }
     async function initPubcrawl() {
       try {
         const r = await fetch('pubcrawl_photos.json');
         const data = await r.json();
-        pubcrawlLayer = L.layerGroup();
+        // Cluster pentru cele ~311 fotografii pubcrawl. Bulina portocalie
+        // ascunde-se în cluster la zoom mic; spiderfy la max zoom.
+        pubcrawlLayer = L.markerClusterGroup({
+          maxClusterRadius: 50,
+          disableClusteringAtZoom: 16,
+          spiderfyOnMaxZoom: true,
+          showCoverageOnHover: false,
+          chunkedLoading: true,
+          removeOutsideVisibleBounds: true,
+          iconCreateFunction: (cluster) => {
+            const n = cluster.getChildCount();
+            const sz = n < 10 ? 'small' : n < 30 ? 'medium' : 'large';
+            return L.divIcon({
+              html: `<div><span>${n}</span></div>`,
+              className: `marker-cluster pubcrawl-cluster marker-cluster-${sz}`,
+              iconSize: L.point(40, 40),
+            });
+          },
+        });
         data.forEach((photo) => {
           const m = L.marker([photo.lat, photo.lon], {
             icon: pubcrawlIcon(),
@@ -4497,11 +4582,11 @@
             lightboxCaption.hidden = !cap;
             lightbox.dataset.open = '1';
           });
-          pubcrawlLayer.addLayer(m);
           pubcrawlMarkers.push({marker: m, photo});
         });
         pubcrawlLayer.addTo(map);
-        // Aplică starea curentă a slider-ului
+        // Aplică starea curentă a slider-ului — adaugă în cluster doar
+        // marker-ele care trec filtrul.
         refreshPubcrawlVisibility();
       } catch (e) {
         console.warn('Nu pot încărca pubcrawl_photos.json:', e);
@@ -5907,9 +5992,9 @@
           lightboxCaption.hidden = !cap;
           lightbox.dataset.open = '1';
         });
-        if (pubcrawlLayer) pubcrawlLayer.addLayer(m);
-        else m.addTo(map);
         pubcrawlMarkers.push({marker: m, photo});
+        // refreshPubcrawlVisibility adaugă în cluster doar dacă photo trece
+        // filtrul de timeline curent (paritate cu init).
         refreshPubcrawlVisibility();
         aphFeedback.classList.add('success');
         aphFeedback.textContent = 'Salvat. Bulina apare imediat pe hartă.';
