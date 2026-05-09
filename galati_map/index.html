@@ -2162,6 +2162,101 @@
       content: '🔍 ';
       letter-spacing: 0;
     }
+    /* Verify-location CTA — gate înainte de ghicitoare */
+    .cp-verify-cta {
+      margin: 14px 0 4px;
+      padding: 16px 14px;
+      background: #fff8e1;
+      border: 1px solid #e0c373;
+      border-left: 4px solid #b9956a;
+    }
+    .cp-verify-cta-title {
+      font-weight: 800;
+      margin: 0 0 6px;
+      color: #5d3f1a;
+      font-size: 14px;
+      letter-spacing: -0.005em;
+    }
+    .cp-verify-cta-text {
+      font-size: 13.5px;
+      color: var(--ink-soft);
+      line-height: 1.5;
+      margin: 0 0 12px;
+    }
+    .cp-verify-cta button {
+      padding: 10px 18px;
+      background: #b9956a;
+      color: #fff;
+      border: 0;
+      font: inherit;
+      font-size: 13.5px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: background .12s;
+    }
+    .cp-verify-cta button:hover { background: #9c7a4f; }
+    /* Verify modal — overlay cu mini-hartă pentru drop pin */
+    .verify-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1500;
+      background: rgba(15, 15, 14, 0.55);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .verify-modal[data-open="1"] { display: flex; }
+    .verify-modal .sheet {
+      width: min(820px, 100%);
+      max-height: 92vh;
+      background: var(--paper);
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
+    }
+    .verify-modal header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--line);
+      background: var(--panel);
+    }
+    .verify-modal h3 {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--ink);
+    }
+    .verify-modal .close {
+      background: transparent; border: 0;
+      font-size: 24px; line-height: 1;
+      color: var(--muted);
+      cursor: pointer;
+      padding: 0 4px;
+    }
+    .verify-modal .map { flex: 1; min-height: 360px; cursor: crosshair; }
+    .verify-modal .footer {
+      padding: 12px 18px;
+      border-top: 1px solid var(--line);
+      display: flex; gap: 10px; align-items: center;
+      background: var(--panel);
+    }
+    .verify-modal .footer p { margin: 0; flex: 1; font-size: 13px; color: var(--muted); line-height: 1.4; }
+    .verify-modal .footer p.success { color: #1a5230; font-weight: 600; }
+    .verify-modal .footer p.error   { color: #7a2818; font-weight: 600; }
+    .verify-modal .footer button {
+      padding: 9px 16px; background: var(--ink); color: var(--paper);
+      border: 0; font: inherit; font-size: 13px; font-weight: 700;
+      letter-spacing: 0.04em; cursor: pointer;
+    }
+    .verify-modal .footer button:disabled {
+      background: var(--line); color: var(--muted); cursor: not-allowed;
+    }
+    @media (max-width: 720px) {
+      .verify-modal { padding: 0; }
+      .verify-modal .sheet { max-height: 100vh; height: 100vh; width: 100%; }
+    }
     .cp-riddle {
       margin-top: 14px;
       padding: 14px 14px 16px;
@@ -3477,6 +3572,22 @@
       </div>
     </main>
   </main>
+
+  <!-- Verify-location modal pentru hunts: user pune pin pe hartă unde se află obiectivul -->
+  <div class="verify-modal" id="verify-modal" role="dialog" aria-modal="true" aria-labelledby="verify-title">
+    <div class="sheet">
+      <header>
+        <h3 id="verify-title">Marchează obiectivul</h3>
+        <button class="close" id="verify-close" type="button" aria-label="Închide">×</button>
+      </header>
+      <div class="map" id="verify-map"></div>
+      <div class="footer">
+        <p id="verify-feedback">Click/tap pe hartă pentru a plasa pinul, apoi apasă Verifică.</p>
+        <button id="verify-check" type="button" disabled>Verifică</button>
+      </div>
+    </div>
+  </div>
+
   </div><!-- /#page-map -->
 
   <div class="page" id="page-stories">
@@ -5369,26 +5480,47 @@
           `;
         }
       }
+      // Gate ghicitoarea: dezvăluită doar după ce user-ul confirmă că e
+      // la fața locului (pune pin pe harta de verificare).
+      const isVerified = progress.currentVerified === true;
+      const lockedSection = `
+        <div class="cp-verify-cta">
+          <p class="cp-verify-cta-title">📍 Ești la fața locului?</p>
+          <p class="cp-verify-cta-text">Pentru a deschide ghicitoarea, marchează pe harta de mai jos unde se află obiectivul. Plasezi pinul, verificăm distanța și, dacă e aproape, intri în ghicitoare.</p>
+          <button type="button" id="cp-verify-btn">Am ajuns la punct</button>
+        </div>
+      `;
+      const unlockedSection = `
+        ${cp.find_hint ? `<p class="cp-find-hint">${escapeHtml(cp.find_hint)}</p>` : ''}
+        <div class="cp-riddle">
+          <span class="label">Ghicitoarea</span>
+          <p class="question">${escapeHtml(cp.riddle.question)}</p>
+          <ul class="cp-options" id="cp-options-${cp.id}">
+            ${cp.riddle.options.map((opt, i) => `
+              <li><button type="button" class="cp-option" data-idx="${i}">${escapeHtml(opt)}</button></li>
+            `).join('')}
+          </ul>
+          <div class="cp-feedback" id="cp-feedback-${cp.id}" hidden></div>
+          <div class="cp-actions" id="cp-actions-${cp.id}"></div>
+        </div>
+      `;
       huntCheckpointEl.innerHTML = `
         <div class="cp-current">
           <div class="cp-num-row">Punct ${progress.currentIdx + 1} din ${total}</div>
           <h3>${escapeHtml(cp.title)}</h3>
           ${cp.intro ? `<p class="cp-intro">${escapeHtml(cp.intro)}</p>` : ''}
           ${cipherHtml}
-          ${cp.find_hint ? `<p class="cp-find-hint">${escapeHtml(cp.find_hint)}</p>` : ''}
-          <div class="cp-riddle">
-            <span class="label">Ghicitoarea</span>
-            <p class="question">${escapeHtml(cp.riddle.question)}</p>
-            <ul class="cp-options" id="cp-options-${cp.id}">
-              ${cp.riddle.options.map((opt, i) => `
-                <li><button type="button" class="cp-option" data-idx="${i}">${escapeHtml(opt)}</button></li>
-              `).join('')}
-            </ul>
-            <div class="cp-feedback" id="cp-feedback-${cp.id}" hidden></div>
-            <div class="cp-actions" id="cp-actions-${cp.id}"></div>
-          </div>
+          ${isVerified ? unlockedSection : lockedSection}
         </div>
       `;
+      // Verify-location button (visible doar dacă currentVerified=false)
+      const verifyBtn = huntCheckpointEl.querySelector('#cp-verify-btn');
+      if (verifyBtn) verifyBtn.addEventListener('click', () => openVerifyModal(cp));
+      // Dacă e verificat deja, returnăm — nu mai wire-uim ghicitoarea
+      if (!isVerified) {
+        map.setView([cp.lat, cp.lon], Math.max(map.getZoom(), 15), { animate: true });
+        return;
+      }
       // Wire up option buttons
       const optionsContainer = huntCheckpointEl.querySelector(`#cp-options-${cp.id}`);
       const feedback = huntCheckpointEl.querySelector(`#cp-feedback-${cp.id}`);
@@ -5462,6 +5594,7 @@
         if (!progress.solved.includes(cp.id)) progress.solved.push(cp.id);
         progress.score += cp.riddle.points;
         progress.currentIdx = Math.min(progress.currentIdx + 1, activeHunt.checkpoints.length);
+        progress.currentVerified = false;  // următorul cp începe locked
         saveHuntProgress(activeHunt, progress);
         // Show "next" button
         actions.innerHTML = '';
@@ -5513,6 +5646,94 @@
       lightboxCaption.innerHTML = '<small style="opacity:.7;letter-spacing:.05em;text-transform:uppercase;font-size:11px">Indiciu hunt · pinch pentru zoom · tap în afară pentru închidere</small>';
       lightboxCaption.hidden = false;
       lightbox.dataset.open = '1';
+    });
+
+    // ─── Verify location modal (pin-drop pe mini-hartă) ──────────
+    const verifyModal = document.getElementById('verify-modal');
+    const verifyTitle = document.getElementById('verify-title');
+    const verifyMapEl = document.getElementById('verify-map');
+    const verifyCheck = document.getElementById('verify-check');
+    const verifyClose = document.getElementById('verify-close');
+    const verifyFeedback = document.getElementById('verify-feedback');
+    const VERIFY_RADIUS_M = 120;  // raza generoasă pentru match
+
+    let verifyMap = null;
+    let verifyMarker = null;
+    let verifyTargetCp = null;
+
+    function openVerifyModal(cp) {
+      verifyTargetCp = cp;
+      verifyTitle.textContent = `Marchează unde se află „${cp.title}"`;
+      verifyFeedback.textContent = 'Click/tap pe hartă pentru a plasa pinul, apoi apasă Verifică.';
+      verifyFeedback.className = '';
+      verifyCheck.disabled = true;
+      verifyModal.dataset.open = '1';
+      if (!verifyMap) {
+        verifyMap = L.map(verifyMapEl, {
+          center: [45.435, 28.058],
+          zoom: 13,
+          attributionControl: false,
+        });
+        L.tileLayer('https://a.basemaps.cartocdn.com/voyager/{z}/{x}/{y}{r}.png', {
+          maxZoom: 19,
+          subdomains: 'abcd',
+        }).addTo(verifyMap);
+        verifyMap.on('click', (e) => {
+          if (verifyMarker) verifyMap.removeLayer(verifyMarker);
+          verifyMarker = L.marker(e.latlng, {
+            icon: L.divIcon({
+              className: 'custom-marker',
+              html: '<div class="marker-bubble" style="background:#b34128;color:#fff;font-weight:800;border-color:#fff">?</div>',
+              iconSize: [34, 34], iconAnchor: [17, 17],
+            }),
+          }).addTo(verifyMap);
+          verifyCheck.disabled = false;
+          verifyFeedback.className = '';
+          verifyFeedback.textContent = 'Pin plasat. Apasă Verifică pentru a confirma.';
+        });
+      }
+      // Reset view + șterge orice pin precedent
+      verifyMap.setView([45.435, 28.058], 13);
+      if (verifyMarker) { verifyMap.removeLayer(verifyMarker); verifyMarker = null; }
+      // Așteaptă render după animația modal-ului
+      setTimeout(() => verifyMap.invalidateSize(), 120);
+    }
+
+    function closeVerifyModal() {
+      delete verifyModal.dataset.open;
+      if (verifyMap && verifyMarker) {
+        verifyMap.removeLayer(verifyMarker);
+        verifyMarker = null;
+      }
+    }
+
+    verifyClose.addEventListener('click', closeVerifyModal);
+    verifyModal.addEventListener('click', (e) => {
+      // click în overlay (nu în sheet) → close
+      if (e.target === verifyModal) closeVerifyModal();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && verifyModal.dataset.open === '1') closeVerifyModal();
+    });
+
+    verifyCheck.addEventListener('click', () => {
+      if (!verifyMarker || !verifyTargetCp || !activeHunt) return;
+      const target = L.latLng(verifyTargetCp.lat, verifyTargetCp.lon);
+      const dist = verifyMarker.getLatLng().distanceTo(target);
+      if (dist <= VERIFY_RADIUS_M) {
+        verifyFeedback.className = 'success';
+        verifyFeedback.textContent = '✓ Excelent! Te afli la obiectiv. Se deschide ghicitoarea...';
+        const progress = loadHuntProgress(activeHunt) || newHuntProgress();
+        progress.currentVerified = true;
+        saveHuntProgress(activeHunt, progress);
+        setTimeout(() => {
+          closeVerifyModal();
+          renderHuntCheckpoint();
+        }, 1200);
+      } else {
+        verifyFeedback.className = 'error';
+        verifyFeedback.textContent = '✗ Nu chiar. Mai încearcă să găsești obiectivul pe hartă.';
+      }
     });
 
     huntResetBtn.addEventListener('click', () => {
