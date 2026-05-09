@@ -5397,8 +5397,14 @@
       optionsContainer.querySelectorAll('button.cp-option').forEach(btn => {
         btn.addEventListener('click', () => {
           if (btn.disabled) return;
+          // Ascundem feedback-ul de eroare anterior (dacă era) — retry curat
+          if (feedback && !feedback.hidden && feedback.classList.contains('error')) {
+            feedback.hidden = true;
+          }
           // Toggle selection
-          optionsContainer.querySelectorAll('button.cp-option').forEach(b => b.classList.remove('selected'));
+          optionsContainer.querySelectorAll('button.cp-option').forEach(b => {
+            if (!b.disabled) b.classList.remove('selected');
+          });
           btn.classList.add('selected');
           selectedIdx = parseInt(btn.dataset.idx, 10);
           // Show submit button if not already
@@ -5414,14 +5420,29 @@
       map.setView([cp.lat, cp.lon], Math.max(map.getZoom(), 15), { animate: true });
     }
 
+    // Penalitate per răspuns greșit. Nu dezvăluim răspunsul corect — doar
+    // marcăm opțiunea aleasă ca greșită și permitem reîncercarea.
+    const WRONG_ANSWER_PENALTY = 25;
+
     function submitRiddleAnswer(cp, selectedIdx, optionsContainer, feedback, actions) {
       const isCorrect = selectedIdx === cp.riddle.correct;
       const buttons = optionsContainer.querySelectorAll('button.cp-option');
       buttons.forEach((btn, i) => {
-        btn.disabled = true;
         btn.classList.remove('selected');
-        if (i === cp.riddle.correct) btn.classList.add('correct');
-        else if (i === selectedIdx) btn.classList.add('wrong');
+        if (isCorrect) {
+          // Doar pe corect dezvăluim toate (corect + ce-a ales userul dacă e greșit)
+          btn.disabled = true;
+          if (i === cp.riddle.correct) btn.classList.add('correct');
+          else if (i === selectedIdx) btn.classList.add('wrong');
+        } else {
+          // Pe greșit: marcăm doar opțiunea aleasă ca greșită, păstrăm
+          // celelalte active (inclusiv corect) ca user-ul să poată reîncerca
+          // fără să afle răspunsul.
+          if (i === selectedIdx) {
+            btn.classList.add('wrong');
+            btn.disabled = true;
+          }
+        }
       });
       feedback.hidden = false;
       if (isCorrect) {
@@ -5456,20 +5477,17 @@
         });
         actions.appendChild(nextBtn);
       } else {
+        // Răspuns greșit: scădem puncte și salvăm. Răspunsul corect nu se
+        // dezvăluie — opțiunile rămase sunt active pentru retry direct.
+        const progress = loadHuntProgress(activeHunt) || newHuntProgress();
+        progress.score -= WRONG_ANSWER_PENALTY;
+        saveHuntProgress(activeHunt, progress);
         feedback.className = 'cp-feedback error';
-        feedback.textContent = 'Răspuns greșit. Încearcă din nou.';
-        // Re-enable buttons after a beat
+        feedback.innerHTML = `Răspuns greșit. <strong>−${WRONG_ANSWER_PENALTY} puncte.</strong> Mai încearcă.`;
+        // Update bara de progres (scor afișat se schimbă)
+        renderHuntStopList();
+        // Curățăm action-urile — userul poate da click direct pe altă opțiune
         actions.innerHTML = '';
-        const retryBtn = document.createElement('button');
-        retryBtn.type = 'button';
-        retryBtn.className = 'secondary';
-        retryBtn.textContent = 'Încearcă din nou';
-        retryBtn.addEventListener('click', () => {
-          buttons.forEach(b => { b.disabled = false; b.classList.remove('correct', 'wrong'); });
-          feedback.hidden = true;
-          actions.innerHTML = '';
-        });
-        actions.appendChild(retryBtn);
       }
     }
 
