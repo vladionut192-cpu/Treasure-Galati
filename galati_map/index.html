@@ -2462,31 +2462,76 @@
       border: 0 !important;
     }
 
-    /* Cluster bubble — overrides default markercluster look (orange/yellow)
-       cu paleta brand-ului. Două variante: locații (verde) și pubcrawl (portocaliu). */
+    /* Cluster bubble — paletă brand premium, perfect rotund, cu adâncime
+       (gradient radial + halou exterior + inset highlight). Override la
+       MarkerCluster.css default (galben/portocaliu/roșu). */
     .marker-cluster {
       background: transparent !important;
+      border-radius: 50% !important;
     }
     .marker-cluster div {
-      background: var(--accent-deep);
+      width: 42px; height: 42px;
+      margin: 0 !important;
+      border-radius: 50% !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 32% 28%,
+        color-mix(in srgb, var(--accent-deep) 80%, white 20%),
+        var(--accent-deep) 55%,
+        color-mix(in srgb, var(--accent-deep) 78%, black 22%) 100%);
       color: var(--paper);
-      border: 3px solid var(--paper);
-      box-shadow: 0 2px 6px rgba(0,0,0,.18);
-      width: 36px; height: 36px;
-      margin-left: 2px; margin-top: 2px;
+      border: 2px solid rgba(255, 255, 255, 0.92);
+      box-shadow:
+        0 0 0 4px rgba(29, 67, 60, 0.10),
+        0 6px 16px rgba(15, 15, 14, 0.28),
+        inset 0 -3px 6px rgba(0, 0, 0, 0.18),
+        inset 0 1px 2px rgba(255, 255, 255, 0.30);
       font-family: Inter, ui-sans-serif, system-ui, sans-serif;
-      font-weight: 700;
-      font-size: 13px;
+      font-weight: 800;
+      font-size: 14px;
+      letter-spacing: 0.01em;
+      transition: transform .18s ease, box-shadow .18s ease;
     }
-    .marker-cluster-small div { background: var(--accent); }
-    .marker-cluster-medium div { background: var(--accent-deep); }
-    .marker-cluster-large div { background: var(--ink); }
-    /* Pubcrawl photo cluster — culoare portocalie (orange) ca dot-ul */
-    .pubcrawl-cluster .marker-cluster div,
+    .marker-cluster:hover div {
+      transform: scale(1.08);
+      box-shadow:
+        0 0 0 6px rgba(29, 67, 60, 0.14),
+        0 10px 22px rgba(15, 15, 14, 0.34),
+        inset 0 -3px 6px rgba(0, 0, 0, 0.18),
+        inset 0 1px 2px rgba(255, 255, 255, 0.30);
+    }
+    .marker-cluster span {
+      line-height: 1;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.22);
+    }
+    /* Variații dimensionale subtile, păstrând cromatica */
+    .marker-cluster-small  div { width: 38px; height: 38px; font-size: 13px; }
+    .marker-cluster-medium div { width: 42px; height: 42px; font-size: 14px; }
+    .marker-cluster-large  div { width: 46px; height: 46px; font-size: 15px; }
+    /* Pubcrawl photo cluster — gradient portocaliu cald, identic ca structură */
     .marker-cluster.pubcrawl-cluster div {
-      background: #d97706;
+      background: radial-gradient(circle at 32% 28%,
+        #f4a020,
+        #d97706 55%,
+        #a35404 100%);
       color: #fff;
-      border-color: rgba(255,255,255,.85);
+      box-shadow:
+        0 0 0 4px rgba(217, 119, 6, 0.12),
+        0 6px 16px rgba(122, 70, 8, 0.32),
+        inset 0 -3px 6px rgba(0, 0, 0, 0.18),
+        inset 0 1px 2px rgba(255, 255, 255, 0.34);
+    }
+    .marker-cluster.pubcrawl-cluster:hover div {
+      box-shadow:
+        0 0 0 6px rgba(217, 119, 6, 0.16),
+        0 10px 22px rgba(122, 70, 8, 0.40),
+        inset 0 -3px 6px rgba(0, 0, 0, 0.18),
+        inset 0 1px 2px rgba(255, 255, 255, 0.34);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .marker-cluster div { transition: none; }
+      .marker-cluster:hover div { transform: none; }
     }
     .marker-bubble {
       width: 34px; height: 34px;
@@ -3957,10 +4002,11 @@
         iconCreateFunction: (cluster) => {
           const n = cluster.getChildCount();
           const sz = n < 10 ? 'small' : n < 30 ? 'medium' : 'large';
+          const dim = sz === 'small' ? 38 : sz === 'large' ? 46 : 42;
           return L.divIcon({
             html: `<div><span>${n}</span></div>`,
             className: `marker-cluster marker-cluster-${sz}`,
-            iconSize: L.point(40, 40),
+            iconSize: L.point(dim + 8, dim + 8),
           });
         },
       });
@@ -4904,10 +4950,11 @@
           iconCreateFunction: (cluster) => {
             const n = cluster.getChildCount();
             const sz = n < 10 ? 'small' : n < 30 ? 'medium' : 'large';
+            const dim = sz === 'small' ? 38 : sz === 'large' ? 46 : 42;
             return L.divIcon({
               html: `<div><span>${n}</span></div>`,
               className: `marker-cluster pubcrawl-cluster marker-cluster-${sz}`,
-              iconSize: L.point(40, 40),
+              iconSize: L.point(dim + 8, dim + 8),
             });
           },
         });
@@ -5282,7 +5329,6 @@
           <h3>${escapeHtml(cp.title)}</h3>
           ${cp.intro ? `<p class="cp-intro">${escapeHtml(cp.intro)}</p>` : ''}
           ${cipherHtml}
-          ${cp.monument ? `<p class="cp-monument">${escapeHtml(cp.monument)}</p>` : ''}
           ${cp.find_hint ? `<p class="cp-find-hint">${escapeHtml(cp.find_hint)}</p>` : ''}
           <div class="cp-riddle">
             <span class="label">Ghicitoarea</span>
