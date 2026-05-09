@@ -5668,35 +5668,44 @@
       verifyFeedback.className = '';
       verifyCheck.disabled = true;
       verifyModal.dataset.open = '1';
-      if (!verifyMap) {
-        verifyMap = L.map(verifyMapEl, {
-          center: [45.435, 28.058],
-          zoom: 13,
-          attributionControl: false,
-        });
-        L.tileLayer('https://a.basemaps.cartocdn.com/voyager/{z}/{x}/{y}{r}.png', {
-          maxZoom: 19,
-          subdomains: 'abcd',
-        }).addTo(verifyMap);
-        verifyMap.on('click', (e) => {
-          if (verifyMarker) verifyMap.removeLayer(verifyMarker);
-          verifyMarker = L.marker(e.latlng, {
-            icon: L.divIcon({
-              className: 'custom-marker',
-              html: '<div class="marker-bubble" style="background:#b34128;color:#fff;font-weight:800;border-color:#fff">?</div>',
-              iconSize: [34, 34], iconAnchor: [17, 17],
-            }),
+      // Așteptăm ca modalul să fie vizibil (display:flex aplicat) înainte
+      // să inițializăm Leaflet — altfel containerul are 0×0 și tile-urile
+      // nu se încarcă.
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        if (!verifyMap) {
+          verifyMap = L.map(verifyMapEl, {
+            center: [45.435, 28.058],
+            zoom: 13,
+            attributionControl: false,
+          });
+          // Aceeași URL ca harta principală (cartocdn rastertiles voyager).
+          L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+            maxZoom: 19,
+            subdomains: 'abcd',
+            crossOrigin: true,
           }).addTo(verifyMap);
-          verifyCheck.disabled = false;
-          verifyFeedback.className = '';
-          verifyFeedback.textContent = 'Pin plasat. Apasă Verifică pentru a confirma.';
-        });
-      }
-      // Reset view + șterge orice pin precedent
-      verifyMap.setView([45.435, 28.058], 13);
-      if (verifyMarker) { verifyMap.removeLayer(verifyMarker); verifyMarker = null; }
-      // Așteaptă render după animația modal-ului
-      setTimeout(() => verifyMap.invalidateSize(), 120);
+          verifyMap.on('click', (e) => {
+            if (verifyMarker) verifyMap.removeLayer(verifyMarker);
+            verifyMarker = L.marker(e.latlng, {
+              icon: L.divIcon({
+                className: 'custom-marker',
+                html: '<div class="marker-bubble" style="background:#b34128;color:#fff;font-weight:800;border-color:#fff">?</div>',
+                iconSize: [34, 34], iconAnchor: [17, 17],
+              }),
+            }).addTo(verifyMap);
+            verifyCheck.disabled = false;
+            verifyFeedback.className = '';
+            verifyFeedback.textContent = 'Pin plasat. Apasă Verifică pentru a confirma.';
+          });
+        }
+        // Reset view + șterge orice pin precedent
+        verifyMap.setView([45.435, 28.058], 13);
+        if (verifyMarker) { verifyMap.removeLayer(verifyMarker); verifyMarker = null; }
+        // Forțăm recalculul layout-ului (modalul tocmai a apărut)
+        verifyMap.invalidateSize();
+        // Și încă o dată după 200ms — uneori sub-pixel snapping mai e nevoie
+        setTimeout(() => verifyMap.invalidateSize(), 200);
+      }));
     }
 
     function closeVerifyModal() {
