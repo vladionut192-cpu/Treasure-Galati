@@ -2860,5 +2860,14 @@
     "lat": 45.436295,
     "lon": 28.054474,
     "year": 1901
+  },
+  {
+    "src": "../assets/images/local/autogara-dumitru-7a3948fc.jpg",
+    "caption_ro": "Autogara Dumitru",
+    "caption_en": "",
+    "folder": "local",
+    "lat": 45.442334,
+    "lon": 28.05868,
+    "year": 1970
   }
 ]

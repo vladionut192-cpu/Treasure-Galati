@@ -116,104 +116,554 @@
       ]
     },
     {
-      "id": "tour-diplomatic",
-      "title": "Galațiul cosmopolit — circuit consular",
-      "subtitle": "12 consulate · 1 oră de mers · pe Domnească și străzile vecine",
-      "description": "Înainte de Primul Război Mondial, Galațiul avea 21 de consulate și vice-consulate active — densitate diplomatică mai mare decât au astăzi multe capitale. Statutul de port-liber (1837–1882) și sediul Comisiei Europene a Dunării (din 1856) făceau din oraș o piață diplomatică cosmopolită: consuli sau agenți comerciali din toată Europa, plus Persia și SUA.\n\nTurul parcurge 12 reședințe consulare păstrate, de la sud la nord, mai ales pe Domnească. Multe au fost construite ca vile private de comercianți greci, evrei sau italieni și apoi închiriate puterilor europene. Astăzi le recunoști după blazonul de pe fațadă, după placa comemorativă sau după detalii eclectice (frontoane, cariatide, vitralii).",
-      "cover": "",
-      "category": "Diplomație și consulate",
-      "color": "#1d4480",
+      "id": "tour-palatele-galati",
+      "title": "Palatele Galațiului",
+      "subtitle": "10 obiective · ~3h · pe jos",
+      "category": "arhitectură",
+      "description": "Tur al palatelor istorice din Galați — clădirile monumentale care au definit profilul orașului-port în secolele XIX-XX. De la Palatul Navigației construit pentru flota fluvială română la Palatul Comisiei Europene a Dunării (azi Biblioteca V. A. Urechia), traseul acoperă instituțiile administrative, comerciale și culturale care au fost adevărate „palate\" ale Galațiului.",
+      "color": "#2c6157",
+      "cover": "../assets/images/Palatul-Comsiei-Europene-1-1024x859-13b5dbb10816.jpg",
       "stops": [
         {
-          "article": "../assets/articles/consulatul-greciei-str-a-i-cuza-nr-15/index.html",
-          "note": "Consulatul Greciei — pe Domnească 30, devenit ulterior și pe A.I. Cuza 15. Comunitatea greacă era cea mai veche și mai bogată din oraș. Vasile Karavia, conducătorul revoluției grecești de la 1821, a atacat garnizoana otomană din Galați în februarie 1821 — orașul a fost prima victorie a Eteriei pe pământ românesc."
+          "article": "../assets/articles/palatul-navigatiei/index.html",
+          "note": "1. Palatul Navigației — sediul Navigației Fluviale Române (1909-1912), arhitect Petre Antonescu."
         },
         {
-          "article": "../assets/articles/consulatul-belgiei-str-universitatii-nr-20/index.html",
-          "note": "Consulatul Belgiei — Belgia a fost a doua țară care a deschis consulat la Galați (după Franța, 1828). Comerțul cu cărbune din Anvers și Liège trecea pe aici spre Marea Neagră. Refugiații belgieni au sosit în august 1914 (după invazia germană) — Cinema Louvru le-a organizat o seară dansantă caritabilă."
+          "article": "../assets/articles/palatul-postelor-str-general-iacob-lahovary-nr-6/index.html",
+          "note": "2. Palatul Poștelor — clădirea poștei oficiale."
         },
         {
-          "article": "../assets/articles/consulatul-cehoslovaciei-str-eroilor-nr-7/index.html",
-          "note": "Consulatul Cehoslovaciei — pe Eroilor 7, deschis după 1918 (la fondarea Cehoslovaciei). Berea Ploll era cehă (proprietar Josef Ploll, din 1860). Mulți tehnicieni cehi și slovaci au lucrat la Șantierele Navale și la fabrica de bere — comunitate mică dar solidă."
+          "article": "../assets/articles/palatul-comercial-al-lui-simion-gheorghiu-str-domneasca-cc-str-gamulea/index.html",
+          "note": "3. Palatul Comercial al lui Simion Gheorghiu."
         },
         {
-          "article": "../assets/articles/consulatul-turciei-inainte-de-primul-razboi-mondial-str-eroilor-nr-14/index.html",
-          "note": "Consulatul Turciei — peste drum de cel cehoslovac, până la Primul Război. Galați a fost stăpânit de turci între 1538 și 1829, apoi raialaua Brăila (din care făcea parte) a fost cedată Țării Românești prin Pacea de la Adrianopol. După 1878 (independența României), turcii au revenit ca parteneri comerciali — exportau ulei și fructe uscate, importau cereale gălățene."
+          "article": "../assets/articles/palatul-administrativ-str-domneasca-nr-56/index.html",
+          "note": "4. Palatul Administrativ — Domnească 56."
         },
         {
-          "article": "../assets/articles/consulatul-germaniei-str-nicolae-holban/index.html",
-          "note": "Consulatul Prusiei (înainte de 1871) → Germaniei (după unificare). Pe strada N. Holban, fosta str. Holban. Prusia a fost a treia putere care a deschis consulat la Galați (1834). Comerțul cu Hamburg și Bremen a făcut din oraș un nod de export pentru cereale spre Europa de Nord. În 1944, retragerea germană a devastat Piața Regală."
+          "article": "../assets/articles/palatul-comisiunii-europene-a-dunarii-astazi-sediul-central-al-bibliotecii-judetene-v-a-urechia-str-mihai-bravu-nr-16/index.html",
+          "note": "5. Palatul CED — astăzi Biblioteca V. A. Urechia."
         },
         {
-          "article": "../assets/articles/consulatul-spaniei-interbelic-str-domneasca-nr-79-colt-cu-str-culturii/index.html",
-          "note": "Consulatul Spaniei — Domnească 79, colț cu Culturii. Reședință interbelică, după ce comunitatea sefardă (evrei spanioli) crescuse la Galați. Multe familii sefarde — emigrate din Spania după 1492 — au păstrat ladino ca limbă casnică. Evreii sefarzi controlau o parte din comerțul cu textile și exportul de cereale."
+          "article": "../assets/articles/palatul-robescu-astazi-sediul-palatului-copiilor-str-mihai-bravu-nr-28/index.html",
+          "note": "6. Palatul Robescu — astăzi Palatul Copiilor, opera lui Ion Mincu."
         },
         {
-          "article": "../assets/articles/consulatul-portugaliei-strada-domneasca-nr-80/index.html",
-          "note": "Consulatul Portugaliei — Domnească 80, alături de Casa Cuza Vodă. Portugalia avea consulate doar în puține porturi europene — Galații era pe ruta Marsilia–Lisabona–Constantinopol pentru comerțul cu cereale. Consulul era de obicei un negustor local cu cetățenie portugheză onorifică."
+          "article": "../assets/articles/seminarul-teologic/index.html",
+          "note": "7. Seminarul Teologic."
         },
         {
-          "article": "../assets/articles/consulatul-sardiniei-italiei-str-garii-nr-38/index.html",
-          "note": "Consulatul Regatului Sardiniei (până 1861) → Italiei. Pe Strada Gării 38. Italia a deschis consulat la Galați în 1860 — chiar înainte de unificarea italiană. Mulți comercianți italieni (Fanciotti, Cavallioti, Negroponte) și-au făcut averea la Galați. Casa Fanciotti pe Domnească 45 e una din cele mai frumoase reședințe italiene din oraș."
+          "article": "../assets/articles/palatul-episcopal-in-prezent-muzeul-istoriei-culturii-si-spiritualitatii-crestine-de-la-dunarea-de-jos-str-domneasca-nr-141/index.html",
+          "note": "8. Palatul Episcopal — astăzi Muzeul Spiritualității Creștine."
         },
         {
-          "article": "../assets/articles/consulatul-frantei-str-domneasca-nr-90/index.html",
-          "note": "Consulatul Franței — pe Domnească 90, primul consulat deschis la Galați (1828). Franța a fost cel mai influent stat în CED (Comisia Europeană a Dunării, fondată 1856). Tot inginerii francezi (Charles Hartley, britanic dar trimis de CED) au săpat canalul Sulina, transformând Galațiul în port maritim accesibil vapoarelor mari."
+          "article": "../assets/articles/institutul-catolic-pensionul-notre-dame-de-sion/index.html",
+          "note": "9. Institutul Catolic „Notre Dame de Sion\" — fondat 1867."
         },
         {
-          "article": "../assets/articles/consulatul-elvetiei-str-basarabiei-nr-11/index.html",
-          "note": "Consulatul Elveției — pe Basarabiei 11. Elveția n-avea interese coloniale, dar era o destinație de business pentru elita evreiască și greacă din Galați. Mulți industriași gălățeni își țineau averea în bănci elvețiene — clasa din care făceau parte Auschnitt, Steuerman, Fischer."
-        },
-        {
-          "article": "../assets/articles/consulatul-norvegiei-si-suediei-str-domneasca-nr-106/index.html",
-          "note": "Consulatul Norvegiei și Suediei — Domnească 106, până la separarea Suediei și Norvegiei (1905). După aceea, doar Norvegia a păstrat reprezentanța, până în anii '30. Cherestea, hering și ulei de balenă din Norvegia veneau pe Dunăre la Galați; cereale și sare plecau spre Bergen."
-        },
-        {
-          "article": "../assets/articles/consulatul-poloniei-str-vultur-nr-18/index.html",
-          "note": "Consulatul Poloniei — pe str. Vultur 18, deschis în interbelic (după 1918, când Polonia s-a refondat). Refugiații polonezi au ajuns la Galați în septembrie 1939, după invazia germano-sovietică, fugind pe Dunăre prin Cernăuți și Galați spre Marea Neagră. Galațiul a fost pentru ei ultima oprire înainte de Constanța și exilul în Marea Britanie."
+          "article": "../assets/articles/palatul-scolilor-comerciale/index.html",
+          "note": "10. Palatul Școlilor Comerciale — Strada Gării 63-65."
         }
       ]
     },
     {
-      "id": "tour-patrimoniu-evreiesc",
-      "title": "Patrimoniul evreiesc gălățean",
-      "subtitle": "8 opriri · 2,5 ore · de la sinagogă la cimitir",
-      "description": "La apogeul ei interbelic, comunitatea evreiască din Galați număra peste 20.000 de membri (cca 22% din populație) — a doua cea mai mare comunitate evreiască din România, după București. Stăpânea șantierul naval Mendel, fabricile chimice și de textile, exportul de cereale, sistemul medical privat și o rețea de școli proprii.\n\nDin cele 22 de sinagogi care funcționau la 1900, doar una mai e activă astăzi (Templul Meseriașilor). După Holocaust și emigrația din anii '50–'70 (mai ales spre Israel), comunitatea s-a redus la câteva zeci de membri. Turul reconstituie patrimoniul lăsat: locuri de cult, case de comercianți, școli, spital, cofetărie, fabrici și cimitirul — memoria unei lumi dispărute care a modelat orașul mai mult decât oricare altă comunitate.",
-      "cover": "",
-      "category": "Patrimoniu evreiesc",
-      "color": "#7a3d8a",
+      "id": "tour-personalitatile-galati",
+      "title": "Personalitățile Galațiului",
+      "subtitle": "22 obiective · ~5h · pe jos",
+      "category": "biografii",
+      "description": "Cel mai cuprinzător tur al orașului — 22 de case, monumente și locuri legate de marile personalități: industriași, doctori, artiști, actori, politicieni, comercianți care au modelat orașul de la mijlocul secolului XIX până la mijlocul secolului XX.",
+      "color": "#8b1e22",
+      "cover": "../assets/images/Casa-Negropontes-1024x683-3b6019a1cc08.jpg",
       "stops": [
         {
-          "article": "../assets/articles/liceul-israelit-fundatura-scolii-nr-3/index.html",
-          "note": "START — Liceul Israelit (Fundătura Școlii 3). Fondat la sfârșitul sec. XIX, era una din cele mai prestigioase școli evreiești din oraș. Curriculum dublu — română oficială + ebraică, idiș și istorie iudaică. A format generații de comercianți, juriști și medici care au modelat clasa de mijloc gălățeană. Închisă brutal în 1948, când statul a naționalizat toate școlile confesionale."
+          "article": "../assets/articles/monumentul-unirii-al-domnitorului-alexandru-ioan-cuza-str-domneasca-rondoul-gradinii-publice/index.html",
+          "note": "1. Monumentul Unirii / Statuia Cuza."
+        },
+        {
+          "article": "../assets/articles/casa-negroponte-str-domneasca-nr-82/index.html",
+          "note": "2. Casa Negroponte — Domnească 82."
         },
         {
           "article": "../assets/articles/industriasul-max-fischer-str-al-i-cuza-nr-53-casa-resedinta-ibidem-nr-71-casa-2/index.html",
-          "note": "Casa industriașului Max Fischer — A.I. Cuza 53 (reședința) + 71 (a doua casă). Fischer deținea o fabrică de textile și o moară de cereale. Tipic pentru elita evreiască interbelică: două case în același cartier, una pentru locuit, una pentru afaceri sau familia extinsă. Fațadă eclectică cu detalii Art Nouveau."
+          "note": "3. Casele Max Fischer."
         },
         {
-          "article": "../assets/articles/templul-meseriasilor-str-dornei-nr-7-11/index.html",
-          "note": "Sinagoga „Templul Meseriașilor” (Dornei 7-11) — singura activă din cele 22 de sinagogi ale Galațiului. Construită în 1875, reconstruită 1927-1929, restaurată complet în 2014 (cu fonduri europene + comunitatea locală). Numele vine de la breasla meșteșugarilor evrei (croitori, cizmari, fierari) care au finanțat-o. Astăzi adăpostește și un mic muzeu al comunității evreiești."
+          "article": "../assets/articles/casa-nae-leonard/index.html",
+          "note": "4. Casa Nae Leonard — tenorul gălățean (1886-1928)."
         },
         {
-          "article": "../assets/articles/casa-comerciantului-evreu-jean-steuerman-astazi-liceul-tehnologic-simion-mehedinti-str-nicolae-balcescu-nr-19/index.html",
-          "note": "Casa comerciantului Jean Steuerman (Bălcescu 19) — astăzi Liceul Tehnologic „Simion Mehedinți”. Clădire interbelică elegantă, achiziționată după naționalizare (1948) pentru școala tehnică. Steuerman era unul din importatorii de mașini și utilaje agricole — face parte din generația de evrei germanofili educați la Viena și Berlin."
+          "article": "../assets/articles/casa-ioan-d-prodrom/index.html",
+          "note": "5. Casa Ioan D. Prodrom — primar."
         },
         {
-          "article": "../assets/articles/cofetaria-centrala-carol-ettinger/index.html",
-          "note": "Cofetăria Centrală (Carol Ettinger) — pe Domnească 30/34, alături de Hotel Bristol. Punct de întâlnire al elitei interbelice. Ettinger, evreu vienez, vindea Sachertorte, prăjituri cu fructe glasate, ciocolată „Belgia”. În 1918, trupele române victorioase au defilat pe Domnească și au luat cafea aici și la Cofetăria „Principele Mihai”."
+          "article": "../assets/articles/casele-cavallioti-str-maior-iancu-fotea-nr-2-si-nr-36/index.html",
+          "note": "6. Casele Cavallioti."
+        },
+        {
+          "article": "../assets/articles/farmacia-aburel/index.html",
+          "note": "7. Farmacia Aburel."
+        },
+        {
+          "article": "../assets/articles/hristo-botev-placa-comemorativa-str-nicolae-balcescu-nr-33/index.html",
+          "note": "8. Casa Hristo Botev — placă comemorativă."
+        },
+        {
+          "article": "../assets/articles/casa-medicului-nicolae-alexandrescu-strada-nicolae-balcescu-nr-80/index.html",
+          "note": "9. Casa Dr. Nicolae Alexandrescu."
         },
         {
           "article": "../assets/articles/osias-auschnitt-str-nicolae-balcescu-nr-82-si-max-auschnitt-str-domneasca-nr-70/index.html",
-          "note": "Casele Auschnitt (Bălcescu 82 + Domnească 70). Familia Auschnitt — Osias (tatăl) și Max (fiul) — controlau Uzinele de Fier Reșița și „Titan-Nădrag-Călan”, plus un imperiu industrial care rivaliza cu Malaxa și Berthelot. Max Auschnitt a fost arestat de Carol II în 1939 (criza politică), apoi a fugit din România în 1941. Reședința de pe Domnească 70 e una din cele mai impunătoare case interbelice."
+          "note": "10. Casa Osias Auschnitt."
         },
         {
-          "article": "../assets/articles/spitalul-israelit-str-nicolae-alexandrescu-nr-99/index.html",
-          "note": "Spitalul Israelit (str. dr. Nicolae Alexandrescu 99). Una din cele mai moderne instituții medicale gălățene interbelice — finanțat exclusiv din donații ale comunității. Tratamente gratuite pentru evreii săraci, plătite pentru ne-evrei. Naționalizat în 1948, reconvertit în spital de stat. Mulți medici evrei au fost dați afară în campania anti-cosmopolită din 1952."
+          "article": "../assets/articles/osias-auschnitt-str-nicolae-balcescu-nr-82-si-max-auschnitt-str-domneasca-nr-70/index.html",
+          "note": "11. Casa Max Auschnitt."
+        },
+        {
+          "article": "../assets/articles/casa-plesnila/index.html",
+          "note": "12. Casele Plesnilă."
+        },
+        {
+          "article": "../assets/articles/casa-draganescu/index.html",
+          "note": "13. Casa Dumitru Drăgănescu."
+        },
+        {
+          "article": "../assets/articles/casele-malaxa-str-eroilor-nr-6-8-28/index.html",
+          "note": "14. Casele Malaxa."
+        },
+        {
+          "article": "../assets/articles/casa-serfioti/index.html",
+          "note": "15. Casa Serfioti."
+        },
+        {
+          "article": "../assets/articles/casa-monferrato-str-universitatii-nr-6/index.html",
+          "note": "16. Casa Monferatto — sediul PNL."
+        },
+        {
+          "article": "../assets/articles/grand-hotel/index.html",
+          "note": "17. Grand Hotel."
+        },
+        {
+          "article": "../assets/articles/casa-vincenzo-fanciotti-str-domneasca-nr-45/index.html",
+          "note": "18. Casa Vincenzo Fanciotti."
+        },
+        {
+          "article": "../assets/articles/familia-fernic-casa-1-str-mihai-eminescu-nr-7-casa-2-str-iancu-fotea-cc-str-gen-iacob-lahovary/index.html",
+          "note": "19. Casele Fernic — fondatorii Uzinelor Mecanice (1893)."
+        },
+        {
+          "article": "../assets/articles/casa-maksay/index.html",
+          "note": "20. Casa și atelierul lui George Maksay — sculptor."
+        },
+        {
+          "article": "../assets/articles/statuia-lui-costache-negri-str-domneasca-nr-12-parc-spicul/index.html",
+          "note": "21. Statuia lui Costache Negri."
+        },
+        {
+          "article": "../assets/articles/statuia-lui-ion-c-bratianu-faleza-dunarii/index.html",
+          "note": "22. Statuia lui Ion C. Brătianu."
+        }
+      ]
+    },
+    {
+      "id": "tour-masonic",
+      "title": "Patrimoniul masonic gălățean",
+      "subtitle": "4 obiective · ~1h · pe jos",
+      "category": "masonerie",
+      "description": "Tur scurt prin clădirile asociate cu loja masonică „Discipolii lui Pitagora\" — singura lojă din România al cărei statut, semnat de însuși Domnitorul Cuza, se păstrează intact la Biblioteca Județeană din Galați.",
+      "color": "#1d433c",
+      "cover": "../assets/images/local/sigiliul-galatiului-b82ebaf2.webp",
+      "stops": [
+        {
+          "article": "../assets/articles/casa-bals-str-domneasca-nr-77/index.html",
+          "note": "1. Casa Balș — locuință boierească."
+        },
+        {
+          "article": "../assets/articles/industriasul-max-fischer-str-al-i-cuza-nr-53-casa-resedinta-ibidem-nr-71-casa-2/index.html",
+          "note": "2. Casele Max Fischer."
+        },
+        {
+          "article": "../assets/articles/casa-cuza-strada-al-i-cuza-nr-80/index.html",
+          "note": "3. Casa Cuza Vodă — Muzeul Cuza, semnatarul statutului „Discipolilor\"."
+        },
+        {
+          "article": "../assets/articles/casa-serfioti/index.html",
+          "note": "4. Casa Serfioti — dr. Aristide Serfioti, fondatorul Comitetului Filantropic."
+        }
+      ]
+    },
+    {
+      "id": "tour-grec",
+      "title": "Patrimoniul grec gălățean",
+      "subtitle": "5 obiective · ~1.5h · pe jos",
+      "category": "comunități",
+      "description": "Tur al moștenirii grecești la Galați — comunitate prosperă cu rol esențial în comerțul maritim. Casele și hotelurile aparținând marilor familii grecești au modelat fațada centrală.",
+      "color": "#1f2c4a",
+      "cover": "../assets/images/Cavoul-Serfiotti-1-1024x734-7ba26112d841.jpg",
+      "stops": [
+        {
+          "article": "../assets/articles/casa-gheorghiade-str-domneasca-nr-61-astazi-centrul-cultural-dunarea-de-jos/index.html",
+          "note": "1. Casa Gheorghiadis."
+        },
+        {
+          "article": "../assets/articles/casa-serfioti/index.html",
+          "note": "2. Casa Serfioti — Aristide Serfioti, doctor de origine greacă."
+        },
+        {
+          "article": "../assets/articles/casa-lambrinidi/index.html",
+          "note": "3. Casa Epaminonda Lambrinidi."
+        },
+        {
+          "article": "../assets/articles/grand-hotel/index.html",
+          "note": "4. Grand Hotel — proprietar Elie Climi (Climis), grec."
+        },
+        {
+          "article": "../assets/articles/casele-cavallioti-str-maior-iancu-fotea-nr-2-si-nr-36/index.html",
+          "note": "5. Casele Cavallioti."
+        }
+      ]
+    },
+    {
+      "id": "tour-biserici",
+      "title": "Bisericile istorice ale Galațiului",
+      "subtitle": "14 obiective · ~3.5h · pe jos",
+      "category": "lăcașuri de cult",
+      "description": "Tur cuprinzător al lăcașurilor de cult istorice — un oraș cosmopolit cu comunități creștine ortodoxe, catolice, lipovenești, evanghelice, calviniste, armene. Cea mai veche biserică e Precista (sec. XVII).",
+      "color": "#5d3f1a",
+      "cover": "../assets/images/Biserica-Precista-1024x782-fd0fbdb6d774.jpg",
+      "stops": [
+        {
+          "article": "../assets/articles/catedrala-episcopala-sf-nicolae-str-domneasca-104/index.html",
+          "note": "1. Catedrala Episcopală Sf. Nicolae."
+        },
+        {
+          "article": "../assets/articles/biserica-lipoveneasca-hram-sf-nicolae-str-episcop-melchisedec-stefanescu-nr-30-32-cc-str-stiintei/index.html",
+          "note": "2. Biserica Lipovenească — comunitatea rusă de rit vechi."
+        },
+        {
+          "article": "../assets/articles/biserica-protestanta-evanghelica-astazi-biserica-baptista-golgota-str-nicolae-balcescu-nr-67/index.html",
+          "note": "3. Biserica Protestantă Evanghelică."
+        },
+        {
+          "article": "../assets/articles/biserica-romano-catolica-str-domneasca-nr-88/index.html",
+          "note": "4. Biserica Romano-Catolică."
+        },
+        {
+          "article": "../assets/articles/biserica-sfintii-apostoli-petru-si-pavel-str-sindicatelor-nr-68-intrare-dinspre-str-portului/index.html",
+          "note": "5. Biserica „Sf. Apostoli Petru și Pavel\" (Pescarilor)."
+        },
+        {
+          "article": "../assets/articles/manastirea-sf-arhangheli-metoc-str-egalitatii-nr-6/index.html",
+          "note": "6. Biserica „Sf. Arhangheli Mihail și Gavriil\" (Metoc)."
+        },
+        {
+          "article": "../assets/articles/biserica-sf-ierarh-spiridon-str-sf-spiridon-nr-13/index.html",
+          "note": "7. Biserica Sf. Ierarh Spiridon."
+        },
+        {
+          "article": "../assets/articles/biserica-mavromol-hram-adormirea-maicii-domnului-aleea-mavromol-cc-str-nicolae-balcescu/index.html",
+          "note": "8. Biserica Mavromol — „Stânca Neagră\" (1702)."
+        },
+        {
+          "article": "../assets/articles/biserica-greaca-hram-schimbarea-la-fata-metamorphosis-str-maior-iancu-fotea-nr-1-cc-str-domneasca/index.html",
+          "note": "9. Biserica Greacă (1872)."
+        },
+        {
+          "article": "../assets/articles/biserica-vovidenia-hram-intrarea-in-biserica-a-maicii-domnului-str-logofat-tautu-nr-24/index.html",
+          "note": "10. Biserica Vovidenia."
+        },
+        {
+          "article": "../assets/articles/biserica-reformata-calvina-str-eroilor-nr-58/index.html",
+          "note": "11. Biserica Reformată Calvină."
+        },
+        {
+          "article": "../assets/articles/bustul-lui-spiridon-vranceanu-str-domneasca-nr-51/index.html",
+          "note": "12. Bustul lui Spiridon Vrânceanu."
+        },
+        {
+          "article": "../assets/articles/biserica-apostolica-ortodoxa-armeana-sfanta-maria-hram-adormirea-maicii-domnului-bld-prelungirea-traian-nr-13/index.html",
+          "note": "13. Biserica Apostolică Armeană „Sfânta Maria\"."
+        },
+        {
+          "article": "../assets/articles/biserica-fortificata-sf-precista-hram-adormirea-maicii-domnului-str-traian-nr-1/index.html",
+          "note": "14. Biserica fortificată „Sfânta Precista\" (sec. XVII)."
+        }
+      ]
+    },
+    {
+      "id": "tour-consulate",
+      "title": "Consulatele istorice ale Galațiului",
+      "subtitle": "11 obiective · ~3h · pe jos",
+      "category": "consulate",
+      "description": "Tur al fostelor sedii diplomatice. La apogeul portului liber (1837-1882), Galațiul găzduia 21 de consulate — densitate diplomatică unică, mai mare decât Bruxelles-ul de azi.",
+      "color": "#2c6157",
+      "cover": "../assets/images/Consulat-Franta-d4cd0d0c10bf.jpg",
+      "stops": [
+        {
+          "article": "../assets/articles/consulatul-poloniei-str-vultur-nr-18/index.html",
+          "note": "1. Consulatul Poloniei."
+        },
+        {
+          "article": "../assets/articles/consulatul-norvegiei-si-suediei-str-domneasca-nr-106/index.html",
+          "note": "2. Consulatul Suediei și Norvegiei."
+        },
+        {
+          "article": "../assets/articles/consulatul-elvetiei-str-basarabiei-nr-11/index.html",
+          "note": "3. Consulatul Elveției."
+        },
+        {
+          "article": "../assets/articles/consulatul-frantei-str-domneasca-nr-90/index.html",
+          "note": "4. Consulatul Franței."
+        },
+        {
+          "article": "../assets/articles/casa-macri/index.html",
+          "note": "5. Casa Macri."
+        },
+        {
+          "article": "../assets/articles/consulatul-germaniei-str-nicolae-holban/index.html",
+          "note": "6. Consulatul Prusiei (ulterior Germaniei)."
+        },
+        {
+          "article": "../assets/articles/consulatul-rusiei/index.html",
+          "note": "7. Consulatul Rusiei."
+        },
+        {
+          "article": "../assets/articles/consulatul-cehoslovaciei-str-eroilor-nr-7/index.html",
+          "note": "8. Consulatul Cehoslovaciei."
+        },
+        {
+          "article": "../assets/articles/consulatul-turciei-inainte-de-primul-razboi-mondial-str-eroilor-nr-14/index.html",
+          "note": "9. Consulatul Turciei."
+        },
+        {
+          "article": "../assets/articles/consulatul-belgiei-str-universitatii-nr-20/index.html",
+          "note": "10. Consulatul Belgiei."
+        },
+        {
+          "article": "../assets/articles/consulatul-greciei-str-a-i-cuza-nr-15/index.html",
+          "note": "11. Consulatul Greciei."
+        }
+      ]
+    },
+    {
+      "id": "tour-romanesc",
+      "title": "Patrimoniul românesc în Galați",
+      "subtitle": "7 obiective · ~2h · pe jos",
+      "category": "patrimoniu",
+      "description": "Tur al instituțiilor și clădirilor românești emblematice — palatele administrative ridicate după Marea Unire, seminarul ortodox, Grădina Publică amenajată în stil englezesc.",
+      "color": "#b34128",
+      "cover": "../assets/images/Palatul-Episcopal-1024x683-90981f67016a.jpg",
+      "stops": [
+        {
+          "article": "../assets/articles/palatul-comercial-al-lui-simion-gheorghiu-str-domneasca-cc-str-gamulea/index.html",
+          "note": "1. Palatul Comercial Simion Gheorghiu."
+        },
+        {
+          "article": "../assets/articles/palatul-de-justitie-astazi-rectoratul-universitatii-dunarea-de-jos-str-domneasca-nr-47/index.html",
+          "note": "2. Palatul de Justiție — astăzi rectoratul UDJ."
+        },
+        {
+          "article": "../assets/articles/palatul-pescariilor-statului-str-portului-nr-56/index.html",
+          "note": "3. Palatul Pescăriilor."
+        },
+        {
+          "article": "../assets/articles/palatul-robescu-astazi-sediul-palatului-copiilor-str-mihai-bravu-nr-28/index.html",
+          "note": "4. Palatul Robescu."
+        },
+        {
+          "article": "../assets/articles/seminarul-teologic/index.html",
+          "note": "5. Seminarul Teologic."
+        },
+        {
+          "article": "../assets/articles/palatul-episcopal-in-prezent-muzeul-istoriei-culturii-si-spiritualitatii-crestine-de-la-dunarea-de-jos-str-domneasca-nr-141/index.html",
+          "note": "6. Palatul Episcopal."
+        },
+        {
+          "article": "../assets/articles/gradina-publica/index.html",
+          "note": "7. Grădina Publică (1846)."
+        }
+      ]
+    },
+    {
+      "id": "tour-comunism",
+      "title": "Comunismul în Galați",
+      "subtitle": "4 obiective · ~1.5h · pe jos sau cu tramvaiul",
+      "category": "sec. XX",
+      "description": "Tur al monumentelor și ansamblurilor urbane lăsate de regimul comunist (1945-1989) — de la Combinatul Siderurgic la cartierele Țiglina și Mazepa, fântânile arteziene moderniste și Turnul TV.",
+      "color": "#7a2818",
+      "cover": "../assets/images/Turn-TV-683x1024-a5d5b2e0b9a4.jpg",
+      "stops": [
+        {
+          "article": "../assets/articles/monument-13-iunie-1916-str-portului-cc-str-george-enescu/index.html",
+          "note": "1. Monumentul „13 Iunie 1916\"."
+        },
+        {
+          "article": "../assets/articles/fantana-arteziana-puful-de-papadie-str-brailei-intersectia-cu-str-cosbuc/index.html",
+          "note": "2. Fântâna „Puful de Păpădie\" — emblemă modernistă."
+        },
+        {
+          "article": "../assets/articles/proiect-urban-tiglina/index.html",
+          "note": "3. Proiectul urban-comunitar Țiglina."
+        },
+        {
+          "article": "../assets/articles/turnul-de-televiziune-str-victor-valcovici-nr-2/index.html",
+          "note": "4. Turnul de Televiziune."
+        }
+      ]
+    },
+    {
+      "id": "tour-diversitate-etnica",
+      "title": "Diversitatea etnică a Galațiului",
+      "subtitle": "4 obiective · ~1.5h · pe jos",
+      "category": "comunități",
+      "description": "Tur scurt prin urmele comunităților etnice — bulgari, evrei, italieni, francezi. La 1900: 36.7% români, 22% evrei, 7% greci, 3.4% italieni — densitate cosmopolită rară pentru Europa de Est.",
+      "color": "#1f2c4a",
+      "cover": "../assets/images/Casa-Hristo-Botev-2-683x1024-3ad493125142.jpg",
+      "stops": [
+        {
+          "article": "../assets/articles/grand-hotel/index.html",
+          "note": "1. Grand Hotel — fondat de elvețianul Climi/Climis."
+        },
+        {
+          "article": "../assets/articles/hristo-botev-placa-comemorativa-str-nicolae-balcescu-nr-33/index.html",
+          "note": "2. Casa Hristo Botev — poetul-revoluționar bulgar (1871-1872)."
+        },
+        {
+          "article": "../assets/articles/institutul-catolic-pensionul-notre-dame-de-sion/index.html",
+          "note": "3. Institutul Catolic „Notre Dame de Sion\" — călugărițele franceze."
+        },
+        {
+          "article": "../assets/articles/atlantic-filatura-egrenare-si-tesatorie-de-bumbac-str-lozoveni-nr-115-astazi-sediu-dlc-grup/index.html",
+          "note": "4. Fabrica Atlantic — filatura de bumbac, fondată de comunitatea evreiască."
+        }
+      ]
+    },
+    {
+      "id": "tour-scoli",
+      "title": "Școlile istorice ale Galațiului",
+      "subtitle": "7 obiective · ~2h · pe jos",
+      "category": "educație",
+      "description": "Tur al instituțiilor de învățământ care au format generațiile gălățene din secolele XIX-XX — Seminarul Teologic, Notre Dame de Sion, Liceele Comerciale, Vasile Alecsandri, Școala Normală.",
+      "color": "#2c6157",
+      "cover": "../assets/images/Liceul-Israelit-scaled-1024x683-07b48403511d.jpg",
+      "stops": [
+        {
+          "article": "../assets/articles/seminarul-teologic/index.html",
+          "note": "1. Seminarul Teologic."
+        },
+        {
+          "article": "../assets/articles/institutul-catolic-pensionul-notre-dame-de-sion/index.html",
+          "note": "2. Notre Dame de Sion (pentru fete)."
+        },
+        {
+          "article": "../assets/articles/liceul-baieti-notre-dame/index.html",
+          "note": "3. Liceul de băieți „Notre Dame de Sion\"."
+        },
+        {
+          "article": "../assets/articles/scoala-germana-scoala-comunitatii-evanghelice-str-garii-nr-66/index.html",
+          "note": "4. Școala Germană / Comunității Evanghelice."
+        },
+        {
+          "article": "../assets/articles/palatul-scolilor-comerciale/index.html",
+          "note": "5. Palatul Școlilor Comerciale."
+        },
+        {
+          "article": "../assets/articles/colegiul-national-vasile-alecsandri-str-nicolae-balcescu-nr-41/index.html",
+          "note": "6. Colegiul Național „Vasile Alecsandri\"."
+        },
+        {
+          "article": "../assets/articles/scoala-normala-costache-negri-str-brailei-nr-134/index.html",
+          "note": "7. Școala Normală „Costache Negri\"."
+        }
+      ]
+    },
+    {
+      "id": "tour-antreprenoriat",
+      "title": "Antreprenoriatul gălățean",
+      "subtitle": "10 obiective · ~3h · pe jos",
+      "category": "industrie & comerț",
+      "description": "Tur al fabricilor, atelierelor și caselor antreprenoriale care au făcut din Galați un pol industrial — Atlantic (filatura), Năvodul (frânghii), Fleming (ulei), farmacia Aburel.",
+      "color": "#b9956a",
+      "cover": "../assets/images/Fabrica-Dunareana-2-1024x698-b0e95b783126.jpg",
+      "stops": [
+        {
+          "article": "../assets/articles/atlantic-filatura-egrenare-si-tesatorie-de-bumbac-str-lozoveni-nr-115-astazi-sediu-dlc-grup/index.html",
+          "note": "1. Fabrica Atlantic — filatura de bumbac."
+        },
+        {
+          "article": "../assets/articles/navodul-fabrica-de-franghii-heinrich-juster-et-a-haldner-str-traian-nr-239-sediu-firma-s-f-tex-s-a/index.html",
+          "note": "2. Fabrica „Năvodul\" — frânghii Heinrich Juster."
+        },
+        {
+          "article": "../assets/articles/casa-guiller/index.html",
+          "note": "3. Casa Guiller."
+        },
+        {
+          "article": "../assets/articles/casa-gheorghiade-str-domneasca-nr-61-astazi-centrul-cultural-dunarea-de-jos/index.html",
+          "note": "4. Casa Gheorghiadis."
+        },
+        {
+          "article": "../assets/articles/industriasul-max-fischer-str-al-i-cuza-nr-53-casa-resedinta-ibidem-nr-71-casa-2/index.html",
+          "note": "5. Casele Max Fischer."
+        },
+        {
+          "article": "../assets/articles/societatea-romana-de-ulei-fleming-mc-dowall-et-comp-astazi-fabrica-de-ulei-prutul-str-ana-ipatescu-nr-12/index.html",
+          "note": "6. Fabrica de ulei Fleming („Prutul\")."
+        },
+        {
+          "article": "../assets/articles/grand-hotel/index.html",
+          "note": "7. Grand Hotel."
+        },
+        {
+          "article": "../assets/articles/casa-lambrinidi/index.html",
+          "note": "8. Casa Epaminonda Lambrinidi."
+        },
+        {
+          "article": "../assets/articles/casele-malaxa-str-eroilor-nr-6-8-28/index.html",
+          "note": "9. Casele Malaxa."
+        },
+        {
+          "article": "../assets/articles/farmacia-aburel/index.html",
+          "note": "10. Farmacia Aburel."
+        }
+      ]
+    },
+    {
+      "id": "tour-evreiesc",
+      "title": "Patrimoniul evreiesc gălățean",
+      "subtitle": "7 obiective · ~2h · pe jos",
+      "category": "comunități",
+      "description": "Tur al moștenirii evreiești — la 1900 cei ~19.000 evrei din 95.000 locuitori (20%) făceau din Galați una dintre cele mai mari comunități evreiești din regiune. Astăzi mai sunt aproximativ 100.",
+      "color": "#1d433c",
+      "cover": "../assets/images/00-Biserica-Bulgareasca-1-copy-937x1024-d5071806023b.jpg",
+      "stops": [
+        {
+          "article": "../assets/articles/casa-negustor-evreu/index.html",
+          "note": "1. Casa unui negustor evreu (de identificat)."
+        },
+        {
+          "article": "../assets/articles/osias-auschnitt-str-nicolae-balcescu-nr-82-si-max-auschnitt-str-domneasca-nr-70/index.html",
+          "note": "2. Casa Osias Auschnitt."
+        },
+        {
+          "article": "../assets/articles/osias-auschnitt-str-nicolae-balcescu-nr-82-si-max-auschnitt-str-domneasca-nr-70/index.html",
+          "note": "3. Casa Max Auschnitt — Domnească 70."
+        },
+        {
+          "article": "../assets/articles/industriasul-max-fischer-str-al-i-cuza-nr-53-casa-resedinta-ibidem-nr-71-casa-2/index.html",
+          "note": "4. Casele Max Fischer."
+        },
+        {
+          "article": "../assets/articles/consulatul-frantei-str-domneasca-nr-90/index.html",
+          "note": "5. Consulatul Franței — clădire cu istorie evreiască."
+        },
+        {
+          "article": "../assets/articles/spitalul-evreiesc/index.html",
+          "note": "6. Spitalul Evreiesc."
         },
         {
           "article": "../assets/articles/cimitirul-evreiesc-str-stefan-cel-mare-nr-34/index.html",
-          "note": "FINAL — Cimitirul Evreiesc (Ștefan cel Mare 34). Înființat în prima jumătate a sec. XIX, cu peste 8.000 de morminte. Inscripții în ebraică, idiș și română. Aici sunt îngropate generații întregi de comercianți, rabini, medici, antreprenori. Include un memorial al victimelor pogromului din ianuarie 1941 (Iași–Galați) și ale Holocaustului din Transnistria. Astăzi îngrijit de comunitatea redusă (sub 100 de membri), cu sprijin de la Federația Comunităților Evreiești din România."
+          "note": "7. Cimitirul Evreiesc."
         }
       ]
     }
