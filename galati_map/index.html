@@ -2132,6 +2132,36 @@
       margin: 4px 0 12px;
       line-height: 1.45;
     }
+    /* Clickable clue image — thumbnail in sidebar, opens lightbox la click/tap */
+    .cp-clue-img {
+      display: block;
+      width: 100%;
+      max-height: 320px;
+      object-fit: contain;
+      object-position: center;
+      background: #f4ebd9;
+      border: 1px solid #b9956a;
+      cursor: zoom-in;
+      margin: 8px 0;
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .cp-clue-img:hover {
+      transform: scale(1.01);
+      box-shadow: 0 4px 14px rgba(61, 41, 20, 0.22);
+    }
+    .cp-clue-img-caption {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-align: center;
+      margin: -4px 0 12px;
+      font-weight: 600;
+    }
+    .cp-clue-img-caption::before {
+      content: '🔍 ';
+      letter-spacing: 0;
+    }
     .cp-riddle {
       margin-top: 14px;
       padding: 14px 14px 16px;
@@ -5317,12 +5347,28 @@
       // Active checkpoint
       const cp = activeHunt.checkpoints[progress.currentIdx];
       if (!cp) return;
-      const cipherHtml = cp.clue
-        ? `
-          <div class="cp-cipher ${cp.clue.kind === 'binary' ? 'binary' : cp.clue.kind === 'morse' ? 'morse' : ''}">${escapeHtml(cp.clue.label || cp.clue.hint || '')}</div>
-          ${cp.clue.hint && cp.clue.label ? `<p class="cp-cipher-hint">${escapeHtml(cp.clue.hint)}</p>` : ''}
-        `
-        : '';
+      // Render clue: dacă cp curent nu are clue propriu, folosim next_clue al
+       // checkpoint-ului anterior (acela e indiciul care a condus aici).
+      let displayClue = cp.clue;
+      if (!displayClue && progress.currentIdx > 0) {
+        const prev = activeHunt.checkpoints[progress.currentIdx - 1];
+        if (prev && prev.next_clue) displayClue = prev.next_clue;
+      }
+      let cipherHtml = '';
+      if (displayClue) {
+        if (displayClue.image) {
+          cipherHtml = `
+            <img class="cp-clue-img" src="${escapeHtml(displayClue.image)}" alt="Indiciu ${escapeHtml(cp.title)}" loading="lazy" data-hunt-clue="1">
+            <p class="cp-clue-img-caption">Tap pentru a deschide indiciul</p>
+            ${displayClue.hint ? `<p class="cp-cipher-hint">${escapeHtml(displayClue.hint)}</p>` : ''}
+          `;
+        } else if (displayClue.label || displayClue.hint) {
+          cipherHtml = `
+            <div class="cp-cipher ${displayClue.kind === 'binary' ? 'binary' : displayClue.kind === 'morse' ? 'morse' : ''}">${escapeHtml(displayClue.label || displayClue.hint || '')}</div>
+            ${displayClue.hint && displayClue.label ? `<p class="cp-cipher-hint">${escapeHtml(displayClue.hint)}</p>` : ''}
+          `;
+        }
+      }
       huntCheckpointEl.innerHTML = `
         <div class="cp-current">
           <div class="cp-num-row">Punct ${progress.currentIdx + 1} din ${total}</div>
@@ -5380,8 +5426,16 @@
       feedback.hidden = false;
       if (isCorrect) {
         feedback.className = 'cp-feedback success';
-        const nextClueText = cp.next_clue ? `<br><br><strong>Indiciu pentru următorul obiectiv:</strong> ${escapeHtml(cp.next_clue.hint || '')}` : '';
-        feedback.innerHTML = `Răspuns corect! Ai câștigat ${cp.riddle.points} puncte.${nextClueText}`;
+        let nextClueHtml = '';
+        if (cp.next_clue) {
+          const hintTxt = cp.next_clue.hint ? `<br><strong>Indiciu pentru următorul obiectiv:</strong> ${escapeHtml(cp.next_clue.hint)}` : '';
+          const img = cp.next_clue.image
+            ? `<img class="cp-clue-img" src="${escapeHtml(cp.next_clue.image)}" alt="Indiciu către următorul punct" loading="lazy" data-hunt-clue="1" style="margin-top:10px;">
+               <p class="cp-clue-img-caption">Tap pentru a deschide indiciul</p>`
+            : '';
+          nextClueHtml = `<br>${hintTxt}${img}`;
+        }
+        feedback.innerHTML = `Răspuns corect! Ai câștigat ${cp.riddle.points} puncte.${nextClueHtml}`;
         // Save progress
         const progress = loadHuntProgress(activeHunt) || newHuntProgress();
         if (!progress.solved.includes(cp.id)) progress.solved.push(cp.id);
@@ -5427,6 +5481,20 @@
       panelTours.hidden = true;
       // Tab buttons stay as they are; no need to re-toggle
       renderHuntBrowse();
+    });
+
+    // Click pe imaginile de indiciu (clue/next_clue) → deschide lightbox-ul
+    // existent (același folosit pentru fotografii pubcrawl). Permite zoom +
+    // pan nativ pe mobil prin pinch.
+    document.addEventListener('click', (e) => {
+      const img = e.target.closest('img[data-hunt-clue]');
+      if (!img) return;
+      e.preventDefault();
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt || '';
+      lightboxCaption.innerHTML = '<small style="opacity:.7;letter-spacing:.05em;text-transform:uppercase;font-size:11px">Indiciu hunt · pinch pentru zoom · tap în afară pentru închidere</small>';
+      lightboxCaption.hidden = false;
+      lightbox.dataset.open = '1';
     });
 
     huntResetBtn.addEventListener('click', () => {

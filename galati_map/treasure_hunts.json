@@ -31,7 +31,8 @@
             "kind": "rot13",
             "label": "C E R P V F G N",
             "hint": "Mesajul este criptat. Fiecare literă a fost rotită cu 13 poziții în alfabet — un truc pe care Cuza l-a învățat de la căpitanii italieni din portul Galați.",
-            "decoded": "PRECISTA"
+            "decoded": "PRECISTA",
+            "image": "../assets/images/hunts/pe-urmele-domnesti/cp1-in.jpg"
           },
           "monument": "La construcția bisericii s-au folosit piatră de la Bărboși, lemn din pădurile Covurluiului, cărămidă și var. Are plan triconc cu patru încăperi — pridvor, naos, pronaos și altar — și a fost construită într-o concepție originală, cu turnul clopotniță inclus în corpul bisericii și cu pod întărit, care i-a creat o a doua funcție: refugiu și apărare. La interior, turnul are o cameră pentru ascunderea valorilor, două metereze și o ușă de acces. Biserica Precista a suportat toate vitregiile vremurilor, fiind arsă în 1711 de către otomani, distrusă în războaiele ruso-otomano-austriece din 1735–1739 și 1769–1774.",
           "find_hint": "Primul indiciu i-a adus pe investigatori la Biserica Precista. Aici urma ca domnitorul Cuza să primească binecuvântare înainte de drumul lung spre Iași. În curtea bisericii, lângă o piatră, investigatorii găsiseră un plic cu semnul lui Grozea.",
@@ -49,7 +50,8 @@
           "next_clue": {
             "kind": "symbols",
             "hint": "Plicul găsit conținea un alfabet străvechi, cu un indiciu între litera C și U — inițialele domnitorului. Decodează simbolurile pentru a afla unde mergi.",
-            "decoded": "PALATUL NAVIGATIEI"
+            "decoded": "PALATUL NAVIGATIEI",
+            "image": "../assets/images/hunts/pe-urmele-domnesti/cp1-out.jpg"
           }
         },
         {
@@ -77,7 +79,8 @@
           "next_clue": {
             "kind": "photo",
             "hint": "În plic era o poză veche cu o clădire școlară din portul Galațiului. Recunoști școala domnească?",
-            "decoded": "PRIMA SCOALA PUBLICA"
+            "decoded": "PRIMA SCOALA PUBLICA",
+            "image": "../assets/images/hunts/pe-urmele-domnesti/cp2-out.jpg"
           }
         },
         {
@@ -133,7 +136,8 @@
           "next_clue": {
             "kind": "translation",
             "hint": "Steaua lui David și textul ebraic „ללכת לבית הכנסת” (a merge la sinagogă) te conduc clar la următorul obiectiv.",
-            "decoded": "SINAGOGA GALATI"
+            "decoded": "SINAGOGA GALATI",
+            "image": "../assets/images/hunts/pe-urmele-domnesti/cp4-out.jpg"
           }
         },
         {
@@ -161,7 +165,8 @@
           "next_clue": {
             "kind": "photo",
             "hint": "Vederea ensângerată arată Strada Traian și o farmacie istorică — caută Casa Ținc.",
-            "decoded": "CASA TINC"
+            "decoded": "CASA TINC",
+            "image": "../assets/images/hunts/pe-urmele-domnesti/cp5-out.jpg"
           }
         },
         {
@@ -189,7 +194,8 @@
           "next_clue": {
             "kind": "binary",
             "hint": "Codul binar conține coordonate GPS în ASCII. Decodează-le și ai locația următoare.",
-            "decoded": "CONSILIUL JUDETEAN GALATI"
+            "decoded": "CONSILIUL JUDETEAN GALATI",
+            "image": "../assets/images/hunts/pe-urmele-domnesti/cp6-out.jpg"
           }
         },
         {
@@ -245,7 +251,8 @@
           "next_clue": {
             "kind": "morse",
             "hint": "Codul Morse: --.  .-.  .-  -.  -..   /   ....  ---  -  .  .-..",
-            "decoded": "GRAND HOTEL"
+            "decoded": "GRAND HOTEL",
+            "image": "../assets/images/hunts/pe-urmele-domnesti/cp8-out.jpg"
           }
         },
         {
@@ -345,7 +352,8 @@
           "next_clue": {
             "kind": "mirrored-text",
             "hint": "Plicul găsit conține un text scris în oglindă: «poarta han turcesc».",
-            "decoded": "POARTA HAN TURCESC"
+            "decoded": "POARTA HAN TURCESC",
+            "image": "../assets/images/hunts/fantasmele-dunarii/cp1-out.jpg"
           }
         },
         {
@@ -372,7 +380,8 @@
           "next_clue": {
             "kind": "map",
             "hint": "Harta marchează cu un X clădirea de la nr. 38, pe traseul Daily → Parc Eminescu.",
-            "decoded": "DISCIPOLII LUI PITAGORA"
+            "decoded": "DISCIPOLII LUI PITAGORA",
+            "image": "../assets/images/hunts/fantasmele-dunarii/cp2-out.jpg"
           }
         },
         {
@@ -399,7 +408,8 @@
           "next_clue": {
             "kind": "substitution",
             "hint": "Aplicând cheia de substituție, mesajul «Fxlxyjl Nvqlhlqt Vqrstchxls» devine «Palatul Școlilor Comerciale».",
-            "decoded": "PALATUL SCOLILOR COMERCIALE"
+            "decoded": "PALATUL SCOLILOR COMERCIALE",
+            "image": "../assets/images/hunts/fantasmele-dunarii/cp3-out.jpg"
           }
         },
         {
@@ -426,7 +436,8 @@
           "next_clue": {
             "kind": "photo",
             "hint": "Poza identifică pe G. Bâzgan — caută casa lui pe str. Domnească 107.",
-            "decoded": "CASA G BAZGAN"
+            "decoded": "CASA G BAZGAN",
+            "image": "../assets/images/hunts/fantasmele-dunarii/cp4-out.jpg"
           }
         },
         {
@@ -453,7 +464,8 @@
           "next_clue": {
             "kind": "portrait",
             "hint": "Portretul cu semnătura «V.A. Urechia» te conduce la Palatul Comisiei Europene a Dunării — astăzi Biblioteca V.A. Urechia.",
-            "decoded": "PALATUL CED URECHIA"
+            "decoded": "PALATUL CED URECHIA",
+            "image": "../assets/images/hunts/fantasmele-dunarii/cp5-out.jpg"
           }
         },
         {
@@ -480,7 +492,8 @@
           "next_clue": {
             "kind": "drawing",
             "hint": "Desenul cu castel și semnătura «Viviana» te trimite la Casa Robescu — singurul „palat” din oraș construit ca o vilă-castel de Ion Mincu.",
-            "decoded": "CASA ROBESCU"
+            "decoded": "CASA ROBESCU",
+            "image": "../assets/images/hunts/fantasmele-dunarii/cp6-out.jpg"
           }
         },
         {
@@ -507,7 +520,8 @@
           "next_clue": {
             "kind": "anagram",
             "hint": "Anagrama «INERG» rearanjată dă «NEGRI» — Casa Negri din strada Mihai Bravu 46.",
-            "decoded": "CASA NEGRI"
+            "decoded": "CASA NEGRI",
+            "image": "../assets/images/hunts/fantasmele-dunarii/cp7-out.jpg"
           }
         },
         {
@@ -534,7 +548,8 @@
           "next_clue": {
             "kind": "ghost-message",
             "hint": "Mesajul fantomatic pe geamul aburit: «Notre Dame de Sion».",
-            "decoded": "INSTITUTUL NOTRE DAME DE SION"
+            "decoded": "INSTITUTUL NOTRE DAME DE SION",
+            "image": "../assets/images/hunts/fantasmele-dunarii/cp8-out.jpg"
           }
         },
         {
@@ -561,7 +576,8 @@
           "next_clue": {
             "kind": "map",
             "hint": "Harta arată drumul către Grădina Publică, lângă Palatul Episcopal.",
-            "decoded": "GRADINA PUBLICA"
+            "decoded": "GRADINA PUBLICA",
+            "image": "../assets/images/hunts/fantasmele-dunarii/cp9-out.jpg"
           }
         },
         {
@@ -633,6 +649,12 @@
             "kind": "polybius",
             "hint": "Decodează 23 43 33 54 23 51 33 44 / 24 51 22 42 23 51 33 44 / 11 / 34 42 24 51 44 cu cheia 5×5.",
             "decoded": "MONUMENT PROGRESUL VIP 2000"
+          },
+          "clue": {
+            "kind": "image",
+            "hint": "",
+            "decoded": "",
+            "image": "../assets/images/hunts/spioni-si-sfinti/cp1-in.jpg"
           }
         },
         {
@@ -659,7 +681,8 @@
           "next_clue": {
             "kind": "icon-poem",
             "hint": "Iconița sfinților 3 Ierarhi + poemul «E palat sau ce e oare? Că o vezi din depărtare, te cheamă la închinare glas de clopot până-n zare» indică Biserica Sf. Trei Ierarhi (Mazepa).",
-            "decoded": "BISERICA SF TREI IERARHI"
+            "decoded": "BISERICA SF TREI IERARHI",
+            "image": "../assets/images/hunts/spioni-si-sfinti/cp2-out.jpg"
           }
         },
         {
@@ -686,7 +709,8 @@
           "next_clue": {
             "kind": "wordsearch",
             "hint": "În grilajul de litere găsești cuvântul „BISERICA” și apoi „GREACA”.",
-            "decoded": "BISERICA GREACA"
+            "decoded": "BISERICA GREACA",
+            "image": "../assets/images/hunts/spioni-si-sfinti/cp3-out.jpg"
           }
         },
         {
@@ -713,7 +737,8 @@
           "next_clue": {
             "kind": "pigpen",
             "hint": "Cifrul pigpen decodat dă «BISERICA ARMENEASCA».",
-            "decoded": "BISERICA ARMENEASCA"
+            "decoded": "BISERICA ARMENEASCA",
+            "image": "../assets/images/hunts/spioni-si-sfinti/cp4-out.jpg"
           }
         },
         {
@@ -740,7 +765,8 @@
           "next_clue": {
             "kind": "satellite-coords",
             "hint": "Coordonatele 45.43120, 28.05718 marchează casa lui Ovid S. Crohmălniceanu pe strada Portului 3.",
-            "decoded": "CASA O CROHMALNICEANU"
+            "decoded": "CASA O CROHMALNICEANU",
+            "image": "../assets/images/hunts/spioni-si-sfinti/cp5-out.jpg"
           }
         },
         {
@@ -767,7 +793,8 @@
           "next_clue": {
             "kind": "anagram-words",
             "hint": "«cim ludiz» rearanjat dă «zid mic», iar 2 căluți de mare și sticla pe un zid evocă Zidul Mic de pe falezeă.",
-            "decoded": "ZIDUL MIC"
+            "decoded": "ZIDUL MIC",
+            "image": "../assets/images/hunts/spioni-si-sfinti/cp6-out.jpg"
           }
         },
         {
@@ -794,7 +821,8 @@
           "next_clue": {
             "kind": "symbol",
             "hint": "Soarele cu raze sugerează mitul lui Icar — caută Monumentul Icar pe falezeă.",
-            "decoded": "MONUMENTUL ICAR"
+            "decoded": "MONUMENTUL ICAR",
+            "image": "../assets/images/hunts/spioni-si-sfinti/cp7-out.jpg"
           }
         },
         {
@@ -821,7 +849,8 @@
           "next_clue": {
             "kind": "riddle-pair",
             "hint": "Cele două ghicitori — fruct și soare — te trimit la „Fructul Soarelui”.",
-            "decoded": "FRUCTUL SOARELUI"
+            "decoded": "FRUCTUL SOARELUI",
+            "image": "../assets/images/hunts/spioni-si-sfinti/cp8-out.jpg"
           }
         },
         {
@@ -848,7 +877,8 @@
           "next_clue": {
             "kind": "number-cipher",
             "hint": "Decodează șirurile cu cheia: F=23, I=34, etc. → FINAL FOISOR FALEZA.",
-            "decoded": "FOISOR FALEZA"
+            "decoded": "FOISOR FALEZA",
+            "image": "../assets/images/hunts/spioni-si-sfinti/cp9-out.jpg"
           }
         },
         {
