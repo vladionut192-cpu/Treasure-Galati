@@ -307,7 +307,8 @@
           },
           "next_clue": null
         }
-      ]
+      ],
+      "cover": "../assets/images/hunts/pe-urmele-domnesti/cover.jpg"
     },
     {
       "id": "fantasmele-dunarii",
@@ -603,7 +604,8 @@
           },
           "next_clue": null
         }
-      ]
+      ],
+      "cover": "../assets/images/hunts/fantasmele-dunarii/cover.jpg"
     },
     {
       "id": "spioni-si-sfinti",
@@ -904,7 +906,8 @@
           },
           "next_clue": null
         }
-      ]
+      ],
+      "cover": "../assets/images/hunts/spioni-si-sfinti/cover.jpg"
     },
     {
       "id": "visteria-piratilor",
@@ -1176,7 +1179,8 @@
           },
           "next_clue": null
         }
-      ]
+      ],
+      "cover": "../assets/images/hunts/visteria-piratilor/cover.jpg"
     }
   ]
 }

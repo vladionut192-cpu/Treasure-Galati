@@ -1989,26 +1989,32 @@
     .marker-bubble.tour-stop::before { content: attr(data-num); }
 
     /* ─────────── Treasure Hunts UI ─────────── */
-    .hunt-cards { display: grid; gap: 10px; }
+    .hunt-cards { display: grid; gap: 14px; }
     .hunt-card {
-      display: grid;
-      grid-template-columns: 60px 1fr;
-      gap: 12px;
-      align-items: center;
-      padding: 12px 12px 12px 14px;
+      display: flex;
+      flex-direction: column;
+      padding: 0;
       background: var(--panel);
       border: 1px solid var(--line);
-      border-left: 4px solid #8b1e22;
       cursor: pointer;
       text-align: left;
       font: inherit;
       width: 100%;
-      transition: transform .12s ease, border-color .12s, background .12s;
+      overflow: hidden;
+      transition: transform .15s ease, border-color .15s, box-shadow .15s;
     }
     .hunt-card:hover {
-      transform: translateY(-1px);
-      background: #fff;
-      border-color: var(--accent);
+      transform: translateY(-2px);
+      border-color: var(--accent-deep);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    }
+    .hunt-card .cover {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      object-position: center;
+      background: var(--accent-deep);
     }
     .hunt-card .crest {
       width: 56px; height: 56px;
@@ -2020,9 +2026,22 @@
       border-radius: 50%;
       flex-shrink: 0;
     }
+    .hunt-card .cover-fallback {
+      display: grid; place-items: center;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      background: linear-gradient(135deg, var(--accent-deep), var(--accent));
+      color: var(--paper);
+      font-size: 48px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+    .hunt-card .body {
+      padding: 14px 16px 16px;
+    }
     .hunt-card .body strong {
-      display: block; font-weight: 800; font-size: 14.5px;
-      color: var(--ink); letter-spacing: -0.005em; margin-bottom: 2px;
+      display: block; font-weight: 800; font-size: 16px;
+      color: var(--ink); letter-spacing: -0.01em; margin-bottom: 4px;
     }
     .hunt-card .body em {
       font-style: normal; color: var(--muted); font-size: 11.5px;
@@ -2030,16 +2049,20 @@
     }
     .hunt-card .body span {
       display: block; color: var(--ink-soft); font-size: 13px;
-      line-height: 1.4; margin-top: 4px;
+      line-height: 1.45; margin-top: 6px;
     }
     .hunt-card .badge-progress {
       display: inline-block;
-      margin-top: 6px;
-      padding: 1px 8px;
+      margin-top: 8px;
+      padding: 2px 10px;
       background: var(--accent-soft);
       color: var(--accent-deep);
       font-size: 11px; font-weight: 700;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .hunt-card .badge-progress.complete {
+      background: #2c7a4d; color: #fff;
     }
     .hunt-story {
       margin: 10px 0 14px;
@@ -5322,14 +5345,18 @@
         card.type = 'button';
         const initial = (h.title || '?').charAt(0).toUpperCase();
         const progressBadge = done > 0
-          ? `<span class="badge-progress">${done === total ? 'COMPLET' : `${done}/${total}`}</span>`
+          ? `<span class="badge-progress${done === total ? ' complete' : ''}">${done === total ? '✓ Complet' : `${done}/${total} obiective`}</span>`
           : '';
+        // Cover image cu fallback la inițiala stilizată dacă lipsește fișierul
+        const coverHtml = h.cover
+          ? `<img class="cover" src="${escapeHtml(h.cover)}" alt="${escapeHtml(h.title)}" loading="lazy" decoding="async" onerror="this.outerHTML='<div class=&quot;cover-fallback&quot;>${escapeHtml(initial)}</div>'">`
+          : `<div class="cover-fallback">${escapeHtml(initial)}</div>`;
         card.innerHTML = `
-          <span class="crest" aria-hidden="true">${escapeHtml(initial)}</span>
+          ${coverHtml}
           <span class="body">
             <em>${escapeHtml(h.subtitle || '')}</em>
             <strong>${escapeHtml(h.title)}</strong>
-            <span>${escapeHtml(h.description || '').slice(0, 140)}${(h.description || '').length > 140 ? '…' : ''}</span>
+            <span>${escapeHtml(h.description || '').slice(0, 160)}${(h.description || '').length > 160 ? '…' : ''}</span>
             ${progressBadge}
           </span>
         `;
