@@ -1829,6 +1829,9 @@
       cursor: grab;
       appearance: none;
       -webkit-appearance: none;
+      /* pan-x = browser handles horizontal drag for the slider, doesn't pass it to
+         the OS as a scroll/system gesture. Critical on Android with gesture-nav. */
+      touch-action: pan-x;
     }
     .timeline input[type=range]:active { cursor: grabbing; }
     .timeline input[type=range]::-webkit-slider-runnable-track {
@@ -3527,7 +3530,11 @@
         flex: 0 0 auto;
         border-top: 1px solid var(--line);
         border-bottom: 0;
-        padding: 10px 12px 12px;
+        /* Bottom padding accounts for Android/iOS safe-area (gesture bar, notch in
+           landscape). Without this, the slider thumb sits in the system gesture
+           zone on devices with gesture nav (Galaxy S22, Pixel etc.) and taps get
+           swallowed by the OS instead of reaching the slider. */
+        padding: 10px 12px max(14px, env(safe-area-inset-bottom));
       }
       /* Header timeline pe mobil — pe un singur rând, fără subtitlu wrap */
       .timeline-header {
@@ -3540,10 +3547,16 @@
       }
       .timeline-header .timeline-sub { display: none; }
       .timeline-header .timeline-icon svg { width: 14px; height: 14px; }
-      /* Track înălțime mai mică ca să încapă tot */
-      .timeline-track { height: 30px; }
-      .timeline-events { top: 9px; }
+      /* Track înălțime mai mare pe mobil pentru touch target generos (≥44px).
+         Slider input rămâne 36px vizibil dar are hitbox 44px sus/jos. */
+      .timeline-track { height: 44px; }
+      .timeline-events { top: 16px; }
       .timeline-events .event { width: 8px; height: 8px; }
+      .timeline-eras { top: 21px; }
+      .timeline input[type=range] { height: 44px; }
+      .timeline input[type=range]::-webkit-slider-runnable-track { height: 44px; }
+      .timeline input[type=range]::-moz-range-track { height: 44px; }
+      .timeline input[type=range]::-webkit-slider-thumb { margin-top: 14px; }
       body.map-mode #page-map > main.app {
         order: 1;
         flex: 1 1 auto;
@@ -3577,9 +3590,10 @@
       align-items: center; justify-content: center;
       transition: transform .12s ease, background .12s;
     }
-    .layers-fab { bottom: 16px; }
-    .tours-fab  { bottom: 72px; }
-    .hunts-fab  { bottom: 128px; color: #8b1e22; }
+    /* bottom margins account for Android safe-area (gesture nav bar). */
+    .layers-fab { bottom: max(16px, calc(env(safe-area-inset-bottom) + 8px)); }
+    .tours-fab  { bottom: max(72px, calc(env(safe-area-inset-bottom) + 64px)); }
+    .hunts-fab  { bottom: max(128px, calc(env(safe-area-inset-bottom) + 120px)); color: #8b1e22; }
     .layers-fab svg,
     .tours-fab svg,
     .hunts-fab svg { width: 20px; height: 20px; }
