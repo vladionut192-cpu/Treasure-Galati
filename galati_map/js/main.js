@@ -948,43 +948,47 @@
         window.__updateDeepLink(params);
       }
       if (activeTour) drawTourRoute();
-      // Helper: deschide lightbox-ul cu o imagine (hero sau galerie).
-      // Golește queue-ul prev/next ca să ascundă săgețile (acelea sunt
-      // pentru navigarea peste fotografiile «Galați de altădată»).
-      function openImageInLightbox(src, alt, caption) {
-        lightboxImg.src = src;
-        lightboxImg.alt = alt || '';
-        lightboxCaption.textContent = caption || '';
-        lightboxCaption.hidden = !caption;
-        lightbox.dataset.open = '1';
-        if (typeof lightboxQueue !== 'undefined') {
-          lightboxQueue = [];
-          const prev = document.getElementById('lightbox-prev');
-          const next = document.getElementById('lightbox-next');
-          const counter = document.getElementById('lightbox-counter');
-          if (prev) prev.hidden = true;
-          if (next) next.hidden = true;
-          if (counter) counter.hidden = true;
-        }
-      }
-      // Featured (hero) image — click pentru a o vedea mare
-      const heroEl = detailScroll.querySelector('img.hero-img');
-      if (heroEl) {
-        heroEl.style.cursor = 'zoom-in';
-        heroEl.addEventListener('click', () => {
-          openImageInLightbox(heroEl.src, heroEl.alt, heroEl.alt);
-        });
-      }
-      // Galerie thumbnails — click pentru lightbox
-      detailScroll.querySelectorAll('.gallery figure img').forEach(img => {
-        img.style.cursor = 'zoom-in';
-        img.addEventListener('click', () => {
-          const fig = img.closest('figure');
-          const cap = fig ? (fig.dataset.caption || '') : '';
-          openImageInLightbox(img.src, img.alt, cap);
-        });
-      });
+      // NB: hero + gallery image clicks are handled by a single delegated
+      // listener attached once on detailScroll (see below, outside render).
     }
+
+    // Open the lightbox with an arbitrary image (hero or gallery).
+    // Clears the prev/next queue so the side arrows hide — those are for the
+    // pubcrawl photo navigation, not for static gallery images.
+    function openImageInLightbox(src, alt, caption) {
+      lightboxImg.src = src;
+      lightboxImg.alt = alt || '';
+      lightboxCaption.textContent = caption || '';
+      lightboxCaption.hidden = !caption;
+      lightbox.dataset.open = '1';
+      if (typeof lightboxQueue !== 'undefined') {
+        lightboxQueue = [];
+        const prev = document.getElementById('lightbox-prev');
+        const next = document.getElementById('lightbox-next');
+        const counter = document.getElementById('lightbox-counter');
+        if (prev) prev.hidden = true;
+        if (next) next.hidden = true;
+        if (counter) counter.hidden = true;
+      }
+    }
+
+    // Delegated click handler: catches hero/gallery image taps regardless of when
+    // they were inserted into the DOM. Attached ONCE here (not per-render) so a
+    // race condition with mobile touch timing or stale listener references can't
+    // break it. Was broken on mobile (Galaxy S22 Chrome) when attached per-render.
+    detailScroll.addEventListener('click', (e) => {
+      const hero = e.target.closest('img.hero-img');
+      if (hero) {
+        openImageInLightbox(hero.src, hero.alt, hero.alt);
+        return;
+      }
+      const gal = e.target.closest('.gallery figure img');
+      if (gal) {
+        const fig = gal.closest('figure');
+        const cap = fig ? (fig.dataset.caption || '') : '';
+        openImageInLightbox(gal.src, gal.alt, cap);
+      }
+    });
 
     function closeDetail() {
       delete detail.dataset.open;

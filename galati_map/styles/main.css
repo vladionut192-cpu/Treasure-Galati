@@ -3196,6 +3196,15 @@
       background: var(--paper-deep);
       display: block;
     }
+    .detail .hero-img:not(.hero-img-placeholder),
+    .detail .gallery figure img {
+      cursor: zoom-in;
+      /* Suppress Android long-press image context menu (Save image, Open in new tab)
+         so a tap reliably triggers the lightbox click handler. */
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      user-select: none;
+    }
     .detail .prose p {
       font-size: 15.5px;
       line-height: 1.65;
