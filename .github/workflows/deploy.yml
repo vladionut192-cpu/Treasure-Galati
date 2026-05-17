@@ -1,0 +1,90 @@
+name: Deploy to ionpeblog.ro
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Validate JSON data files
+        run: python3 scripts/validate_data.py
+
+      - name: Generate SEO static pages
+        run: python3 scripts/generate_static_pages.py
+
+      - name: Bump service-worker cache version
+        run: |
+          python3 - <<'PY'
+          import re, pathlib
+          sw = pathlib.Path('galati_map/sw.js')
+          c = sw.read_text(encoding='utf-8')
+          m = re.search(r"const CACHE_VERSION = 'tg-v(\d+)'", c)
+          if m:
+              n = int(m.group(1)); new = n + 1
+              sw.write_text(c.replace(f"'tg-v{n}'", f"'tg-v{new}'", 1), encoding='utf-8')
+              print(f"  ✓ SW bumped tg-v{n} → tg-v{new}")
+          else:
+              print("  ⚠ CACHE_VERSION pattern not found, skipping bump")
+          PY
+
+      - name: Deploy galati_map/ via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ${{ vars.FTP_PROTOCOL || 'ftps' }}
+          port: ${{ vars.FTP_PORT || 21 }}
+          local-dir: ./galati_map/
+          server-dir: ${{ vars.FTP_TARGET_GALATI_MAP || './galati_map/' }}
+          log-level: standard
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/__pycache__/**
+            **/.DS_Store
+            **/_admin/**
+            **/geocode_cache.json
+            **/manual_overrides.json
+            **/unplaced_locations.json
+            **/*.pyc
+            **/*.pyo
+            **/*.swp
+            **/*.log
+
+      - name: Deploy assets/ via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ${{ vars.FTP_PROTOCOL || 'ftps' }}
+          port: ${{ vars.FTP_PORT || 21 }}
+          local-dir: ./assets/
+          server-dir: ${{ vars.FTP_TARGET_ASSETS || './assets/' }}
+          log-level: standard
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/__pycache__/**
+            **/.DS_Store
+            **/*.pyc
+            **/*.swp
+            **/battle/**

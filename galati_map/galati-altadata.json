@@ -1,0 +1,1730 @@
+[
+  {
+    "src": "../assets/images/pubcrawl/0-galati_01.jpg",
+    "caption_ro": "Detaliu din harta lui Sebastian Munster 1540",
+    "caption_en": "Detail from Sebastian Münster's map, 1540",
+    "folder": "0. Galati",
+    "lat": 45.422447,
+    "lon": 28.048503,
+    "year": 1540
+  },
+  {
+    "src": "../assets/images/pubcrawl/0-galati_02.jpg",
+    "caption_ro": "Detaliu din Atlasul lui Ortelius 1572",
+    "caption_en": "Detail from Ortelius's Atlas, 1572",
+    "folder": "0. Galati",
+    "lat": 45.424419,
+    "lon": 28.049297,
+    "year": 1572
+  },
+  {
+    "src": "../assets/images/pubcrawl/0-galati_03.jpg",
+    "caption_ro": "Galați și Brăila 1789",
+    "caption_en": "Galați and Brăila, 1789",
+    "folder": "0. Galati",
+    "lat": 45.423983,
+    "lon": 28.05213,
+    "year": 1789
+  },
+  {
+    "src": "../assets/images/pubcrawl/0-galati_04.jpg",
+    "caption_ro": "Planului orasului Galați, de la 1819",
+    "caption_en": "Plan of the city of Galați, 1819",
+    "folder": "0. Galati",
+    "lat": 45.423938,
+    "lon": 28.050156,
+    "year": 1819
+  },
+  {
+    "src": "../assets/images/pubcrawl/0-galati_05.jpg",
+    "caption_ro": "Mosiile din jurul Galatiului la 30 iunie 1819",
+    "caption_en": "The estates around Galați on June 30, 1819",
+    "folder": "0. Galati",
+    "lat": 45.423546,
+    "lon": 28.047881,
+    "year": 1819
+  },
+  {
+    "src": "../assets/images/pubcrawl/0-galati_06.jpg",
+    "caption_ro": "Harta englezeasca 1828",
+    "caption_en": "English map, 1828",
+    "folder": "0. Galati",
+    "lat": 45.424811,
+    "lon": 28.051486,
+    "year": 1828
+  },
+  {
+    "src": "../assets/images/pubcrawl/0-galati_07.jpg",
+    "caption_ro": "Galati 1865",
+    "caption_en": "Galați, 1865",
+    "folder": "0. Galati",
+    "lat": 45.422462,
+    "lon": 28.050499,
+    "year": 1865
+  },
+  {
+    "src": "../assets/images/pubcrawl/0-galati_08.jpg",
+    "caption_ro": "Galați vedere aeriană - 1900",
+    "caption_en": "Galați aerial view — 1900",
+    "folder": "0. Galati",
+    "lat": 45.435939,
+    "lon": 28.053997,
+    "year": 1900
+  },
+  {
+    "src": "../assets/images/pubcrawl/0-galati_09.jpg",
+    "caption_ro": "Harta Galatilor la 1904",
+    "caption_en": "Map of Galați in 1904",
+    "folder": "0. Galati",
+    "lat": 45.424322,
+    "lon": 28.050166,
+    "year": 1904
+  },
+  {
+    "src": "../assets/images/pubcrawl/0-galati_10.jpg",
+    "caption_ro": "Galați vedere aeriană - 1919",
+    "caption_en": "Galați aerial view — 1919",
+    "folder": "0. Galati",
+    "lat": 45.433364,
+    "lon": 28.036144,
+    "year": 1919
+  },
+  {
+    "src": "../assets/images/pubcrawl/0-galati_11.jpg",
+    "caption_ro": "Galați vedere aeriană - 1919",
+    "caption_en": "Galați aerial view — 1919",
+    "folder": "0. Galati",
+    "lat": 45.427311,
+    "lon": 28.060091,
+    "year": 1919
+  },
+  {
+    "src": "../assets/images/pubcrawl/0-galati_12.jpg",
+    "caption_ro": "Galați vedere aeriană - 1919",
+    "caption_en": "Galați aerial view — 1919",
+    "folder": "0. Galati",
+    "lat": 45.433244,
+    "lon": 28.048675,
+    "year": 1919
+  },
+  {
+    "src": "../assets/images/pubcrawl/0-galati_13.jpg",
+    "caption_ro": "Galați vedere aeriană - 1919",
+    "caption_en": "Galați aerial view — 1919",
+    "folder": "0. Galati",
+    "lat": 45.437972,
+    "lon": 28.053353,
+    "year": 1919
+  },
+  {
+    "src": "../assets/images/pubcrawl/0-galati_14.jpg",
+    "caption_ro": "Galați vedere aeriană - 1919",
+    "caption_en": "Galați aerial view — 1919",
+    "folder": "0. Galati",
+    "lat": 45.435277,
+    "lon": 28.056464,
+    "year": 1919
+  },
+  {
+    "src": "../assets/images/pubcrawl/0-galati_15.jpg",
+    "caption_ro": "Galați vedere aeriană - 1919",
+    "caption_en": "Galați aerial view — 1919",
+    "folder": "0. Galati",
+    "lat": 45.433771,
+    "lon": 28.035693,
+    "year": 1919
+  },
+  {
+    "src": "../assets/images/pubcrawl/0-galati_16.jpg",
+    "caption_ro": "Galați - perioada interbelică",
+    "caption_en": "Galați — the interwar period",
+    "folder": "0. Galati",
+    "lat": 45.423297,
+    "lon": 28.050424,
+    "year": 1928
+  },
+  {
+    "src": "../assets/images/pubcrawl/0-galati_17.jpg",
+    "caption_ro": "Harta etnica 1930",
+    "caption_en": "Ethnic map, 1930",
+    "folder": "0. Galati",
+    "lat": 45.422778,
+    "lon": 28.049705,
+    "year": 1930
+  },
+  {
+    "src": "../assets/images/pubcrawl/0-galati_18.jpg",
+    "caption_ro": "Galati interbelic",
+    "caption_en": "Interwar Galați",
+    "folder": "0. Galati",
+    "lat": 45.423757,
+    "lon": 28.049126,
+    "year": 1928
+  },
+  {
+    "src": "../assets/images/pubcrawl/0-galati_19.jpg",
+    "caption_ro": "Galati și împrejurimi 1938",
+    "caption_en": "Galați and its surroundings, 1938",
+    "folder": "0. Galati",
+    "lat": 45.424962,
+    "lon": 28.050499,
+    "year": 1938
+  },
+  {
+    "src": "../assets/images/pubcrawl/0-galati_20.jpg",
+    "caption_ro": "Galati 1940",
+    "caption_en": "Galați, 1940",
+    "folder": "0. Galati",
+    "lat": 45.423546,
+    "lon": 28.049877,
+    "year": 1940
+  },
+  {
+    "src": "../assets/images/pubcrawl/0-galati_21.jpg",
+    "caption_ro": "Galati anii '40",
+    "caption_en": "Galați, the 1940s",
+    "folder": "0. Galati",
+    "lat": 45.423094,
+    "lon": 28.047967,
+    "year": 1940
+  },
+  {
+    "src": "../assets/images/pubcrawl/0-galati_22.jpg",
+    "caption_ro": "Galati 1940",
+    "caption_en": "Galați, 1940",
+    "folder": "0. Galati",
+    "lat": 45.442052,
+    "lon": 28.041358,
+    "year": 1940
+  },
+  {
+    "src": "../assets/images/pubcrawl/0-galati_23.jpg",
+    "caption_ro": "Galati 1941",
+    "caption_en": "Galați, 1941",
+    "folder": "0. Galati",
+    "lat": 45.424284,
+    "lon": 28.052237,
+    "year": 1941
+  },
+  {
+    "src": "../assets/images/pubcrawl/0-galati_24.jpg",
+    "caption_ro": "Galati 1941",
+    "caption_en": "Galați, 1941",
+    "folder": "0. Galati",
+    "lat": 45.423185,
+    "lon": 28.051057,
+    "year": 1941
+  },
+  {
+    "src": "../assets/images/pubcrawl/0-galati_25.jpg",
+    "caption_ro": "BOMBARDAMENTELE AVIATIEI INAMICE EFECTUATE 1944",
+    "caption_en": "ENEMY AIR FORCE BOMBINGS, 1944",
+    "folder": "0. Galati",
+    "lat": 45.423832,
+    "lon": 28.0511,
+    "year": 1944
+  },
+  {
+    "src": "../assets/images/pubcrawl/0-galati_26.jpg",
+    "caption_ro": "Galati, harta militara. 1944",
+    "caption_en": "Galați, military map, 1944",
+    "folder": "0. Galati",
+    "lat": 45.424073,
+    "lon": 28.048353,
+    "year": 1944
+  },
+  {
+    "src": "../assets/images/pubcrawl/0-galati_27.jpg",
+    "caption_ro": "Vedere aeriana galati 1944",
+    "caption_en": "Aerial view of Galați, 1944",
+    "folder": "0. Galati",
+    "lat": 45.419977,
+    "lon": 28.045542,
+    "year": 1944
+  },
+  {
+    "src": "../assets/images/pubcrawl/0-galati_28.jpg",
+    "caption_ro": "Aeroportul Galati. Ianuarie 1945",
+    "caption_en": "Galați Airport. January 1945",
+    "folder": "0. Galati",
+    "lat": 45.452786,
+    "lon": 28.033183,
+    "year": 1945
+  },
+  {
+    "src": "../assets/images/pubcrawl/0-galati_29.jpg",
+    "caption_ro": "Schita planului general de sistematizare a oraşului Galați. Etapa 1954 - Perspectivă de ansamblu",
+    "caption_en": "Sketch of the general systematisation plan of the city of Galați. Phase 1954 — overall perspective",
+    "folder": "0. Galati",
+    "lat": 45.429494,
+    "lon": 28.055992,
+    "year": 1954
+  },
+  {
+    "src": "../assets/images/pubcrawl/0-galati_30.jpg",
+    "caption_ro": "Macheta cartierului Țiglina I, 1966",
+    "caption_en": "Scale model of the Țiglina I neighbourhood, 1966",
+    "folder": "0. Galati",
+    "lat": 45.426498,
+    "lon": 28.035049,
+    "year": 1966
+  },
+  {
+    "src": "../assets/images/pubcrawl/0-galati_31.jpg",
+    "caption_ro": "Macheta de reconstrucție a orașului Galați - 1966",
+    "caption_en": "Reconstruction model of the city of Galați — 1966",
+    "folder": "0. Galati",
+    "lat": 45.429728,
+    "lon": 28.055381,
+    "year": 1966
+  },
+  {
+    "src": "../assets/images/pubcrawl/0-galati_32.jpg",
+    "caption_ro": "Planul Galatiului 1967",
+    "caption_en": "Plan of Galați, 1967",
+    "folder": "0. Galati",
+    "lat": 45.422959,
+    "lon": 28.049061,
+    "year": 1967
+  },
+  {
+    "src": "../assets/images/pubcrawl/0-galati_33.jpg",
+    "caption_ro": "Mazepa 2 - 1968",
+    "caption_en": "Mazepa 2 — 1968",
+    "folder": "0. Galati",
+    "lat": 45.428787,
+    "lon": 28.045263,
+    "year": 1968
+  },
+  {
+    "src": "../assets/images/pubcrawl/0-galati_34.jpg",
+    "caption_ro": "Harta Galati",
+    "caption_en": "Map of Galați",
+    "folder": "0. Galati",
+    "lat": 45.414374,
+    "lon": 28.028419,
+    "year": null
+  },
+  {
+    "src": "../assets/images/pubcrawl/3-regiment-11-siret_01.jpg",
+    "caption_ro": "Muzica Regimentului 11 Siret - anii 1900",
+    "caption_en": "Band of the 11th Siret Regiment — the 1900s",
+    "folder": "3. Regiment 11 Siret",
+    "lat": 45.424465,
+    "lon": 28.040382,
+    "year": 1900
+  },
+  {
+    "src": "../assets/images/pubcrawl/3-regiment-11-siret_02.jpg",
+    "caption_ro": "Regimentului 11 Siret - anii 1900",
+    "caption_en": "11th Siret Regiment — the 1900s",
+    "folder": "3. Regiment 11 Siret",
+    "lat": 45.424118,
+    "lon": 28.040242,
+    "year": 1900
+  },
+  {
+    "src": "../assets/images/pubcrawl/3-regiment-11-siret_03.jpg",
+    "caption_ro": "Regimentul 11 Siret, in zona turnului de televiziune, perioada interbelica",
+    "caption_en": "The 11th Siret Regiment, near the television tower, interwar period",
+    "folder": "3. Regiment 11 Siret",
+    "lat": 45.413349,
+    "lon": 28.024229,
+    "year": 1928
+  },
+  {
+    "src": "../assets/images/pubcrawl/3-regiment-11-siret_06.jpg",
+    "caption_ro": "Strada Regiment 11 Siret, Complex Francezi, anii '60",
+    "caption_en": "Regiment 11 Siret Street, Francezi Complex, the 1960s",
+    "folder": "3. Regiment 11 Siret",
+    "lat": 45.42201,
+    "lon": 28.034985,
+    "year": 1960
+  },
+  {
+    "src": "../assets/images/pubcrawl/3-regiment-11-siret_08.jpg",
+    "caption_ro": "Strada Regiment 11 Siret - anii '60 - in dreapta jos intri la Hops Gallery",
+    "caption_en": "Regiment 11 Siret Street — the 1960s — bottom right you enter Hops Gallery",
+    "folder": "3. Regiment 11 Siret",
+    "lat": 45.427004,
+    "lon": 28.031445,
+    "year": 1960
+  },
+  {
+    "src": "../assets/images/pubcrawl/3-regiment-11-siret_10.jpg",
+    "caption_ro": "Strada Regiment 11 Siret, Complex Francezi, anii '60",
+    "caption_en": "Regiment 11 Siret Street, Francezi Complex, the 1960s",
+    "folder": "3. Regiment 11 Siret",
+    "lat": 45.421701,
+    "lon": 28.034459,
+    "year": 1960
+  },
+  {
+    "src": "../assets/images/pubcrawl/3-regiment-11-siret_11.jpg",
+    "caption_ro": "Blocul I2 de pe str.Partizanilor (Strada Regiment 11 Siret) mai 1965",
+    "caption_en": "Block I2 on Partizanilor Street (today Regiment 11 Siret Street), May 1965",
+    "folder": "3. Regiment 11 Siret",
+    "lat": 45.427386,
+    "lon": 28.037764,
+    "year": 1965
+  },
+  {
+    "src": "../assets/images/pubcrawl/3-regiment-11-siret_12.jpg",
+    "caption_ro": "Vedere de pe blocul C.36, I4 în construcție 1965",
+    "caption_en": "View from block C.36, with I4 under construction, 1965",
+    "folder": "3. Regiment 11 Siret",
+    "lat": 45.423704,
+    "lon": 28.040822,
+    "year": 1965
+  },
+  {
+    "src": "../assets/images/pubcrawl/3-regiment-11-siret_13.jpg",
+    "caption_ro": "Strada Regiment 11 Siret, Complex Francezi, 1968",
+    "caption_en": "Regiment 11 Siret Street, Francezi Complex, 1968",
+    "folder": "3. Regiment 11 Siret",
+    "lat": 45.422364,
+    "lon": 28.034352,
+    "year": 1968
+  },
+  {
+    "src": "../assets/images/pubcrawl/3-regiment-11-siret_14.jpg",
+    "caption_ro": "Strada Regiment 11 Siret, Complex Francezi, 1969",
+    "caption_en": "Regiment 11 Siret Street, Francezi Complex, 1969",
+    "folder": "3. Regiment 11 Siret",
+    "lat": 45.422356,
+    "lon": 28.035672,
+    "year": 1969
+  },
+  {
+    "src": "../assets/images/pubcrawl/3-regiment-11-siret_15.jpg",
+    "caption_ro": "Strada Regiment 11 Siret, Complex Francezi, anii '70",
+    "caption_en": "Regiment 11 Siret Street, Francezi Complex, the 1970s",
+    "folder": "3. Regiment 11 Siret",
+    "lat": 45.421663,
+    "lon": 28.034953,
+    "year": 1970
+  },
+  {
+    "src": "../assets/images/pubcrawl/3-regiment-11-siret_16.jpg",
+    "caption_ro": "Strada Regiment 11 Siret, Complex Francezi, anii '70",
+    "caption_en": "Regiment 11 Siret Street, Francezi Complex, the 1970s",
+    "folder": "3. Regiment 11 Siret",
+    "lat": 45.421972,
+    "lon": 28.035554,
+    "year": 1970
+  },
+  {
+    "src": "../assets/images/pubcrawl/3-regiment-11-siret_20.jpg",
+    "caption_ro": "Concurs de motocross - Galați 1970 Strada Regiment 11 Siret",
+    "caption_en": "Motocross competition — Galați 1970, Regiment 11 Siret Street",
+    "folder": "3. Regiment 11 Siret",
+    "lat": 45.423915,
+    "lon": 28.033451,
+    "year": 1970
+  },
+  {
+    "src": "../assets/images/pubcrawl/3-regiment-11-siret_21.jpg",
+    "caption_ro": "Concurs de motocross - Galați 1970 Strada Regiment 11 Siret",
+    "caption_en": "Motocross competition — Galați 1970, Regiment 11 Siret Street",
+    "folder": "3. Regiment 11 Siret",
+    "lat": 45.422544,
+    "lon": 28.034062,
+    "year": 1970
+  },
+  {
+    "src": "../assets/images/pubcrawl/3-regiment-11-siret_22.jpg",
+    "caption_ro": "Concurs de motocross - Galați 1970 Strada Regiment 11 Siret",
+    "caption_en": "Motocross competition — Galați 1970, Regiment 11 Siret Street",
+    "folder": "3. Regiment 11 Siret",
+    "lat": 45.425602,
+    "lon": 28.03285,
+    "year": 1970
+  },
+  {
+    "src": "../assets/images/pubcrawl/3-regiment-11-siret_26.jpg",
+    "caption_ro": "Strada Regiment 11 Siret,1975",
+    "caption_en": "Regiment 11 Siret Street, 1975",
+    "folder": "3. Regiment 11 Siret",
+    "lat": 45.42448,
+    "lon": 28.033204,
+    "year": 1975
+  },
+  {
+    "src": "../assets/images/pubcrawl/3-regiment-11-siret_27.jpg",
+    "caption_ro": "Strada Regiment 11 Siret, de pe clădirea telefoanelor 1975",
+    "caption_en": "Regiment 11 Siret Street, from the Telephone Building, 1975",
+    "folder": "3. Regiment 11 Siret",
+    "lat": 45.427808,
+    "lon": 28.037581,
+    "year": 1975
+  },
+  {
+    "src": "../assets/images/pubcrawl/3-regiment-11-siret_28.jpg",
+    "caption_ro": "Strada Regiment 11 Siret, Complex Francezi, 1977",
+    "caption_en": "Regiment 11 Siret Street, Francezi Complex, 1977",
+    "folder": "3. Regiment 11 Siret",
+    "lat": 45.422017,
+    "lon": 28.034459,
+    "year": 1977
+  },
+  {
+    "src": "../assets/images/pubcrawl/3-regiment-11-siret_29.jpg",
+    "caption_ro": "Parc Viva - \"La pastila\", locul unde ateriza elicopterul lui Ceausescu - anul 2000",
+    "caption_en": "Viva Park — \"La pastila\", the place where Ceaușescu's helicopter used to land — 2000",
+    "folder": "3. Regiment 11 Siret",
+    "lat": 45.424615,
+    "lon": 28.041358,
+    "year": 2000
+  },
+  {
+    "src": "../assets/images/pubcrawl/4-strada-brailei_01.jpg",
+    "caption_ro": "Rețeaua de tramvaie a orașului Galați - Regatul României - în anul 1914",
+    "caption_en": "The tram network of the city of Galați — Kingdom of Romania — 1914",
+    "folder": "4. Strada Brailei",
+    "lat": 45.433297,
+    "lon": 28.05522,
+    "year": 1914
+  },
+  {
+    "src": "../assets/images/pubcrawl/4-strada-brailei_02.jpg",
+    "caption_ro": "Strada Brailei - Complex Rapid, unde acum este Tribunalul - anii '60",
+    "caption_en": "Brăilei Street — Complex Rapid, where the Courthouse stands today — the 1960s",
+    "folder": "4. Strada Brailei",
+    "lat": 45.428297,
+    "lon": 28.037109,
+    "year": 1960
+  },
+  {
+    "src": "../assets/images/pubcrawl/4-strada-brailei_03.jpg",
+    "caption_ro": "Pe Brailei în dreptul intersecției cu str. Frumoasa - Cinema Dunărea anii '60",
+    "caption_en": "On Brăilei Street near the intersection with Frumoasa Street — Cinema Dunărea, the 1960s",
+    "folder": "4. Strada Brailei",
+    "lat": 45.433244,
+    "lon": 28.051588,
+    "year": 1960
+  },
+  {
+    "src": "../assets/images/pubcrawl/4-strada-brailei_04.jpg",
+    "caption_ro": "Strada Brăilei - anii '60",
+    "caption_en": "Brăilei Street — the 1960s",
+    "folder": "4. Strada Brailei",
+    "lat": 45.427386,
+    "lon": 28.028376,
+    "year": 1960
+  },
+  {
+    "src": "../assets/images/pubcrawl/4-strada-brailei_05.jpg",
+    "caption_ro": "Strada Brailei - Zona A-uri - anul 1962",
+    "caption_en": "Brăilei Street — \"A\" Block area — 1962",
+    "folder": "4. Strada Brailei",
+    "lat": 45.428049,
+    "lon": 28.03255,
+    "year": 1962
+  },
+  {
+    "src": "../assets/images/pubcrawl/4-strada-brailei_06.jpg",
+    "caption_ro": "O americană pe strada Brăilei nr. 100, Casa Dr. Duca- demolată - 1963",
+    "caption_en": "An American-style house at 100 Brăilei Street, Dr. Duca House — demolished, 1963",
+    "folder": "4. Strada Brailei",
+    "lat": 45.431708,
+    "lon": 28.048139,
+    "year": 1963
+  },
+  {
+    "src": "../assets/images/pubcrawl/4-strada-brailei_07.jpg",
+    "caption_ro": "Strada Brailei - 1964",
+    "caption_en": "Brăilei Street — 1964",
+    "folder": "4. Strada Brailei",
+    "lat": 45.428606,
+    "lon": 28.027486,
+    "year": 1964
+  },
+  {
+    "src": "../assets/images/pubcrawl/4-strada-brailei_08.jpg",
+    "caption_ro": "Strada Brailei - unde este Vega acum - 1965",
+    "caption_en": "Brăilei Street — where Vega stands today — 1965",
+    "folder": "4. Strada Brailei",
+    "lat": 45.428395,
+    "lon": 28.029857,
+    "year": 1965
+  },
+  {
+    "src": "../assets/images/pubcrawl/4-strada-brailei_09.jpg",
+    "caption_ro": "Strada Brailei cu Strada Cosbuc - 1965",
+    "caption_en": "Brăilei Street at Coșbuc Street — 1965",
+    "folder": "4. Strada Brailei",
+    "lat": 45.428967,
+    "lon": 28.039234,
+    "year": 1965
+  },
+  {
+    "src": "../assets/images/pubcrawl/4-strada-brailei_10.jpg",
+    "caption_ro": "Vedere spre Țiglina 1 - 1965",
+    "caption_en": "View towards Țiglina 1 — 1965",
+    "folder": "4. Strada Brailei",
+    "lat": 45.428297,
+    "lon": 28.031412,
+    "year": 1965
+  },
+  {
+    "src": "../assets/images/pubcrawl/4-strada-brailei_11.jpg",
+    "caption_ro": "Zona A-uri de pe str. Brăilei în 1965 imagine surprinsă de pe clădirea Miliției",
+    "caption_en": "The \"A\" Block area on Brăilei Street in 1965, image taken from the Militia building",
+    "folder": "4. Strada Brailei",
+    "lat": 45.428305,
+    "lon": 28.032099,
+    "year": 1965
+  },
+  {
+    "src": "../assets/images/pubcrawl/4-strada-brailei_12.jpg",
+    "caption_ro": "Strada Brailei in partea dreapta cu cartierul Tiglina 1 in partea stanga a imaginii - 1967",
+    "caption_en": "Brăilei Street on the right with the Țiglina 1 neighbourhood on the left of the image — 1967",
+    "folder": "4. Strada Brailei",
+    "lat": 45.42905,
+    "lon": 28.040006,
+    "year": 1967
+  },
+  {
+    "src": "../assets/images/pubcrawl/4-strada-brailei_13.jpg",
+    "caption_ro": "Strada Brailei - 1968",
+    "caption_en": "Brăilei Street — 1968",
+    "folder": "4. Strada Brailei",
+    "lat": 45.428237,
+    "lon": 28.029052,
+    "year": 1968
+  },
+  {
+    "src": "../assets/images/pubcrawl/4-strada-brailei_16.jpg",
+    "caption_ro": "Strada Brailei - Zona A-uri - anii '70",
+    "caption_en": "Brăilei Street — \"A\" Block area — the 1970s",
+    "folder": "4. Strada Brailei",
+    "lat": 45.427635,
+    "lon": 28.037045,
+    "year": 1970
+  },
+  {
+    "src": "../assets/images/pubcrawl/4-strada-brailei_17.jpg",
+    "caption_ro": "Strada Brailei anii '70 zona PS-uri",
+    "caption_en": "Brăilei Street, the 1970s, \"PS\" Block area",
+    "folder": "4. Strada Brailei",
+    "lat": 45.427507,
+    "lon": 28.027056,
+    "year": 1970
+  },
+  {
+    "src": "../assets/images/pubcrawl/4-strada-brailei_18.jpg",
+    "caption_ro": "Strada Brailei - Zona A-uri - anii '70",
+    "caption_en": "Brăilei Street — \"A\" Block area — the 1970s",
+    "folder": "4. Strada Brailei",
+    "lat": 45.428516,
+    "lon": 28.035339,
+    "year": 1970
+  },
+  {
+    "src": "../assets/images/pubcrawl/4-strada-brailei_20.jpg",
+    "caption_ro": "Strada Brailei - anii '70",
+    "caption_en": "Brăilei Street — the 1970s",
+    "folder": "4. Strada Brailei",
+    "lat": 45.429231,
+    "lon": 28.038397,
+    "year": 1970
+  },
+  {
+    "src": "../assets/images/pubcrawl/4-strada-brailei_21.jpg",
+    "caption_ro": "Strada Brailei - anii '70",
+    "caption_en": "Brăilei Street — the 1970s",
+    "folder": "4. Strada Brailei",
+    "lat": 45.43097,
+    "lon": 28.045639,
+    "year": 1970
+  },
+  {
+    "src": "../assets/images/pubcrawl/4-strada-brailei_22.jpg",
+    "caption_ro": "Strada Brailei cu Str. Constructorilor anii '70",
+    "caption_en": "Brăilei Street at Constructorilor Street, the 1970s",
+    "folder": "4. Strada Brailei",
+    "lat": 45.427808,
+    "lon": 28.030061,
+    "year": 1970
+  },
+  {
+    "src": "../assets/images/pubcrawl/4-strada-brailei_23.jpg",
+    "caption_ro": "Strada Brailei - Zona A-uri - Sărbători de iarnă, noapte de decembrie anul 1971.",
+    "caption_en": "Brăilei Street — \"A\" Block area — winter holidays, December night, 1971.",
+    "folder": "4. Strada Brailei",
+    "lat": 45.427838,
+    "lon": 28.03153,
+    "year": 1971
+  },
+  {
+    "src": "../assets/images/pubcrawl/4-strada-brailei_24.jpg",
+    "caption_ro": "Ceausescu si Todor Jivkov, presedintele bulgariei pe Strada Brailei - august 1972",
+    "caption_en": "Ceaușescu and Todor Zhivkov, President of Bulgaria, on Brăilei Street — August 1972",
+    "folder": "4. Strada Brailei",
+    "lat": 45.427838,
+    "lon": 28.027207,
+    "year": 1972
+  },
+  {
+    "src": "../assets/images/pubcrawl/4-strada-brailei_25.jpg",
+    "caption_ro": "Strada Brailei - Zona A-uri - 1975",
+    "caption_en": "Brăilei Street — \"A\" Block area — 1975",
+    "folder": "4. Strada Brailei",
+    "lat": 45.42844,
+    "lon": 28.036906,
+    "year": 1975
+  },
+  {
+    "src": "../assets/images/pubcrawl/4-strada-brailei_27.jpg",
+    "caption_ro": "Strada Brailei - Zona papadie - anii '80",
+    "caption_en": "Brăilei Street — Dandelion (Păpădie) area — the 1980s",
+    "folder": "4. Strada Brailei",
+    "lat": 45.429931,
+    "lon": 28.037217,
+    "year": 1980
+  },
+  {
+    "src": "../assets/images/pubcrawl/4-strada-brailei_28.jpg",
+    "caption_ro": "Strada Brailei - anii '80",
+    "caption_en": "Brăilei Street — the 1980s",
+    "folder": "4. Strada Brailei",
+    "lat": 45.429005,
+    "lon": 28.040897,
+    "year": 1980
+  },
+  {
+    "src": "../assets/images/pubcrawl/4-strada-brailei_29.jpg",
+    "caption_ro": "Strada Brailei - anii '80",
+    "caption_en": "Brăilei Street — the 1980s",
+    "folder": "4. Strada Brailei",
+    "lat": 45.431806,
+    "lon": 28.048364,
+    "year": 1980
+  },
+  {
+    "src": "../assets/images/pubcrawl/4-strada-brailei_30.jpg",
+    "caption_ro": "Strada Brailei - 1983",
+    "caption_en": "Brăilei Street — 1983",
+    "folder": "4. Strada Brailei",
+    "lat": 45.428546,
+    "lon": 28.038794,
+    "year": 1983
+  },
+  {
+    "src": "../assets/images/pubcrawl/4-strada-brailei_31.jpg",
+    "caption_ro": "Raliuri pe Strada Brailei - 1984",
+    "caption_en": "Rallies on Brăilei Street — 1984",
+    "folder": "4. Strada Brailei",
+    "lat": 45.428696,
+    "lon": 28.036584,
+    "year": 1984
+  },
+  {
+    "src": "../assets/images/pubcrawl/4-strada-brailei_32.jpg",
+    "caption_ro": "Raliuri pe Strada Brailei - 1984",
+    "caption_en": "Rallies on Brăilei Street — 1984",
+    "folder": "4. Strada Brailei",
+    "lat": 45.428335,
+    "lon": 28.036627,
+    "year": 1984
+  },
+  {
+    "src": "../assets/images/pubcrawl/4-strada-brailei_33.jpg",
+    "caption_ro": "Raliuri pe Strada Brailei - 1984",
+    "caption_en": "Rallies on Brăilei Street — 1984",
+    "folder": "4. Strada Brailei",
+    "lat": 45.428591,
+    "lon": 28.036798,
+    "year": 1984
+  },
+  {
+    "src": "../assets/images/pubcrawl/4-strada-brailei_34.jpg",
+    "caption_ro": "Strada Brăilei - concurs raliuri - 1985",
+    "caption_en": "Brăilei Street — rally competition — 1985",
+    "folder": "4. Strada Brailei",
+    "lat": 45.428478,
+    "lon": 28.034899,
+    "year": 1985
+  },
+  {
+    "src": "../assets/images/pubcrawl/4-strada-brailei_35.jpg",
+    "caption_ro": "Strada Brailei cu Strada Cosbuc - 1987",
+    "caption_en": "Brăilei Street at Coșbuc Street — 1987",
+    "folder": "4. Strada Brailei",
+    "lat": 45.428832,
+    "lon": 28.038268,
+    "year": 1987
+  },
+  {
+    "src": "../assets/images/pubcrawl/4-strada-brailei_36.jpg",
+    "caption_ro": "Strada Brailei - 1988",
+    "caption_en": "Brăilei Street — 1988",
+    "folder": "4. Strada Brailei",
+    "lat": 45.427507,
+    "lon": 28.02564,
+    "year": 1988
+  },
+  {
+    "src": "../assets/images/pubcrawl/4-strada-brailei_37.jpg",
+    "caption_ro": "Strada Brailei - zona Tribunal - 1997",
+    "caption_en": "Brăilei Street — courthouse area — 1997",
+    "folder": "4. Strada Brailei",
+    "lat": 45.429939,
+    "lon": 28.037817,
+    "year": 1997
+  },
+  {
+    "src": "../assets/images/pubcrawl/4-strada-brailei_38.jpg",
+    "caption_ro": "Strada Brăilei - 1998",
+    "caption_en": "Brăilei Street — 1998",
+    "folder": "4. Strada Brailei",
+    "lat": 45.429276,
+    "lon": 28.042291,
+    "year": 1998
+  },
+  {
+    "src": "../assets/images/pubcrawl/4-strada-brailei_39.jpg",
+    "caption_ro": "Strada Brailei - 1999",
+    "caption_en": "Brăilei Street — 1999",
+    "folder": "4. Strada Brailei",
+    "lat": 45.420692,
+    "lon": 28.019675,
+    "year": 1999
+  },
+  {
+    "src": "../assets/images/pubcrawl/4-strada-brailei_40.jpg",
+    "caption_ro": "Raliuri pe Strada Brailei - anii 80",
+    "caption_en": "Rallies on Brăilei Street — the 1980s",
+    "folder": "4. Strada Brailei",
+    "lat": 45.428493,
+    "lon": 28.034545,
+    "year": 1980
+  },
+  {
+    "src": "../assets/images/pubcrawl/4-strada-brailei_41.jpg",
+    "caption_ro": "Raliuri pe Strada Brailei - anii 80",
+    "caption_en": "Rallies on Brăilei Street — the 1980s",
+    "folder": "4. Strada Brailei",
+    "lat": 45.428222,
+    "lon": 28.034942,
+    "year": 1980
+  },
+  {
+    "src": "../assets/images/pubcrawl/4-strada-brailei_42.jpg",
+    "caption_ro": "Raliuri pe Strada Brailei - anii 80",
+    "caption_en": "Rallies on Brăilei Street — the 1980s",
+    "folder": "4. Strada Brailei",
+    "lat": 45.42841,
+    "lon": 28.034009,
+    "year": 1980
+  },
+  {
+    "src": "../assets/images/pubcrawl/4-strada-brailei_43.jpg",
+    "caption_ro": "Raliuri pe Strada Brailei - anii 80",
+    "caption_en": "Rallies on Brăilei Street — the 1980s",
+    "folder": "4. Strada Brailei",
+    "lat": 45.428531,
+    "lon": 28.036562,
+    "year": 1980
+  },
+  {
+    "src": "../assets/images/pubcrawl/4-strada-brailei_44.jpg",
+    "caption_ro": "Strada Brailei - Fișă de monument de artă plastică - bloc A7",
+    "caption_en": "Brăilei Street — Plastic art monument record — block A7",
+    "folder": "4. Strada Brailei",
+    "lat": 45.427778,
+    "lon": 28.032399,
+    "year": null
+  },
+  {
+    "src": "../assets/images/pubcrawl/4-strada-brailei_45.jpg",
+    "caption_ro": "Strada Brailei - Fișă de monument de artă plastică - bloc A3",
+    "caption_en": "Brăilei Street — Plastic art monument record — block A3",
+    "folder": "4. Strada Brailei",
+    "lat": 45.427846,
+    "lon": 28.033805,
+    "year": null
+  },
+  {
+    "src": "../assets/images/pubcrawl/4-strada-brailei_46.jpg",
+    "caption_ro": "Strada Brailei - Fișă de monument de artă plastică - bloc A4",
+    "caption_en": "Brăilei Street — Plastic art monument record — block A4",
+    "folder": "4. Strada Brailei",
+    "lat": 45.428019,
+    "lon": 28.034449,
+    "year": null
+  },
+  {
+    "src": "../assets/images/pubcrawl/4-strada-brailei_47.jpg",
+    "caption_ro": "Strada Brailei - Fișă de monument de artă plastică - bloc A5",
+    "caption_en": "Brăilei Street — Plastic art monument record — block A5",
+    "folder": "4. Strada Brailei",
+    "lat": 45.427989,
+    "lon": 28.035178,
+    "year": null
+  },
+  {
+    "src": "../assets/images/pubcrawl/4-strada-brailei_48.jpg",
+    "caption_ro": "Strada Brailei - Fișă de monument de artă plastică - bloc A2",
+    "caption_en": "Brăilei Street — Plastic art monument record — block A2",
+    "folder": "4. Strada Brailei",
+    "lat": 45.427815,
+    "lon": 28.033065,
+    "year": null
+  },
+  {
+    "src": "../assets/images/pubcrawl/4-strada-brailei_49.jpg",
+    "caption_ro": "Strada Brailei - Fișă de monument de artă plastică - bloc A8",
+    "caption_en": "Brăilei Street — Plastic art monument record — block A8",
+    "folder": "4. Strada Brailei",
+    "lat": 45.428102,
+    "lon": 28.036423,
+    "year": null
+  },
+  {
+    "src": "../assets/images/pubcrawl/4-strada-brailei_50.jpg",
+    "caption_ro": "Strada Brailei - Monument de artă plastică - bloc A8",
+    "caption_en": "Brăilei Street — Plastic art monument — block A8",
+    "folder": "4. Strada Brailei",
+    "lat": 45.428124,
+    "lon": 28.035768,
+    "year": null
+  },
+  {
+    "src": "../assets/images/pubcrawl/14-biserica-armeneasca_01.jpg",
+    "caption_ro": "Biserica armenească anii '30",
+    "caption_en": "Armenian church, the 1930s",
+    "folder": "14. Biserica Armeneasca",
+    "lat": 45.432252,
+    "lon": 28.052613,
+    "year": 1930
+  },
+  {
+    "src": "../assets/images/pubcrawl/14-biserica-armeneasca_02.jpg",
+    "caption_ro": "Biserica armenească anii '80",
+    "caption_en": "Armenian church, the 1980s",
+    "folder": "14. Biserica Armeneasca",
+    "lat": 45.432546,
+    "lon": 28.052143,
+    "year": 1980
+  },
+  {
+    "src": "../assets/images/pubcrawl/15-monumentul-eroilor_01.jpg",
+    "caption_ro": "Demonstrație a militarilor ruși din divizia a 9-a Siberiană, la Galați de 1 Mai 1917. În anul următor, acești soldați se vor ciocni cu românii în bătălia pentru Galați.",
+    "caption_en": "Demonstration by Russian soldiers of the 9th Siberian Division in Galați on May 1, 1917. The following year, these soldiers would clash with the Romanians in the Battle for Galați.",
+    "folder": "15. Monumentul eroilor",
+    "lat": 45.432845,
+    "lon": 28.05022,
+    "year": 1917
+  },
+  {
+    "src": "../assets/images/pubcrawl/15-monumentul-eroilor_02.jpg",
+    "caption_ro": "Bătălia pentru Galați - 1918",
+    "caption_en": "The Battle for Galați — 1918",
+    "folder": "15. Monumentul eroilor",
+    "lat": 45.432928,
+    "lon": 28.05051,
+    "year": 1918
+  },
+  {
+    "src": "../assets/images/pubcrawl/15-monumentul-eroilor_03.jpg",
+    "caption_ro": "Monumentul eroilor - 1921",
+    "caption_en": "Heroes' Monument — 1921",
+    "folder": "15. Monumentul eroilor",
+    "lat": 45.432755,
+    "lon": 28.050488,
+    "year": 1921
+  },
+  {
+    "src": "../assets/images/pubcrawl/15-monumentul-eroilor_04.jpg",
+    "caption_ro": "Monumentul eroilor - 1921",
+    "caption_en": "Heroes' Monument — 1921",
+    "folder": "15. Monumentul eroilor",
+    "lat": 45.43298,
+    "lon": 28.050295,
+    "year": 1921
+  },
+  {
+    "src": "../assets/images/pubcrawl/15-monumentul-eroilor_05.jpg",
+    "caption_ro": "Bombardamentul aliat din 6 iunie 1944 asupra aeroportului Galați",
+    "caption_en": "The Allied bombing of June 6, 1944, on Galați Airport",
+    "folder": "15. Monumentul eroilor",
+    "lat": 45.453117,
+    "lon": 28.03153,
+    "year": 1944
+  },
+  {
+    "src": "../assets/images/local/10-mai-1933-cu-masina-la-sarbatoarea-nationala-in-drum-catre-b55483c3.jpg",
+    "caption_ro": "10 mai 1933.  Cu mașina la Sărbătoarea Națională, în drum către Catedrală. În spate, stânga, Christache Theodoru, fost primar al orașului,  iar în dreapta, părintele Ștefan Arsic de la Sfântul Haralambie, fost director la Liceul Vasile Alecsandri și la Seminarul Teologic.\" Text și foto: prof. Ion Ca",
+    "caption_en": "May 10, 1933. By car to the National Holiday, on the way to the Cathedral. In the back, on the left, Christache Theodoru, former mayor of the city, and on the right, Father Ștefan Arsic of Saint Charalambos, former director of the Vasile Alecsandri High School and of the Theological Seminary. Text and photo: prof. Ion Ca",
+    "folder": "local",
+    "lat": 45.446843,
+    "lon": 28.053997,
+    "year": null
+  },
+  {
+    "src": "../assets/images/local/1961-blocuri-noi-langa-gradina-publica-a4958923.jpg",
+    "caption_ro": "1961, Blocuri noi lângă grădina publică.",
+    "caption_en": "1961, new blocks of flats near the public garden.",
+    "folder": "local",
+    "lat": 45.453184,
+    "lon": 28.050158,
+    "year": 1961
+  },
+  {
+    "src": "../assets/images/local/magazinul-modern-anul-1977-1914b65c.jpg",
+    "caption_ro": "Magazinul Modern, anul 1977.",
+    "caption_en": "The \"Modern\" store, 1977.",
+    "folder": "local",
+    "lat": 45.436348,
+    "lon": 28.055802,
+    "year": 1977
+  },
+  {
+    "src": "../assets/images/local/anii-30-panta-de-la-gara-in-stanga-se-vede-biserica-catolica-291fca34.jpg",
+    "caption_ro": "Anii '30 Panta de la gara, In stanga se vede biserica catolică iar tramvaiul mergea inainte pe Mihai Bravu.",
+    "caption_en": "The 1930s. The slope from the station. On the left, the Catholic church is visible; the tram continued on Mihai Bravu Street.",
+    "folder": "local",
+    "lat": 45.443702,
+    "lon": 28.056727,
+    "year": 1930
+  },
+  {
+    "src": "../assets/images/local/1967-parcul-de-la-elice-fara-elice-ddd3b39d.jpg",
+    "caption_ro": "1967 - Parcul de la Elice (fără Elice)",
+    "caption_en": "1967 — Propeller Park (without the propeller)",
+    "folder": "local",
+    "lat": 45.42925,
+    "lon": 28.054678,
+    "year": 1967
+  },
+  {
+    "src": "../assets/images/local/tiglinele-i-ii-si-iii-in-anii-70-252aed84.jpg",
+    "caption_ro": "Țiglinele I,II și III în anii '70",
+    "caption_en": "The Țiglina I, II and III neighbourhoods, the 1970s",
+    "folder": "local",
+    "lat": 45.422401,
+    "lon": 28.009686,
+    "year": 1970
+  },
+  {
+    "src": "../assets/images/local/centrul-anilor-60-fara-pasaj-e04466e6.jpg",
+    "caption_ro": "Centrul anilor '60. Fără pasaj.",
+    "caption_en": "The mid-1960s. Without the underpass.",
+    "folder": "local",
+    "lat": 45.433903,
+    "lon": 28.05522,
+    "year": 1960
+  },
+  {
+    "src": "../assets/images/local/sfarsitul-anilor-60-viaductul-c-s-g-se-afla-in-constructie-374d9d0a.jpg",
+    "caption_ro": "Șfârșitul anilor 60 - viaductul C.S.G. se afla în construcție",
+    "caption_en": "Late 1960s — the C.S.G. viaduct was under construction",
+    "folder": "local",
+    "lat": 45.440644,
+    "lon": 28.00341,
+    "year": 1969
+  },
+  {
+    "src": "../assets/images/local/1968-viaductul-c-s-g-4871b955.jpg",
+    "caption_ro": "1968 - Viaductul \"C.S.G.\"",
+    "caption_en": "1968 — the \"C.S.G.\" viaduct",
+    "folder": "local",
+    "lat": 45.44072,
+    "lon": 28.000084,
+    "year": 1968
+  },
+  {
+    "src": "../assets/images/local/zona-catusa-anul-1926-un-dodge-tourer-model-1925-3fa590f5.jpg",
+    "caption_ro": "Zona Cătușa, anul 1926 Un Dodge Tourer model 1925",
+    "caption_en": "The Cătușa area, 1926 — a 1925 Dodge Tourer",
+    "folder": "local",
+    "lat": 45.422175,
+    "lon": 27.997681,
+    "year": null
+  },
+  {
+    "src": "../assets/images/local/vedere-dinspre-gara-barbosi-spre-dealul-cu-castrul-roman-b9d39fcf.jpg",
+    "caption_ro": "Vedere dinspre Gara Barbosi spre dealul cu Castrul Roman.",
+    "caption_en": "View from Bărboși Station towards the hill with the Roman fort.",
+    "folder": "local",
+    "lat": 45.402382,
+    "lon": 27.988583,
+    "year": null
+  },
+  {
+    "src": "../assets/images/local/inceputul-anilor-80-se-lucra-la-fundatia-cinematografului-da-6262d86b.jpg",
+    "caption_ro": "începutul anilor '80 Se lucra la fundația cinematografului Dacia",
+    "caption_en": "Early 1980s — work was underway on the foundation of the Dacia Cinema",
+    "folder": "local",
+    "lat": 45.412284,
+    "lon": 28.016269,
+    "year": null
+  },
+  {
+    "src": "../assets/images/local/fostul-cinema-dunarea-anii-90-83973f17.jpg",
+    "caption_ro": "fostul Cinema Dunărea anii '90",
+    "caption_en": "the former Cinema Dunărea, the 1990s",
+    "folder": "local",
+    "lat": 45.433003,
+    "lon": 28.05107,
+    "year": null
+  },
+  {
+    "src": "../assets/images/local/stadion-dunarea-anii-60-503e89ab.jpg",
+    "caption_ro": "Stadion Dunarea anii 60",
+    "caption_en": "Dunărea Stadium, the 1960s",
+    "folder": "local",
+    "lat": 45.422002,
+    "lon": 28.026316,
+    "year": 1960
+  },
+  {
+    "src": "../assets/images/local/restaurant-pescarul-anii-70-e7a3a5f4.jpg",
+    "caption_ro": "Restaurant Pescarul anii 70",
+    "caption_en": "Pescarul Restaurant, the 1970s",
+    "folder": "local",
+    "lat": 45.427371,
+    "lon": 28.049201,
+    "year": 1970
+  },
+  {
+    "src": "../assets/images/local/strada-portului-spre-palatul-navigatiei-pe-fundal-casele-h-s-e02c77a2.jpg",
+    "caption_ro": "Strada Portului spre Palatul Navigației, pe fundal casele H. Ștefan - anii '30",
+    "caption_en": "Portului Street towards the Navigation Palace, with the H. Ștefan houses in the background — the 1930s",
+    "folder": "local",
+    "lat": 45.432412,
+    "lon": 28.062842,
+    "year": 1930
+  },
+  {
+    "src": "../assets/images/local/autogara-dumitru-7a3948fc.jpg",
+    "caption_ro": "Autogara Dumitru",
+    "caption_en": "Dumitru Bus Station",
+    "folder": "local",
+    "lat": 45.442334,
+    "lon": 28.05868,
+    "year": 1970
+  },
+  {
+    "src": "../assets/images/local/vedeta-de-razboi-numarul-5-maior-gheorghe-sontu-1916-d23e28da.jpg",
+    "caption_ro": "Vedeta de razboi numarul 5 – Maior Gheorghe Sontu 1916",
+    "caption_en": "War vedette no. 5 — Major Gheorghe Șonțu, 1916",
+    "folder": "local",
+    "lat": 45.426799,
+    "lon": 28.05258,
+    "year": 1916
+  },
+  {
+    "src": "../assets/images/local/anii-70-batranul-foisor-uitat-parcul-cfr-c6c3e204.jpg",
+    "caption_ro": "Anii '70 Bătrânul foişor uitat, parcul CFR",
+    "caption_en": "The 1970s. The forgotten old pavilion, CFR Park",
+    "folder": "local",
+    "lat": 45.464574,
+    "lon": 28.04308,
+    "year": 1970
+  },
+  {
+    "src": "../assets/images/local/anii-1970-71-constructia-spitalului-judetean-inaugurat-in-72-68052b99.jpg",
+    "caption_ro": "anii 1970-'71. Construcția Spitalului Județean (inaugurat în' 72).",
+    "caption_en": "1970–'71. Construction of the County Hospital (inaugurated in '72).",
+    "folder": "local",
+    "lat": 45.418945,
+    "lon": 28.019863,
+    "year": 1972
+  },
+  {
+    "src": "../assets/images/local/anii-30-9ed7feae.jpg",
+    "caption_ro": "Anii 30",
+    "caption_en": "The 1930s",
+    "folder": "local",
+    "lat": 45.451252,
+    "lon": 28.051309,
+    "year": 1930
+  },
+  {
+    "src": "../assets/images/local/valea-tiglinei-1981-263bf295.jpg",
+    "caption_ro": "Valea Țiglinei/ 1981",
+    "caption_en": "Țiglina Valley / 1981",
+    "folder": "local",
+    "lat": 45.426731,
+    "lon": 28.023629,
+    "year": 1981
+  },
+  {
+    "src": "../assets/images/local/4-decembrie-1985-otelul-galati-furniza-una-din-marele-surpri-97a92ee7.jpg",
+    "caption_ro": "4 decembrie 1985 - Otelul Galati furniza una din marele surprize ale Cupei României, învingând Sportul Studențesc cu 4-1.",
+    "caption_en": "December 4, 1985 — Oțelul Galați delivered one of the great surprises of the Romanian Cup, beating Sportul Studențesc 4–1.",
+    "folder": "local",
+    "lat": 45.430505,
+    "lon": 28.022081,
+    "year": 1985
+  },
+  {
+    "src": "../assets/images/local/casa-de-moda-463366cc.jpg",
+    "caption_ro": "Casa de modă",
+    "caption_en": "Fashion House",
+    "folder": "local",
+    "lat": 45.432965,
+    "lon": 28.05247,
+    "year": 1960
+  },
+  {
+    "src": "../assets/images/local/zona-astazi-cunoscuta-la-papadie-a5aa76b6.jpg",
+    "caption_ro": "Zona astăzi cunoscută „La Păpădie”",
+    "caption_en": "The area today known as \"At the Dandelion\"",
+    "folder": "local",
+    "lat": 45.427369,
+    "lon": 28.038118,
+    "year": 1969
+  },
+  {
+    "src": "../assets/images/local/anii-20-9146252e.jpg",
+    "caption_ro": "Anii 20",
+    "caption_en": "The 1920s",
+    "folder": "local",
+    "lat": 45.432344,
+    "lon": 28.063551,
+    "year": 1920
+  },
+  {
+    "src": "../assets/images/local/galatiul-a-avut-arc-de-triumf-galati-strada-domneasca-in-fat-93efa42d.jpg",
+    "caption_ro": "Galațiul a avut Arc de Triumf! - Galaţi: Strada Domnească în faţa Librăriei Noi Negoescu & Maniţiu. Hotel Continental, stânga - Hotel Metropol, dreapta. Între cele două hoteluri: Arcul de triumf: \"Trăiască Alteţele Lor Regale\" (Principele României Ferdinand şi Principesa Maria au participat la aşeza",
+    "caption_en": "Galați once had a Triumphal Arch! — Galați: Domnească Street in front of the New Negoescu & Manițiu Bookshop. Hotel Continental on the left, Hotel Metropol on the right. Between the two hotels: the Triumphal Arch: \"Long live Their Royal Highnesses\" (Prince Ferdinand of Romania and Princess Marie attended the laying [of the foundation stone]…)",
+    "folder": "local",
+    "lat": 45.436007,
+    "lon": 28.055753,
+    "year": 1906
+  },
+  {
+    "src": "../assets/images/local/anii-60-40b8cbae.jpg",
+    "caption_ro": "anii '60",
+    "caption_en": "the 1960s",
+    "folder": "local",
+    "lat": 45.439058,
+    "lon": 28.046604,
+    "year": 1960
+  },
+  {
+    "src": "../assets/images/local/1902-2b42f180.jpg",
+    "caption_ro": "1902",
+    "caption_en": "1902",
+    "folder": "local",
+    "lat": 45.441907,
+    "lon": 28.057274,
+    "year": 1902
+  },
+  {
+    "src": "../assets/images/local/1902-cd9db3bb.jpg",
+    "caption_ro": "1902",
+    "caption_en": "1902",
+    "folder": "local",
+    "lat": 45.443211,
+    "lon": 28.056797,
+    "year": 1902
+  },
+  {
+    "src": "../assets/images/local/faleza-1950-407ca0e5.jpg",
+    "caption_ro": "Faleza 1950",
+    "caption_en": "The promenade, 1950",
+    "folder": "local",
+    "lat": 45.423472,
+    "lon": 28.0441,
+    "year": 1950
+  },
+  {
+    "src": "../assets/images/local/foto-80e32356.jpg",
+    "caption_ro": "",
+    "caption_en": "",
+    "folder": "local",
+    "lat": 45.43321,
+    "lon": 28.064248,
+    "year": 1910
+  },
+  {
+    "src": "../assets/images/local/foto-ee4e7db9.jpg",
+    "caption_ro": "",
+    "caption_en": "",
+    "folder": "local",
+    "lat": 45.442733,
+    "lon": 28.057172,
+    "year": 1910
+  },
+  {
+    "src": "../assets/images/local/piata-pescariei-1906-d98d2c76.jpg",
+    "caption_ro": "Piata pescariei 1906",
+    "caption_en": "The Fish Market, 1906",
+    "folder": "local",
+    "lat": 45.444551,
+    "lon": 28.08466,
+    "year": null
+  },
+  {
+    "src": "../assets/images/local/statuia-i-c-bratianu-si-scoala-cuza-voda-d07bb24b.jpg",
+    "caption_ro": "Statuia I. C. Brătianu și Şcoala Cuza Vodă",
+    "caption_en": "The I.C. Brătianu statue and the Cuza Vodă School",
+    "folder": "local",
+    "lat": 45.435314,
+    "lon": 28.067587,
+    "year": 1927
+  },
+  {
+    "src": "../assets/images/local/gradina-publica-db3f25cc.jpg",
+    "caption_ro": "Gradina Publica",
+    "caption_en": "The Public Garden",
+    "folder": "local",
+    "lat": 45.452823,
+    "lon": 28.054941,
+    "year": 1920
+  },
+  {
+    "src": "../assets/images/local/casa-penescu-43614734.jpg",
+    "caption_ro": "Casa Penescu",
+    "caption_en": "Penescu House",
+    "folder": "local",
+    "lat": 45.433502,
+    "lon": 28.05482,
+    "year": 1933
+  },
+  {
+    "src": "../assets/images/local/santierul-naval-2ae15353.jpg",
+    "caption_ro": "Santierul Naval",
+    "caption_en": "The Shipyard",
+    "folder": "local",
+    "lat": 45.44559,
+    "lon": 28.094401,
+    "year": 1960
+  },
+  {
+    "src": "../assets/images/local/circumscriptia-sectiei-de-politie-1-de-pe-str-ceres-anul-193-b57b7e19.jpg",
+    "caption_ro": "Circumscripția secției de politie 1 de pe str Cereş - anul 1939",
+    "caption_en": "District of Police Section 1 on Cereș Street — 1939",
+    "folder": "local",
+    "lat": 45.436999,
+    "lon": 28.067898,
+    "year": 1939
+  },
+  {
+    "src": "../assets/images/local/str-tecuci-colt-cu-str-morilor-043fa692.jpg",
+    "caption_ro": "Str Tecuci colt cu str Morilor.",
+    "caption_en": "Tecuci Street at the corner with Morilor Street.",
+    "folder": "local",
+    "lat": 45.438651,
+    "lon": 28.038649,
+    "year": 1910
+  },
+  {
+    "src": "../assets/images/local/1905-strada-ion-heliade-radulescu-garii-in-prezent-96425078.jpg",
+    "caption_ro": "1905 - strada Ion Heliade Rădulescu/Gării în prezent",
+    "caption_en": "1905 — Ion Heliade Rădulescu Street / today Gării Street",
+    "folder": "local",
+    "lat": 45.443313,
+    "lon": 28.057556,
+    "year": 1905
+  },
+  {
+    "src": "../assets/images/local/vedere-generala-anii-30-34cb18b2.jpg",
+    "caption_ro": "Vedere generală, anii 30",
+    "caption_en": "General view, the 1930s",
+    "folder": "local",
+    "lat": 45.437927,
+    "lon": 28.058154,
+    "year": 1930
+  },
+  {
+    "src": "../assets/images/local/vedere-generala-spre-docuri-1913-73d26c09.jpg",
+    "caption_ro": "Vedere generală spre docuri, 1913",
+    "caption_en": "General view towards the docks, 1913",
+    "folder": "local",
+    "lat": 45.436346,
+    "lon": 28.058224,
+    "year": 1913
+  },
+  {
+    "src": "../assets/images/local/o-vedere-panoramica-spre-docuri-1907-cc7245f6.jpg",
+    "caption_ro": "O vedere panoramică spre docuri, 1907",
+    "caption_en": "A panoramic view of the docks, 1907",
+    "folder": "local",
+    "lat": 45.436543,
+    "lon": 28.058197,
+    "year": 1907
+  },
+  {
+    "src": "../assets/images/local/plan-cuprinzand-piata-sfintii-apostoli-astazi-disparuta-zona-8f985a65.jpg",
+    "caption_ro": "Plan cuprinzând Piața Sfinții Apostoli, astăzi dispărută (zona Liceului de Marină) - sursa: dl. Ion Cașu",
+    "caption_en": "Plan including Holy Apostles Square, today disappeared (Naval High School area) — source: Mr Ion Cașu",
+    "folder": "local",
+    "lat": 45.435205,
+    "lon": 28.067673,
+    "year": 1920
+  },
+  {
+    "src": "../assets/images/local/monitorul-bratianu-940e8200.jpg",
+    "caption_ro": "Monitorul Bratianu",
+    "caption_en": "Brătianu Monitor",
+    "folder": "local",
+    "lat": 45.428395,
+    "lon": 28.061786,
+    "year": 1930
+  },
+  {
+    "src": "../assets/images/local/regia-monopolului-statului-4f92c220.jpg",
+    "caption_ro": "Regia Monopolului Statului",
+    "caption_en": "State Monopoly Authority",
+    "folder": "local",
+    "lat": 45.43491,
+    "lon": 28.057403,
+    "year": 1943
+  },
+  {
+    "src": "../assets/images/local/toate-cladirile-din-dreapta-nu-mai-exista-prima-cladire-cea--60aca6c4.jpg",
+    "caption_ro": "Toate cladirile din dreapta nu mai exista. Prima cladire, cea cu poarta impozanta si inscriptie, e pe locul viitorului parculet unde acum e Lupa Capitolina, in continuarea fostei Primarii a Galatiului.",
+    "caption_en": "All the buildings on the right no longer exist. The first building — the one with the imposing gate and inscription — stands on the site of the future small park where the Capitoline Wolf statue is now, just past the former Galați City Hall.",
+    "folder": "local",
+    "lat": 45.438619,
+    "lon": 28.056403,
+    "year": 1962
+  },
+  {
+    "src": "../assets/images/local/969-terenul-pe-care-se-va-construi-micro-21-turnul-de-televi-23823dfe.jpg",
+    "caption_ro": "969 - terenul pe care se va construi Micro 21. Turnul de televiziune era încă nefinalizat. A fost inaugurat în 1971.",
+    "caption_en": "1969 — the land on which Micro 21 was to be built. The television tower was still unfinished. It was inaugurated in 1971.",
+    "folder": "local",
+    "lat": 45.408356,
+    "lon": 28.018044,
+    "year": 1969
+  },
+  {
+    "src": "../assets/images/local/foto-d0ef00f3.jpg",
+    "caption_ro": "",
+    "caption_en": "",
+    "folder": "local",
+    "lat": 45.429255,
+    "lon": 28.055324,
+    "year": 1969
+  },
+  {
+    "src": "../assets/images/local/str-portului-anul-1915-1b11e8ed.jpg",
+    "caption_ro": "Str Portului  anul 1915.",
+    "caption_en": "Portului Street, 1915.",
+    "folder": "local",
+    "lat": 45.432694,
+    "lon": 28.063288,
+    "year": 1915
+  },
+  {
+    "src": "../assets/images/local/strada-domneasca-perioada-antebelica-7dc7e7fc.jpg",
+    "caption_ro": "Strada Domnească perioada antebelica",
+    "caption_en": "Domnească Street, pre-war period",
+    "folder": "local",
+    "lat": 45.439459,
+    "lon": 28.056448,
+    "year": 1914
+  },
+  {
+    "src": "../assets/images/local/scarile-alexandru-moruzzi-04c554ab.jpg",
+    "caption_ro": "Scările Alexandru Moruzzi",
+    "caption_en": "The Alexandru Moruzzi Stairs",
+    "folder": "local",
+    "lat": 45.443159,
+    "lon": 28.056818,
+    "year": 1910
+  },
+  {
+    "src": "../assets/images/local/str-traian-cazarma-de-vanatori-5e153458.jpg",
+    "caption_ro": "Str Traian, Cazarma de Vânători",
+    "caption_en": "Traian Street, the Hunters' Barracks",
+    "folder": "local",
+    "lat": 45.455647,
+    "lon": 28.040744,
+    "year": 1930
+  },
+  {
+    "src": "../assets/images/local/str-g-ral-berthelot-colt-cu-str-tecuci-in-colt-farmacia-sper-65109c62.jpg",
+    "caption_ro": "Str G-ral Berthelot colt cu str Tecuci, în colț farmacia Speranța, în prezent Bl Albatros, anii '30",
+    "caption_en": "General Berthelot Street at the corner with Tecuci Street; on the corner the Speranța pharmacy, today the Albatros block, the 1930s",
+    "folder": "local",
+    "lat": 45.437038,
+    "lon": 28.052462,
+    "year": 1930
+  },
+  {
+    "src": "../assets/images/local/cheiul-dunarii-perioada-interbelica-ad544884.jpg",
+    "caption_ro": "Cheiul Dunării, perioada interbelică.",
+    "caption_en": "The Danube quay, interwar period.",
+    "folder": "local",
+    "lat": 45.437678,
+    "lon": 28.07466,
+    "year": 1925
+  },
+  {
+    "src": "../assets/images/local/agentia-lloyd-austriac-sosirea-pasagerilor-interbelica-ff91b5b7.jpg",
+    "caption_ro": "Agenția Lloyd Austriac, sosirea pasagerilor - interbelică.",
+    "caption_en": "Austrian Lloyd Agency, the arrival of passengers — interwar period.",
+    "folder": "local",
+    "lat": 45.431322,
+    "lon": 28.062142,
+    "year": 1925
+  },
+  {
+    "src": "../assets/images/local/vedere-din-port-vapor-remorcher-barje-debarcader-anul-1920-5f60f994.jpg",
+    "caption_ro": "Vedere din port, vapor, remorcher, barje, debarcader, anul 1920",
+    "caption_en": "View from the port — ship, tugboat, barges, landing pier — 1920",
+    "folder": "local",
+    "lat": 45.435126,
+    "lon": 28.068966,
+    "year": 1920
+  },
+  {
+    "src": "../assets/images/local/cec-anii-70-0c13da14.jpg",
+    "caption_ro": "CEC anii 70",
+    "caption_en": "CEC (Savings Bank), the 1970s",
+    "folder": "local",
+    "lat": 45.428802,
+    "lon": 28.036289,
+    "year": 1970
+  },
+  {
+    "src": "../assets/images/local/piata-pescariei-in-timpul-vanzarii-47dee6e0.jpg",
+    "caption_ro": "Piata Pescariei in timpul vanzarii",
+    "caption_en": "The Fish Market during sales",
+    "folder": "local",
+    "lat": 45.437328,
+    "lon": 28.072826,
+    "year": 1920
+  },
+  {
+    "src": "../assets/images/local/scola-de-submecanici-si-submaestri-de-marina-dealurile-tigli-9b41b664.jpg",
+    "caption_ro": "Şcola de submecanici şi submaeştri de marină, dealurile Tiglinei - anul 1902.",
+    "caption_en": "School of sub-mechanics and naval sub-masters, the Țiglina Hills — 1902.",
+    "folder": "local",
+    "lat": 45.414121,
+    "lon": 28.028183,
+    "year": 1902
+  },
+  {
+    "src": "../assets/images/local/o-farama-din-galatii-de-odinioara-fantana-intre-strazile-ros-9507c14d.jpg",
+    "caption_ro": "O fărâmă din Galații de odinioară: fântână între străzile Roseti/Dornei și Bratianu/Spiridon Vranceanu, capătul dinspre Bălcescu.",
+    "caption_en": "A fragment of old Galați: a fountain between Roseti/Dornei and Brătianu/Spiridon Vrânceanu streets, the end towards Bălcescu.",
+    "folder": "local",
+    "lat": 45.435642,
+    "lon": 28.050786,
+    "year": 1930
+  },
+  {
+    "src": "../assets/images/local/se-poate-vedea-in-planul-indepartat-biserica-militara-casele-37d4bcb2.jpg",
+    "caption_ro": "se poate vedea in planul indepartat Biserica Militara. Casele sunt pe strada Vadul Sacalelor. Biserica a fost demolata in '63-'64 cu dinamita.",
+    "caption_en": "In the distant plane, the Military Church can be seen. The houses are on Vadul Sacalelor Street. The church was demolished in '63–'64 with dynamite.",
+    "folder": "local",
+    "lat": 45.431072,
+    "lon": 28.054855,
+    "year": 1962
+  },
+  {
+    "src": "../assets/images/local/str-traian-in-fata-spitalului-militar-anul-1906-d1a35109.jpg",
+    "caption_ro": "Str. Traian, în fața Spitalului Militar, anul 1906",
+    "caption_en": "Traian Street, in front of the Military Hospital, 1906",
+    "folder": "local",
+    "lat": 45.449295,
+    "lon": 28.043938,
+    "year": 1906
+  },
+  {
+    "src": "../assets/images/local/str-g-ral-berthelot-balcescu-colt-cu-str-lahovary-anii-30-75e73c7f.jpg",
+    "caption_ro": "Str G-ral Berthelot / Bălcescu colt cu str Lahovary, anii '30",
+    "caption_en": "General Berthelot / Bălcescu Street at the corner with Lahovary Street, the 1930s",
+    "folder": "local",
+    "lat": 45.43561,
+    "lon": 28.05331,
+    "year": 1930
+  },
+  {
+    "src": "../assets/images/local/agentia-si-magaziile-lloydului-austricac-7cc23852.jpg",
+    "caption_ro": "Agentia si Magaziile Lloydului Austricac",
+    "caption_en": "Austrian Lloyd Agency and Warehouses",
+    "folder": "local",
+    "lat": 45.434023,
+    "lon": 28.066238,
+    "year": 1920
+  },
+  {
+    "src": "../assets/images/local/agentia-lloyd-austriac-4b305e2e.jpg",
+    "caption_ro": "Agentia Lloyd Austriac",
+    "caption_en": "Austrian Lloyd Agency",
+    "folder": "local",
+    "lat": 45.434104,
+    "lon": 28.066437,
+    "year": 1920
+  },
+  {
+    "src": "../assets/images/local/1966-hotel-galati-aproape-de-finalizare-6c0f06be.jpg",
+    "caption_ro": "1966, Hotel Galați aproape de finalizare",
+    "caption_en": "1966, Hotel Galați nearing completion",
+    "folder": "local",
+    "lat": 45.433849,
+    "lon": 28.055854,
+    "year": 1966
+  },
+  {
+    "src": "../assets/images/local/strada-portului-spre-str-col-boyle-circa-1930-4a726511.jpg",
+    "caption_ro": "Strada Portului (spre str. Col. Boyle) - circa 1930",
+    "caption_en": "Portului Street (towards Col. Boyle Street) — circa 1930",
+    "folder": "local",
+    "lat": 45.430594,
+    "lon": 28.059093,
+    "year": 1930
+  },
+  {
+    "src": "../assets/images/local/moara-steaua-fotografie-din-anii-20-fe8dcddf.jpg",
+    "caption_ro": "Moara Steaua Fotografie din anii '20",
+    "caption_en": "Steaua Mill — photograph from the 1920s",
+    "folder": "local",
+    "lat": 45.436767,
+    "lon": 28.069258,
+    "year": 1920
+  },
+  {
+    "src": "../assets/images/local/piata-sfintii-apostoli-zona-port-cu-statuia-ic-bratianu-prob-8948204b.jpg",
+    "caption_ro": "Piața Sfinții Apostoli, zona Port, cu statuia IC Brătianu, probabil pe final de ani '20",
+    "caption_en": "Holy Apostles Square, port area, with the I.C. Brătianu statue, probably late 1920s",
+    "folder": "local",
+    "lat": 45.435192,
+    "lon": 28.067483,
+    "year": 1929
+  },
+  {
+    "src": "../assets/images/local/intrarea-in-port-docuri-c87bb7e2.jpg",
+    "caption_ro": "Întrarea în port docuri",
+    "caption_en": "Entrance to the port docks",
+    "folder": "local",
+    "lat": 45.439342,
+    "lon": 28.071908,
+    "year": 1920
+  },
+  {
+    "src": "../assets/images/local/zona-portului-marfa-de-incarcat-in-vapoare-posibil-anii-20-4b719256.jpg",
+    "caption_ro": "Zona portului- marfă de încărcat în vapoare Posibil anii '20",
+    "caption_en": "Port area — goods waiting to be loaded onto ships, possibly the 1920s",
+    "folder": "local",
+    "lat": 45.433577,
+    "lon": 28.065434,
+    "year": 1920
+  },
+  {
+    "src": "../assets/images/local/strada-portului-6ea26928.jpg",
+    "caption_ro": "Strada portului",
+    "caption_en": "Portului Street",
+    "folder": "local",
+    "lat": 45.430129,
+    "lon": 28.057609,
+    "year": 1920
+  },
+  {
+    "src": "../assets/images/local/hotelul-turist-in-constructie-la-inceputul-anilor-70-9a7fe663.jpg",
+    "caption_ro": "Hotelul Turist in constructie, la inceputul anilor '70",
+    "caption_en": "",
+    "folder": "local",
+    "lat": 45.43001,
+    "lon": 28.037654,
+    "year": 1970
+  },
+  {
+    "src": "../assets/images/local/1962-tramvai-pe-str-nicolae-balcescu-149f7635.jpg",
+    "caption_ro": "1962 - tramvai pe str. Nicolae Bălcescu.",
+    "caption_en": "",
+    "folder": "local",
+    "lat": 45.434161,
+    "lon": 28.054227,
+    "year": 1962
+  },
+  {
+    "src": "../assets/images/local/la-volan-ghita-stoenescu-c28877fd.jpg",
+    "caption_ro": "La volan Ghita Stoenescu",
+    "caption_en": "",
+    "folder": "local",
+    "lat": 45.438324,
+    "lon": 28.041441,
+    "year": 1930
+  },
+  {
+    "src": "../assets/images/local/strada-general-berthelot-mavramol-astazi-n-balcescu-024752c5.jpg",
+    "caption_ro": "Strada General Berthelot (Mavramol), astazi N. Balcescu",
+    "caption_en": "",
+    "folder": "local",
+    "lat": 45.433878,
+    "lon": 28.053957,
+    "year": null
+  },
+  {
+    "src": "../assets/images/local/casa-sacomanu-tribunalul-covurlui-1923-6049109c.jpg",
+    "caption_ro": "Casa Sacomanu (Tribunalul Covurlui) 1923",
+    "caption_en": "",
+    "folder": "local",
+    "lat": 45.440195,
+    "lon": 28.056402,
+    "year": 1923
+  },
+  {
+    "src": "../assets/images/local/1960-contrast-in-centrul-galatiului-5e47a4c1.jpg",
+    "caption_ro": "1960 Contrast în centrul Galaţiului",
+    "caption_en": "",
+    "folder": "local",
+    "lat": 45.431012,
+    "lon": 28.055582,
+    "year": 1960
+  },
+  {
+    "src": "../assets/images/local/calea-ferata-galati-beresti-barlad-statia-frumusita-cladire--94b7a55c.jpg",
+    "caption_ro": "Calea ferata Galati- Beresti-Barlad Statia Frumusita cladire monument istoric 1909",
+    "caption_en": "",
+    "folder": "local",
+    "lat": 45.657088,
+    "lon": 28.071275,
+    "year": 1909
+  },
+  {
+    "src": "../assets/images/local/trada-domneasca-in-prim-plan-farmacia-domneasca-beraria-bava-a49919da.jpg",
+    "caption_ro": "trada Domnească În prim plan farmacia Domnească, Berăria Bavaria",
+    "caption_en": "",
+    "folder": "local",
+    "lat": 45.438983,
+    "lon": 28.056593,
+    "year": 1921
+  },
+  {
+    "src": "../assets/images/local/domnul-constantin-d-stoenescu-insusi-dreapta-cu-membri-ai-fa-5b734a3c.jpg",
+    "caption_ro": "Domnul Constantin D. Stoenescu însuși (dreapta)- cu membri ai familiei- în fața proprietății sale 'Magazinul Elitei' din Galați",
+    "caption_en": "",
+    "folder": "local",
+    "lat": 45.434565,
+    "lon": 28.055614,
+    "year": 1930
+  },
+  {
+    "src": "../assets/images/local/strada-cuza-si-biserica-vovidenia-anul-1900-3784379e.jpg",
+    "caption_ro": "Strada Cuza si Biserica Vovidenia- anul 1900.",
+    "caption_en": "",
+    "folder": "local",
+    "lat": 45.43758,
+    "lon": 28.058151,
+    "year": 1900
+  },
+  {
+    "src": "../assets/images/local/un-cortegiu-funerar-surprins-la-intersectia-strazilor-lahova-1f854422.jpg",
+    "caption_ro": "un cortegiu funerar surprins la intersecția străzilor Lahovary și Domnească",
+    "caption_en": "",
+    "folder": "local",
+    "lat": 45.435779,
+    "lon": 28.055485,
+    "year": 1940
+  },
+  {
+    "src": "../assets/images/local/str-domneasca-in-dreapta-casele-gheuca-si-farmacia-domneasca-2cfb8f8c.jpg",
+    "caption_ro": "Str Domneasca, în dreapta casele Gheuca și Farmacia Domnească, în stânga str Sf Nicolae și hotel Concordia, fotografie făcută din terasa Berariei Central",
+    "caption_en": "",
+    "folder": "local",
+    "lat": 45.438949,
+    "lon": 28.056451,
+    "year": 1930
+  }
+]

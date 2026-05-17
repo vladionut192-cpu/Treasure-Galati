@@ -3,13 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bătălia de la Galați 1918 · animație top view</title>
+  <title data-i18n="battle1918.page_title">Bătălia de la Galați 1918 · animație top view</title>
   <meta name="description" content="Animație top-view a bătăliei de la Galați (20–22 ianuarie 1918). Reconstituire vizuală a luptei pentru oraș împotriva Corpului 4 Siberian bolșevizat.">
   <link rel="canonical" href="https://heritage-galati.ro/galati_map/batalia-galati-1918.html">
   <link rel="icon" type="image/svg+xml" href="../assets/logo-sigiliu.svg">
   <link rel="apple-touch-icon" href="../assets/logo-sigiliu.svg">
-  <link rel="preload" href="vendor/inter/inter.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="vendor/inter/inter.css"></noscript>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;600;700&display=swap"></noscript>
   <!-- Open Graph / Twitter -->
   <meta property="og:type" content="article">
   <meta property="og:title" content="Bătălia de la Galați 1918 — animație top view">
@@ -23,6 +25,7 @@
   <meta name="twitter:description" content="Animație top-view a luptei din ianuarie 1918.">
   <meta name="twitter:image" content="https://heritage-galati.ro/assets/images/comic-1918/cover.jpg">
   <script type="module" src="./batalia-galati-1918.js"></script>
+  <script defer src="./js/i18n.js"></script>
   <style>
     * { box-sizing: border-box; }
     html, body { min-height: 100%; }
@@ -30,7 +33,7 @@
       margin: 0;
       background: #11110f;
       color: #f4eedf;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: 'DM Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       -webkit-font-smoothing: antialiased;
     }
     main {
@@ -87,15 +90,17 @@
   <main>
     <div class="topline">
       <div class="brand">Heritage Galați</div>
-      <a href="./index.html#map">Înapoi la hartă</a>
+      <a href="./index.html#map" data-i18n="battle1918.back">Înapoi la hartă</a>
     </div>
 
     <battle-galati-animation duration="96"></battle-galati-animation>
 
     <p class="embed-note">
-      Pentru inserare în alt front-end: include <code>batalia-galati-1918.js</code> și folosește
+      <span data-i18n="battle1918.embed_intro">Pentru inserare în alt front-end: include</span>
+      <code>batalia-galati-1918.js</code>
+      <span data-i18n="battle1918.embed_and_use">și folosește</span>
       <code>&lt;battle-galati-animation duration="96"&gt;&lt;/battle-galati-animation&gt;</code>.
-      Alternativ, pagina aceasta poate fi introdusă direct într-un iframe.
+      <span data-i18n="battle1918.embed_iframe">Alternativ, pagina aceasta poate fi introdusă direct într-un iframe.</span>
     </p>
   </main>
 </body>

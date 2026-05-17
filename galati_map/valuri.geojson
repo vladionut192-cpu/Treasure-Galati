@@ -147,6 +147,88 @@
     {
       "type": "Feature",
       "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            28.0735,
+            45.705
+          ],
+          [
+            27.965,
+            45.74
+          ],
+          [
+            27.883,
+            45.751
+          ],
+          [
+            27.835,
+            45.747
+          ],
+          [
+            27.806,
+            45.79
+          ],
+          [
+            27.705,
+            45.805
+          ],
+          [
+            27.67,
+            45.865
+          ],
+          [
+            27.585,
+            45.88
+          ],
+          [
+            27.4344,
+            45.9015
+          ],
+          [
+            27.4235,
+            45.9181
+          ],
+          [
+            27.3795,
+            45.9691
+          ],
+          [
+            27.355,
+            45.975
+          ],
+          [
+            27.3327,
+            45.9785
+          ],
+          [
+            27.355,
+            46.025
+          ],
+          [
+            27.334,
+            46.05
+          ],
+          [
+            27.2703,
+            46.0786
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Valul lui Atanaric",
+        "altname": "Valul Athanaric / Valul Brăhășești-Stoicani",
+        "fortification_type": "frontier (gotic, 376 d.Hr.)",
+        "length_km": 85.6,
+        "expected_length_km": 90,
+        "loc_id": "loc-198",
+        "source": "Reconstrucție pe baza descrierii Wikipedia + Adevărul + RAN (coduri 02975.01-16). Trasee de referință: NW-SE pe platoul dintre văile Tecucelului și Bârladului. Coordonate verificate din OSM pentru localitățile-reper. Aproximare ±1 km — pentru detaliu de teren, vezi sectoarele RAN: Tecucelu Sec, Vizurești.",
+        "waypoint_count": 16
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
         "type": "Polygon",
         "coordinates": [
           [

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Editor poziții — Pub Crawl Fototecă</title>
+<title>Editor poziții — Galați de altădată (fotografii istorice)</title>
 <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
 <style>
 :root {
@@ -181,7 +181,7 @@ body.dragging .leaflet-marker-icon { transition: none !important; }
       <div class="stat"><span>Modificate</span><span class="modified-count" id="stat-modified">0</span></div>
       <div class="stat"><span>Folder activ</span><strong id="stat-folder">toate</strong></div>
       <div class="btns">
-        <button class="btn primary" id="btn-export">⬇ Descarcă pubcrawl_photos.json</button>
+        <button class="btn primary" id="btn-export">⬇ Descarcă galati-altadata.json</button>
         <button class="btn" id="btn-reset-all">↺ Resetează toate</button>
       </div>
     </div>
@@ -406,7 +406,7 @@ function applyFolder() {
 
 async function init() {
   cachePreviewNodes();
-  const r = await fetch('pubcrawl_photos.json');
+  const r = await fetch('galati-altadata.json');
   const data = await r.json();
   let mods = {};
   try { mods = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch (e) {}
@@ -518,7 +518,7 @@ document.getElementById('btn-export').addEventListener('click', () => {
   const blob = new Blob([JSON.stringify(out, null, 2)], { type: 'application/json' });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = 'pubcrawl_photos.json';
+  a.download = 'galati-altadata.json';
   document.body.appendChild(a);
   a.click(); a.remove();
   URL.revokeObjectURL(a.href);

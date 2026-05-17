@@ -5,7 +5,7 @@
 //   - Tile-uri OpenStreetMap/CARTO: cache-first cu TTL lung
 //   - Imagini: cache-first
 
-const CACHE_VERSION = 'tg-v23';
+const CACHE_VERSION = 'tg-v113';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const DATA_CACHE = `${CACHE_VERSION}-data`;
 const IMAGE_CACHE = `${CACHE_VERSION}-images`;
@@ -17,9 +17,15 @@ const PRECACHE_URLS = [
   'index.html',
   'lists.html',
   'batalia-galati-1918.html',
+  'piata-regala-ar.html',
+  'piata_regala_buildings.geojson',
+  'styles/main.css',
+  'js/main.js',
+  'js/i18n.js',
   'vendor/leaflet/leaflet.css',
   'vendor/leaflet/leaflet.js',
   'vendor/leaflet/leaflet.markercluster.js',
+  'vendor/fuse/fuse.basic.min.js',
   'vendor/leaflet/MarkerCluster.css',
   'vendor/inter/inter.css',
   'vendor/inter/inter-400-latin.woff2',

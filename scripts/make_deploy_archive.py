@@ -56,7 +56,97 @@ def should_skip(rel_path: Path) -> bool:
     return False
 
 
+def auto_bump_sw_cache() -> str | None:
+    """Auto-incrementează versiunea SW (`tg-vXX` → `tg-v{XX+1}`) la fiecare build.
+
+    Evită bug-ul recurent „de ce nu se actualizează site-ul după modificări?"
+    Returnează noua versiune (sau None dacă nu a fost modificat).
+    """
+    import re
+    sw = ROOT / "galati_map" / "sw.js"
+    if not sw.exists():
+        return None
+    content = sw.read_text(encoding="utf-8")
+    m = re.search(r"const CACHE_VERSION = 'tg-v(\d+)'", content)
+    if not m:
+        return None
+    old_n = int(m.group(1))
+    new_n = old_n + 1
+    new_content = content.replace(
+        f"'tg-v{old_n}'", f"'tg-v{new_n}'", 1
+    )
+    sw.write_text(new_content, encoding="utf-8")
+    return f"tg-v{old_n} → tg-v{new_n}"
+
+
+def validate_json_files() -> int:
+    """Validează toate JSON-urile din galati_map/. Returnează nr. erori găsite.
+
+    Bug-uri vizate: ghilimele românești ASCII neescapate, duplicate IDs,
+    referințe orfane (article paths).
+    """
+    import json as jsonlib
+    errors = 0
+    json_files = sorted((ROOT / "galati_map").glob("*.json")) + sorted(
+        (ROOT / "galati_map").glob("*.geojson")
+    )
+    for f in json_files:
+        try:
+            jsonlib.loads(f.read_text(encoding="utf-8"))
+        except jsonlib.JSONDecodeError as e:
+            print(f"  ✗ JSON invalid: {f.relative_to(ROOT)} — line {e.lineno} col {e.colno}: {e.msg}")
+            errors += 1
+    # locations.json: check for duplicate IDs / articles
+    loc_path = ROOT / "galati_map" / "locations.json"
+    if loc_path.exists():
+        try:
+            data = jsonlib.loads(loc_path.read_text(encoding="utf-8"))
+            locs = data if isinstance(data, list) else data.get("locations", [])
+            from collections import Counter
+            ids = Counter(L.get("id") for L in locs)
+            dup_ids = [k for k, v in ids.items() if v > 1]
+            if dup_ids:
+                print(f"  ✗ locations.json: duplicate IDs: {dup_ids}")
+                errors += 1
+            arts = Counter(L.get("article") for L in locs if L.get("article"))
+            dup_arts = [k for k, v in arts.items() if v > 1]
+            if dup_arts:
+                print(f"  ✗ locations.json: duplicate article paths: {dup_arts[:3]}{'…' if len(dup_arts) > 3 else ''}")
+                errors += 1
+        except Exception as e:
+            print(f"  ✗ locations.json analysis failed: {e}")
+            errors += 1
+    return errors
+
+
 def main() -> int:
+    # 1. Validate JSON files (fail fast)
+    print("Validating JSON files…")
+    n_errors = validate_json_files()
+    if n_errors:
+        print(f"\n✗ Build BLOCKED: {n_errors} JSON errors. Fix and retry.")
+        return 1
+    print("  ✓ All JSON files valid")
+
+    # 2. Generate static SEO pages (Open Graph + sitemap) for share previews
+    print("Generating SEO pages…")
+    import subprocess
+    seo_result = subprocess.run(
+        [sys.executable, str(ROOT / "scripts" / "generate_static_pages.py")],
+        cwd=ROOT, capture_output=True, text=True,
+    )
+    if seo_result.returncode != 0:
+        print(f"  ⚠ SEO generation failed (continuing anyway): {seo_result.stderr.strip()}")
+    else:
+        # Show last line (count summary)
+        last = seo_result.stdout.strip().split("\n")[-1]
+        print(f"  ✓ {last}")
+
+    # 3. Auto-bump SW cache version
+    bump = auto_bump_sw_cache()
+    if bump:
+        print(f"  ✓ SW cache: {bump}")
+
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     if OUT_FILE.exists():
         OUT_FILE.unlink()

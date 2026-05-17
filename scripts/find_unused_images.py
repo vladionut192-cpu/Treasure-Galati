@@ -4,7 +4,7 @@
 Verifică toate fișierele imagine din `assets/images/` (recursiv) împotriva
 referințelor din:
   - galati_map/locations.json (`image`, `gallery[].src`)
-  - galati_map/pubcrawl_photos.json (`src`)
+  - galati_map/galati-altadata.json (`src`)
   - galati_map/tours.json (`cover`)
   - assets/articles/**/*.html (img src)
   - galati_map/index.html (img src inline)
@@ -29,7 +29,7 @@ ROOT = Path(__file__).resolve().parent.parent
 IMAGES_DIR = ROOT / "assets" / "images"
 LOC_JSON = ROOT / "galati_map" / "locations.json"
 TOURS_JSON = ROOT / "galati_map" / "tours.json"
-PUBCRAWL_JSON = ROOT / "galati_map" / "pubcrawl_photos.json"
+PUBCRAWL_JSON = ROOT / "galati_map" / "galati-altadata.json"
 ARTICLES_DIR = ROOT / "assets" / "articles"
 INDEX_HTML = ROOT / "galati_map" / "index.html"
 
@@ -75,7 +75,7 @@ def collect_referenced() -> set[str]:
         for t in tours.get("tours", []):
             add_path(t.get("cover"))
 
-    # pubcrawl_photos.json
+    # galati-altadata.json
     if PUBCRAWL_JSON.exists():
         with open(PUBCRAWL_JSON, encoding="utf-8") as f:
             photos = json.load(f)

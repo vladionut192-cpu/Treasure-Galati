@@ -74,7 +74,7 @@ def first_field(fields: dict[str, list[dict]], name: str) -> dict | None:
 
 ROOT = Path(__file__).resolve().parent.parent
 LOCATIONS = ROOT / "galati_map" / "locations.json"
-PUBCRAWL = ROOT / "galati_map" / "pubcrawl_photos.json"
+PUBCRAWL = ROOT / "galati_map" / "galati-altadata.json"
 LOCAL_IMG_DIR = ROOT / "assets" / "images" / "local"
 LOCAL_IMG_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -330,7 +330,7 @@ class Handler(SimpleHTTPRequestHandler):
             with PUBCRAWL.open("r", encoding="utf-8") as fp:
                 photos = json.load(fp)
         except Exception as exc:
-            return self._send_json(HTTPStatus.INTERNAL_SERVER_ERROR, {"error": f"pubcrawl_photos.json unreadable: {exc}"})
+            return self._send_json(HTTPStatus.INTERNAL_SERVER_ERROR, {"error": f"galati-altadata.json unreadable: {exc}"})
         photo = {
             "src": rel_image_path,
             "caption_ro": caption,

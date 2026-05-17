@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Piața Regală — Așa cum a fost</title>
+<meta name="description" content="Reconstrucție AR a Pieței Regale a Galațiului (1880-1944), distrusă de armata germană în august 1944.">
+<meta name="theme-color" content="#1f2c4a">
+
+<!-- A-Frame + AR.js: location-based AR (GPS + bussolă + cameră).
+     Sursă: https://ar-js-org.github.io/AR.js-Docs/  ~330 KB total. -->
+<script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+
+<style>
+  /* ── Base ── */
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { margin: 0; padding: 0; height: 100%; overflow: hidden;
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #1a1a1a; color: #eee; }
+  body { position: relative; }
+
+  /* ── Splash / permission screen ── */
+  #splash {
+    position: fixed; inset: 0;
+    background: linear-gradient(180deg, #1f2c4a 0%, #0f1525 100%);
+    color: #eee;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 24px; text-align: center;
+    z-index: 100;
+    overflow-y: auto;
+  }
+  #splash h1 { font-size: 24px; margin: 0 0 8px; font-weight: 800; letter-spacing: -0.01em; }
+  #splash .lede { font-size: 14px; color: #aabbdd; margin: 0 0 24px; max-width: 480px; line-height: 1.5; }
+  #splash .crumb {
+    font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: #d6a86e; font-weight: 700; margin-bottom: 12px;
+  }
+  #splash .actions { display: flex; flex-direction: column; gap: 12px; max-width: 320px; width: 100%; }
+  #splash button {
+    border: 0; padding: 14px 24px; border-radius: 8px;
+    font: inherit; font-size: 15px; font-weight: 700;
+    cursor: pointer; transition: transform .12s, background .12s;
+    color: white;
+  }
+  #splash button.primary { background: #c44d2e; }
+  #splash button.primary:hover { background: #b34128; }
+  #splash button.primary:active { transform: scale(.96); }
+  #splash button.ghost {
+    background: transparent; color: #aabbdd; border: 1px solid #4a5577;
+  }
+  #splash button.ghost:hover { background: rgba(170,187,221,.06); color: #eee; }
+  #splash .back-link {
+    position: fixed; top: 14px; left: 14px;
+    color: #aabbdd; text-decoration: none; font-size: 13px; font-weight: 600;
+    background: rgba(0,0,0,.4); padding: 8px 12px; border-radius: 6px;
+  }
+  #splash .info-box {
+    margin-top: 28px; max-width: 480px; padding: 16px 18px;
+    background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
+    border-radius: 10px; font-size: 13px; line-height: 1.6; color: #ccddff;
+    text-align: left;
+  }
+  #splash .info-box strong { color: #fff; }
+
+  /* ── AR scene wrapper ── */
+  a-scene { position: fixed; inset: 0; z-index: 1; }
+
+  /* ── HUD overlay ── */
+  #hud {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
+    pointer-events: none;
+    padding: 16px;
+  }
+  #hud .top-bar {
+    position: fixed; top: 12px; left: 12px; right: 12px;
+    display: flex; justify-content: space-between; align-items: flex-start; gap: 12px;
+    pointer-events: auto;
+  }
+  #hud .badge {
+    background: rgba(0,0,0,.65); backdrop-filter: blur(8px);
+    color: white; padding: 8px 12px; border-radius: 999px;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid rgba(255,255,255,.15);
+  }
+  #hud .close-btn {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: rgba(0,0,0,.65); backdrop-filter: blur(8px);
+    color: white; border: 1px solid rgba(255,255,255,.15);
+    font-size: 20px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none;
+  }
+  #compass {
+    position: fixed; top: 64px; right: 12px;
+    background: rgba(0,0,0,.55); backdrop-filter: blur(8px);
+    padding: 8px 10px; border-radius: 8px; font-size: 11px; color: #fff;
+    pointer-events: none; line-height: 1.4;
+    border: 1px solid rgba(255,255,255,.15);
+    font-family: ui-monospace, monospace;
+  }
+
+  /* ── Building info card (apare la tap pe billboard) ── */
+  #info-card {
+    position: fixed; left: 12px; right: 12px; bottom: 12px;
+    background: rgba(20,30,55,.92); backdrop-filter: blur(16px);
+    color: #eee; padding: 18px 20px; border-radius: 14px;
+    border: 1px solid rgba(255,255,255,.1);
+    transform: translateY(110%); transition: transform .3s ease;
+    pointer-events: auto;
+    max-height: 60vh; overflow-y: auto;
+  }
+  #info-card.show { transform: translateY(0); }
+  #info-card h2 { font-size: 19px; margin: 0 0 4px; font-weight: 800; }
+  #info-card .sub {
+    font-size: 12px; color: #d6a86e; margin: 0 0 12px;
+    letter-spacing: 0.04em; text-transform: uppercase; font-weight: 700;
+  }
+  #info-card .body { font-size: 14px; line-height: 1.55; color: #ccd; margin: 0 0 12px; }
+  #info-card ul { font-size: 13px; line-height: 1.5; padding-left: 18px; margin: 8px 0; color: #aab; }
+  #info-card .fate {
+    background: rgba(196,77,46,.15); border-left: 3px solid #c44d2e;
+    padding: 8px 12px; border-radius: 4px; font-size: 13px; color: #f4cabb;
+    margin: 12px 0;
+  }
+  #info-card .citation { font-size: 11px; color: #99a; font-style: italic; margin-top: 8px; }
+  #info-card .close {
+    position: absolute; top: 8px; right: 10px;
+    background: transparent; border: 0; color: #aab;
+    font-size: 24px; cursor: pointer; padding: 4px 10px; line-height: 1;
+  }
+
+  /* ── Building selector list (fallback walk-mode) ── */
+  #walk-mode {
+    position: fixed; inset: 0; z-index: 60;
+    background: linear-gradient(180deg, #0f1525 0%, #1f2c4a 100%);
+    color: #eee; overflow-y: auto;
+    padding: 60px 20px 80px;
+  }
+  #walk-mode h1 {
+    font-size: 22px; margin: 0 0 4px; font-weight: 800;
+  }
+  #walk-mode .lede {
+    font-size: 13px; color: #aabbdd; margin: 0 0 24px; line-height: 1.5;
+  }
+  #walk-mode .building-list {
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  #walk-mode .building-card {
+    background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
+    border-radius: 12px; overflow: hidden; cursor: pointer;
+    transition: transform .12s, border-color .12s;
+  }
+  #walk-mode .building-card:hover { border-color: #d6a86e; transform: translateY(-2px); }
+  #walk-mode .building-card img {
+    width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block;
+    background: #000;
+  }
+  #walk-mode .building-card .body { padding: 14px 16px; }
+  #walk-mode .building-card h3 { margin: 0 0 4px; font-size: 16px; font-weight: 700; }
+  #walk-mode .building-card .sub {
+    font-size: 11px; color: #d6a86e; margin: 0 0 6px;
+    text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700;
+  }
+  #walk-mode .building-card p { margin: 0; font-size: 13px; color: #bcd; line-height: 1.5; }
+  #walk-mode .back-btn {
+    position: fixed; top: 12px; left: 12px;
+    background: rgba(0,0,0,.6); color: white; border: 1px solid rgba(255,255,255,.2);
+    padding: 8px 14px; border-radius: 6px; cursor: pointer; font-size: 13px;
+    z-index: 70;
+  }
+
+  /* ── A-Frame entity styling ── */
+  a-text { font-family: monospace; }
+
+  /* ── Loading spinner ── */
+  #loader {
+    position: fixed; inset: 0; z-index: 90;
+    background: rgba(15, 21, 37, 0.95);
+    display: none; align-items: center; justify-content: center;
+    color: white; font-size: 16px; flex-direction: column; gap: 16px;
+  }
+  #loader .spinner {
+    width: 40px; height: 40px; border: 3px solid rgba(255,255,255,.2);
+    border-top-color: #d6a86e; border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ── Error panel ── */
+  #error-panel {
+    position: fixed; inset: 0; z-index: 95;
+    background: rgba(15,21,37,.95); display: none;
+    flex-direction: column; align-items: center; justify-content: center;
+    color: white; padding: 24px; text-align: center;
+  }
+  #error-panel h2 { color: #f4a; }
+  #error-panel button {
+    margin-top: 18px; background: #4a5577; color: white;
+    border: 0; padding: 10px 18px; border-radius: 6px; cursor: pointer;
+  }
+</style>
+</head>
+<body>
+<script defer src="./js/i18n.js"></script>
+
+<!-- ════════════════════ SPLASH / PERMISSION SCREEN ════════════════════ -->
+<div id="splash">
+  <a href="index.html" class="back-link" data-i18n="ar.back_full">← Înapoi la hartă</a>
+  <span class="crumb" data-i18n="ar.crumb">Heritage Galați · Pilot AR</span>
+  <h1 data-i18n="ar.splash_title">🥽 Piața Regală — Așa cum a fost</h1>
+  <p class="lede" data-i18n="ar.splash_lede">
+    Reconstrucție în Realitate Augmentată a celor <strong>5 clădiri-pilot</strong> din Piața Regală a Galațiului (1880-1944),
+    distrusă de armata germană în noaptea de 24-25 august 1944 și niciodată reconstruită.
+  </p>
+  <div class="actions">
+    <button id="btn-ar" class="primary" data-i18n="ar.btn_ar">📱 Pornește experiența AR</button>
+    <button id="btn-walk" class="ghost" data-i18n="ar.btn_walk">🚶‍♂️ Modul „Tur virtual" (fără AR)</button>
+  </div>
+  <div class="info-box">
+    <p style="margin:0 0 8px"><strong data-i18n="ar.how_title">Cum funcționează AR-ul:</strong></p>
+    <p style="margin:0 0 8px" data-i18n="ar.how_body">
+      Mergi fizic în zona <strong>Bălcescu × Brăilei</strong> (centrul actual al fostei piețe).
+      Permite accesul la <strong>cameră + locație</strong>, apoi îndreaptă telefonul spre clădirile cu poveste.
+      Vei vedea fotografiile istorice „plutind" peste imaginea camerei, ancorate la coordonatele unde au fost cândva.
+    </p>
+    <p style="margin:0 0 8px" data-i18n="ar.requirements">
+      <strong>Cerințe</strong>: telefon cu Android sau iOS, browser modern (Chrome/Safari), HTTPS, permisiuni cameră + locație.
+    </p>
+    <p style="margin:0; font-size:11px; color:#889" data-i18n="ar.compat">
+      Pentru desktop sau dacă AR nu pornește, alege „Tur virtual" — vezi galeria de clădiri pe ecranul tău.
+    </p>
+  </div>
+</div>
+
+<!-- ════════════════════ WALK MODE (fallback) ════════════════════ -->
+<div id="walk-mode" hidden>
+  <button class="back-btn" onclick="showSplash()" data-i18n="ar.back">← Înapoi</button>
+  <h1 data-i18n="ar.walk_title">🚶‍♂️ Tur virtual al Pieței Regale</h1>
+  <p class="lede" data-i18n="ar.walk_lede">
+    Cele 5 clădiri-emblemă ale fostei piețe, cu povestea fiecăreia. Click pe un card pentru detalii.
+  </p>
+  <div class="building-list" id="walk-list"></div>
+</div>
+
+<!-- ════════════════════ AR SCENE (creată dinamic după permission) ════════════════════ -->
+<div id="ar-container" hidden></div>
+
+<!-- ════════════════════ HUD overlay (în AR) ════════════════════ -->
+<div id="hud" hidden>
+  <div class="top-bar">
+    <span class="badge" data-i18n="ar.badge_label">🥽 AR · Piața Regală 1908</span>
+    <a href="index.html" class="close-btn" data-i18n-title="common.close" title="Închide">×</a>
+  </div>
+  <div id="compass">
+    <div>GPS: <span id="gps-status" data-i18n="ar.gps_wait">aștept...</span></div>
+    <div><span data-i18n="ar.compass_label">Compas</span>: <span id="compass-deg">--°</span></div>
+  </div>
+</div>
+
+<!-- ════════════════════ INFO CARD (la tap pe billboard) ════════════════════ -->
+<div id="info-card">
+  <button class="close" onclick="hideInfo()">×</button>
+  <div class="sub" id="ic-sub"></div>
+  <h2 id="ic-title"></h2>
+  <div class="fate" id="ic-fate"></div>
+  <div class="body" id="ic-body"></div>
+  <ul id="ic-facts"></ul>
+  <div class="citation" id="ic-citation"></div>
+</div>
+
+<!-- ════════════════════ LOADER & ERROR ════════════════════ -->
+<div id="loader">
+  <div class="spinner"></div>
+  <div id="loader-text" data-i18n="ar.loader">Pornesc AR-ul…</div>
+</div>
+<div id="error-panel">
+  <h2 id="error-title" data-i18n="ar.error_title">Eroare</h2>
+  <p id="error-msg" data-i18n="ar.error_msg">Ceva nu a mers bine.</p>
+  <button onclick="location.reload()" data-i18n="ar.retry">Reîncearcă</button>
+</div>
+
+<!-- ════════════════════ JS ════════════════════ -->
+<script>
+let buildingsData = null;
+
+// ── Load building data ─────────────────────────────────────
+async function loadBuildings() {
+  try {
+    const r = await fetch('piata_regala_buildings.geojson');
+    if (!r.ok) throw new Error('Nu pot încărca clădirile (HTTP ' + r.status + ')');
+    buildingsData = await r.json();
+    renderWalkList();
+  } catch (e) {
+    console.error(e);
+    showError('Eroare la încărcare', e.message);
+  }
+}
+
+// ── Splash screen toggle ───────────────────────────────────
+function showSplash() {
+  document.getElementById('splash').style.display = 'flex';
+  document.getElementById('walk-mode').hidden = true;
+  document.getElementById('hud').hidden = true;
+  document.getElementById('ar-container').hidden = true;
+  // Stop AR scene if active
+  const scene = document.querySelector('a-scene');
+  if (scene) scene.parentNode.removeChild(scene);
+  hideInfo();
+}
+
+function hideSplash() {
+  document.getElementById('splash').style.display = 'none';
+}
+
+// ── Walk mode (fallback) ───────────────────────────────────
+function showWalkMode() {
+  hideSplash();
+  document.getElementById('walk-mode').hidden = false;
+}
+
+function renderWalkList() {
+  if (!buildingsData) return;
+  const wrap = document.getElementById('walk-list');
+  wrap.innerHTML = '';
+  buildingsData.features.forEach(f => {
+    const p = f.properties;
+    const card = document.createElement('div');
+    card.className = 'building-card';
+    card.innerHTML = `
+      <img src="${escapeHtml(p.historic_image)}" alt="${escapeHtml(p.name)}" loading="lazy">
+      <div class="body">
+        <div class="sub">${escapeHtml(p.subtitle || p.category || '')}</div>
+        <h3>${escapeHtml(p.name)}</h3>
+        <p>${escapeHtml((p.description || '').slice(0, 200))}…</p>
+      </div>
+    `;
+    card.addEventListener('click', () => showInfo(f));
+    wrap.appendChild(card);
+  });
+}
+
+// ── Info card (apare la tap pe billboard sau în walk-mode) ─
+function showInfo(feature) {
+  const p = feature.properties;
+  document.getElementById('ic-sub').textContent = p.subtitle || p.category || '';
+  document.getElementById('ic-title').textContent = p.name;
+  document.getElementById('ic-body').textContent = p.description || '';
+  const fateEl = document.getElementById('ic-fate');
+  if (p.fate) {
+    fateEl.textContent = '⚠ ' + p.fate;
+    fateEl.style.display = 'block';
+  } else {
+    fateEl.style.display = 'none';
+  }
+  const ul = document.getElementById('ic-facts');
+  ul.innerHTML = '';
+  (p.facts || []).forEach(f => {
+    const li = document.createElement('li');
+    li.textContent = f;
+    ul.appendChild(li);
+  });
+  const cit = document.getElementById('ic-citation');
+  cit.textContent = p.citation ? 'Sursă: ' + p.citation : '';
+  document.getElementById('info-card').classList.add('show');
+}
+
+function hideInfo() {
+  document.getElementById('info-card').classList.remove('show');
+}
+
+// ── AR mode ────────────────────────────────────────────────
+async function startAR() {
+  hideSplash();
+  document.getElementById('loader').style.display = 'flex';
+  document.getElementById('loader-text').textContent = 'Cer permisiuni cameră + locație…';
+
+  // 1. Verifică suport
+  if (!navigator.geolocation) {
+    showError('Browser nesuportat', 'Browserul tău nu suportă API-ul de geolocație. Folosește Chrome sau Safari recent.');
+    return;
+  }
+
+  // 2. Cere permisiune cameră
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+    stream.getTracks().forEach(t => t.stop());  // Doar test — AR.js cere singur
+  } catch (e) {
+    showError('Acces cameră refuzat',
+      'Pentru AR avem nevoie de cameră. ' +
+      (e.name === 'NotAllowedError'
+        ? 'Acceptă din setările browserului.'
+        : 'Este browserul tău compatibil HTTPS?')
+    );
+    return;
+  }
+
+  // 3. Cere permisiune compas pe iOS 13+ (Apple necesită explicit)
+  if (typeof DeviceOrientationEvent !== 'undefined' &&
+      typeof DeviceOrientationEvent.requestPermission === 'function') {
+    try {
+      const result = await DeviceOrientationEvent.requestPermission();
+      if (result !== 'granted') {
+        showError('Compas refuzat', 'AR-ul are nevoie de busolă pentru orientare. Reîncearcă și acceptă.');
+        return;
+      }
+    } catch (e) {
+      console.warn('Compas permission failed:', e);
+    }
+  }
+
+  // 4. Cere primul fix GPS (test — nu blochează)
+  document.getElementById('loader-text').textContent = 'Caut locația GPS…';
+  try {
+    await new Promise((resolve, reject) => {
+      const id = navigator.geolocation.watchPosition(
+        (pos) => {
+          navigator.geolocation.clearWatch(id);
+          resolve(pos);
+        },
+        (err) => {
+          navigator.geolocation.clearWatch(id);
+          reject(err);
+        },
+        { enableHighAccuracy: true, timeout: 12000, maximumAge: 0 }
+      );
+    });
+  } catch (e) {
+    showError('Locație indisponibilă',
+      'Nu pot obține locația GPS. ' +
+      (e.code === 1 ? 'Acceptă din browser.' : 'Verifică setările telefonului.'));
+    return;
+  }
+
+  // 5. Construiește scena AR
+  buildARScene();
+  document.getElementById('loader').style.display = 'none';
+  document.getElementById('hud').hidden = false;
+  document.getElementById('ar-container').hidden = false;
+
+  // 6. Watch position pentru HUD
+  navigator.geolocation.watchPosition(
+    (pos) => {
+      const acc = Math.round(pos.coords.accuracy || 0);
+      document.getElementById('gps-status').textContent =
+        `${pos.coords.latitude.toFixed(5)}, ${pos.coords.longitude.toFixed(5)} (±${acc}m)`;
+    },
+    () => {
+      document.getElementById('gps-status').textContent = '⚠ pierdut';
+    },
+    { enableHighAccuracy: true, maximumAge: 1000 }
+  );
+
+  // 7. Compass for HUD
+  window.addEventListener('deviceorientation', (e) => {
+    let heading = e.webkitCompassHeading || (e.alpha != null ? 360 - e.alpha : null);
+    if (heading != null) {
+      const cardinal = ['N', 'NE', 'E', 'SE', 'S', 'SV', 'V', 'NV'][Math.round(heading / 45) % 8];
+      document.getElementById('compass-deg').textContent = `${Math.round(heading)}° ${cardinal}`;
+    }
+  }, true);
+}
+
+function buildARScene() {
+  const container = document.getElementById('ar-container');
+  container.innerHTML = '';
+  const scene = document.createElement('a-scene');
+  scene.setAttribute('vr-mode-ui', 'enabled: false');
+  scene.setAttribute('renderer', 'logarithmicDepthBuffer: true; antialias: true; alpha: true');
+  scene.setAttribute('arjs', 'sourceType: webcam; debugUIEnabled: false; videoTexture: true');
+  scene.setAttribute('embedded', '');
+
+  // Camera GPS
+  const cam = document.createElement('a-camera');
+  cam.setAttribute('gps-projected-camera', 'gpsMinDistance: 5; gpsMinAccuracy: 100');
+  cam.setAttribute('rotation-reader', '');
+  cam.setAttribute('look-controls', 'enabled: false');
+  cam.setAttribute('arjs-look-controls', 'smoothingFactor: 0.1');
+  scene.appendChild(cam);
+
+  // Pentru fiecare clădire, adaug un billboard cu fotografia
+  buildingsData.features.forEach((f) => {
+    const p = f.properties;
+    const [lon, lat] = f.geometry.coordinates;
+    const ar = p.ar || {};
+    const w = ar.billboard_width_m || 8;
+    const h = ar.billboard_height_m || 6;
+
+    // Wrapper entity cu poziție GPS
+    const wrap = document.createElement('a-entity');
+    wrap.setAttribute('gps-projected-entity-place', `latitude: ${lat}; longitude: ${lon}`);
+    wrap.dataset.bid = f.id;
+
+    // Plane cu fotografia istorică
+    const plane = document.createElement('a-image');
+    plane.setAttribute('src', p.historic_image);
+    plane.setAttribute('width', w);
+    plane.setAttribute('height', h);
+    plane.setAttribute('opacity', '0.92');
+    plane.setAttribute('look-at', '[gps-projected-camera]');
+    plane.setAttribute('class', 'clickable');
+    plane.setAttribute('cursor-listener', '');
+    plane.dataset.bid = f.id;
+    plane.addEventListener('click', () => {
+      // Find feature
+      const feat = buildingsData.features.find(x => x.id === f.id);
+      if (feat) showInfo(feat);
+    });
+    wrap.appendChild(plane);
+
+    // Title text floating above
+    const text = document.createElement('a-text');
+    text.setAttribute('value', p.name);
+    text.setAttribute('align', 'center');
+    text.setAttribute('width', w * 1.5);
+    text.setAttribute('color', '#ffe9b5');
+    text.setAttribute('position', `0 ${h/2 + 1} 0`);
+    text.setAttribute('look-at', '[gps-projected-camera]');
+    text.setAttribute('shader', 'msdf');
+    wrap.appendChild(text);
+
+    scene.appendChild(wrap);
+  });
+
+  container.appendChild(scene);
+}
+
+// ── Util ───────────────────────────────────────────────────
+function escapeHtml(s) {
+  return String(s || '').replace(/[&<>"']/g, c => (
+    { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+  ));
+}
+
+function showError(title, msg) {
+  document.getElementById('loader').style.display = 'none';
+  document.getElementById('error-panel').style.display = 'flex';
+  document.getElementById('error-title').textContent = title;
+  document.getElementById('error-msg').textContent = msg;
+}
+
+// ── Init ───────────────────────────────────────────────────
+loadBuildings();
+document.getElementById('btn-ar').addEventListener('click', startAR);
+document.getElementById('btn-walk').addEventListener('click', showWalkMode);
+
+// Expose for inline handlers
+window.hideInfo = hideInfo;
+window.showSplash = showSplash;
+</script>
+</body>
+</html>

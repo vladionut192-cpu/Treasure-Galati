@@ -40,3 +40,13 @@ deploy/*.zip
 # Aplicația Treasure Galați — sursă mobilă/backend (~30MB, 460 fișiere) folosită
 # ca referință pentru content-ul Treasure Hunts. Nu e parte din site-ul web.
 Aplicatia Treasure Galati/
+
+# Local-only scratch / inspiration material (nu face parte din site)
+design inspiration/
+titles.txt
+
+# Generate-on-deploy: SEO static pages (scripts/generate_static_pages.py)
+# Acestea sunt regenerate de CI înainte de upload, deci nu trebuie tracked.
+galati_map/loc/
+galati_map/tour/
+galati_map/hunt/
