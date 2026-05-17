@@ -74,3 +74,20 @@ La `https://github.com/vladionut192-cpu/Treasure-Galati/settings/variables/actio
 ## Lansare manuală
 
 Din `https://github.com/vladionut192-cpu/Treasure-Galati/actions/workflows/deploy.yml` apasă **„Run workflow"** → ramura `main` → **Run**. Util când vrei să forțezi un redeploy fără un commit nou.
+
+## Curățarea fișierelor orfane („clean slate")
+
+În mod normal, FTP-Deploy-Action face **smart sync**: urcă diff-uri, șterge fișiere care au fost în repo și nu mai sunt, dar **NU șterge** fișiere orfane care nu au fost niciodată în repo (ex.: uploaduri manuale vechi din cPanel, ZIP-uri de deploy pre-CI/CD).
+
+Pentru cleanup complet pe server:
+
+1. Mergi la **„Run workflow"** din UI-ul GitHub Actions
+2. Bifează **„Wipe server folders before upload"** (`clean_slate = true`)
+3. Apasă **Run**
+
+Workflow-ul va șterge complet conținutul `galati_map/` și `assets/` de pe server și va reuploada de la zero. Folosește cu grijă — în timpul deploy-ului, site-ul va fi temporar indisponibil.
+
+Echivalent prin CLI:
+```bash
+gh workflow run deploy.yml -f clean_slate=true
+```

@@ -4,6 +4,11 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      clean_slate:
+        description: 'Wipe server folders before upload (orphan cleanup — use sparingly)'
+        type: boolean
+        default: false
 
 concurrency:
   group: deploy-${{ github.ref }}
@@ -55,6 +60,7 @@ jobs:
           local-dir: ./galati_map/
           server-dir: ${{ vars.FTP_TARGET_GALATI_MAP || './galati_map/' }}
           log-level: standard
+          dangerous-clean-slate: ${{ github.event_name == 'workflow_dispatch' && inputs.clean_slate || false }}
           exclude: |
             **/.git*
             **/.git*/**
@@ -80,6 +86,7 @@ jobs:
           local-dir: ./assets/
           server-dir: ${{ vars.FTP_TARGET_ASSETS || './assets/' }}
           log-level: standard
+          dangerous-clean-slate: ${{ github.event_name == 'workflow_dispatch' && inputs.clean_slate || false }}
           exclude: |
             **/.git*
             **/.git*/**
