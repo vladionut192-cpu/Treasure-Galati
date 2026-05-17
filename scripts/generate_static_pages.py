@@ -20,6 +20,7 @@ Rulează:
 """
 from __future__ import annotations
 import json
+import os
 import re
 import unicodedata
 from datetime import datetime
@@ -27,7 +28,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 GMAP = ROOT / "galati_map"
-BASE_URL = "https://heritage-galati.ro"
+# Override via env var when moving to a different host (e.g. heritage-galati.ro).
+BASE_URL = os.environ.get("HG_BASE_URL", "https://ionpeblog.ro").rstrip("/")
 DEFAULT_IMAGE = f"{BASE_URL}/assets/og-default.jpg"
 
 # ─────────────────────────────────────────────────────────────────────────
@@ -157,6 +159,10 @@ def make_page(
     hero = ""
     if image and image != DEFAULT_IMAGE:
         hero = f'<img class="hero" src="{image}" alt="{escape_html(title)}" loading="lazy">'
+    # Defensively escape </ inside JSON-LD so a malformed title/description can't
+    # break out of the <script> tag. (XSS hardening — unlikely in our data but cheap.)
+    jsonld_text = json.dumps(jsonld or {"@context": "https://schema.org", "@type": "WebPage", "name": title})
+    jsonld_text = jsonld_text.replace("</", "<\\/")
     html = PAGE_TEMPLATE.format(
         title=escape_html(title),
         description=escape_html(description),
@@ -165,7 +171,7 @@ def make_page(
         image=image,
         og_type=og_type,
         hero_img=hero,
-        jsonld=json.dumps(jsonld or {"@context": "https://schema.org", "@type": "WebPage", "name": title}),
+        jsonld=jsonld_text,
     )
     out_path.write_text(html, encoding="utf-8")
 

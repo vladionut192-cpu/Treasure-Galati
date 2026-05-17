@@ -41,13 +41,13 @@ def validate_json_syntax() -> dict[str, dict | list]:
     files = sorted(GMAP.glob("*.json")) + sorted(GMAP.glob("*.geojson"))
     for f in files:
         rel = f.relative_to(ROOT)
+        text = f.read_text(encoding="utf-8")
         try:
-            data = json.loads(f.read_text(encoding="utf-8"))
-            valid[str(rel)] = data
+            valid[str(rel)] = json.loads(text)
         except json.JSONDecodeError as e:
             err(f"{rel}: line {e.lineno} col {e.colno}: {e.msg}")
             # Show context to help debug Romanian quote bugs
-            lines = f.read_text(encoding="utf-8").split("\n")
+            lines = text.split("\n")
             if 0 < e.lineno <= len(lines):
                 col_min = max(0, e.colno - 40)
                 col_max = e.colno + 40

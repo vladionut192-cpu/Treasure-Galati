@@ -14,10 +14,13 @@ concurrency:
   group: deploy-${{ github.ref }}
   cancel-in-progress: false
 
+permissions:
+  contents: read
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
 
     steps:
       - name: Checkout
@@ -32,19 +35,29 @@ jobs:
         run: python3 scripts/validate_data.py
 
       - name: Generate SEO static pages
+        env:
+          # Configurable via GitHub Actions variables (Settings → Variables → Actions).
+          # Set HG_BASE_URL if/when the site moves to a different host.
+          HG_BASE_URL: ${{ vars.HG_BASE_URL || 'https://ionpeblog.ro' }}
         run: python3 scripts/generate_static_pages.py
 
       - name: Bump service-worker cache version
+        # Appends the short commit SHA so the version is unique per-commit.
+        # Required because CI doesn't commit the bump back to git — without a SHA
+        # suffix, repeated pushes without local bumps would re-use the same version
+        # and browser caches would never refresh.
         run: |
           python3 - <<'PY'
-          import re, pathlib
+          import os, re, pathlib
           sw = pathlib.Path('galati_map/sw.js')
           c = sw.read_text(encoding='utf-8')
-          m = re.search(r"const CACHE_VERSION = 'tg-v(\d+)'", c)
+          sha = (os.environ.get('GITHUB_SHA') or 'local')[:7]
+          m = re.search(r"const CACHE_VERSION = '(tg-v\d+)'", c)
           if m:
-              n = int(m.group(1)); new = n + 1
-              sw.write_text(c.replace(f"'tg-v{n}'", f"'tg-v{new}'", 1), encoding='utf-8')
-              print(f"  ✓ SW bumped tg-v{n} → tg-v{new}")
+              base = m.group(1)
+              new = f"{base}-{sha}"
+              sw.write_text(c.replace(f"'{base}'", f"'{new}'", 1), encoding='utf-8')
+              print(f"  ✓ SW cache: {base} → {new}")
           else:
               print("  ⚠ CACHE_VERSION pattern not found, skipping bump")
           PY

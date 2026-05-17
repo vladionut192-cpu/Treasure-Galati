@@ -1726,5 +1726,14 @@
     "lat": 45.438949,
     "lon": 28.056451,
     "year": 1930
+  },
+  {
+    "src": "../assets/images/local/piata-30-decembrie-7a454ec7.jpg",
+    "caption_ro": "Piața 30 decembrie",
+    "caption_en": "",
+    "folder": "local",
+    "lat": 45.438663,
+    "lon": 28.049362,
+    "year": 1930
   }
 ]

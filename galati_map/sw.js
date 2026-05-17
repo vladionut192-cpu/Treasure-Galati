@@ -65,10 +65,15 @@ async function staleWhileRevalidate(req, cacheName) {
   const cache = await caches.open(cacheName);
   const cached = await cache.match(req);
   const networkPromise = fetch(req).then((res) => {
-    if (res && res.ok) cache.put(req, res.clone());
+    if (res && res.ok) {
+      // cache.put can reject when quota is exceeded — don't block the response on it.
+      cache.put(req, res.clone()).catch(() => {});
+    }
     return res;
-  }).catch(() => cached); // dacă network fail, întoarce cached
-  return cached || networkPromise;
+  }).catch(() => cached); // network fail: return cached if any
+  const result = cached || (await networkPromise);
+  // Both cache miss AND network fail → return a clear 503 (avoids returning undefined).
+  return result || new Response('Offline', { status: 503, statusText: 'Service unavailable' });
 }
 
 async function cacheFirst(req, cacheName) {
