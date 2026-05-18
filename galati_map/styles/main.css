@@ -1207,11 +1207,12 @@
       color: #d6a86e; font-weight: 700;
       margin-bottom: 8px;
     }
-    /* ─ Help FAB („?") — bottom-right (lângă atribuția Leaflet, departe de
-     * year-overlay-ul de la top-right și de layer-bubbles de la stânga). ─ */
+    /* ─ Help FAB („?") — circular badge anchored under the top-right menu on
+     * both mobile and desktop. Fixed position so it stays in view while
+     * scrolling/panning the map. */
     .help-fab {
-      position: absolute;
-      bottom: 28px;
+      position: fixed;
+      top: calc(var(--topbar-h) + 12px);
       right: 14px;
       z-index: 880;
       width: 36px; height: 36px;
@@ -1228,7 +1229,86 @@
     }
     .help-fab:hover { background: var(--ink); transform: translateY(-1px); }
     @media (max-width: 700px) {
-      .help-fab { bottom: 80px; right: 10px; width: 34px; height: 34px; font-size: 14px; }
+      .help-fab { width: 34px; height: 34px; font-size: 14px; }
+    }
+
+    /* ─── Mobile help sheet ───
+       On small screens, tapping "?" shows this centered modal instead of
+       floating tooltips that overlap the map. The individual .tour-tip cards
+       are hidden on mobile via the matching @media rule below. */
+    .mobile-help-sheet {
+      position: fixed;
+      inset: 0;
+      z-index: 1400;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .mobile-help-sheet[hidden] { display: none; }
+    .mhs-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(15, 21, 37, 0.55);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+    .mhs-panel {
+      position: relative;
+      max-width: min(420px, 92vw);
+      max-height: 84vh;
+      overflow-y: auto;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.32);
+      padding: 18px 22px 22px;
+    }
+    .mhs-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--line-soft);
+    }
+    .mhs-head h3 {
+      margin: 0;
+      font-family: var(--font-ui);
+      font-size: 14px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent-deep);
+      font-weight: 700;
+    }
+    .mhs-close {
+      background: transparent;
+      border: 0;
+      font-size: 28px;
+      line-height: 1;
+      color: var(--muted);
+      cursor: pointer;
+      padding: 0 6px;
+    }
+    .mhs-tips {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .mhs-tips li {
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+      padding-left: 12px;
+      border-left: 2px solid var(--accent);
+    }
+    .mhs-tips li strong { color: var(--ink); font-weight: 700; }
+
+    /* Hide individual floating tooltips on small screens — mobile-help-sheet
+       replaces them with a single readable modal. */
+    @media (max-width: 720px) {
+      #tour-tips .tour-tip { display: none !important; }
     }
 
     .ar-pilot-card h4 {
@@ -1789,12 +1869,14 @@
       position: absolute;
       bottom: 24px;
       left: 94px;
-      z-index: 850;
+      /* Above markers (Leaflet marker-pane z-index 600), cluster icons (~700),
+         popups (~700). 1100 ensures the text is never covered by a cluster
+         bubble that happens to land at the same screen position. */
+      z-index: 1100;
       max-width: min(640px, calc(100% - 110px));
       padding: 14px 20px;
-      background: rgba(247, 245, 239, 0.95);
-      backdrop-filter: blur(14px) saturate(1.05);
-      -webkit-backdrop-filter: blur(14px) saturate(1.05);
+      /* Fully opaque so cluster icons don't bleed through the panel */
+      background: var(--paper);
       border: 1px solid var(--line);
       border-left: 4px solid var(--accent-red);
       box-shadow: 0 6px 22px rgba(43, 31, 18, .14);
@@ -3081,17 +3163,26 @@
       line-height: 1.5 !important;
       width: auto !important;
     }
+    /* Close button — circular badge with white background + dark X so it's
+       always readable, even sitting on top of a dark/busy image. */
     .leaflet-popup-close-button {
-      top: 8px !important;
+      top: 10px !important;
       right: 10px !important;
-      color: var(--muted) !important;
+      color: #1f1f1f !important;
       font-size: 22px !important;
-      padding: 8px !important;
-      width: 28px !important;
-      height: 28px !important;
-      line-height: 1 !important;
+      width: 32px !important;
+      height: 32px !important;
+      padding: 0 !important;
+      line-height: 32px !important;
+      text-align: center !important;
+      border-radius: 50% !important;
+      background: rgba(255, 255, 255, 0.92) !important;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.25) !important;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index: 10 !important;
     }
-    .leaflet-popup-close-button:hover { color: var(--ink) !important; }
+    .leaflet-popup-close-button:hover { background: #fff !important; color: var(--ink) !important; }
     /* Tour route — dashed; animated when a single leg is visible (point selected) */
     @keyframes tour-leg-flow {
       from { stroke-dashoffset: 0; }
@@ -3458,16 +3549,32 @@
       padding-bottom: 8px;
       border-bottom: 1px solid var(--line);
     }
+    /* Gallery — horizontal scroll strip. One row, swipe sideways to see more.
+       Full descriptions/captions appear inside the lightbox when tapped. */
     .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      display: flex;
+      flex-wrap: nowrap;
       gap: 10px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 8px;
+      /* Hide scrollbar visually but keep functionality */
+      scrollbar-width: thin;
+      scrollbar-color: var(--line) transparent;
     }
+    .gallery::-webkit-scrollbar { height: 6px; }
+    .gallery::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
+    .gallery::-webkit-scrollbar-track { background: transparent; }
     .gallery figure {
       margin: 0;
+      flex: 0 0 auto;
+      width: 180px;
       background: var(--panel);
       border: 1px solid var(--line-soft);
       display: flex; flex-direction: column;
+      scroll-snap-align: start;
     }
     .gallery figure img {
       width: 100%;
@@ -3480,11 +3587,18 @@
     }
     .gallery figure img:hover { opacity: .85; }
     .gallery figcaption {
+      /* Caption clipped to ONE line in the strip; full text shown in lightbox. */
       padding: 6px 9px;
       font-size: 11.5px;
       color: var(--ink-soft);
       line-height: 1.4;
       border-top: 1px solid var(--line-soft);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    @media (max-width: 600px) {
+      .gallery figure { width: 160px; }
     }
     .source-note {
       margin-top: 26px;
@@ -3527,6 +3641,17 @@
       border-left: 3px solid var(--accent);
     }
     .lightbox-caption[hidden] { display: none; }
+    .lightbox-caption .lb-year-tag {
+      display: inline-block;
+      background: #d97706;
+      color: #fff;
+      padding: 1px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .05em;
+      margin-right: 8px;
+    }
     /* ─ Navigare prev/next prin „Galați de altădată" ─ */
     .lightbox-nav {
       position: absolute;
@@ -3915,7 +4040,15 @@
       }
       .detail .scroll { padding: 24px 20px 52px; }
       .detail h2 { font-size: 26px; }
-      .popup { width: min(260px, 76vw); }
+      /* Compact popup on mobile — narrower, shorter image, tighter padding so
+         the card doesn't dominate the screen. */
+      .popup { width: min(240px, 72vw); }
+      .popup .pop-img { height: 140px; margin: -20px -20px 12px; width: calc(100% + 40px); }
+      .popup h3 { font-size: 15px; line-height: 1.2; margin: 0 0 6px; }
+      .popup p { font-size: 12.5px; -webkit-line-clamp: 3; line-clamp: 3; }
+      .popup .pop-num { font-size: 10.5px; margin-bottom: 6px; }
+      .popup .popup-actions { margin-top: 2px; }
+      .leaflet-popup-content-wrapper { padding: 20px !important; }
       .timeline { padding-inline: 16px; }
       .timeline .timeline-row { font-size: 10px; }
       .timeline-meta .tick span { font-size: 9px; }
@@ -4251,12 +4384,12 @@
     }
 
     .detail .close,
-    .help-fab,
     .add-pin-fab,
     .add-photo-fab,
     .ar-pilot-btn {
       border-radius: 0;
     }
+    /* .help-fab keeps its circular shape (overrides the heritage-polish layer) */
 
     .help-fab {
       background: var(--accent-deep);

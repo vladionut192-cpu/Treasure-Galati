@@ -577,14 +577,33 @@
     <div class="tour-tip" data-tip-id="map-point" data-target="#map" data-arrow="left" data-pos="center" hidden>
       <button class="tip-close" aria-label="Închide">×</button>
       <p class="tip-eyebrow">Punct pe hartă</p>
-      <p class="tip-title">Statuia Mihai Eminescu</p>
-      <p class="tip-body">Această statuie e un punct tipic de pe hartă. <strong>Hover</strong> pentru preview, <strong>click</strong> pentru povestea completă cu galerie. Bulinele portocalii mici = peste 340 de fotografii istorice. <kbd>Esc</kbd> închide toate sugestiile.</p>
+      <p class="tip-title">Atinge un pin</p>
+      <p class="tip-body"><strong>Click / tap</strong> pe orice pin pentru povestea completă cu galerie. Bulinele portocalii mici = peste 340 de fotografii istorice. <kbd>Esc</kbd> închide sugestiile.</p>
     </div>
     <div class="tour-tip" data-tip-id="help" data-target="#help-fab" data-arrow="bottom" data-pos="above-center" hidden>
       <button class="tip-close" aria-label="Închide">×</button>
       <p class="tip-eyebrow">Ghid</p>
       <p class="tip-title">Reia oricând</p>
       <p class="tip-body">Click pe butonul <strong>„?"</strong> pentru a redeschide toate aceste sugestii. <kbd>Esc</kbd> pentru a le închide.</p>
+    </div>
+  </div>
+
+  <!-- Mobile help sheet — shown when the user taps "?" on a small screen.
+       Single centered modal replaces the floating-tooltips chaos. -->
+  <div class="mobile-help-sheet" id="mobile-help-sheet" hidden role="dialog" aria-modal="true">
+    <div class="mhs-backdrop" data-close="1"></div>
+    <div class="mhs-panel">
+      <header class="mhs-head">
+        <h3>Ghid rapid</h3>
+        <button type="button" class="mhs-close" aria-label="Închide" data-close="1">×</button>
+      </header>
+      <ul class="mhs-tips">
+        <li><strong>Pin pe hartă</strong> — tap pe oricare pentru poveste + galerie de poze.</li>
+        <li><strong>Buline portocalii</strong> — peste 340 de fotografii istorice geolocate; tap pe oricare pentru lightbox cu swipe stânga / dreapta.</li>
+        <li><strong>Timeline jos</strong> — trage cursorul de la 1445 la 2026 ca să vezi cum apare și dispar clădirile.</li>
+        <li><strong>Meniu (≡ sus)</strong> — Povești (articole lungi), Liste (cronologie, primari, populație), Despre.</li>
+        <li><strong>Butoane stânga-jos</strong> — straturi (cartiere, hărți istorice), tururi tematice, treasure hunts.</li>
+      </ul>
     </div>
   </div>
 

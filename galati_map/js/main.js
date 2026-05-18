@@ -275,8 +275,22 @@
       //   • dacă există tooltip-uri vizibile  → închide toate (marchează ca seen)
       //   • dacă toate sunt închise           → resetează flag-urile și reafișează toate
       const helpFab = document.getElementById('help-fab');
+      const mobileSheet = document.getElementById('mobile-help-sheet');
+      function openMobileHelpSheet() {
+        if (!mobileSheet) return;
+        mobileSheet.hidden = false;
+        // Wire close on first open
+        mobileSheet.querySelectorAll('[data-close="1"]').forEach(el => {
+          el.onclick = () => { mobileSheet.hidden = true; };
+        });
+      }
       if (helpFab) {
         helpFab.addEventListener('click', () => {
+          // On mobile: show the dedicated sheet instead of floating tooltips
+          if (isMobileViewport()) {
+            openMobileHelpSheet();
+            return;
+          }
           const anyVisible = Array.from(allTips()).some(t => !t.hidden);
           if (anyVisible) {
             // Închide toate (cu persist — marchează ca seen)
@@ -291,6 +305,12 @@
           }
         });
       }
+      // Close mobile sheet on Esc
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileSheet && !mobileSheet.hidden) {
+          mobileSheet.hidden = true;
+        }
+      });
     })();
 
     // Service worker — offline-first cache pentru asset-uri și date.
@@ -977,8 +997,8 @@
         ${locationTxt && locationTxt !== titleTxt ? `<p class="addr">${escapeHtml(locationTxt)}</p>` : ''}
         ${heroImg}
         ${enNoticeHtml}
-        <div class="prose">${proseHtml}</div>
         ${galleryHtml}
+        <div class="prose">${proseHtml}</div>
         ${sourceHtml}
         ${arPilotHtml}
       `;
@@ -999,15 +1019,78 @@
       // listener attached once on detailScroll (see below, outside render).
     }
 
-    // Open the lightbox with an arbitrary image (hero or gallery).
-    // Clears the prev/next queue so the side arrows hide — those are for the
-    // pubcrawl photo navigation, not for static gallery images.
+    // ── Lightbox: gallery mode ─────────────────────────────────────────
+    // The hero + gallery photos of the active detail form a queue the user can
+    // swipe through (mobile) or step with ‹/› buttons + arrow keys (desktop).
+    // Coexists with the pubcrawl queue (lightboxQueue): only one is active at a
+    // time. `lightboxGalleryItems.length > 0` means gallery mode is active.
+    let lightboxGalleryItems = [];
+    let lightboxGalleryIdx = 0;
+
+    // Build items for the active detail: hero first, then gallery (deduped).
+    function buildDetailLightboxItems() {
+      const it = locations.find(l => l.id === activeId);
+      if (!it) return [];
+      const items = [];
+      if (it.image) {
+        items.push({ src: it.image, caption: _locField(it, 'title') || '', alt: _locField(it, 'title') || '' });
+      }
+      (it.gallery || []).forEach(g => {
+        if (g.src === it.image) return; // skip duplicate hero
+        const lang = (typeof window.getLang === 'function') ? window.getLang() : 'ro';
+        const cap = (lang === 'en' && g.caption_en) ? g.caption_en : (g.caption || g.alt || '');
+        items.push({ src: g.src, caption: cap, alt: g.alt || '', year: g.year });
+      });
+      return items;
+    }
+
+    function openLightboxGallery(items, startIdx) {
+      if (!items || !items.length) return;
+      lightboxGalleryItems = items;
+      lightboxGalleryIdx = Math.max(0, Math.min(items.length - 1, startIdx || 0));
+      // Clear pubcrawl state so navigation routes to gallery
+      if (typeof lightboxAnchor !== 'undefined') lightboxAnchor = null;
+      if (typeof lightboxQueue !== 'undefined') lightboxQueue = [];
+      displayGalleryLightbox(lightboxGalleryIdx);
+      lightbox.dataset.open = '1';
+    }
+
+    function displayGalleryLightbox(idx) {
+      const item = lightboxGalleryItems[idx];
+      if (!item) return;
+      lightboxGalleryIdx = idx;
+      lightboxImg.src = item.src;
+      lightboxImg.alt = item.alt || item.caption || '';
+      const yearTag = item.year ? `<span class="lb-year-tag">${escapeHtml(String(item.year))}</span>` : '';
+      const text = item.caption || '';
+      lightboxCaption.innerHTML = `${yearTag}${escapeHtml(text)}`;
+      lightboxCaption.hidden = !text && !item.year;
+
+      const total = lightboxGalleryItems.length;
+      const prev = document.getElementById('lightbox-prev');
+      const next = document.getElementById('lightbox-next');
+      const counter = document.getElementById('lightbox-counter');
+      if (prev) prev.hidden = total <= 1 || idx <= 0;
+      if (next) next.hidden = total <= 1 || idx >= total - 1;
+      if (counter) {
+        if (total > 1) {
+          counter.textContent = `${idx + 1} / ${total}`;
+          counter.hidden = false;
+        } else {
+          counter.hidden = true;
+        }
+      }
+    }
+
+    // Legacy single-image opener — kept for callers that pass an arbitrary src
+    // without a gallery context. Clears both queues so no navigation is offered.
     function openImageInLightbox(src, alt, caption) {
       lightboxImg.src = src;
       lightboxImg.alt = alt || '';
       lightboxCaption.textContent = caption || '';
       lightboxCaption.hidden = !caption;
       lightbox.dataset.open = '1';
+      lightboxGalleryItems = [];
       if (typeof lightboxQueue !== 'undefined') {
         lightboxQueue = [];
         const prev = document.getElementById('lightbox-prev');
@@ -1091,14 +1174,17 @@
       if (e.target.closest('.hero-compare')) return;
       const hero = e.target.closest('img.hero-img');
       if (hero) {
-        openImageInLightbox(hero.src, hero.alt, hero.alt);
+        // Hero opens a queue starting at index 0 so user can swipe to gallery
+        const items = buildDetailLightboxItems();
+        openLightboxGallery(items, 0);
         return;
       }
       const gal = e.target.closest('.gallery figure img');
       if (gal) {
-        const fig = gal.closest('figure');
-        const cap = fig ? (fig.dataset.caption || '') : '';
-        openImageInLightbox(gal.src, gal.alt, cap);
+        const items = buildDetailLightboxItems();
+        // Index of clicked image within the queue
+        const idx = items.findIndex(it => it.src === gal.src);
+        openLightboxGallery(items, idx < 0 ? 0 : idx);
       }
     });
 
@@ -1118,15 +1204,20 @@
     // Track which pubcrawl photo (if any) is currently shown in lightbox so
     // the "Editează" button can pre-fill the modal.
     let activePhoto = null;
-    lightbox.addEventListener('click', (e) => {
-      // Don't dismiss when clicking the edit button or image itself
-      if (e.target.closest('.lightbox-edit')) return;
-      if (e.target.tagName === 'IMG') { delete lightbox.dataset.open; return; }
+    function closeLightbox() {
       delete lightbox.dataset.open;
+      lightboxGalleryItems = [];
+    }
+    lightbox.addEventListener('click', (e) => {
+      // Don't dismiss when clicking the edit button or nav arrows
+      if (e.target.closest('.lightbox-edit')) return;
+      if (e.target.closest('.lightbox-nav')) return;
+      // Tap on the image OR backdrop both close
+      closeLightbox();
     });
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
-        if (lightbox.dataset.open) { delete lightbox.dataset.open; }
+        if (lightbox.dataset.open) { closeLightbox(); }
         else if (detail.dataset.open) { closeDetail(); }
       }
     });
@@ -1953,6 +2044,14 @@
     }
 
     function lightboxNavigate(direction) {
+      // Gallery mode takes precedence — quieter UI (no pubcrawl markers)
+      if (lightboxGalleryItems.length > 0) {
+        const newIdx = lightboxGalleryIdx + direction;
+        if (newIdx < 0 || newIdx >= lightboxGalleryItems.length) return;
+        displayGalleryLightbox(newIdx);
+        return;
+      }
+      // Pubcrawl photo flow
       if (!lightboxQueue.length) return;
       const newIdx = lightboxIndex + direction;
       if (newIdx < 0 || newIdx >= lightboxQueue.length) return;
@@ -1977,14 +2076,14 @@
     });
     document.addEventListener('keydown', (e) => {
       if (!lightbox.dataset.open) return;
-      if (!lightboxQueue.length) return;
+      if (!lightboxQueue.length && !lightboxGalleryItems.length) return;
       if (e.key === 'ArrowLeft') { e.preventDefault(); lightboxNavigate(-1); }
       else if (e.key === 'ArrowRight') { e.preventDefault(); lightboxNavigate(1); }
     });
     // Touch swipe (mobil)
     let touchStartX = null, touchStartY = null;
     lightbox.addEventListener('touchstart', (e) => {
-      if (!lightboxQueue.length) return;
+      if (!lightboxQueue.length && !lightboxGalleryItems.length) return;
       touchStartX = e.touches[0].clientX;
       touchStartY = e.touches[0].clientY;
     }, { passive: true });
