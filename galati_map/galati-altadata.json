@@ -1735,5 +1735,41 @@
     "lat": 45.438663,
     "lon": 28.049362,
     "year": 1930
+  },
+  {
+    "src": "../assets/images/local/bcr-anii-90-904e6c3f.jpg",
+    "caption_ro": "BCR anii 90",
+    "caption_en": "",
+    "folder": "local",
+    "lat": 45.428751,
+    "lon": 28.040478,
+    "year": 1999
+  },
+  {
+    "src": "../assets/images/local/podul-de-cale-ferata-galati-braila-dupa-bombardamentele-prim-fac7b7e7.jpg",
+    "caption_ro": "Podul de cale ferata Galati-Braila, dupa bombardamentele Primului Razboi Mondial distrus prin minare",
+    "caption_en": "",
+    "folder": "local",
+    "lat": 45.393877,
+    "lon": 27.978385,
+    "year": 1918
+  },
+  {
+    "src": "../assets/images/local/unitati-ale-armatei-ruse-trec-siretul-pe-la-barbosi-1877-187-2ceba8c7.jpg",
+    "caption_ro": "Unitati ale armatei ruse trec Siretul pe la Barbosi (1877-1878)",
+    "caption_en": "",
+    "folder": "local",
+    "lat": 45.393365,
+    "lon": 27.979056,
+    "year": 1877
+  },
+  {
+    "src": "../assets/images/local/docurile-44086210.jpg",
+    "caption_ro": "Docurile",
+    "caption_en": "",
+    "folder": "local",
+    "lat": 45.44026,
+    "lon": 28.074467,
+    "year": 1929
   }
 ]

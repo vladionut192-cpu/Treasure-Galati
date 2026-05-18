@@ -524,13 +524,15 @@
       const img = item.image
         ? `<img class="pop-img" src="${escapeHtml(item.image)}" alt="${escapeHtml(title)}" loading="lazy" decoding="async">`
         : `<div class="pop-img pop-img-placeholder" aria-hidden="true"><span class="ph-eyebrow">${escapeHtml(catLabel || 'Obiectiv')}</span><svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="0"/><path d="M3 16l5-5 4 4 3-3 6 6"/><circle cx="9" cy="10" r="1.5"/></svg><span class="ph-note">${escapeHtml(phNote)}</span></div>`;
-      const addr = location && location !== title ? `<p class="addr">${escapeHtml(location)}</p>` : '';
+      // Address is intentionally NOT rendered in the popup — the map context
+      // already shows the location, and removing it keeps the popup compact.
+      // Excerpt is clamped to 3 lines via CSS (-webkit-line-clamp on .popup p).
       const excerpt = excerptTxt ? `<p>${escapeHtml(excerptTxt)}</p>` : '';
       return `<article class="popup">
         ${img}
         <span class="pop-num">${escapeHtml(catLabel)}</span>
         <h3>${escapeHtml(title)}</h3>
-        ${addr}${excerpt}
+        ${excerpt}
         <div class="popup-actions">
           <button type="button" class="read" data-id="${escapeHtml(item.id)}">${escapeHtml(readLabel)}</button>
           <button type="button" class="edit-loc" data-id="${escapeHtml(item.id)}" title="Editează">${escapeHtml(editLabel)}</button>
@@ -835,9 +837,24 @@
       const heroPhNote = _tt('detail.hero.placeholder');
       const titleTxt = _locField(item, 'title');
       const locationTxt = _locField(item, 'location');
-      const heroImg = item.image
-        ? `<img class="hero-img" src="${escapeHtml(item.image)}" alt="${escapeHtml(titleTxt)}" fetchpriority="high" decoding="async">`
-        : `<div class="hero-img hero-img-placeholder" aria-hidden="true"><span class="ph-eyebrow">${escapeHtml(catLabel || 'Obiectiv')}</span><svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="0"/><path d="M3 16l5-5 4 4 3-3 6 6"/><circle cx="9" cy="10" r="1.5"/></svg><span class="ph-note">${escapeHtml(heroPhNote)}</span></div>`;
+      // Before/After comparison takes precedence over the regular hero image when
+      // both image_then and image_now are present. The slider is wired up after
+      // the panel is rendered (see initBeforeAfter() below).
+      const hasComparison = !!(item.image_then && item.image_now);
+      const heroImg = hasComparison
+        ? `<div class="hero-compare" data-compare="1" role="group" aria-label="Comparație înainte–acum">
+             <img class="hero-compare-then" src="${escapeHtml(item.image_then)}" alt="${escapeHtml(titleTxt)} — înainte" fetchpriority="high" decoding="async">
+             <img class="hero-compare-now" src="${escapeHtml(item.image_now)}" alt="${escapeHtml(titleTxt)} — acum" decoding="async">
+             <div class="hero-compare-handle" aria-hidden="true">
+               <span class="hc-arrow hc-left">‹</span>
+               <span class="hc-arrow hc-right">›</span>
+             </div>
+             <span class="hero-compare-label hc-label-then">${escapeHtml(_tt('compare.then') || 'ÎNAINTE')}</span>
+             <span class="hero-compare-label hc-label-now">${escapeHtml(_tt('compare.now') || 'ACUM')}</span>
+           </div>`
+        : (item.image
+          ? `<img class="hero-img" src="${escapeHtml(item.image)}" alt="${escapeHtml(titleTxt)}" fetchpriority="high" decoding="async">`
+          : `<div class="hero-img hero-img-placeholder" aria-hidden="true"><span class="ph-eyebrow">${escapeHtml(catLabel || 'Obiectiv')}</span><svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="0"/><path d="M3 16l5-5 4 4 3-3 6 6"/><circle cx="9" cy="10" r="1.5"/></svg><span class="ph-note">${escapeHtml(heroPhNote)}</span></div>`);
       // Banner doar dacă lang=EN și NU avem deja conținut tradus pentru această locație
       const langEn = (typeof window.getLang === 'function' && window.getLang() === 'en');
       const enNoticeHtml = (langEn && !_hasEnContent(item))
@@ -941,6 +958,9 @@
       detail.dataset.open = '1';
       detail.setAttribute('aria-hidden', 'false');
       detailScroll.scrollTop = 0;
+      // If the rendered hero is a before/after comparison, wire up the slider.
+      const compareEl = detailScroll.querySelector('.hero-compare[data-compare="1"]');
+      if (compareEl) initBeforeAfter(compareEl);
       // Update deep link URL (?loc=ID)
       if (typeof window.__updateDeepLink === 'function') {
         const params = { loc: id };
@@ -972,11 +992,75 @@
       }
     }
 
+    // Wire up a before/after comparison slider on a .hero-compare container.
+    // The "now" image is wrapped in a div whose width is updated as the user
+    // drags the handle; the "then" image fills the entire frame underneath.
+    // Pointer events cover mouse + touch + pen uniformly.
+    function initBeforeAfter(root) {
+      if (!root || root.dataset.compareInit === '1') return;
+      const nowImg = root.querySelector('.hero-compare-now');
+      const handle = root.querySelector('.hero-compare-handle');
+      if (!nowImg || !handle) return;
+      root.dataset.compareInit = '1';
+
+      // The "now" image is clip-pathed so only the left portion (0..pct%) shows;
+      // the "then" image underneath shows on the right.
+      const applyPct = (pct) => {
+        pct = Math.max(0, Math.min(100, pct));
+        nowImg.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
+        handle.style.left = pct + '%';
+        root.dataset.pct = String(pct);
+      };
+      const setFromClientX = (clientX) => {
+        const rect = root.getBoundingClientRect();
+        if (rect.width === 0) return;
+        applyPct(((clientX - rect.left) / rect.width) * 100);
+      };
+      applyPct(50);
+
+      let dragging = false;
+      const onDown = (e) => {
+        dragging = true;
+        root.classList.add('is-dragging');
+        if (e.pointerId !== undefined) root.setPointerCapture(e.pointerId);
+        setFromClientX(e.clientX);
+        e.preventDefault();
+      };
+      const onMove = (e) => {
+        if (!dragging) return;
+        setFromClientX(e.clientX);
+      };
+      const onUp = (e) => {
+        if (!dragging) return;
+        dragging = false;
+        root.classList.remove('is-dragging');
+        if (e.pointerId !== undefined && root.hasPointerCapture(e.pointerId)) {
+          root.releasePointerCapture(e.pointerId);
+        }
+      };
+      root.addEventListener('pointerdown', onDown);
+      root.addEventListener('pointermove', onMove);
+      root.addEventListener('pointerup', onUp);
+      root.addEventListener('pointercancel', onUp);
+      root.addEventListener('pointerleave', onUp);
+      // Keyboard support for the handle (a11y)
+      handle.tabIndex = 0;
+      handle.addEventListener('keydown', (e) => {
+        const step = e.shiftKey ? 10 : 2;
+        const cur = parseFloat(root.dataset.pct || '50');
+        if (e.key === 'ArrowLeft')       { applyPct(cur - step); e.preventDefault(); }
+        else if (e.key === 'ArrowRight') { applyPct(cur + step); e.preventDefault(); }
+      });
+    }
+
     // Delegated click handler: catches hero/gallery image taps regardless of when
     // they were inserted into the DOM. Attached ONCE here (not per-render) so a
     // race condition with mobile touch timing or stale listener references can't
     // break it. Was broken on mobile (Galaxy S22 Chrome) when attached per-render.
     detailScroll.addEventListener('click', (e) => {
+      // Inside a before/after compare frame, suppress the lightbox — the user
+      // is dragging the slider, not asking to enlarge the photo.
+      if (e.target.closest('.hero-compare')) return;
       const hero = e.target.closest('img.hero-img');
       if (hero) {
         openImageInLightbox(hero.src, hero.alt, hero.alt);
@@ -3569,6 +3653,15 @@
         apGalleryExisting.style.display = 'none';
       }
       galleryNewCaptions = [];
+      // Reset before/after section
+      const cmpToggle = document.getElementById('ap-compare-toggle');
+      const cmpGroup  = document.getElementById('ap-compare-group');
+      const thenPrev  = document.getElementById('ap-then-preview');
+      const nowPrev   = document.getElementById('ap-now-preview');
+      if (cmpToggle) cmpToggle.checked = false;
+      if (cmpGroup)  cmpGroup.style.display = 'none';
+      if (thenPrev) { thenPrev.src = ''; thenPrev.style.display = 'none'; }
+      if (nowPrev)  { nowPrev.src  = ''; nowPrev.style.display  = 'none'; }
     }
 
     function renderExistingGallery(item) {
@@ -3629,6 +3722,17 @@
         apPreview.style.display = 'block';
         apDropHint.textContent = 'Imagine existentă — alege una nouă pentru a o înlocui';
       }
+      // Populate before/after section if the item has both images
+      const cmpToggle = document.getElementById('ap-compare-toggle');
+      const cmpGroup  = document.getElementById('ap-compare-group');
+      const thenPrev  = document.getElementById('ap-then-preview');
+      const nowPrev   = document.getElementById('ap-now-preview');
+      const hasThen = !!item.image_then;
+      const hasNow  = !!item.image_now;
+      if (cmpToggle) cmpToggle.checked = hasThen || hasNow;
+      if (cmpGroup)  cmpGroup.style.display = (hasThen || hasNow) ? 'block' : 'none';
+      if (hasThen && thenPrev) { thenPrev.src = item.image_then; thenPrev.style.display = 'block'; }
+      if (hasNow  && nowPrev)  { nowPrev.src  = item.image_now;  nowPrev.style.display  = 'block'; }
       refreshCoordStatus();
       const titleEl = document.getElementById('add-pin-title');
       if (titleEl) titleEl.textContent = 'Editează obiectivul';
@@ -3725,6 +3829,37 @@
       apDropHint.textContent = file.name + ' · ' + Math.round(file.size / 1024) + ' KB';
     });
 
+    // ─── Before/After comparison toggle + previews ───
+    const apCompareToggle = document.getElementById('ap-compare-toggle');
+    const apCompareGroup  = document.getElementById('ap-compare-group');
+    const apImageThen     = document.getElementById('ap-image-then');
+    const apImageNow      = document.getElementById('ap-image-now');
+    const apThenPreview   = document.getElementById('ap-then-preview');
+    const apNowPreview    = document.getElementById('ap-now-preview');
+    const apThenHint      = document.getElementById('ap-then-hint');
+    const apNowHint       = document.getElementById('ap-now-hint');
+    if (apCompareToggle && apCompareGroup) {
+      apCompareToggle.addEventListener('change', () => {
+        apCompareGroup.style.display = apCompareToggle.checked ? 'block' : 'none';
+      });
+    }
+    const wireFilePreview = (input, preview, hint, defaultHint) => {
+      if (!input || !preview) return;
+      input.addEventListener('change', () => {
+        const file = input.files && input.files[0];
+        if (!file) {
+          preview.style.display = 'none';
+          if (hint) hint.textContent = defaultHint;
+          return;
+        }
+        preview.src = URL.createObjectURL(file);
+        preview.style.display = 'block';
+        if (hint) hint.textContent = file.name + ' · ' + Math.round(file.size / 1024) + ' KB';
+      });
+    };
+    wireFilePreview(apImageThen, apThenPreview, apThenHint, 'Click sau drag & drop · imaginea istorică');
+    wireFilePreview(apImageNow,  apNowPreview,  apNowHint,  'Click sau drag & drop · imaginea actuală');
+
     // Drag & drop into the file-drop area (featured image)
     const apDrop = document.getElementById('ap-drop');
     ['dragenter','dragover'].forEach(ev => apDrop.addEventListener(ev, (e) => { e.preventDefault(); apDrop.style.background = 'var(--accent-soft)'; }));
@@ -3810,6 +3945,18 @@
         const newCount = (apGallery.files && apGallery.files.length) || 0;
         for (let i = 0; i < newCount; i++) {
           fd.append('gallery_images_caption', galleryNewCaptions[i] || '');
+        }
+        // Before/After comparison handling. Three signals the server respects:
+        //   compare_enabled=1     → keep image_then/image_now on the entry
+        //   compare_enabled=0     → strip image_then/image_now from the entry
+        //   image_then / image_now files (when present) → uploaded
+        const compareOn = apCompareToggle && apCompareToggle.checked;
+        fd.set('compare_enabled', compareOn ? '1' : '0');
+        if (!compareOn) {
+          // Don't send empty files when the toggle is off (server treats absence
+          // + compare_enabled=0 as "clear").
+          fd.delete('image_then');
+          fd.delete('image_now');
         }
         let url = '/api/add-location';
         if (wasEditing) {

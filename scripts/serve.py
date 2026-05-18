@@ -253,6 +253,17 @@ class Handler(SimpleHTTPRequestHandler):
             entry["gallery"].append({"src": saved[0], "alt": cap or title})
             if not entry.get("image"):
                 entry["image"] = saved[0]
+        # Before/After comparison images (optional)
+        compare_field = first_field(fields, "compare_enabled")
+        compare_on = (compare_field and compare_field["data"].decode("utf-8", errors="replace").strip() == "1")
+        if compare_on:
+            for key in ("image_then", "image_now"):
+                f = first_field(fields, key)
+                if f and f.get("filename"):
+                    saved = self._save_uploaded_image(f, f"{title}-{key.split('_')[1]}")
+                    if saved is None:
+                        return
+                    entry[key] = saved[0]
         locations.append(entry)
         # Write atomically
         tmp = LOCATIONS.with_suffix(".json.tmp")
@@ -520,6 +531,25 @@ class Handler(SimpleHTTPRequestHandler):
             existing["gallery"].append({"src": saved[0], "alt": cap or title})
             if not existing.get("image"):
                 existing["image"] = saved[0]
+
+        # Before/After comparison images
+        #   compare_enabled=1 + new file uploaded → replace
+        #   compare_enabled=1 + no new file → keep existing
+        #   compare_enabled=0 → strip both fields
+        compare_field = first_field(fields, "compare_enabled")
+        compare_on = (compare_field and compare_field["data"].decode("utf-8", errors="replace").strip() == "1")
+        if compare_on:
+            for key in ("image_then", "image_now"):
+                f = first_field(fields, key)
+                if f and f.get("filename"):
+                    saved = self._save_uploaded_image(f, f"{title}-{key.split('_')[1]}")
+                    if saved is None:
+                        return
+                    existing[key] = saved[0]
+        elif compare_field is not None:
+            # Explicit opt-out: remove the fields if present
+            existing.pop("image_then", None)
+            existing.pop("image_now", None)
 
         self._atomic_write_json(LOCATIONS, locations)
         return self._send_json(HTTPStatus.OK, {"ok": True, "entry": existing})
