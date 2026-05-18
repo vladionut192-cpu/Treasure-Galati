@@ -1771,5 +1771,23 @@
     "lat": 45.44026,
     "lon": 28.074467,
     "year": 1929
+  },
+  {
+    "src": "../assets/images/local/un-unghi-ce-surprinde-aproape-tot-din-fosta-strada-colonel-b-0ce58391.jpg",
+    "caption_ro": "Un unghi ce surprinde aproape tot din fosta stradă Colonel Boyle: se văd perfect clădirile care există și astăzi- printre ele Banca Agricolă/Institutul de Piscicultură- la fel fostul consulat olandez și fostul sediu al ziarului Acțiunea, ulterior demolate În stânga sunt resturile străzilor Sf.Gheorg",
+    "caption_en": "",
+    "folder": "local",
+    "lat": 45.430699,
+    "lon": 28.05747,
+    "year": 1962
+  },
+  {
+    "src": "../assets/images/local/panorama-la-1898-carte-postala-editor-h-wichmann-str-mare-56-17f36c30.jpg",
+    "caption_ro": "panoramă la 1898. carte poștală, editor H. Wichmann, Str. Mare 56.",
+    "caption_en": "",
+    "folder": "local",
+    "lat": 45.441307,
+    "lon": 28.057194,
+    "year": 1898
   }
 ]
