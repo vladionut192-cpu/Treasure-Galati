@@ -1187,8 +1187,11 @@
       const gal = e.target.closest('.gallery figure img');
       if (gal) {
         const items = buildDetailLightboxItems();
-        // Index of clicked image within the queue
-        const idx = items.findIndex(it => it.src === gal.src);
+        // Match by the raw attribute value, not gal.src — the DOM .src property
+        // resolves to a full absolute URL, but item.src is the relative path
+        // straight from locations.json. They never match as full strings.
+        const galAttrSrc = gal.getAttribute('src') || '';
+        const idx = items.findIndex(it => it.src === galAttrSrc);
         openLightboxGallery(items, idx < 0 ? 0 : idx);
       }
     });
