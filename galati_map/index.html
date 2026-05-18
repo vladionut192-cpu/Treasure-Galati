@@ -435,22 +435,28 @@
                 <input type="checkbox" id="ap-compare-toggle" style="width:18px;height:18px;">
                 <span>Activează comparație înainte / acum (slider pe poza featured)</span>
               </label>
-              <div id="ap-compare-group" style="display:none;margin-top:10px;padding:12px;background:var(--paper-deep);border:1px solid var(--line);">
-                <div class="hint" style="margin-bottom:10px;font-size:12px;color:var(--muted)">
+              <div id="ap-compare-group" style="display:none;margin-top:10px;padding:14px;background:var(--paper-deep);border:1px solid var(--line);">
+                <div class="hint" style="margin-bottom:12px;font-size:12px;color:var(--muted);text-transform:none;letter-spacing:0;font-weight:400;">
                   Două poze ale aceluiași loc (același cadru, dacă e posibil). Utilizatorul va putea trage un slider pe mijloc pentru a vedea diferența.
                 </div>
-                <label style="font-size:13px;font-weight:600;">Foto „ÎNAINTE” (istorică)</label>
-                <label class="file-drop" id="ap-then-drop" style="margin:6px 0 14px;">
-                  <input type="file" id="ap-image-then" name="image_then" accept="image/jpeg,image/png,image/webp,image/gif">
-                  <div class="hint" id="ap-then-hint">Click sau drag & drop · imaginea istorică</div>
-                  <img class="preview" id="ap-then-preview" alt="">
-                </label>
-                <label style="font-size:13px;font-weight:600;">Foto „ACUM” (actuală)</label>
-                <label class="file-drop" id="ap-now-drop" style="margin-top:6px;">
-                  <input type="file" id="ap-image-now" name="image_now" accept="image/jpeg,image/png,image/webp,image/gif">
-                  <div class="hint" id="ap-now-hint">Click sau drag & drop · imaginea actuală</div>
-                  <img class="preview" id="ap-now-preview" alt="">
-                </label>
+                <div class="cmp-row">
+                  <div class="cmp-title">Foto „ÎNAINTE” (istorică)</div>
+                  <label class="file-drop" id="ap-then-drop">
+                    <input type="file" id="ap-image-then" name="image_then" accept="image/jpeg,image/png,image/webp,image/gif">
+                    <div class="hint" id="ap-then-hint">Click sau drag & drop · imaginea istorică</div>
+                    <img class="preview" id="ap-then-preview" alt="">
+                  </label>
+                  <input type="number" id="ap-image-then-year" name="image_then_year" placeholder="An (ex: 1920)" min="1400" max="2100" class="cmp-year">
+                </div>
+                <div class="cmp-row" style="margin-top:14px;">
+                  <div class="cmp-title">Foto „ACUM” (actuală)</div>
+                  <label class="file-drop" id="ap-now-drop">
+                    <input type="file" id="ap-image-now" name="image_now" accept="image/jpeg,image/png,image/webp,image/gif">
+                    <div class="hint" id="ap-now-hint">Click sau drag & drop · imaginea actuală</div>
+                    <img class="preview" id="ap-now-preview" alt="">
+                  </label>
+                  <input type="number" id="ap-image-now-year" name="image_now_year" placeholder="An (ex: 2026)" min="1400" max="2100" class="cmp-year">
+                </div>
               </div>
             </div>
             <div class="field">

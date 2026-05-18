@@ -736,7 +736,8 @@
         const btn = document.createElement('button');
         const statusCls = item.status === 'demolished' || item.status === 'lost' ? ' is-demolished'
                        : item.status === 'ruin' ? ' is-ruin' : '';
-        btn.className = 'item' + (item.id === activeId ? ' active' : '') + statusCls;
+        const hasImage = !!item.image;
+        btn.className = 'item' + (item.id === activeId ? ' active' : '') + statusCls + (hasImage ? ' has-image' : '');
         btn.type = 'button';
         btn.dataset.id = item.id;
         const yearLabel = item.year_built !== null && item.year_built !== undefined
@@ -744,12 +745,18 @@
           : '';
         const catLabelTr = _catLabel(item.category);
         const fullEm = yearLabel ? `${catLabelTr} · ${yearLabel}` : catLabelTr;
+        // Background image (when present) loads natively via `loading="lazy"` —
+        // browser only fetches when the card is near the viewport, so 200+ cards
+        // don't blow up the initial page load.
+        const bgImg = hasImage
+          ? `<img class="item-bg" src="${escapeHtml(item.image)}" loading="lazy" decoding="async" alt="" aria-hidden="true">`
+          : '';
         btn.innerHTML = `
+          ${bgImg}
           <span class="num" aria-hidden="true">${iconSvg(item.category, 20)}</span>
           <span class="body">
             <em>${escapeHtml(fullEm)}</em>
             <strong>${escapeHtml(_locField(item, 'title'))}</strong>
-            <span>${escapeHtml(_locField(item, 'location'))}</span>
           </span>`;
         btn.addEventListener('click', () => {
           highlight(item.id, true);
@@ -841,16 +848,26 @@
       // both image_then and image_now are present. The slider is wired up after
       // the panel is rendered (see initBeforeAfter() below).
       const hasComparison = !!(item.image_then && item.image_now);
+      // Labels on the comparison slider — prefer the explicit years set in the
+      // editor; fall back to plain "ÎNAINTE" / "ACUM" if no year is recorded.
+      const thenLabel = (item.image_then_year != null && item.image_then_year !== '')
+        ? String(item.image_then_year) : 'ÎNAINTE';
+      const nowLabel  = (item.image_now_year  != null && item.image_now_year  !== '')
+        ? String(item.image_now_year)  : 'ACUM';
+      // Layering: "now" is the base layer (fills the whole frame); "then" sits
+      // on top, clip-pathed to show only the LEFT portion. This way the LEFT
+      // side of the slider shows the historic photo (labeled with thenLabel),
+      // and the RIGHT side reveals the modern photo (nowLabel).
       const heroImg = hasComparison
         ? `<div class="hero-compare" data-compare="1" role="group" aria-label="Comparație înainte–acum">
-             <img class="hero-compare-then" src="${escapeHtml(item.image_then)}" alt="${escapeHtml(titleTxt)} — înainte" fetchpriority="high" decoding="async">
-             <img class="hero-compare-now" src="${escapeHtml(item.image_now)}" alt="${escapeHtml(titleTxt)} — acum" decoding="async">
+             <img class="hero-compare-now" src="${escapeHtml(item.image_now)}" alt="${escapeHtml(titleTxt)} — ${escapeHtml(nowLabel)}" decoding="async">
+             <img class="hero-compare-then" src="${escapeHtml(item.image_then)}" alt="${escapeHtml(titleTxt)} — ${escapeHtml(thenLabel)}" fetchpriority="high" decoding="async">
              <div class="hero-compare-handle" aria-hidden="true">
                <span class="hc-arrow hc-left">‹</span>
                <span class="hc-arrow hc-right">›</span>
              </div>
-             <span class="hero-compare-label hc-label-then">${escapeHtml(_tt('compare.then') || 'ÎNAINTE')}</span>
-             <span class="hero-compare-label hc-label-now">${escapeHtml(_tt('compare.now') || 'ACUM')}</span>
+             <span class="hero-compare-label hc-label-then">${escapeHtml(thenLabel)}</span>
+             <span class="hero-compare-label hc-label-now">${escapeHtml(nowLabel)}</span>
            </div>`
         : (item.image
           ? `<img class="hero-img" src="${escapeHtml(item.image)}" alt="${escapeHtml(titleTxt)}" fetchpriority="high" decoding="async">`
@@ -998,16 +1015,17 @@
     // Pointer events cover mouse + touch + pen uniformly.
     function initBeforeAfter(root) {
       if (!root || root.dataset.compareInit === '1') return;
-      const nowImg = root.querySelector('.hero-compare-now');
+      const thenImg = root.querySelector('.hero-compare-then');
       const handle = root.querySelector('.hero-compare-handle');
-      if (!nowImg || !handle) return;
+      if (!thenImg || !handle) return;
       root.dataset.compareInit = '1';
 
-      // The "now" image is clip-pathed so only the left portion (0..pct%) shows;
-      // the "then" image underneath shows on the right.
+      // The "then" image overlays the base "now" image; we clip-path it so only
+      // the LEFT pct% is visible. The right side reveals the "now" image
+      // underneath. Handle position tracks the boundary.
       const applyPct = (pct) => {
         pct = Math.max(0, Math.min(100, pct));
-        nowImg.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
+        thenImg.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
         handle.style.left = pct + '%';
         root.dataset.pct = String(pct);
       };
@@ -3658,10 +3676,14 @@
       const cmpGroup  = document.getElementById('ap-compare-group');
       const thenPrev  = document.getElementById('ap-then-preview');
       const nowPrev   = document.getElementById('ap-now-preview');
+      const thenYear  = document.getElementById('ap-image-then-year');
+      const nowYear   = document.getElementById('ap-image-now-year');
       if (cmpToggle) cmpToggle.checked = false;
       if (cmpGroup)  cmpGroup.style.display = 'none';
       if (thenPrev) { thenPrev.src = ''; thenPrev.style.display = 'none'; }
       if (nowPrev)  { nowPrev.src  = ''; nowPrev.style.display  = 'none'; }
+      if (thenYear) thenYear.value = '';
+      if (nowYear)  nowYear.value  = '';
     }
 
     function renderExistingGallery(item) {
@@ -3727,12 +3749,16 @@
       const cmpGroup  = document.getElementById('ap-compare-group');
       const thenPrev  = document.getElementById('ap-then-preview');
       const nowPrev   = document.getElementById('ap-now-preview');
+      const thenYear  = document.getElementById('ap-image-then-year');
+      const nowYear   = document.getElementById('ap-image-now-year');
       const hasThen = !!item.image_then;
       const hasNow  = !!item.image_now;
       if (cmpToggle) cmpToggle.checked = hasThen || hasNow;
       if (cmpGroup)  cmpGroup.style.display = (hasThen || hasNow) ? 'block' : 'none';
       if (hasThen && thenPrev) { thenPrev.src = item.image_then; thenPrev.style.display = 'block'; }
       if (hasNow  && nowPrev)  { nowPrev.src  = item.image_now;  nowPrev.style.display  = 'block'; }
+      if (thenYear) thenYear.value = (item.image_then_year != null) ? String(item.image_then_year) : '';
+      if (nowYear)  nowYear.value  = (item.image_now_year  != null) ? String(item.image_now_year)  : '';
       refreshCoordStatus();
       const titleEl = document.getElementById('add-pin-title');
       if (titleEl) titleEl.textContent = 'Editează obiectivul';

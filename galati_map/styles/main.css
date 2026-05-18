@@ -1438,6 +1438,24 @@
       display: none;
       border: 1px solid var(--line);
     }
+    /* .file-drop is a <label> (inline by default) — force block so its
+       padding/text-align work and so adjacent labels don't collapse next to it. */
+    .add-pin-modal .file-drop { display: block; }
+    /* Before/After comparison editor rows */
+    .add-pin-modal .cmp-row { display: block; }
+    .add-pin-modal .cmp-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink);
+      margin: 0 0 6px;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+    .add-pin-modal .cmp-year {
+      width: 100%;
+      margin-top: 8px;
+      font-family: var(--font-mono);
+    }
     .add-pin-modal .gallery-thumbs {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -1918,6 +1936,9 @@
     .item.is-demolished .body strong { text-decoration: line-through; text-decoration-thickness: 1px; text-decoration-color: rgba(0,0,0,.25); }
     .item.is-demolished .body em { color: var(--hot); }
     .item.is-ruin .num { background: #6f5d3f; }
+    /* On image cards keep strikethrough visible against the dark overlay */
+    .item.is-demolished.has-image .body strong { text-decoration-color: rgba(255,255,255,0.55); }
+    .item.is-demolished.has-image .body em { text-shadow: 0 1px 2px rgba(0,0,0,0.6); }
     /* „Galați de altădată" — buline mici colorate diferit (fotografii istorice) */
     .pubcrawl-dot {
       width: 11px; height: 11px;
@@ -2828,24 +2849,73 @@
       gap: 0;
       counter-reset: none;
     }
+    /* ─── Sidebar list item — magazine-style card with optional bg image ───
+       Cards with item.image get a full-bleed cover photo + dark gradient overlay
+       (text becomes white). Cards without image fall back to a tinted gradient
+       on the paper background. Images use native loading="lazy" — only the few
+       visible cards trigger network fetches. */
     .item {
       width: 100%;
       border: 0;
-      border-top: 1px solid var(--line-soft);
-      background: transparent;
-      padding: 14px 4px 14px 0;
+      background: var(--paper);
+      padding: 16px 14px;
+      margin: 0 0 10px;
       text-align: left;
       cursor: pointer;
       display: grid;
       grid-template-columns: 38px 1fr;
       gap: 14px;
-      align-items: start;
+      align-items: center;
       color: inherit;
       font: inherit;
+      position: relative;
+      min-height: 88px;
+      overflow: hidden;
+      isolation: isolate; /* keeps ::before contained */
+      transition: transform .12s ease, box-shadow .12s ease;
     }
-    .item:last-child { border-bottom: 1px solid var(--line-soft); }
-    .item:hover { background: rgba(44, 97, 87, 0.04); }
-    .item.active { background: rgba(44, 97, 87, 0.08); }
+    .item:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(31,37,34,.08); }
+    .item.active { box-shadow: 0 0 0 2px var(--accent); }
+    /* Card without image: subtle inset border + soft gradient hint of category */
+    .item:not(.has-image) {
+      background:
+        linear-gradient(135deg, rgba(44,97,87,0.03) 0%, rgba(44,97,87,0.0) 60%),
+        var(--paper);
+      border: 1px solid var(--line-soft);
+    }
+
+    /* Background image fills the entire card — z-index 0, text on top */
+    .item-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      pointer-events: none;
+      -webkit-user-drag: none;
+      filter: brightness(0.78) saturate(1.05);
+      transition: filter .2s ease, transform .4s ease;
+    }
+    /* Dark gradient overlay for readability on photo cards */
+    .item.has-image::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        100deg,
+        rgba(15, 21, 37, 0.78) 0%,
+        rgba(15, 21, 37, 0.55) 55%,
+        rgba(15, 21, 37, 0.42) 100%
+      );
+      z-index: 1;
+      pointer-events: none;
+    }
+    .item.has-image:hover .item-bg { filter: brightness(0.88) saturate(1.1); transform: scale(1.03); }
+    .item.active.has-image::before {
+      background: linear-gradient(100deg, rgba(184,48,61,0.65) 0%, rgba(15,21,37,0.6) 60%);
+    }
+
     .num {
       width: 36px; height: 36px;
       display: inline-flex; align-items: center; justify-content: center;
@@ -2853,34 +2923,48 @@
       color: white;
       border-radius: 50%;
       flex-shrink: 0;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 0 0 2px rgba(255,255,255,0.85), 0 2px 6px rgba(0,0,0,0.18);
     }
     .num svg { width: 20px; height: 20px; }
     .item.active .num { background: var(--hot); }
+    /* On image cards the white ring around the num pops more */
+    .item.has-image .num { box-shadow: 0 0 0 2px rgba(255,255,255,0.95), 0 4px 10px rgba(0,0,0,0.35); }
+
+    .item .body {
+      position: relative;
+      z-index: 2;
+      min-width: 0; /* allow shrink for ellipsis if needed */
+    }
     .item .body strong {
       display: block;
       font-family: var(--font-ui);
       font-weight: 700;
       font-size: 16px;
-      line-height: 1.2;
-      margin-bottom: 3px;
+      line-height: 1.25;
+      margin-bottom: 4px;
       color: var(--ink);
       overflow-wrap: anywhere;
+      text-shadow: none;
     }
-    .item .body span {
-      display: block;
-      color: var(--muted);
-      font-size: 12.5px;
-      line-height: 1.35;
+    .item.has-image .body strong {
+      color: #fff;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.45);
     }
     .item .body em {
       display: inline-block;
       font-style: normal;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.10em;
       text-transform: uppercase;
       font-size: 10px;
       color: var(--accent);
-      margin-bottom: 3px;
-      font-weight: 600;
+      margin-bottom: 4px;
+      font-weight: 700;
+    }
+    .item.has-image .body em {
+      color: #ffe9b5;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.5);
     }
     main.map-area {
       position: relative;
@@ -3247,8 +3331,10 @@
       pointer-events: none;
       -webkit-user-drag: none;
     }
-    .detail .hero-compare-now {
-      /* Initial clip — JS updates this on drag */
+    .detail .hero-compare-then {
+      /* Overlay on top of "now"; clipped to reveal only the LEFT pct% so the
+         left side of the slider visually shows the historic photo. JS updates
+         the clip-path inset on drag. */
       clip-path: inset(0 50% 0 0);
       z-index: 1;
     }

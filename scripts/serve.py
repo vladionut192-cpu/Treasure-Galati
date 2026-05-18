@@ -264,6 +264,16 @@ class Handler(SimpleHTTPRequestHandler):
                     if saved is None:
                         return
                     entry[key] = saved[0]
+            # Optional year labels for the slider
+            for year_key in ("image_then_year", "image_now_year"):
+                yf = first_field(fields, year_key)
+                if yf:
+                    raw = yf["data"].decode("utf-8", errors="replace").strip()
+                    if raw:
+                        try:
+                            entry[year_key] = int(raw)
+                        except ValueError:
+                            pass
         locations.append(entry)
         # Write atomically
         tmp = LOCATIONS.with_suffix(".json.tmp")
@@ -532,10 +542,10 @@ class Handler(SimpleHTTPRequestHandler):
             if not existing.get("image"):
                 existing["image"] = saved[0]
 
-        # Before/After comparison images
+        # Before/After comparison images + year labels
         #   compare_enabled=1 + new file uploaded → replace
         #   compare_enabled=1 + no new file → keep existing
-        #   compare_enabled=0 → strip both fields
+        #   compare_enabled=0 → strip ALL fields (images + years)
         compare_field = first_field(fields, "compare_enabled")
         compare_on = (compare_field and compare_field["data"].decode("utf-8", errors="replace").strip() == "1")
         if compare_on:
@@ -546,10 +556,23 @@ class Handler(SimpleHTTPRequestHandler):
                     if saved is None:
                         return
                     existing[key] = saved[0]
+            # Year labels — always overwrite from the form (so clearing them works).
+            for year_key in ("image_then_year", "image_now_year"):
+                yf = first_field(fields, year_key)
+                raw = (yf["data"].decode("utf-8", errors="replace").strip() if yf else "")
+                if raw:
+                    try:
+                        existing[year_key] = int(raw)
+                    except ValueError:
+                        existing.pop(year_key, None)
+                else:
+                    existing.pop(year_key, None)
         elif compare_field is not None:
-            # Explicit opt-out: remove the fields if present
+            # Explicit opt-out: remove all comparison fields if present
             existing.pop("image_then", None)
             existing.pop("image_now", None)
+            existing.pop("image_then_year", None)
+            existing.pop("image_now_year", None)
 
         self._atomic_write_json(LOCATIONS, locations)
         return self._send_json(HTTPStatus.OK, {"ok": True, "entry": existing})
