@@ -970,14 +970,19 @@
       const isMeaningfulAlt = (s) => s && s.includes(' ') && !/\.(jpg|jpeg|png|webp|gif)$/i.test(s);
       const galleryTitle = _tt('detail.gallery');
       const galleryImgWord = restGallery.length === 1 ? _tt('detail.gallery.image') : _tt('detail.gallery.images');
+      // Wrapper provides the right-edge fade gradient on mobile (swipe hint).
+      // The .gallery itself stays the scrolling container; on desktop CSS turns
+      // it into a vertical stack so all photos are visible at once.
       const galleryHtml = restGallery.length
         ? `<h3 class="section-title">${escapeHtml(galleryTitle)} · ${restGallery.length} ${escapeHtml(galleryImgWord)}</h3>
-           <div class="gallery">
-             ${restGallery.map(g => {
-               const cap = (g.caption || (isMeaningfulAlt(g.alt) ? g.alt : '')).trim();
-               const figcap = cap ? `<figcaption>${escapeHtml(cap)}</figcaption>` : '';
-               return `<figure data-caption="${escapeHtml(cap)}"><img src="${escapeHtml(g.src)}" alt="${escapeHtml(g.alt || item.title)}" loading="lazy" decoding="async">${figcap}</figure>`;
-             }).join('')}
+           <div class="gallery-wrap">
+             <div class="gallery">
+               ${restGallery.map(g => {
+                 const cap = (g.caption || (isMeaningfulAlt(g.alt) ? g.alt : '')).trim();
+                 const figcap = cap ? `<figcaption>${escapeHtml(cap)}</figcaption>` : '';
+                 return `<figure data-caption="${escapeHtml(cap)}"><img src="${escapeHtml(g.src)}" alt="${escapeHtml(g.alt || item.title)}" loading="lazy" decoding="async">${figcap}</figure>`;
+               }).join('')}
+             </div>
            </div>`
         : '';
       const sourceHtml = '';
