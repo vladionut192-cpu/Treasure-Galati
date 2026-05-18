@@ -293,10 +293,20 @@
       }
     })();
 
-    // Service worker — offline-first cache pentru asset-uri și date
+    // Service worker — offline-first cache pentru asset-uri și date.
+    // After a deploy, when the new SW activates and takes control via
+    // clients.claim(), the in-memory page is still running OLD JS. Reload once
+    // automatically so users get the new version without needing two hard refreshes.
     if ('serviceWorker' in navigator && location.protocol !== 'file:') {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('sw.js').catch(() => {});
+      });
+      let reloaded = false;
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        if (reloaded) return;
+        reloaded = true;
+        // Tiny delay so any in-flight requests can settle.
+        setTimeout(() => window.location.reload(), 50);
       });
     }
     (async () => {

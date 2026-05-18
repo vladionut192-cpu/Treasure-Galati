@@ -3738,7 +3738,14 @@
            landscape). Without this, the slider thumb sits in the system gesture
            zone on devices with gesture nav (Galaxy S22, Pixel etc.) and taps get
            swallowed by the OS instead of reaching the slider. */
-        padding: 10px 12px max(14px, env(safe-area-inset-bottom));
+        padding: 8px 12px max(14px, env(safe-area-inset-bottom));
+        /* Anchor to viewport bottom regardless of any 100dvh discrepancy during
+           Chrome Android URL-bar animations. Background opaque so map underneath
+           doesn't bleed through. */
+        position: sticky;
+        bottom: 0;
+        z-index: 100;
+        background: var(--paper);
       }
       /* Header timeline pe mobil — pe un singur rând, fără subtitlu wrap */
       .timeline-header {
