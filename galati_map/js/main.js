@@ -2175,6 +2175,201 @@
       setTimeout(initPubcrawl, 1200);
     }
 
+    // ─── „Știați că?" — curiozități pe hartă (pin violet cu „?") ─────────────
+    // Citește din trivia.json. NU apare în sidebar — strict marker + click → modal text.
+    // Click pe pin afișează modal-ul #text-modal cu meta + titlu + descriere.
+    const triviaMarkers = []; // [{marker, item}]
+    let triviaLayer = null;
+    function triviaIcon() {
+      return L.divIcon({
+        className: 'custom-marker',
+        html: '<div class="trivia-pin">?</div>',
+        iconSize: [22, 22],
+        iconAnchor: [11, 11],
+      });
+    }
+    const legendaMarkers = []; // [{marker, item}]
+    let legendaLayer = null;
+    function legendaIcon() {
+      // SVG mic de tip scroll/manuscris medieval
+      const svg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4a2 2 0 0 1 2-2h9l3 3v15a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z"/><path d="M14 2v4h4"/><path d="M9 11h6M9 15h6M9 7h2"/></svg>';
+      return L.divIcon({
+        className: 'custom-marker',
+        html: '<div class="legenda-pin">' + svg + '</div>',
+        iconSize: [26, 26],
+        iconAnchor: [13, 13],
+      });
+    }
+
+    // Imagini placeholder folosite când entry-ul nu are imagine proprie.
+    // Resolved relativ la galati_map/ → urcă o dată la /assets/.
+    const TRIVIA_PLACEHOLDER = '../assets/images/placeholder-trivia.svg';
+    const LEGENDA_PLACEHOLDER = '../assets/images/placeholder-legenda.svg';
+    function resolveTextItemImage(kind, item) {
+      return item && item.image ? item.image : (kind === 'legenda' ? LEGENDA_PLACEHOLDER : TRIVIA_PLACEHOLDER);
+    }
+
+    // Modal text (folosit de ambele: trivia + legende)
+    const textModal = document.getElementById('text-modal');
+    const textModalBadge = document.getElementById('text-modal-badge');
+    const textModalMeta = document.getElementById('text-modal-meta');
+    const textModalTitle = document.getElementById('text-modal-title');
+    const textModalBody = document.getElementById('text-modal-body');
+    const textModalImg = document.getElementById('text-modal-img');
+    const textModalClose = document.getElementById('text-modal-close');
+    const textModalEdit = document.getElementById('text-modal-edit');
+    let textModalContext = null; // { kind, id } pentru butonul edit
+    function openTextModal(kind, item) {
+      textModal.classList.remove('trivia', 'legenda');
+      textModal.classList.add(kind === 'legenda' ? 'legenda' : 'trivia');
+      textModalBadge.textContent = item.category || (kind === 'legenda' ? 'Legendă' : 'Știați că?');
+      textModalMeta.textContent = item.meta || '';
+      textModalMeta.hidden = !item.meta;
+      textModalTitle.textContent = item.title || '';
+      textModalBody.textContent = item.description || '';
+      if (textModalImg) {
+        textModalImg.src = resolveTextItemImage(kind, item);
+        textModalImg.alt = item.title || '';
+      }
+      textModalContext = { kind, id: item.id };
+      if (textModalEdit) textModalEdit.hidden = !item.id;
+      textModal.dataset.open = '1';
+    }
+    if (textModalEdit) {
+      textModalEdit.addEventListener('click', () => {
+        if (!textModalContext || !textModalContext.id) return;
+        const url = `_admin/text_pins_editor.html?kind=${textModalContext.kind}&edit=${encodeURIComponent(textModalContext.id)}`;
+        window.open(url, '_blank', 'noopener');
+      });
+    }
+    function closeTextModal() {
+      textModal.removeAttribute('data-open');
+      document.querySelectorAll('.trivia-pin.lit, .legenda-pin.lit').forEach(d => d.classList.remove('lit'));
+    }
+    textModalClose.addEventListener('click', closeTextModal);
+    textModal.addEventListener('click', (e) => { if (e.target === textModal) closeTextModal(); });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && textModal.dataset.open) closeTextModal();
+    });
+
+    async function initTrivia() {
+      try {
+        const r = await fetch('trivia.json');
+        const data = await r.json();
+        triviaLayer = L.markerClusterGroup({
+          maxClusterRadius: 40,
+          disableClusteringAtZoom: 17,
+          spiderfyOnMaxZoom: true,
+          showCoverageOnHover: false,
+          chunkedLoading: true,
+          iconCreateFunction: (cluster) => {
+            const n = cluster.getChildCount();
+            const sz = n < 10 ? 'small' : n < 30 ? 'medium' : 'large';
+            const dim = sz === 'small' ? 38 : sz === 'large' ? 46 : 42;
+            return L.divIcon({
+              html: `<div><span>${n}</span></div>`,
+              className: `marker-cluster trivia-cluster marker-cluster-${sz}`,
+              iconSize: L.point(dim + 8, dim + 8),
+            });
+          },
+        });
+        data.forEach((item) => {
+          if (typeof item.lat !== 'number' || typeof item.lon !== 'number') return;
+          const m = L.marker([item.lat, item.lon], {
+            icon: triviaIcon(),
+            zIndexOffset: 50,
+            riseOnHover: true,
+          });
+          const imgSrc = resolveTextItemImage('trivia', item);
+          const tooltipHtml =
+            `<div class="marker-preview">
+               <img src="${escapeHtml(imgSrc)}" alt="" loading="lazy" decoding="async">
+               <div class="cap"><b>${escapeHtml(item.title || '')}</b></div>
+             </div>`;
+          m.bindTooltip(tooltipHtml, {
+            direction: 'top',
+            offset: L.point(0, -12),
+            opacity: 1,
+            sticky: false,
+            className: 'preview-tip',
+          });
+          m.on('click', () => {
+            document.querySelectorAll('.trivia-pin.lit, .legenda-pin.lit').forEach(d => d.classList.remove('lit'));
+            const el = m.getElement();
+            if (el) el.querySelector('.trivia-pin')?.classList.add('lit');
+            openTextModal('trivia', item);
+          });
+          triviaMarkers.push({ marker: m, item });
+          triviaLayer.addLayer(m);
+        });
+        triviaLayer.addTo(map);
+      } catch (e) {
+        console.warn('Nu pot încărca trivia.json:', e);
+      }
+    }
+
+    async function initLegende() {
+      try {
+        const r = await fetch('legende.json');
+        const data = await r.json();
+        legendaLayer = L.markerClusterGroup({
+          maxClusterRadius: 40,
+          disableClusteringAtZoom: 17,
+          spiderfyOnMaxZoom: true,
+          showCoverageOnHover: false,
+          chunkedLoading: true,
+          iconCreateFunction: (cluster) => {
+            const n = cluster.getChildCount();
+            const sz = n < 10 ? 'small' : n < 30 ? 'medium' : 'large';
+            const dim = sz === 'small' ? 38 : sz === 'large' ? 46 : 42;
+            return L.divIcon({
+              html: `<div><span>${n}</span></div>`,
+              className: `marker-cluster legenda-cluster marker-cluster-${sz}`,
+              iconSize: L.point(dim + 8, dim + 8),
+            });
+          },
+        });
+        data.forEach((item) => {
+          if (typeof item.lat !== 'number' || typeof item.lon !== 'number') return;
+          const m = L.marker([item.lat, item.lon], {
+            icon: legendaIcon(),
+            zIndexOffset: 60,
+            riseOnHover: true,
+          });
+          const imgSrc = resolveTextItemImage('legenda', item);
+          const tooltipHtml =
+            `<div class="marker-preview">
+               <img src="${escapeHtml(imgSrc)}" alt="" loading="lazy" decoding="async">
+               <div class="cap"><b>${escapeHtml(item.title || '')}</b></div>
+             </div>`;
+          m.bindTooltip(tooltipHtml, {
+            direction: 'top',
+            offset: L.point(0, -14),
+            opacity: 1,
+            sticky: false,
+            className: 'preview-tip',
+          });
+          m.on('click', () => {
+            document.querySelectorAll('.trivia-pin.lit, .legenda-pin.lit').forEach(d => d.classList.remove('lit'));
+            const el = m.getElement();
+            if (el) el.querySelector('.legenda-pin')?.classList.add('lit');
+            openTextModal('legenda', item);
+          });
+          legendaMarkers.push({ marker: m, item });
+          legendaLayer.addLayer(m);
+        });
+        legendaLayer.addTo(map);
+      } catch (e) {
+        console.warn('Nu pot încărca legende.json:', e);
+      }
+    }
+
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(() => { initTrivia(); initLegende(); }, { timeout: 2500 });
+    } else {
+      setTimeout(() => { initTrivia(); initLegende(); }, 1400);
+    }
+
     // ─── Deep links: ?loc=ID, ?tour=ID, ?hunt=ID ─────────────────
     // Permite link-uri shareable direct la o locație/tur/hunt specific.
     // Aplică DUPĂ ce datele sunt încărcate (chiar acum); nu deschide nimic
@@ -3093,41 +3288,11 @@
       if (pageId === 'map' && map) {
         refreshMapLayout();
       }
-      if (pageId === 'trivia') primeTriviaReveal();
       // Update hash (no scroll)
       if (history.replaceState) history.replaceState(null, '', '#' + pageId);
       resetDocumentScroll();
     }
 
-    // Trivia: scroll-reveal pentru cardurile „Știați că". Folosim IntersectionObserver
-    // ca să adăugăm clasa `.is-visible` pe măsură ce intră în viewport. Se inițializează
-    // o singură dată, dar la fiecare reactivare a paginii cardurile încă invizibile
-    // sunt re-observate (în caz că au fost deja randate dar resetate).
-    let triviaObserver = null;
-    function primeTriviaReveal() {
-      const cards = document.querySelectorAll('#page-trivia .trivia-card');
-      if (!cards.length) return;
-      if (!('IntersectionObserver' in window)) {
-        cards.forEach(c => c.classList.add('is-visible'));
-        return;
-      }
-      if (!triviaObserver) {
-        triviaObserver = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              const el = entry.target;
-              const idx = Array.from(el.parentElement.children).indexOf(el);
-              el.style.transitionDelay = Math.min(idx * 60, 240) + 'ms';
-              el.classList.add('is-visible');
-              triviaObserver.unobserve(el);
-            }
-          });
-        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-      }
-      cards.forEach((c) => {
-        if (!c.classList.contains('is-visible')) triviaObserver.observe(c);
-      });
-    }
     navBtns.forEach(btn => btn.addEventListener('click', () => activatePage(btn.dataset.page)));
 
     // ─── Mobile topbar: hamburger menu ──────────────────────────

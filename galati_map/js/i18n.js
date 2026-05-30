@@ -11,7 +11,6 @@
       'nav.stories': 'Povești',
       'nav.lists': 'Liste',
       'nav.about': 'Despre',
-      'nav.trivia': 'Știați că?',
       'nav.contribute': 'Contribuie',
       'nav.menu': 'Meniu',
       'lang.switch': 'Schimbă limba',
@@ -106,10 +105,6 @@
       'page.about.author.h2': 'Realizat de',
       'page.about.disclaimer.eyebrow': 'Disclaimer',
       'page.about.disclaimer.h2': 'Despre conținut și drepturi',
-
-      'page.trivia.eyebrow': 'Știați că?',
-      'page.trivia.title': 'Lucruri pe care nu le-ai citit la școală.',
-      'page.trivia.lead': 'Curiozități și legende din istoria Galațiului.',
 
       'page.stories.eyebrow': 'Povești · Galați',
       'page.stories.title': 'Povești care au scris orașul',
@@ -240,7 +235,6 @@
       'nav.stories': 'Stories',
       'nav.lists': 'Lists',
       'nav.about': 'About',
-      'nav.trivia': 'Did you know?',
       'nav.contribute': 'Contribute',
       'nav.menu': 'Menu',
       'lang.switch': 'Switch language',
@@ -334,10 +328,6 @@
       'page.about.author.h2': 'Made by',
       'page.about.disclaimer.eyebrow': 'Disclaimer',
       'page.about.disclaimer.h2': 'On content and rights',
-
-      'page.trivia.eyebrow': 'Did you know?',
-      'page.trivia.title': 'Things they didn’t teach you in school.',
-      'page.trivia.lead': 'Curiosities and legends from the history of Galați.',
 
       'page.stories.eyebrow': 'Stories · Galați',
       'page.stories.title': 'Stories that shaped the city',

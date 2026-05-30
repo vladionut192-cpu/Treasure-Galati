@@ -1789,5 +1789,14 @@
     "lat": 45.441307,
     "lon": 28.057194,
     "year": 1898
+  },
+  {
+    "src": "../assets/images/local/fosta-strada-colonel-boyle-83939287.jpg",
+    "caption_ro": "fosta stradă Colonel Boyle",
+    "caption_en": "",
+    "folder": "local",
+    "lat": 45.430206,
+    "lon": 28.058438,
+    "year": 1980
   }
 ]

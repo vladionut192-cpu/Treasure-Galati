@@ -75,6 +75,8 @@ def first_field(fields: dict[str, list[dict]], name: str) -> dict | None:
 ROOT = Path(__file__).resolve().parent.parent
 LOCATIONS = ROOT / "galati_map" / "locations.json"
 PUBCRAWL = ROOT / "galati_map" / "galati-altadata.json"
+TRIVIA = ROOT / "galati_map" / "trivia.json"
+LEGENDE = ROOT / "galati_map" / "legende.json"
 LOCAL_IMG_DIR = ROOT / "assets" / "images" / "local"
 LOCAL_IMG_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -123,7 +125,130 @@ class Handler(SimpleHTTPRequestHandler):
             return self._handle_update_photo()
         if self.path == "/api/delete-photo":
             return self._handle_delete_photo()
+        if self.path == "/api/add-trivia":
+            return self._handle_text_item("add", TRIVIA, "trivia")
+        if self.path == "/api/update-trivia":
+            return self._handle_text_item("update", TRIVIA, "trivia")
+        if self.path == "/api/delete-trivia":
+            return self._handle_text_item("delete", TRIVIA, "trivia")
+        if self.path == "/api/add-legenda":
+            return self._handle_text_item("add", LEGENDE, "legenda")
+        if self.path == "/api/update-legenda":
+            return self._handle_text_item("update", LEGENDE, "legenda")
+        if self.path == "/api/delete-legenda":
+            return self._handle_text_item("delete", LEGENDE, "legenda")
         self.send_error(HTTPStatus.NOT_FOUND, "No such endpoint")
+
+    # ─── Trivia + Legende: shared text-item CRUD ───────────────────
+    def _handle_text_item(self, op: str, path: Path, kind: str) -> None:
+        """Unified add/update/delete handler for trivia.json + legende.json.
+
+        Both files share the same schema: ``{id, category, meta, title,
+        description, lat, lon}``. ID is auto-assigned for add (``triv-N``
+        or ``leg-N``).
+        """
+        fields = self._read_multipart()
+        if fields is None:
+            return
+
+        def text(key: str) -> str:
+            f = first_field(fields, key)
+            return (f["data"].decode("utf-8", errors="replace").strip() if f else "")
+
+        items = self._read_json(path)
+        if items is None:
+            items = []  # bootstrap if file missing/empty
+
+        if op == "delete":
+            item_id = text("id")
+            if not item_id:
+                return self._send_json(HTTPStatus.BAD_REQUEST, {"error": "id is required"})
+            before = len(items)
+            items = [e for e in items if str(e.get("id", "")) != item_id]
+            if len(items) == before:
+                return self._send_json(HTTPStatus.NOT_FOUND, {"error": f"id {item_id} not found"})
+            self._atomic_write_json(path, items)
+            return self._send_json(HTTPStatus.OK, {"ok": True, "id": item_id})
+
+        # add / update — share validation
+        title = text("title")
+        if not title:
+            return self._send_json(HTTPStatus.BAD_REQUEST, {"error": "title is required"})
+        try:
+            lat = float(text("lat"))
+            lon = float(text("lon"))
+        except (TypeError, ValueError):
+            return self._send_json(HTTPStatus.BAD_REQUEST, {"error": "lat/lon must be numbers"})
+        if not (-90 <= lat <= 90) or not (-180 <= lon <= 180):
+            return self._send_json(HTTPStatus.BAD_REQUEST, {"error": "lat/lon out of range"})
+        category = text("category") or ("Știați că?" if kind == "trivia" else "Legendă")
+        meta = text("meta")
+        description = text("description")
+
+        # Image handling — shared between add + update:
+        #   * upload new file → save and use its path
+        #   * remove_image=1 → drop the image field (revert to placeholder)
+        #   * neither → keep whatever exists on update; empty on add
+        image_field = first_field(fields, "image")
+        new_image_path: str | None = None
+        if image_field is not None and image_field.get("filename"):
+            saved = self._save_uploaded_image(image_field, title)
+            if saved is None:
+                return  # error already sent
+            new_image_path = saved[0]
+
+        if op == "add":
+            prefix = "triv" if kind == "trivia" else "leg"
+            max_n = 0
+            for e in items:
+                m = re.match(rf"^{prefix}-(\d+)$", str(e.get("id", "")))
+                if m:
+                    max_n = max(max_n, int(m.group(1)))
+            new_id = f"{prefix}-{max_n + 1}"
+            entry = {
+                "id": new_id,
+                "category": category,
+                "meta": meta,
+                "title": title,
+                "description": description,
+                "lat": lat,
+                "lon": lon,
+            }
+            if new_image_path:
+                entry["image"] = new_image_path
+            items.append(entry)
+            self._atomic_write_json(path, items)
+            return self._send_json(HTTPStatus.OK, {"ok": True, "entry": entry})
+
+        # update
+        item_id = text("id")
+        if not item_id:
+            return self._send_json(HTTPStatus.BAD_REQUEST, {"error": "id is required"})
+        idx = next((i for i, e in enumerate(items) if str(e.get("id", "")) == item_id), -1)
+        if idx < 0:
+            return self._send_json(HTTPStatus.NOT_FOUND, {"error": f"id {item_id} not found"})
+        existing_image = items[idx].get("image", "")
+        remove_image = text("remove_image") == "1"
+        if new_image_path:
+            final_image = new_image_path
+        elif remove_image:
+            final_image = ""
+        else:
+            final_image = existing_image
+        updated = {
+            "id": item_id,
+            "category": category,
+            "meta": meta,
+            "title": title,
+            "description": description,
+            "lat": lat,
+            "lon": lon,
+        }
+        if final_image:
+            updated["image"] = final_image
+        items[idx] = updated
+        self._atomic_write_json(path, items)
+        return self._send_json(HTTPStatus.OK, {"ok": True, "entry": items[idx]})
 
     def _send_json(self, status: HTTPStatus, payload: dict):
         body = json.dumps(payload, ensure_ascii=False).encode("utf-8")
@@ -682,6 +807,8 @@ def main():
     print(f"Treasure Galați dev server: http://localhost:{port}/galati_map/index.html")
     print(f"  POST /api/add-location → {LOCAL_IMG_DIR.relative_to(ROOT)}/ + {LOCATIONS.relative_to(ROOT)}")
     print(f"  POST /api/add-photo    → {LOCAL_IMG_DIR.relative_to(ROOT)}/ + {PUBCRAWL.relative_to(ROOT)}")
+    print(f"  POST /api/{{add,update,delete}}-trivia  → {TRIVIA.relative_to(ROOT)}")
+    print(f"  POST /api/{{add,update,delete}}-legenda → {LEGENDE.relative_to(ROOT)}")
     try:
         srv.serve_forever()
     except KeyboardInterrupt:

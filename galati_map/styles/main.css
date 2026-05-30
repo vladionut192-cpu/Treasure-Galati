@@ -1180,11 +1180,13 @@
     .add-pin-fab,
     .add-photo-fab,
     .popup button.edit-loc,
-    #lightbox-edit { display: none; }
+    #lightbox-edit,
+    #text-modal-edit { display: none; }
     html.local-dev .add-pin-fab,
     html.local-dev .add-photo-fab { display: flex; }
     html.local-dev .popup button.edit-loc,
-    html.local-dev #lightbox-edit { display: inline-flex; }
+    html.local-dev #lightbox-edit,
+    html.local-dev #text-modal-edit { display: inline-flex; }
 
     /* ─────────── Pilot AR — Piața Regală card ─────────── */
     .ar-pilot-card {
@@ -4806,3 +4808,176 @@
       line-height: 1.5;
     }
     #detail-ro-notice[hidden] { display: none; }
+
+    /* „Știați că?" — pinuri violet cu semnul întrebării pentru curiozități */
+    .trivia-pin {
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 32% 28%, #a78bfa, #7c3aed 55%, #5b21b6 100%);
+      border: 2px solid white;
+      box-shadow: 0 2px 5px rgba(0,0,0,.45), 0 0 0 1px rgba(124,58,237,.4);
+      color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-ui);
+      font-size: 13.5px;
+      font-weight: 800;
+      line-height: 1;
+      cursor: pointer;
+      transition: transform .1s ease, box-shadow .1s ease;
+    }
+    .trivia-pin:hover {
+      transform: scale(1.15);
+      box-shadow: 0 4px 9px rgba(0,0,0,.5), 0 0 0 4px rgba(124,58,237,.25);
+    }
+    .trivia-pin.lit {
+      transform: scale(1.25);
+      box-shadow: 0 0 0 5px rgba(124,58,237,.35), 0 4px 10px rgba(0,0,0,.5);
+    }
+    .marker-cluster.trivia-cluster div {
+      background: radial-gradient(circle at 32% 28%, #a78bfa, #7c3aed 55%, #5b21b6 100%);
+      color: #fff;
+      box-shadow:
+        0 0 0 4px rgba(124, 58, 237, 0.12),
+        0 6px 16px rgba(70, 27, 130, 0.32),
+        inset 0 -3px 6px rgba(0, 0, 0, 0.18),
+        inset 0 1px 2px rgba(255, 255, 255, 0.34);
+    }
+
+    /* „Legende" — pinuri aurii cu pictogramă scroll pentru poveștile legendare */
+    .legenda-pin {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 32% 28%, #fde68a, #d4a017 50%, #8a5a00 100%);
+      border: 2px solid white;
+      box-shadow: 0 2px 6px rgba(0,0,0,.5), 0 0 0 1px rgba(138,90,0,.5);
+      color: #2a1c00;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: transform .1s ease, box-shadow .1s ease;
+    }
+    .legenda-pin svg { width: 14px; height: 14px; }
+    .legenda-pin:hover {
+      transform: scale(1.15);
+      box-shadow: 0 4px 10px rgba(0,0,0,.55), 0 0 0 4px rgba(212,160,23,.3);
+    }
+    .legenda-pin.lit {
+      transform: scale(1.3);
+      box-shadow: 0 0 0 5px rgba(212,160,23,.4), 0 4px 10px rgba(0,0,0,.55);
+    }
+    .marker-cluster.legenda-cluster div {
+      background: radial-gradient(circle at 32% 28%, #fde68a, #d4a017 50%, #8a5a00 100%);
+      color: #2a1c00;
+      box-shadow:
+        0 0 0 4px rgba(212, 160, 23, 0.14),
+        0 6px 16px rgba(90, 60, 0, 0.36),
+        inset 0 -3px 6px rgba(0, 0, 0, 0.18),
+        inset 0 1px 2px rgba(255, 255, 255, 0.34);
+    }
+
+    /* Modal text (curiozități + legende) */
+    .text-modal {
+      position: fixed; inset: 0;
+      background: rgba(20, 14, 8, .72);
+      display: none;
+      align-items: center; justify-content: center;
+      z-index: 9000;
+      padding: 24px;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+    .text-modal[data-open="1"] { display: flex; }
+    .text-modal .sheet {
+      background: #fbf7ee;
+      border-radius: 4px;
+      max-width: 560px; width: 100%;
+      max-height: 90vh;
+      overflow: auto;
+      box-shadow: 0 30px 80px rgba(0,0,0,.45);
+      position: relative;
+      font-family: var(--font-body, Vollkorn, Georgia, serif);
+    }
+    .text-modal .sheet img {
+      display: block;
+      width: 100%;
+      max-height: 280px;
+      object-fit: cover;
+      background: var(--paper-deep, #e6e2d6);
+      border-radius: 4px 4px 0 0;
+    }
+    .text-modal .sheet .body-wrap {
+      padding: 24px 32px 32px;
+    }
+    .text-modal .sheet .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-family: var(--font-ui);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .text-modal.trivia .sheet .badge { background: #ede9fe; color: #5b21b6; }
+    .text-modal.legenda .sheet .badge { background: #fef3c7; color: #6b4400; }
+    .text-modal .sheet .meta {
+      font-family: var(--font-ui);
+      font-size: 12px;
+      letter-spacing: .04em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .text-modal .sheet h2 {
+      font-family: var(--font-display, "Playfair Display", Georgia, serif);
+      font-size: 24px;
+      line-height: 1.25;
+      margin: 0 0 16px;
+      color: var(--ink);
+    }
+    .text-modal .sheet p.body {
+      font-size: 15px;
+      line-height: 1.62;
+      color: var(--ink);
+      margin: 0;
+      white-space: pre-wrap;
+    }
+    .text-modal .sheet button.close {
+      position: absolute;
+      top: 10px; right: 12px;
+      background: rgba(255,255,255,.85);
+      border: 0;
+      font-size: 22px;
+      line-height: 1;
+      cursor: pointer;
+      color: var(--ink, #222);
+      padding: 2px 9px;
+      border-radius: 999px;
+      box-shadow: 0 2px 6px rgba(0,0,0,.15);
+      z-index: 2;
+    }
+    .text-modal .sheet button.close:hover { color: var(--ink); background: white; }
+    /* Buton edit (admin local — gated prin html.local-dev). */
+    .text-modal .sheet button.edit {
+      position: absolute;
+      top: 10px; left: 12px;
+      z-index: 2;
+      padding: 5px 11px;
+      border: 1px solid rgba(255,255,255,.55);
+      background: rgba(15,15,14,.7);
+      color: white;
+      font: inherit; font-size: 11px;
+      font-weight: 700; letter-spacing: .06em;
+      text-transform: uppercase;
+      cursor: pointer; border-radius: 3px;
+      transition: background .12s, border-color .12s;
+    }
+    .text-modal.trivia .sheet button.edit:hover { background: var(--accent-trivia, #7c3aed); border-color: var(--accent-trivia, #7c3aed); }
+    .text-modal.legenda .sheet button.edit:hover { background: var(--accent-legenda-deep, #8a5a00); border-color: var(--accent-legenda-deep, #8a5a00); }
+    @media (max-width: 560px) {
+      .text-modal { padding: 12px; }
+      .text-modal .sheet { max-height: 92vh; }
+      .text-modal .sheet img { max-height: 200px; }
+      .text-modal .sheet .body-wrap { padding: 20px 22px 24px; }
+      .text-modal .sheet h2 { font-size: 20px; }
+    }

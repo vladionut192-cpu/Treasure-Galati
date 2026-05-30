@@ -7,6 +7,8 @@ Aceste pagini sunt pentru editare locală a datelor (locații, tururi, fotografi
 - `add_location.html` — formular rapid pentru adăugare locație
 - `pubcrawl_editor.html` — editor pub-crawl photos (pubcrawl_photos.json)
 - `tours_editor.html` — editor tururi (tours.json)
+- `text_pins_editor.html?kind=trivia` — editor curiozități „Știați că?" (trivia.json)
+- `text_pins_editor.html?kind=legenda` — editor legende (legende.json)
 
 ## Cum se folosesc
 

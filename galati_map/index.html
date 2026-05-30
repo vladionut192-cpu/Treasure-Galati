@@ -52,7 +52,6 @@
       <button data-page="stories" type="button" data-i18n="nav.stories">Povești</button>
       <a href="./lists.html" class="nav-link" type="button" data-i18n="nav.lists">Liste</a>
       <button data-page="about" type="button" data-i18n="nav.about">Despre</button>
-      <button data-page="trivia" type="button" data-i18n="nav.trivia">Știați că?</button>
       <button data-page="contribute" type="button" data-i18n="nav.contribute">Contribuie</button>
       <div class="lang-picker" id="lang-picker">
         <button type="button" class="lang-current" id="lang-current-btn" aria-haspopup="listbox" aria-expanded="false" data-i18n-aria-label="lang.switch" aria-label="Schimbă limba">
@@ -607,6 +606,23 @@
     </div>
   </div>
 
+  <!-- Modal-text pentru curiozități („știați că?") și legende. Reutilizat pentru ambele tipuri.
+       Clasa .trivia sau .legenda adăugată dinamic schimbă culoarea badge-ului. -->
+  <div class="text-modal" id="text-modal" role="dialog" aria-modal="true" aria-labelledby="text-modal-title">
+    <div class="sheet">
+      <button class="close" id="text-modal-close" type="button" aria-label="Închide">×</button>
+      <!-- Admin: editează direct. Ascuns în prod prin CSS (html.local-dev). -->
+      <button class="edit" id="text-modal-edit" type="button" title="Editează" hidden>✎ Editează</button>
+      <img id="text-modal-img" alt="" loading="lazy">
+      <div class="body-wrap">
+        <span class="badge" id="text-modal-badge"></span>
+        <p class="meta" id="text-modal-meta"></p>
+        <h2 id="text-modal-title"></h2>
+        <p class="body" id="text-modal-body"></p>
+      </div>
+    </div>
+  </div>
+
   <!-- Verify-location modal pentru hunts: user pune pin pe hartă unde se află obiectivul -->
   <div class="verify-modal" id="verify-modal" role="dialog" aria-modal="true" aria-labelledby="verify-title">
     <div class="sheet">
@@ -858,155 +874,6 @@
         <p>Deși informațiile publicate sunt documentate cu bună-credință, pot exista erori, inadvertențe sau informații incomplete ori inexacte. Conținutul are un caracter informativ și este într-un proces continuu de actualizare și îmbunătățire.</p>
         <p>Utilizarea imaginilor, documentelor sau altor materiale vizuale fără atribuirea corespunzătoare nu este intenționată. Toate sursele și mențiunile disponibile sunt indicate mai sus. Dacă dețineți drepturi asupra unui material și considerați că acesta necesită atribuire suplimentară sau eliminare, vă rugăm să ne contactați prin pagina <a href="#contribute">Contribuie</a>.</p>
       </section>
-    </div>
-  </div>
-
-  <div class="page" id="page-trivia">
-    <div class="page-content">
-      <p class="label-eyebrow" data-i18n="page.trivia.eyebrow">Știați că?</p>
-      <h1 class="page-title" data-i18n="page.trivia.title">Lucruri pe care nu le-ai citit la școală.</h1>
-      <p class="lead-text" data-i18n="page.trivia.lead">Curiozități și legende din istoria Galațiului.</p>
-
-      <section>
-        <p class="label-eyebrow"><span class="trivia-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span>Vechime · Atestare</p>
-
-        <article class="trivia-card">
-          <p class="meta"><b>1445</b> — uricul lui Ștefan Vodă</p>
-          <h3>Atestarea oficială are 581 de ani</h3>
-          <p>Prima mențiune documentară sigură a Târgului Galați apare la 23 septembrie 1445 — uricul lui Ștefan Vodă (fiul lui Alexandru cel Bun) către Mănăstirea Humor. În același an, arhivele poloneze documentează un proces între Nicolaus Zyndrich și Angelo Lercario din Galați, despre 800 de florini reprezentând marfă luată din portul dunărean. Galațiul apare deja, la prima mențiune, ca port comercial internațional.</p>
-        </article>
-
-        <article class="trivia-card">
-          <p class="meta"><b>~secolul II d.Hr.</b> — Tabula Peutingeriană (controversă)</p>
-          <h3>Ar avea 1.800 de ani — dar autoritățile au ignorat</h3>
-          <p>Dumitru Săndel a descoperit că Galațiul ar apărea sub numele „Galatie” în Tabula Peutingeriană, copia unei hărți romane din secolul al II-lea. Dacă identificarea e corectă, vechimea documentară s-ar duce la ~1.800 ani. Săndel a dedicat 200 de pagini subiectului în monografia sa; autoritățile locale n-au finanțat nicio cercetare să-l valideze.</p>
-        </article>
-
-        <article class="trivia-card">
-          <p class="meta"><b>1484</b> — singurul port</p>
-          <h3>După cucerirea Chiliei și Cetății Albe, a rămas singurul port al Moldovei</h3>
-          <p>În mai puțin de 40 de ani după prima atestare (1445 → 1484), Galațiul a devenit unica „fereastră” a Moldovei spre lume. De aici rezultă explozia comercială care urmează.</p>
-        </article>
-      </section>
-
-      <section>
-        <p class="label-eyebrow"><span class="trivia-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18"/><path d="M12 3a14 14 0 0 0 0 18"/></svg></span>Diplomație · Cosmopolitism</p>
-
-        <article class="trivia-card">
-          <p class="meta"><b>1837–1882</b> — port liber</p>
-          <h3>Duty-free la scară de oraș, 45 de ani</h3>
-          <p>Între 1837 și 1882, Galațiul a fost port liber — orice vapor din lume putea acosta fără taxe. Plecau curse directe spre Marsilia, Genova, Napoli, Malta, Istanbul, Salonic, Izmir, Alexandria, Pireu — și chiar New York (cu escală). Astăzi, din Galați nu mai pleacă niciun vapor de linie.</p>
-        </article>
-
-        <article class="trivia-card">
-          <p class="meta"><b>21 consulate</b> — la apogeu</p>
-          <h3>Mai mulți ambasadori per locuitor decât Bruxelles-ul de azi</h3>
-          <p>La vârf, Galațiul a avut 21 de consulate și vice-consulate; înainte de Primul Război Mondial erau active 16. Pentru un oraș de 100.000 de locuitori, e o densitate diplomatică extraordinară. Astăzi mai e un singur consulat onorific — al Republicii Moldova.</p>
-        </article>
-
-        <article class="trivia-card">
-          <p class="meta"><b>1850 / 1858</b> — SUA</p>
-          <h3>Consulat american deschis înainte ca România să existe</h3>
-          <p>În 1850, președintele american James Buchanan a trimis un vice-consul la Galați. SUA a deschis consulat complet în 1858. România ca stat (Mica Unire) avea să apară doar în 1859.</p>
-        </article>
-
-        <article class="trivia-card">
-          <p class="meta"><b>1856</b> — prima instituție europeană</p>
-          <h3>Comisia Europeană a Dunării — supranațională cu un secol înainte de UE</h3>
-          <p>Comisia și-a început activitatea în 1856 la Galați — prima organizație supranațională europeană din România. Avea drapel propriu, angajați din toate țările riverane Dunării și statut de extrateritorialitate. O bucată din Galați era „pământ european” cu 100 de ani înainte de UE.</p>
-        </article>
-
-        <article class="trivia-card">
-          <p class="meta"><b>1857</b> — capitală?</p>
-          <h3>Galațiul aproape că a fost capitala României</h3>
-          <p>Înainte de Unirea Principatelor, Cuza și Costache Negri se gândeau serios la Galați ca nouă capitală — datorită portului, comerțului și economiei în avânt. Decizia finală a căzut pe București.</p>
-        </article>
-      </section>
-
-      <section>
-        <p class="label-eyebrow"><span class="trivia-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></span>Legende · Personaje</p>
-
-        <article class="trivia-card">
-          <p class="meta"><b>Tunelul de sub Dunăre</b> — legendă urbană</p>
-          <h3>Boierii moldoveni își ascundeau averile pe sub fluviu</h3>
-          <p>Cea mai mare legendă a Galațiului: ar exista un tunel săpat pe sub Dunăre pentru a feri averile de turci, cu intrarea sub altarul Bisericii Precista. Sâmburele de adevăr: directorul Muzeului de Istorie confirmă o galerie REALĂ de 300 m între Precista și Biserica Sf. Gheorghe (demolată 1962). Restul a fost amplificat de gălățeni.</p>
-        </article>
-
-        <article class="trivia-card">
-          <p class="meta"><b>Hatmanul Mazepa</b> — †1709</p>
-          <h3>Eroul ucrainean antirus e îngropat aici</h3>
-          <p>După bătălia de la Poltava (1709), hatmanul cazac Ivan Mazepa a murit la Bender și a fost adus și înmormântat la Biserica Sf. Gheorghe din Galați. Mormântul a fost deranjat de mai multe ori; biserica a fost demolată în 1962, iar urma s-a pierdut. Mazepa apare astăzi pe bancnota ucraineană de 10 grivne — și două cartiere ale Galațiului îi poartă numele (Mazepa 1, Mazepa 2).</p>
-        </article>
-
-        <article class="trivia-card">
-          <p class="meta"><b>Shintaro Tsutsumi</b> — †~1922</p>
-          <h3>Un samurai japonez îngropat la Cimitirul Eternitatea</h3>
-          <p>Shintaro Tsutsumi, japonez de 24 de ani, a ajuns la Galați cu nava „Kilimaru” la 3 ani după Primul Război Mondial. A murit aici. Piatra de mormânt e scrisă în japoneză și franceză — un detaliu care sugerează nobilime (samurai). La Muzeul de Istorie se păstrează o sabie scurtă numită „sabie de seppuku”, fabricată în aceeași perioadă, despre care se crede că i-ar fi aparținut.</p>
-        </article>
-      </section>
-
-      <section>
-        <p class="label-eyebrow"><span class="trivia-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></svg></span>Pionierat · Industrie</p>
-
-        <article class="trivia-card">
-          <p class="meta"><b>1842</b> — Fabrica de Bere Ploll</p>
-          <h3>Cea mai scumpă bere românească din sec. XIX</h3>
-          <p>Berea Ploll (preluată după 1860 de cehul Josef Ploll de la Marcu Schein) era considerată „bere de salon”. Un litru costa dublu față de vin. Fabrica avea propriul serviciu de livrare cu 24 de cai, 12 perechi de boi, două duzini de care mari, cabriolete și trăsuri.</p>
-        </article>
-
-        <article class="trivia-card">
-          <p class="meta"><b>1900</b> — al doilea oraș din țară cu tramvai electric</p>
-          <h3>5 linii, 26,5 km, capital belgian</h3>
-          <p>În 1900, o societate belgiană a instalat 5 linii de tramvai electric (26,5 km) — cel mai modern transport din epocă. Galațiul a fost al doilea oraș din țară cu tramvai electric, în primul an al secolului XX, printre primele din Europa cu trotuare de lemn și iluminat stradal cu gaz.</p>
-        </article>
-
-        <article class="trivia-card">
-          <p class="meta"><b>1905</b> — prima cursă auto intercontinentală din lume</p>
-          <h3>Galați → Ispahan, 3 mașini, 16 cai-putere fiecare</h3>
-          <p>În aprilie 1905, trei automobiliști români (George Valentin Bibescu, L. Leonida, M. Ferekide) însoțiți de scriitorul francez Claude Anet și două femei au plecat cu trei decapotabile din Galați spre Ispahan, fosta capitală a Persiei. Au sosit în iunie — cu 10 carabine la bord. A fost prima cursă auto intercontinentală din istorie.</p>
-        </article>
-
-        <article class="trivia-card">
-          <p class="meta"><b>1932</b> — Smaranda Brăescu</p>
-          <h3>Recordul mondial de parașutism (7.000+ m)</h3>
-          <p>Pioniera aviației Smaranda Brăescu a fost stabilită în zona Aeroportului Galați. În 1932 a sărit cu parașuta de la peste 7.000 de metri — cea mai mare înălțime atinsă vreodată de un parașutist (femeie sau bărbat).</p>
-        </article>
-
-        <article class="trivia-card">
-          <p class="meta"><b>1965</b> — Campionatul Mondial de pescuit staționar</p>
-          <h3>România campioană pe echipe la Galați</h3>
-          <p>În 1965 s-a organizat la Galați Campionatul Mondial de pescuit staționar (World Freshwater Angling Championships). România a fost campioană pe echipe — urmată de Polonia și Franța.</p>
-        </article>
-
-        <article class="trivia-card">
-          <p class="meta"><b>~1970</b> — Combinatul Siderurgic</p>
-          <h3>40.000 de angajați și 8,2 milioane tone oțel/an</h3>
-          <p>La apogeu, Combinatul Siderurgic Galați avea peste 40.000 de angajați și producea 8,2 milioane tone de oțel pe an, cu o valoare de 7,2 miliarde dolari. La construcție au lucrat 12.000 de oameni. După privatizare a scăzut la 3,5 mil. tone și 7.000 de angajați.</p>
-        </article>
-      </section>
-
-      <section>
-        <p class="label-eyebrow"><span class="trivia-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.7 4.3L18 9l-4.3 1.7L12 15l-1.7-4.3L6 9l4.3-1.7L12 3z"/><path d="M18 14l.8 2.2L21 17l-2.2.8L18 20l-.8-2.2L15 17l2.2-.8L18 14z"/></svg></span>Cultură · Artă</p>
-
-        <article class="trivia-card">
-          <p class="meta"><b>Eminescu</b> — primă în România</p>
-          <h3>Prima statuie a poetului din toată țara a fost ridicată la Galați</h3>
-          <p>Sculptată de Frederic Storck (autorul și al alegoriilor „Industria” și „Agricultura” de pe fațada Palatului Administrativ), prima statuie a lui Mihai Eminescu din România a fost ridicată la Galați.</p>
-        </article>
-
-        <article class="trivia-card">
-          <p class="meta"><b>1918</b> — bătălia „triplă”</p>
-          <h3>O garnizoană fragmentară a oprit Corpul 4 Siberian</h3>
-          <p>În ianuarie 1918, soldați, marinari, pompieri și voluntari români au oprit Corpul 4 Siberian bolșevizat (~12.000 de oameni cu ~80 de tunuri). Cifra apărătorilor variază între ~3.000 (Kiriţescu) și ~500 în memoria populară. A fost singura bătălie din Primul Război Mondial pe teritoriul României în care forțele aeriene, terestre și navale au fost folosite împreună. Galațiul a primit „Croce di Guerra" (Italia) și „Croix de Guerre" (Franța).</p>
-        </article>
-
-        <article class="trivia-card">
-          <p class="meta"><b>Bordurile centrului</b> — andezit din Etna</p>
-          <h3>Pavajul Galațiului e adus de „Verona și fiul” din zona vulcanului italian</h3>
-          <p>Bordurile vechi din centrul orașului sunt din andezit — rocă vulcanică din zona Etnei. A fost preferată granitului de la Greci, care se spărgea la colțuri sub roțile trăsurilor. În port era un întreg depozit de „pietre de lavă”.</p>
-        </article>
-      </section>
-
     </div>
   </div>
 

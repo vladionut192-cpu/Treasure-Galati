@@ -1,0 +1,101 @@
+[
+  {
+    "id": "leg-1",
+    "category": "Comori îngropate",
+    "meta": "Biserica Mavromol — sec. XVII",
+    "title": "Comoara mănăstirii Mavromol",
+    "description": "Numele „Mavromol\" vine din grecescul „mavros mylos\" — moara neagră. Legenda spune că la fondarea schitului (atribuit lui Vasile Lupu, în prima jumătate a secolului XVII), domnul ar fi îngropat o parte din vistierie sub altarul vechi, pentru a o feri de turci. Refăcută de mai multe ori, biserica n-a dezvăluit niciodată zidăria inițială; căutările locale au rămas mereu nereușite. Câțiva preoți de la începutul secolului XX ar fi avertizat că „banii sunt blestemați pentru cei care îi caută din lăcomie\".",
+    "lat": 45.434542,
+    "lon": 28.0532678
+  },
+  {
+    "id": "leg-2",
+    "category": "Legende portuare",
+    "meta": "Portul Galați — sec. XIX",
+    "title": "Galera fantomă a portului liber",
+    "description": "Pe vremea portului liber (1837–1882), când Galațiul era cosmopolit și deschis tuturor vapoarelor lumii, marinarii străini povesteau despre o galeră turcească pierdută în 1828 (în timpul războiului ruso-turc). În nopțile cu ceață deasă, nava ar apărea în larg cu toate felinarele aprinse, ar aluneca spre cheu — și ar dispărea fără urmă chiar înainte de a acosta. Vechii hamali din port jurau că au văzut-o; tinerii o luau drept poveste de cabaret.",
+    "lat": 45.4234,
+    "lon": 28.0489
+  },
+  {
+    "id": "leg-3",
+    "category": "Comori îngropate",
+    "meta": "Castrul roman Tirighina-Bărboși — 271 d.Hr.",
+    "title": "Tezaurul legiunii romane",
+    "description": "La retragerea legiunilor romane din Dacia (271 d.Hr., sub Aurelian), o legendă locală spune că soldații din castrul de la Bărboși ar fi îngropat aurul de plată al garnizoanei sub temelia turnului principal — pentru a-l recupera când Roma se va întoarce. Roma n-a venit niciodată înapoi. În secolul XX, mai mulți căutători de comori au săpat în zonă cu detectoare; descoperirile oficiale (monede, fibule, ceramică) au confirmat doar prezența romană, nu și tezaurul propriu-zis.",
+    "lat": 45.404735,
+    "lon": 27.9895431
+  },
+  {
+    "id": "leg-4",
+    "category": "Stafii · Cimitire",
+    "meta": "Cimitirul „Eternitatea\"",
+    "title": "Femeia cu vălul negru",
+    "description": "În nopțile cu lună plină, paznicii cimitirului Eternitatea (înființat în 1865) ar fi văzut de mai multe ori o femeie tânără în văl negru plimbându-se printre criptele vechi. Versiunile diferă: unii spun că ar fi soția unui ofițer căzut în bătălia din ianuarie 1918, care încă își caută mormântul; alții o identifică cu fiica unui boier galațian, sinucisă la sfârșitul secolului XIX după o iubire interzisă. Cimitirul găzduiește figuri istorice celebre — inclusiv mormântul samuraiului Tsutsumi — și are reputația de a fi unul dintre cele mai „active\" locuri din oraș.",
+    "lat": 45.4437266,
+    "lon": 28.0330422
+  },
+  {
+    "id": "leg-5",
+    "category": "Construcții blestemate",
+    "meta": "Catedrala Episcopală „Sf. Nicolae\" — sec. XX",
+    "title": "Ciocănirile meșterului din turn",
+    "description": "În timpul ridicării Catedralei Episcopale (zidirea s-a tras peste decenii, sfințirea finală a avut loc în 1917), un meșter zidar ar fi căzut de pe schele și ar fi murit pe loc. Tradiția locală spune că, în nopțile cu furtună, din vârful turnului s-ar auzi ciocăniri ritmice — meșterul „care n-a apucat să termine\" continuă să bată în piatră. Bătrânii de pe strada Domnească mai amintesc povestea, deși înregistrări scrise lipsesc.",
+    "lat": 45.4471703,
+    "lon": 28.054538
+  },
+  {
+    "id": "leg-6",
+    "category": "Haiducie · Comori",
+    "meta": "Bujor Haiducul — sec. XVIII–XIX",
+    "title": "Comoara lui Bujor de la Vădeni",
+    "description": "Iancu Bujor — celebrul haiduc moldovean cântat de Vasile Alecsandri („Hai, copii, cu inima!\") — a colindat ținutul Covurluiului la cumpăna secolelor XVIII–XIX, prădând caretele boierești și pe negustorii bogați. Una dintre legendele păstrate în Vădeni (cartier marginal al Galațiului) spune că Bujor și-ar fi ascuns o parte din pradă în pivnița unei case vechi de pe colina dinspre Dunăre — sau, după alte variante, sub o salcie mare de pe malul Siretului. Bătrânii din zonă mai arată locuri „știute\", fără ca vreo săpătură să fi dat ceva.",
+    "lat": 45.4612,
+    "lon": 28.0210
+  },
+  {
+    "id": "leg-7",
+    "category": "Stafii · Casa Negroponte",
+    "meta": "Casa Negroponte — str. Domnească 82",
+    "title": "Mireasa de la Casa Negroponte",
+    "description": "Casa Negroponte — una dintre cele mai elegante reședințe burgheze din Galațiul belle-époque — păstrează în folclorul local povestea unei tinere mirese care ar fi murit în noaptea nunții, la sfârșitul secolului XIX. Versiunile o descriu fie ca otrăvită din gelozie, fie sinucisă după ce și-a aflat soțul deja căsătorit în secret cu altcineva. Locatarii de mai târziu povesteau de uși care se trântesc fără vânt, de un parfum vechi de violete pe scară și de o siluetă albă reflectată în oglinzile din salonul mare.",
+    "lat": 45.44355,
+    "lon": 28.055782
+  },
+  {
+    "id": "leg-8",
+    "category": "Bestiar · Pădure",
+    "meta": "Pădurea Gârboavele — nord de Galați",
+    "title": "Lupul alb din Gârboavele",
+    "description": "Pădurea Gârboavele (arie naturală protejată la nord de oraș, ~17 km de centru) e legată în memoria sătenilor din comunele învecinate (Tulucești, Șendreni) de apariția unui lup alb uriaș, mai mare decât cei obișnuiți, cu ochii „ca de chihlimbar\". Pădurarii povesteau că nu atacă niciodată oamenii, dar apare înainte de furtuni mari sau de iernile grele — un fel de duh-paznic al pădurii. Ultimele povestiri orale culese de etnografi datează din anii '70.",
+    "lat": 45.5924,
+    "lon": 27.9853
+  },
+  {
+    "id": "leg-9",
+    "category": "Bestiar · Ape",
+    "meta": "Lacul Brateș — nord-est de Galați",
+    "title": "Sirena lacului Brateș",
+    "description": "Brateș a fost cândva cel mai mare lac natural din România (peste 21.000 ha înainte de desecările din anii '50–'60). Pescarii bătrâni de la malul Brateșului încă mai povestesc despre „fata apei\" — o ființă jumătate femeie, jumătate pește, care apare în dimineți cu ceață, cântă încet și ademenește bărcile spre stufăriile interioare. Cei care o urmează nu se mai întorc sau dau de bancuri ascunse. Etnografii consideră legenda variantă locală a mitului mai larg dunărean al „Iele de apă\".",
+    "lat": 45.5060,
+    "lon": 27.9890
+  },
+  {
+    "id": "leg-10",
+    "category": "Fantome industriale",
+    "meta": "Triajul Bărboși — sec. XX",
+    "title": "Trenul fantomă din triajul Bărboși",
+    "description": "Triajul Bărboși — unul dintre cele mai mari noduri feroviare din sud-estul țării (poartă de intrare spre Galați și Brăila) — are propria-i legendă urbană. CFR-iștii vechi povestesc despre un tren marfar care ar fi deraiat pe la 1940 cu pierderi de vieți, și care reapare uneori la 3 dimineața pe o linie demult dezafectată — felinare aprinse, fluierat lung, fără locomotivă vizibilă. Unii angajați refuzau să iasă pe teren singuri după miezul nopții.",
+    "lat": 45.4145,
+    "lon": 28.0007
+  },
+  {
+    "id": "leg-11",
+    "category": "Tuneluri · Galerii",
+    "meta": "Casa Cuza Vodă — str. Cuza Vodă",
+    "title": "Tunelurile secrete sub Casa Cuza Vodă",
+    "description": "Alexandru Ioan Cuza, înainte de a deveni domnitor (1859), a fost pârcălab de Galați (1858) și a locuit într-o casă din strada care îi poartă astăzi numele. Zvonul popular spune că pivnița casei ar comunica prin tuneluri subterane cu alte reședințe boierești din zonă — Casa Robescu, Casa Balș, ba chiar și cu Biserica Sf. Gheorghe (demolată 1962). Aceeași legendă o leagă de „tunelul mare\" sub Dunăre. Investigațiile din anii '90 (Muzeul de Istorie) au confirmat o galerie scurtă, parțial colmatată, sub Casa Cuza; restul a rămas în zona zvonului.",
+    "lat": 45.441288,
+    "lon": 28.057787
+  }
+]
