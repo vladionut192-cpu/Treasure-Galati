@@ -208,20 +208,40 @@ aside.editor .empty {
     <form class="form" id="form" style="display: none;">
       <h2 id="form-title">Editează</h2>
       <div class="field">
-        <label for="f-title">Titlu *</label>
+        <label for="f-title">Titlu (RO) *</label>
         <input type="text" id="f-title" name="title" required>
       </div>
       <div class="field">
-        <label for="f-meta">Meta (data/atribuire scurtă)</label>
+        <label for="f-title-en">Titlu (EN)</label>
+        <input type="text" id="f-title-en" name="title_en">
+      </div>
+      <div class="field">
+        <label for="f-meta">Meta RO (data/atribuire scurtă)</label>
         <input type="text" id="f-meta" name="meta" placeholder="ex: 1445 — uricul lui Ștefan Vodă">
       </div>
       <div class="field">
-        <label for="f-category">Categorie</label>
+        <label for="f-meta-en">Meta EN</label>
+        <input type="text" id="f-meta-en" name="meta_en">
+      </div>
+      <div class="field">
+        <label for="f-year">An (pentru filtrul timeline)</label>
+        <input type="number" id="f-year" name="year" min="100" max="2100" step="1" placeholder="ex: 1445">
+      </div>
+      <div class="field">
+        <label for="f-category">Categorie RO</label>
         <input type="text" id="f-category" name="category" placeholder="ex: Vechime · Atestare">
       </div>
       <div class="field">
-        <label for="f-description">Descriere</label>
+        <label for="f-category-en">Categorie EN</label>
+        <input type="text" id="f-category-en" name="category_en">
+      </div>
+      <div class="field">
+        <label for="f-description">Descriere RO</label>
         <textarea id="f-description" name="description" rows="6"></textarea>
+      </div>
+      <div class="field">
+        <label for="f-description-en">Descriere EN</label>
+        <textarea id="f-description-en" name="description_en" rows="6"></textarea>
       </div>
       <div class="field">
         <label>Imagine</label>
@@ -321,9 +341,14 @@ const $statTotal = document.getElementById('stat-total');
 const $formTitle = document.getElementById('form-title');
 const $fId = document.getElementById('f-id');
 const $fTitle = document.getElementById('f-title');
+const $fTitleEn = document.getElementById('f-title-en');
 const $fMeta = document.getElementById('f-meta');
+const $fMetaEn = document.getElementById('f-meta-en');
+const $fYear = document.getElementById('f-year');
 const $fCategory = document.getElementById('f-category');
+const $fCategoryEn = document.getElementById('f-category-en');
 const $fDescription = document.getElementById('f-description');
+const $fDescriptionEn = document.getElementById('f-description-en');
 const $fLat = document.getElementById('f-lat');
 const $fLon = document.getElementById('f-lon');
 const $fImage = document.getElementById('f-image');
@@ -408,9 +433,14 @@ function selectItem(id) {
   $formTitle.textContent = `Editează ${id}`;
   $fId.value = id;
   $fTitle.value = it.title || '';
+  $fTitleEn.value = it.title_en || '';
   $fMeta.value = it.meta || '';
+  $fMetaEn.value = it.meta_en || '';
+  $fYear.value = (it.year !== null && it.year !== undefined) ? it.year : '';
   $fCategory.value = it.category || '';
+  $fCategoryEn.value = it.category_en || '';
   $fDescription.value = it.description || '';
+  $fDescriptionEn.value = it.description_en || '';
   $fLat.value = (it.lat || 0).toFixed(6);
   $fLon.value = (it.lon || 0).toFixed(6);
   setFormImage(it.image || '');
@@ -443,9 +473,14 @@ document.getElementById('btn-new').addEventListener('click', () => {
   $formTitle.textContent = `Adaugă ${isTrivia ? 'curiozitate' : 'legendă'} nouă`;
   $fId.value = '';
   $fTitle.value = '';
+  $fTitleEn.value = '';
   $fMeta.value = '';
+  $fMetaEn.value = '';
+  $fYear.value = '';
   $fCategory.value = isTrivia ? 'Știați că?' : 'Legendă';
+  $fCategoryEn.value = isTrivia ? 'Did you know?' : 'Legend';
   $fDescription.value = '';
+  $fDescriptionEn.value = '';
   const c = map.getCenter();
   $fLat.value = c.lat.toFixed(6);
   $fLon.value = c.lng.toFixed(6);
@@ -480,9 +515,14 @@ $form.addEventListener('submit', async (e) => {
   const fd = new FormData();
   if (!isNew) fd.append('id', $fId.value);
   fd.append('title', $fTitle.value.trim());
+  fd.append('title_en', $fTitleEn.value.trim());
   fd.append('meta', $fMeta.value.trim());
+  fd.append('meta_en', $fMetaEn.value.trim());
+  fd.append('year', $fYear.value.trim());
   fd.append('category', $fCategory.value.trim());
+  fd.append('category_en', $fCategoryEn.value.trim());
   fd.append('description', $fDescription.value.trim());
+  fd.append('description_en', $fDescriptionEn.value.trim());
   fd.append('lat', $fLat.value);
   fd.append('lon', $fLon.value);
   if ($fImage.files && $fImage.files[0]) fd.append('image', $fImage.files[0]);

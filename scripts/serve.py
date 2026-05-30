@@ -184,6 +184,21 @@ class Handler(SimpleHTTPRequestHandler):
         category = text("category") or ("Știați că?" if kind == "trivia" else "Legendă")
         meta = text("meta")
         description = text("description")
+        # EN translations (optional — fallback to RO on render if missing)
+        title_en = text("title_en")
+        category_en = text("category_en")
+        meta_en = text("meta_en")
+        description_en = text("description_en")
+        # Year (optional integer) — folosit de timeline filter
+        year_text = text("year")
+        year_val: int | None = None
+        if year_text:
+            try:
+                year_val = int(year_text)
+                if not (100 <= year_val <= 2100):
+                    return self._send_json(HTTPStatus.BAD_REQUEST, {"error": "year out of plausible range"})
+            except ValueError:
+                return self._send_json(HTTPStatus.BAD_REQUEST, {"error": "year must be integer"})
 
         # Image handling — shared between add + update:
         #   * upload new file → save and use its path
@@ -208,9 +223,14 @@ class Handler(SimpleHTTPRequestHandler):
             entry = {
                 "id": new_id,
                 "category": category,
+                "category_en": category_en,
                 "meta": meta,
+                "meta_en": meta_en,
+                "year": year_val,
                 "title": title,
+                "title_en": title_en,
                 "description": description,
+                "description_en": description_en,
                 "lat": lat,
                 "lon": lon,
             }
@@ -238,9 +258,14 @@ class Handler(SimpleHTTPRequestHandler):
         updated = {
             "id": item_id,
             "category": category,
+            "category_en": category_en,
             "meta": meta,
+            "meta_en": meta_en,
+            "year": year_val,
             "title": title,
+            "title_en": title_en,
             "description": description,
+            "description_en": description_en,
             "lat": lat,
             "lon": lon,
         }

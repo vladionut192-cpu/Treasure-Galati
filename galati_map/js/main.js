@@ -1615,6 +1615,7 @@
       updateTimelineDisplay();
       render();
       if (typeof refreshPubcrawlVisibility === 'function') refreshPubcrawlVisibility();
+      if (typeof refreshTriviaVisibility === 'function') refreshTriviaVisibility();
       if (typeof refreshJudetLayer === 'function') refreshJudetLayer();
     });
     // Click pe un romb de eveniment → mutăm slider-ul la anul respectiv
@@ -1636,6 +1637,7 @@
       updateTimelineDisplay();
       render();
       if (typeof refreshPubcrawlVisibility === 'function') refreshPubcrawlVisibility();
+      if (typeof refreshTriviaVisibility === 'function') refreshTriviaVisibility();
       if (typeof refreshJudetLayer === 'function') refreshJudetLayer();
     });
     updateTimelineDisplay();
@@ -2208,6 +2210,15 @@
     function resolveTextItemImage(kind, item) {
       return item && item.image ? item.image : (kind === 'legenda' ? LEGENDA_PLACEHOLDER : TRIVIA_PLACEHOLDER);
     }
+    // EN-fallback helpers — entries stochează `title`/`title_en` (etc.); când
+    // utilizatorul are limba EN și există *_en, îl folosim, altfel cădem pe RO.
+    function localizedField(item, field) {
+      if (!item) return '';
+      const lang = (typeof window.getLang === 'function') ? window.getLang() : 'ro';
+      const enKey = field + '_en';
+      if (lang === 'en' && item[enKey]) return item[enKey];
+      return item[field] || '';
+    }
 
     // Modal text (folosit de ambele: trivia + legende)
     const textModal = document.getElementById('text-modal');
@@ -2222,18 +2233,25 @@
     function openTextModal(kind, item) {
       textModal.classList.remove('trivia', 'legenda');
       textModal.classList.add(kind === 'legenda' ? 'legenda' : 'trivia');
-      textModalBadge.textContent = item.category || (kind === 'legenda' ? 'Legendă' : 'Știați că?');
-      textModalMeta.textContent = item.meta || '';
-      textModalMeta.hidden = !item.meta;
-      textModalTitle.textContent = item.title || '';
-      textModalBody.textContent = item.description || '';
+      const fallbackBadge = kind === 'legenda' ? 'Legendă' : 'Știați că?';
+      textModalBadge.textContent = localizedField(item, 'category') || fallbackBadge;
+      const metaText = localizedField(item, 'meta');
+      textModalMeta.textContent = metaText;
+      textModalMeta.hidden = !metaText;
+      const titleText = localizedField(item, 'title');
+      textModalTitle.textContent = titleText;
+      textModalBody.textContent = localizedField(item, 'description');
       if (textModalImg) {
         textModalImg.src = resolveTextItemImage(kind, item);
-        textModalImg.alt = item.title || '';
+        textModalImg.alt = titleText;
       }
       textModalContext = { kind, id: item.id };
       if (textModalEdit) textModalEdit.hidden = !item.id;
       textModal.dataset.open = '1';
+      // Sync URL pentru share (?triv=ID / ?leg=ID)
+      if (item.id && typeof window.__updateDeepLink === 'function') {
+        window.__updateDeepLink(kind === 'legenda' ? { leg: item.id } : { triv: item.id });
+      }
     }
     if (textModalEdit) {
       textModalEdit.addEventListener('click', () => {
@@ -2242,9 +2260,20 @@
         window.open(url, '_blank', 'noopener');
       });
     }
+    // Click pe imaginea din modal (trivia sau legendă) → deschide lightbox-ul mare.
+    if (textModalImg) {
+      textModalImg.addEventListener('click', () => {
+        if (!textModalContext) return;
+        if (typeof openImageInLightbox === 'function' && textModalImg.src) {
+          openImageInLightbox(textModalImg.src, textModalImg.alt || '', textModalImg.alt || '');
+        }
+      });
+    }
     function closeTextModal() {
       textModal.removeAttribute('data-open');
       document.querySelectorAll('.trivia-pin.lit, .legenda-pin.lit').forEach(d => d.classList.remove('lit'));
+      // Curăță URL-ul (scoate ?triv / ?leg)
+      if (typeof window.__updateDeepLink === 'function') window.__updateDeepLink({});
     }
     textModalClose.addEventListener('click', closeTextModal);
     textModal.addEventListener('click', (e) => { if (e.target === textModal) closeTextModal(); });
@@ -2284,7 +2313,7 @@
           const tooltipHtml =
             `<div class="marker-preview">
                <img src="${escapeHtml(imgSrc)}" alt="" loading="lazy" decoding="async">
-               <div class="cap"><b>${escapeHtml(item.title || '')}</b></div>
+               <div class="cap"><b>${escapeHtml(localizedField(item, 'title'))}</b></div>
              </div>`;
           m.bindTooltip(tooltipHtml, {
             direction: 'top',
@@ -2303,6 +2332,8 @@
           triviaLayer.addLayer(m);
         });
         triviaLayer.addTo(map);
+        // Aplică filtrul curent al timeline-ului (sare entries cu year > slider)
+        refreshTriviaVisibility();
       } catch (e) {
         console.warn('Nu pot încărca trivia.json:', e);
       }
@@ -2340,7 +2371,7 @@
           const tooltipHtml =
             `<div class="marker-preview">
                <img src="${escapeHtml(imgSrc)}" alt="" loading="lazy" decoding="async">
-               <div class="cap"><b>${escapeHtml(item.title || '')}</b></div>
+               <div class="cap"><b>${escapeHtml(localizedField(item, 'title'))}</b></div>
              </div>`;
           m.bindTooltip(tooltipHtml, {
             direction: 'top',
@@ -2364,6 +2395,60 @@
       }
     }
 
+    // Trivia timeline filter — entries cu `year` setat dispar când slider-ul
+    // e sub anul respectiv. Cele fără year (`null` / lipsește) apar mereu.
+    function passesTriviaTimeline(item) {
+      if (timelineYear === null) return true;
+      const y = item.year;
+      if (y === null || y === undefined) return true;
+      return y <= timelineYear;
+    }
+    function refreshTriviaVisibility() {
+      if (!triviaLayer) return;
+      const toAdd = [];
+      const toRemove = [];
+      triviaMarkers.forEach(({ marker, item }) => {
+        const visible = passesTriviaTimeline(item);
+        const inLayer = triviaLayer.hasLayer(marker);
+        if (visible && !inLayer) toAdd.push(marker);
+        else if (!visible && inLayer) toRemove.push(marker);
+      });
+      if (toRemove.length) triviaLayer.removeLayers(toRemove);
+      if (toAdd.length) triviaLayer.addLayers(toAdd);
+    }
+    // Expose pe window ca să poată fi apelat din timeline handler-ele setate mai sus.
+    window.refreshTriviaVisibility = refreshTriviaVisibility;
+
+    // La switch RO ↔ EN: re-bind tooltip-urile (titlu localizat) + re-deschide
+    // modal-ul cu textul nou dacă era afișat.
+    function rebindTextItemTooltips() {
+      const rebind = (arr, kind) => {
+        arr.forEach(({ marker, item }) => {
+          const imgSrc = resolveTextItemImage(kind, item);
+          const tooltipHtml =
+            `<div class="marker-preview">
+               <img src="${escapeHtml(imgSrc)}" alt="" loading="lazy" decoding="async">
+               <div class="cap"><b>${escapeHtml(localizedField(item, 'title'))}</b></div>
+             </div>`;
+          marker.unbindTooltip();
+          marker.bindTooltip(tooltipHtml, {
+            direction: 'top',
+            offset: L.point(0, kind === 'legenda' ? -14 : -12),
+            opacity: 1, sticky: false, className: 'preview-tip',
+          });
+        });
+      };
+      rebind(triviaMarkers, 'trivia');
+      rebind(legendaMarkers, 'legenda');
+      // Dacă modal-ul e deschis, re-randează cu noua limbă
+      if (textModal.dataset.open && textModalContext) {
+        const arr = textModalContext.kind === 'trivia' ? triviaMarkers : legendaMarkers;
+        const hit = arr.find(x => x.item.id === textModalContext.id);
+        if (hit) openTextModal(textModalContext.kind, hit.item);
+      }
+    }
+    window.addEventListener('langchange', rebindTextItemTooltips);
+
     if ('requestIdleCallback' in window) {
       requestIdleCallback(() => { initTrivia(); initLegende(); }, { timeout: 2500 });
     } else {
@@ -2379,6 +2464,8 @@
       const locId = params.get('loc');
       const tourId = params.get('tour');
       const huntId = params.get('hunt');
+      const trivId = params.get('triv');
+      const legId = params.get('leg');
 
       if (locId) {
         const item = locations.find(l => l.id === locId);
@@ -2409,6 +2496,27 @@
           return;
         }
       }
+      // Trivia / legendă deep-link — re-încercăm câteva ori până când
+      // layer-ele lor sunt încărcate (au load deferred via requestIdleCallback).
+      if (trivId || legId) {
+        const targetKind = trivId ? 'trivia' : 'legenda';
+        const targetId = trivId || legId;
+        const findItem = () => {
+          const arr = targetKind === 'trivia' ? triviaMarkers : legendaMarkers;
+          return arr.find(x => x.item.id === targetId);
+        };
+        let tries = 0;
+        const tick = () => {
+          const hit = findItem();
+          if (hit) {
+            map.setView([hit.item.lat, hit.item.lon], Math.max(map.getZoom(), 17), { animate: true });
+            setTimeout(() => openTextModal(targetKind, hit.item), 250);
+            return;
+          }
+          if (++tries < 30) setTimeout(tick, 200); // max ~6s
+        };
+        tick();
+      }
     }
     // Sync URL ↔ state când utilizatorul deschide o locație.
     // Pentru share-uri pe Facebook/WhatsApp/Twitter: ÎNLOCUIM URL-ul SPA cu pagina
@@ -2434,6 +2542,8 @@
         if (params.loc) q.set('loc', params.loc);
         else if (params.tour) q.set('tour', params.tour);
         else if (params.hunt) q.set('hunt', params.hunt);
+        else if (params.triv) q.set('triv', params.triv);
+        else if (params.leg) q.set('leg', params.leg);
         url.search = q.toString() ? `?${q.toString()}` : '';
         history.replaceState(null, '', url);
       } catch (e) { /* ignore */ }

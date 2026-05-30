@@ -311,6 +311,102 @@ def generate_hunts(urls: list) -> int:
     return count
 
 
+def generate_trivia(urls: list) -> int:
+    """One static page per trivia entry (Știați că?)."""
+    p = GMAP / "trivia.json"
+    if not p.exists():
+        return 0
+    data = json.loads(p.read_text(encoding="utf-8"))
+    items = data if isinstance(data, list) else []
+    out_dir = GMAP / "triv"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    count = 0
+    for t in items:
+        tid = t.get("id")
+        if not tid:
+            continue
+        title = t.get("title") or "(fără titlu)"
+        title_clean = title.replace("„", "").replace("”", "").strip()
+        description = trim(t.get("description") or "", 200)
+        canonical = f"{BASE_URL}/galati_map/triv/{tid}.html"
+        spa_url = f"{BASE_URL}/galati_map/?triv={tid}"
+        image = resolve_image(t.get("image") or "")
+        jsonld = {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "headline": title_clean,
+            "description": description,
+            "url": canonical,
+            "articleSection": t.get("category") or "Știați că?",
+        }
+        if t.get("lat") and t.get("lon"):
+            jsonld["contentLocation"] = {
+                "@type": "Place",
+                "geo": {"@type": "GeoCoordinates", "latitude": t["lat"], "longitude": t["lon"]},
+            }
+        make_page(
+            out_path=out_dir / f"{tid}.html",
+            title=title_clean,
+            description=description,
+            canonical=canonical,
+            spa_url=spa_url,
+            image=image,
+            og_type="article",
+            jsonld=jsonld,
+        )
+        urls.append(canonical)
+        count += 1
+    return count
+
+
+def generate_legende(urls: list) -> int:
+    """One static page per legendă."""
+    p = GMAP / "legende.json"
+    if not p.exists():
+        return 0
+    data = json.loads(p.read_text(encoding="utf-8"))
+    items = data if isinstance(data, list) else []
+    out_dir = GMAP / "leg"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    count = 0
+    for L in items:
+        lid = L.get("id")
+        if not lid:
+            continue
+        title = L.get("title") or "(fără titlu)"
+        title_clean = title.replace("„", "").replace("”", "").strip()
+        description = trim(L.get("description") or "", 200)
+        canonical = f"{BASE_URL}/galati_map/leg/{lid}.html"
+        spa_url = f"{BASE_URL}/galati_map/?leg={lid}"
+        image = resolve_image(L.get("image") or "")
+        jsonld = {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "headline": title_clean,
+            "description": description,
+            "url": canonical,
+            "articleSection": L.get("category") or "Legende",
+        }
+        if L.get("lat") and L.get("lon"):
+            jsonld["contentLocation"] = {
+                "@type": "Place",
+                "geo": {"@type": "GeoCoordinates", "latitude": L["lat"], "longitude": L["lon"]},
+            }
+        make_page(
+            out_path=out_dir / f"{lid}.html",
+            title=title_clean,
+            description=description,
+            canonical=canonical,
+            spa_url=spa_url,
+            image=image,
+            og_type="article",
+            jsonld=jsonld,
+        )
+        urls.append(canonical)
+        count += 1
+    return count
+
+
 def generate_sitemap(urls: list[str]) -> None:
     today = datetime.now().strftime("%Y-%m-%d")
     body = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
@@ -338,9 +434,13 @@ def main() -> int:
     print(f"  ✓ {nt} tour pages     → galati_map/tour/")
     nh = generate_hunts(urls)
     print(f"  ✓ {nh} hunt pages     → galati_map/hunt/")
+    ntr = generate_trivia(urls)
+    print(f"  ✓ {ntr} trivia pages   → galati_map/triv/")
+    nlg = generate_legende(urls)
+    print(f"  ✓ {nlg} legendă pages  → galati_map/leg/")
     generate_sitemap(urls)
     print(f"  ✓ sitemap.xml ({len(urls) + 4} URLs)")
-    print(f"\nTotal: {nl + nt + nh} static pages + 1 sitemap.")
+    print(f"\nTotal: {nl + nt + nh + ntr + nlg} static pages + 1 sitemap.")
     return 0
 
 
