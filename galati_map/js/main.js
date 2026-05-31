@@ -2419,33 +2419,32 @@
     // Expose pe window ca să poată fi apelat din timeline handler-ele setate mai sus.
     window.refreshTriviaVisibility = refreshTriviaVisibility;
 
-    // La switch RO ↔ EN: re-bind tooltip-urile (titlu localizat) + re-deschide
-    // modal-ul cu textul nou dacă era afișat.
+    // La switch RO ↔ EN: actualizează in-place conținutul tooltip-urilor
+    // (Tooltip.setContent — nu re-bind, nu atinge starea cluster-ului) și
+    // re-deschide modal-ul cu textul nou dacă era afișat.
     function rebindTextItemTooltips() {
-      const rebind = (arr, kind) => {
-        arr.forEach(({ marker, item }) => {
-          const imgSrc = resolveTextItemImage(kind, item);
-          const tooltipHtml =
-            `<div class="marker-preview">
-               <img src="${escapeHtml(imgSrc)}" alt="" loading="lazy" decoding="async">
-               <div class="cap"><b>${escapeHtml(localizedField(item, 'title'))}</b></div>
-             </div>`;
-          marker.unbindTooltip();
-          marker.bindTooltip(tooltipHtml, {
-            direction: 'top',
-            offset: L.point(0, kind === 'legenda' ? -14 : -12),
-            opacity: 1, sticky: false, className: 'preview-tip',
+      try {
+        const update = (arr, kind) => {
+          arr.forEach(({ marker, item }) => {
+            const tt = marker.getTooltip();
+            if (!tt) return;
+            const imgSrc = resolveTextItemImage(kind, item);
+            tt.setContent(
+              `<div class="marker-preview">
+                 <img src="${escapeHtml(imgSrc)}" alt="" loading="lazy" decoding="async">
+                 <div class="cap"><b>${escapeHtml(localizedField(item, 'title'))}</b></div>
+               </div>`
+            );
           });
-        });
-      };
-      rebind(triviaMarkers, 'trivia');
-      rebind(legendaMarkers, 'legenda');
-      // Dacă modal-ul e deschis, re-randează cu noua limbă
-      if (textModal.dataset.open && textModalContext) {
-        const arr = textModalContext.kind === 'trivia' ? triviaMarkers : legendaMarkers;
-        const hit = arr.find(x => x.item.id === textModalContext.id);
-        if (hit) openTextModal(textModalContext.kind, hit.item);
-      }
+        };
+        update(triviaMarkers, 'trivia');
+        update(legendaMarkers, 'legenda');
+        if (textModal.dataset.open && textModalContext) {
+          const arr = textModalContext.kind === 'trivia' ? triviaMarkers : legendaMarkers;
+          const hit = arr.find(x => x.item.id === textModalContext.id);
+          if (hit) openTextModal(textModalContext.kind, hit.item);
+        }
+      } catch (e) { /* nu sufoca alți listeneri */ }
     }
     window.addEventListener('langchange', rebindTextItemTooltips);
 
@@ -3371,7 +3370,10 @@
     window.addEventListener('resize', () => setTimeout(checkOverflow, 200));
 
     // ─── Top nav: page switching ─────────────────────────────────
-    const navBtns = document.querySelectorAll('.topbar nav button');
+    // ATENȚIE: filtrăm pe `[data-page]` ca să excludem butoanele din lang-picker
+    // (sunt în același <nav> și le-am prinde fără data-page → activatePage(undefined)
+    // ar șterge clasa `map-mode` de pe body și harta ar dispărea la switch RO/EN).
+    const navBtns = document.querySelectorAll('.topbar nav button[data-page]');
     const pages = document.querySelectorAll('.page');
     function refreshMapLayout() {
       if (typeof map !== 'undefined' && map) {
