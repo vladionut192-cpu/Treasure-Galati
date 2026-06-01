@@ -2193,13 +2193,22 @@
     const legendaMarkers = []; // [{marker, item}]
     let legendaLayer = null;
     function legendaIcon() {
-      // SVG mic de tip scroll/manuscris medieval
-      const svg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4a2 2 0 0 1 2-2h9l3 3v15a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z"/><path d="M14 2v4h4"/><path d="M9 11h6M9 15h6M9 7h2"/></svg>';
+      // Scroll/pergament: două ruloi laterale + corpul derulant cu linii
+      // de text — silueta cea mai recognoscibilă pentru „legendă\" /
+      // manuscris medieval. Pe pinul redus la 20×20 (de la 26×26), forma e
+      // mai subtilă, fără a pierde lizibilitatea.
+      const svg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' +
+        '<path d="M5 5.5c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2s-.9 2-2 2"/>' + // top roll
+        '<path d="M7 3.5v15"/>' +                                         // body left
+        '<path d="M17 7.5v11"/>' +                                        // body right (shifted)
+        '<path d="M5 18.5c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2s-.9-2-2-2"/>' + // bottom roll
+        '<path d="M10 10.5h5M10 13.5h5M10 16.5h3"/>' +                    // text lines
+        '</svg>';
       return L.divIcon({
         className: 'custom-marker',
         html: '<div class="legenda-pin">' + svg + '</div>',
-        iconSize: [26, 26],
-        iconAnchor: [13, 13],
+        iconSize: [22, 22],
+        iconAnchor: [11, 11],
       });
     }
 
@@ -2375,7 +2384,7 @@
              </div>`;
           m.bindTooltip(tooltipHtml, {
             direction: 'top',
-            offset: L.point(0, -14),
+            offset: L.point(0, -12),
             opacity: 1,
             sticky: false,
             className: 'preview-tip',

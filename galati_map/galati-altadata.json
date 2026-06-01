@@ -1062,15 +1062,6 @@
     "year": 1970
   },
   {
-    "src": "../assets/images/local/anii-1970-71-constructia-spitalului-judetean-inaugurat-in-72-68052b99.jpg",
-    "caption_ro": "anii 1970-'71. Construcția Spitalului Județean (inaugurat în' 72).",
-    "caption_en": "1970–'71. Construction of the County Hospital (inaugurated in '72).",
-    "folder": "local",
-    "lat": 45.418945,
-    "lon": 28.019863,
-    "year": 1972
-  },
-  {
     "src": "../assets/images/local/anii-30-9ed7feae.jpg",
     "caption_ro": "Anii 30",
     "caption_en": "The 1930s",
@@ -1762,5 +1753,14 @@
     "lat": 45.43585,
     "lon": 28.053208,
     "year": 1920
+  },
+  {
+    "src": "../assets/images/local/cofetaria-corso-aflata-pe-locul-actualului-c-e-c-de-langa-fo-5254c7b1.jpg",
+    "caption_ro": "Cofetăria \"Corso\" aflată pe locul actualului C.E.C. de lângă fostul magazin Modern. Anii '70",
+    "caption_en": "",
+    "folder": "local",
+    "lat": 45.436508,
+    "lon": 28.056325,
+    "year": 1970
   }
 ]
