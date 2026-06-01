@@ -333,30 +333,12 @@
     "year": 1928
   },
   {
-    "src": "../assets/images/pubcrawl/3-regiment-11-siret_06.jpg",
-    "caption_ro": "Strada Regiment 11 Siret, Complex Francezi, anii '60",
-    "caption_en": "Regiment 11 Siret Street, Francezi Complex, the 1960s",
-    "folder": "3. Regiment 11 Siret",
-    "lat": 45.42201,
-    "lon": 28.034985,
-    "year": 1960
-  },
-  {
     "src": "../assets/images/pubcrawl/3-regiment-11-siret_08.jpg",
     "caption_ro": "Strada Regiment 11 Siret - anii '60 - in dreapta jos intri la Hops Gallery",
     "caption_en": "Regiment 11 Siret Street — the 1960s — bottom right you enter Hops Gallery",
     "folder": "3. Regiment 11 Siret",
     "lat": 45.427004,
     "lon": 28.031445,
-    "year": 1960
-  },
-  {
-    "src": "../assets/images/pubcrawl/3-regiment-11-siret_10.jpg",
-    "caption_ro": "Strada Regiment 11 Siret, Complex Francezi, anii '60",
-    "caption_en": "Regiment 11 Siret Street, Francezi Complex, the 1960s",
-    "folder": "3. Regiment 11 Siret",
-    "lat": 45.421701,
-    "lon": 28.034459,
     "year": 1960
   },
   {
@@ -376,42 +358,6 @@
     "lat": 45.423704,
     "lon": 28.040822,
     "year": 1965
-  },
-  {
-    "src": "../assets/images/pubcrawl/3-regiment-11-siret_13.jpg",
-    "caption_ro": "Strada Regiment 11 Siret, Complex Francezi, 1968",
-    "caption_en": "Regiment 11 Siret Street, Francezi Complex, 1968",
-    "folder": "3. Regiment 11 Siret",
-    "lat": 45.422364,
-    "lon": 28.034352,
-    "year": 1968
-  },
-  {
-    "src": "../assets/images/pubcrawl/3-regiment-11-siret_14.jpg",
-    "caption_ro": "Strada Regiment 11 Siret, Complex Francezi, 1969",
-    "caption_en": "Regiment 11 Siret Street, Francezi Complex, 1969",
-    "folder": "3. Regiment 11 Siret",
-    "lat": 45.422356,
-    "lon": 28.035672,
-    "year": 1969
-  },
-  {
-    "src": "../assets/images/pubcrawl/3-regiment-11-siret_15.jpg",
-    "caption_ro": "Strada Regiment 11 Siret, Complex Francezi, anii '70",
-    "caption_en": "Regiment 11 Siret Street, Francezi Complex, the 1970s",
-    "folder": "3. Regiment 11 Siret",
-    "lat": 45.421663,
-    "lon": 28.034953,
-    "year": 1970
-  },
-  {
-    "src": "../assets/images/pubcrawl/3-regiment-11-siret_16.jpg",
-    "caption_ro": "Strada Regiment 11 Siret, Complex Francezi, anii '70",
-    "caption_en": "Regiment 11 Siret Street, Francezi Complex, the 1970s",
-    "folder": "3. Regiment 11 Siret",
-    "lat": 45.421972,
-    "lon": 28.035554,
-    "year": 1970
   },
   {
     "src": "../assets/images/pubcrawl/3-regiment-11-siret_20.jpg",
@@ -457,15 +403,6 @@
     "lat": 45.427808,
     "lon": 28.037581,
     "year": 1975
-  },
-  {
-    "src": "../assets/images/pubcrawl/3-regiment-11-siret_28.jpg",
-    "caption_ro": "Strada Regiment 11 Siret, Complex Francezi, 1977",
-    "caption_en": "Regiment 11 Siret Street, Francezi Complex, 1977",
-    "folder": "3. Regiment 11 Siret",
-    "lat": 45.422017,
-    "lon": 28.034459,
-    "year": 1977
   },
   {
     "src": "../assets/images/pubcrawl/3-regiment-11-siret_29.jpg",
@@ -1798,5 +1735,32 @@
     "lat": 45.430206,
     "lon": 28.058438,
     "year": 1980
+  },
+  {
+    "src": "../assets/images/local/piata-centrala-targu-nou-atunci-spre-biserica-bulgareasca-sf-deda1656.jpg",
+    "caption_ro": "Piața Centrală (Târgu Nou atunci) spre biserica bulgărească Sf. Pantelimon",
+    "caption_en": "",
+    "folder": "local",
+    "lat": 45.438266,
+    "lon": 28.048675,
+    "year": 1880
+  },
+  {
+    "src": "../assets/images/local/turnul-cu-faleza-neamenajata-710085c9.jpg",
+    "caption_ro": "Turnul cu faleza neamenajata",
+    "caption_en": "",
+    "folder": "local",
+    "lat": 45.411756,
+    "lon": 28.027362,
+    "year": 1963
+  },
+  {
+    "src": "../assets/images/local/strada-lahovari-spre-parcul-central-bumbacaria-j-schwartz-ba-0ae90c0d.jpg",
+    "caption_ro": "Strada Lahovari spre Parcul Central: Bumbăcăria J. Schwartz, Bazarul Constantinopol, Fabrica Turul și Galanteria La Morel 1920",
+    "caption_en": "",
+    "folder": "local",
+    "lat": 45.43585,
+    "lon": 28.053208,
+    "year": 1920
   }
 ]
