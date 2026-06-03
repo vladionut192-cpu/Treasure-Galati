@@ -1,0 +1,1123 @@
+    /* ───────── Add-pin floating button + modal ─────────
+       Admin UI (FAB-uri, butoane edit/delete) e ascuns implicit. Apare doar
+       când <html> are clasa `local-dev` (setată de JS pentru localhost/127). */
+    .add-pin-fab,
+    .add-photo-fab,
+    .popup button.edit-loc,
+    #lightbox-edit,
+    #text-modal-edit { display: none; }
+    html.local-dev .add-pin-fab,
+    html.local-dev .add-photo-fab { display: flex; }
+    html.local-dev .popup button.edit-loc,
+    html.local-dev #lightbox-edit,
+    html.local-dev #text-modal-edit { display: inline-flex; }
+
+    /* ─────────── Pilot AR — Piața Regală card ─────────── */
+    .ar-pilot-card {
+      margin-top: 28px;
+      padding: 18px 20px;
+      background: linear-gradient(135deg, #1f2c4a 0%, #0f1525 100%);
+      color: #eee;
+      border-radius: 12px;
+      border: 1px solid rgba(255,233,181,.2);
+      position: relative;
+      overflow: hidden;
+    }
+    .ar-pilot-card::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(circle at 100% 0%, rgba(214,168,110,.15), transparent 50%);
+    }
+    .ar-pilot-badge {
+      display: inline-block;
+      font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #d6a86e; font-weight: 700;
+      margin-bottom: 8px;
+    }
+    /* ─ Help FAB („?") — circular badge anchored top-right.
+       Desktop has the timeline between topbar and map → push button below it.
+       Mobile has the timeline at the bottom (sticky) → button sits right under
+       the topbar without overlap. */
+    .help-fab {
+      position: fixed;
+      top: calc(var(--topbar-h) + var(--timeline-h) + 12px);
+      right: 14px;
+      z-index: 880;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: var(--accent-deep);
+      color: #fff;
+      border: 0;
+      font-size: 15px; font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(45, 47, 90, .28);
+      transition: background .12s, transform .12s;
+      display: flex; align-items: center; justify-content: center;
+      line-height: 1;
+    }
+    .help-fab:hover { background: var(--ink); transform: translateY(-1px); }
+    @media (max-width: 720px) {
+      .help-fab {
+        top: calc(var(--topbar-h) + 12px); /* timeline is at the bottom on mobile */
+        width: 34px; height: 34px;
+        font-size: 14px;
+      }
+    }
+
+    /* ─── Mobile help sheet ───
+       On small screens, tapping "?" shows this centered modal instead of
+       floating tooltips that overlap the map. The individual .tour-tip cards
+       are hidden on mobile via the matching @media rule below. */
+    .mobile-help-sheet {
+      position: fixed;
+      inset: 0;
+      z-index: 1400;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .mobile-help-sheet[hidden] { display: none; }
+    .mhs-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(15, 21, 37, 0.55);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+    .mhs-panel {
+      position: relative;
+      max-width: min(420px, 92vw);
+      max-height: 84vh;
+      overflow-y: auto;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.32);
+      padding: 18px 22px 22px;
+    }
+    .mhs-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--line-soft);
+    }
+    .mhs-head h3 {
+      margin: 0;
+      font-family: var(--font-ui);
+      font-size: 14px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent-deep);
+      font-weight: 700;
+    }
+    .mhs-close {
+      background: transparent;
+      border: 0;
+      font-size: 28px;
+      line-height: 1;
+      color: var(--muted);
+      cursor: pointer;
+      padding: 0 6px;
+    }
+    .mhs-tips {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .mhs-tips li {
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+      padding-left: 12px;
+      border-left: 2px solid var(--accent);
+    }
+    .mhs-tips li strong { color: var(--ink); font-weight: 700; }
+
+    /* Hide individual floating tooltips on small screens — mobile-help-sheet
+       replaces them with a single readable modal. */
+    @media (max-width: 720px) {
+      #tour-tips .tour-tip { display: none !important; }
+    }
+
+    .ar-pilot-card h4 {
+      margin: 0 0 8px;
+      font-size: 17px; font-weight: 800; line-height: 1.3;
+      color: #ffe9b5;
+    }
+    .ar-pilot-card p {
+      margin: 0 0 14px;
+      font-size: 13.5px; line-height: 1.55;
+      color: #aabbdd;
+    }
+    .ar-pilot-btn {
+      display: inline-block;
+      background: #c44d2e; color: white !important;
+      padding: 10px 18px; border-radius: 6px;
+      font-weight: 700; font-size: 13.5px;
+      text-decoration: none;
+      transition: background .12s;
+    }
+    .ar-pilot-btn:hover { background: #b34128; }
+    .add-pin-fab {
+      position: absolute;
+      right: 16px;
+      bottom: 16px;
+      z-index: 880;
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: var(--hot);
+      color: #fff;
+      border: 0;
+      box-shadow: 0 4px 14px rgba(179,65,40,.45), 0 0 0 4px rgba(255,255,255,.6);
+      cursor: pointer;
+      align-items: center; justify-content: center;
+      transition: transform .12s ease, background .12s;
+    }
+    .add-pin-fab:hover { background: #c14e30; transform: scale(1.05); }
+    .add-pin-fab svg { width: 22px; height: 22px; }
+    .add-photo-fab {
+      position: absolute;
+      right: 16px;
+      bottom: 76px;
+      z-index: 880;
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: #d97706;
+      color: #fff;
+      border: 0;
+      box-shadow: 0 4px 14px rgba(217,119,6,.45), 0 0 0 4px rgba(255,255,255,.6);
+      cursor: pointer;
+      align-items: center; justify-content: center;
+      transition: transform .12s ease, background .12s;
+    }
+    .add-photo-fab:hover { background: #b65f04; transform: scale(1.05); }
+    .add-photo-fab svg { width: 22px; height: 22px; }
+    body.add-pin-placing #map { cursor: crosshair !important; }
+    body.add-pin-placing .leaflet-grab,
+    body.add-pin-placing .leaflet-grab .leaflet-interactive { cursor: crosshair !important; }
+    .add-pin-banner {
+      position: absolute;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 880;
+      padding: 10px 18px;
+      background: rgba(15,15,14,.92);
+      color: #fff;
+      font-size: 13.5px;
+      font-weight: 600;
+      letter-spacing: .02em;
+      border-radius: 999px;
+      box-shadow: 0 4px 14px rgba(0,0,0,.25);
+      display: none;
+    }
+    body.add-pin-placing .add-pin-banner { display: block; }
+    .add-pin-banner button {
+      margin-left: 10px;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,.45);
+      color: #fff;
+      padding: 3px 10px;
+      font: inherit;
+      font-size: 11.5px;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+    .add-pin-banner button:hover { background: rgba(255,255,255,.12); }
+
+    .add-pin-modal {
+      position: fixed; inset: 0;
+      z-index: 1300;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(15,15,14,.55);
+    }
+    .add-pin-modal.open { display: flex; }
+    .add-pin-modal .sheet {
+      background: var(--panel);
+      width: min(560px, calc(100% - 32px));
+      max-height: calc(100vh - 32px);
+      overflow-y: auto;
+      border: 1px solid var(--line);
+      box-shadow: 0 12px 40px rgba(0,0,0,.32);
+    }
+    .add-pin-modal header {
+      display: flex; align-items: baseline; justify-content: space-between;
+      gap: 12px;
+      padding: 18px 22px 12px;
+      border-bottom: 1px solid var(--line);
+    }
+    .add-pin-modal header h2 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.005em;
+    }
+    .add-pin-modal header .close {
+      background: transparent; border: 0;
+      font: inherit; font-size: 22px;
+      color: var(--muted); cursor: pointer;
+      line-height: 1;
+    }
+    .add-pin-modal .body { padding: 16px 22px 22px; }
+    .add-pin-modal .field {
+      display: block;
+      margin: 0 0 12px;
+    }
+    .add-pin-modal .field > label {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 5px;
+    }
+    .add-pin-modal input[type="text"],
+    .add-pin-modal input[type="number"],
+    .add-pin-modal select,
+    .add-pin-modal textarea {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid var(--line);
+      background: #fff;
+      font: inherit;
+      font-size: 14px;
+    }
+    .add-pin-modal input:focus,
+    .add-pin-modal select:focus,
+    .add-pin-modal textarea:focus {
+      outline: 0; border-color: var(--accent);
+    }
+    .add-pin-modal textarea { min-height: 70px; resize: vertical; }
+    .add-pin-modal .row2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .add-pin-modal .coord-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr auto;
+      gap: 10px;
+      align-items: end;
+    }
+    .add-pin-modal .coord-row .pick-btn {
+      padding: 8px 12px;
+      border: 1px solid var(--accent);
+      background: var(--accent);
+      color: #fff;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .04em;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .add-pin-modal .coord-row .pick-btn:hover { background: var(--accent-deep); }
+    .add-pin-modal .coord-status {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+    .add-pin-modal .coord-status.ok { color: var(--accent-deep); font-weight: 600; }
+    .add-pin-modal .file-drop {
+      border: 1.5px dashed var(--line);
+      padding: 22px 16px;
+      text-align: center;
+      cursor: pointer;
+      background: #fff;
+      transition: border-color .12s, background .12s;
+    }
+    .add-pin-modal .file-drop:hover {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+    }
+    .add-pin-modal .file-drop input[type=file] { display: none; }
+    .add-pin-modal .file-drop .hint {
+      font-size: 12.5px;
+      color: var(--muted);
+    }
+    .add-pin-modal .preview {
+      margin-top: 10px;
+      max-height: 220px;
+      object-fit: cover;
+      width: 100%;
+      display: none;
+      border: 1px solid var(--line);
+    }
+    /* .file-drop is a <label> (inline by default) — force block so its
+       padding/text-align work and so adjacent labels don't collapse next to it. */
+    .add-pin-modal .file-drop { display: block; }
+    /* Before/After comparison editor rows */
+    .add-pin-modal .cmp-row { display: block; }
+    .add-pin-modal .cmp-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink);
+      margin: 0 0 6px;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+    .add-pin-modal .cmp-year {
+      width: 100%;
+      margin-top: 8px;
+      font-family: var(--font-mono);
+    }
+    .add-pin-modal .gallery-thumbs {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .add-pin-modal .gallery-thumbs .gt-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      padding: 4px;
+    }
+    .add-pin-modal .gallery-thumbs .gt-item img {
+      width: 100%;
+      height: 80px;
+      object-fit: cover;
+    }
+    .add-pin-modal .gallery-thumbs .gt-item input {
+      width: 100%;
+      padding: 4px 6px;
+      border: 1px solid var(--line);
+      font: inherit;
+      font-size: 12px;
+      background: #fff;
+    }
+    .add-pin-modal .gallery-existing {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 8px;
+    }
+    .add-pin-modal .gallery-existing .ge-item {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      padding: 4px;
+    }
+    .add-pin-modal .gallery-existing img {
+      width: 100%;
+      height: 80px;
+      object-fit: cover;
+    }
+    .add-pin-modal .gallery-existing input {
+      width: 100%;
+      padding: 4px 6px;
+      border: 1px solid var(--line);
+      font: inherit;
+      font-size: 12px;
+      background: #fff;
+    }
+    .add-pin-modal .gallery-existing .ge-rm {
+      position: absolute;
+      top: 6px; right: 6px;
+      width: 20px; height: 20px;
+      border: 0; border-radius: 50%;
+      background: rgba(179,65,40,.92);
+      color: #fff;
+      font-size: 13px;
+      line-height: 1;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .add-pin-modal .gallery-existing .ge-rm:hover { background: var(--hot); }
+    .add-pin-modal .gallery-existing .ge-item.removed img { opacity: .25; }
+    .add-pin-modal .gallery-existing .ge-item.removed input { opacity: .25; pointer-events: none; }
+    .add-pin-modal .gallery-existing .ge-item.removed::after {
+      content: 'Șters'; position: absolute; top: 30px; left: 0; right: 0;
+      text-align: center;
+      color: #fff; font-size: 11px; font-weight: 800;
+      letter-spacing: .08em;
+      background: rgba(179,65,40,.7);
+      padding: 4px;
+    }
+    .add-pin-modal .actions {
+      display: flex; justify-content: flex-end;
+      gap: 10px;
+      margin-top: 6px;
+    }
+    .add-pin-modal .actions button {
+      padding: 9px 16px;
+      border: 0;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+    .add-pin-modal .actions .cancel {
+      background: transparent;
+      color: var(--muted);
+    }
+    .add-pin-modal .actions .submit {
+      background: var(--accent);
+      color: #fff;
+    }
+    .add-pin-modal .actions .submit:hover { background: var(--accent-deep); }
+    .add-pin-modal .actions .submit:disabled {
+      background: var(--muted); cursor: not-allowed;
+    }
+    .add-pin-modal .actions .delete {
+      margin-right: auto;
+      padding: 9px 14px;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+    .add-pin-modal .actions .delete:hover { background: var(--hot) !important; color: #fff !important; }
+    .add-pin-modal .feedback {
+      margin-top: 8px;
+      font-size: 13px;
+    }
+    .add-pin-modal .feedback.error { color: var(--hot); }
+    .add-pin-modal .feedback.success { color: var(--accent-deep); }
+    .map-year-overlay .year-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .map-year-overlay .year-flag {
+      width: 30px;
+      height: 20px;
+      flex-shrink: 0;
+      display: inline-block;
+      border: 1px solid rgba(15,15,14,0.18);
+      box-shadow: 0 1px 2px rgba(0,0,0,.10);
+      cursor: help;
+      overflow: hidden;
+    }
+    .map-year-overlay .year-flag svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    .map-year-overlay .year-num {
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--accent-deep);
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+    .map-year-overlay .entity-name {
+      color: var(--ink);
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      font-size: 12px;
+      line-height: 1.35;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-wrap: balance;
+    }
+    .map-year-overlay .year-meta {
+      margin-top: 5px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      font-size: 11.5px;
+      color: var(--muted);
+      line-height: 1.3;
+    }
+    .map-year-overlay .era-dot {
+      width: 7px; height: 7px;
+      flex-shrink: 0;
+      display: inline-block;
+    }
+    .map-year-overlay .era-name {
+      color: var(--ink-soft);
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+    .map-year-overlay .pop {
+      color: var(--ink-soft);
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+    .map-year-overlay .pop .pop-suffix {
+      color: var(--muted);
+      font-weight: 500;
+      margin-left: 2px;
+    }
+    .map-year-overlay .sep {
+      color: rgba(15,15,14,0.18);
+    }
+    .map-year-overlay .year-reset {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      width: 18px; height: 18px; padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      font-size: 14px;
+      line-height: 1;
+      color: var(--muted);
+      border-radius: 50%;
+    }
+    .map-year-overlay .year-reset:hover {
+      color: var(--ink);
+      background: rgba(15,15,14,0.06);
+    }
+
+    /* Header line above slider — etichetează clar ca cronologie, aliniat la dreapta */
+    .timeline-header {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      width: 100%;
+      margin: 0 0 8px;
+      flex-wrap: wrap;
+      text-align: right;
+    }
+    .timeline-header .timeline-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-deep);
+    }
+    .timeline-header .timeline-icon svg { width: 16px; height: 16px; }
+    .timeline-header .timeline-title {
+      font-size: 12.5px;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--accent-deep);
+    }
+    .timeline-header .timeline-sub {
+      font-size: 11.5px;
+      color: var(--muted);
+      letter-spacing: 0.02em;
+      font-weight: 500;
+    }
+    .timeline-header .timeline-sub::before {
+      content: '·';
+      margin-right: 8px;
+      color: var(--muted);
+    }
+    @media (max-width: 640px) {
+      .timeline-header {
+        gap: 6px;
+        justify-content: flex-end;
+      }
+      .timeline-header .timeline-sub::before { display: none; }
+      .timeline-header .timeline-sub {
+        width: 100%;
+        font-size: 10.5px;
+        text-align: right;
+      }
+    }
+    .timeline.engaged .timeline-header .timeline-sub { display: none; }
+    /* ─── Timeline track — minimalist, single thin line, full width ─── */
+    .timeline-track {
+      position: relative;
+      height: 36px;
+      width: 100%;
+      margin: 0;
+    }
+    /* The track line — thin segments colored by era */
+    .timeline-eras {
+      position: absolute;
+      left: 0; right: 0;
+      top: 16px;
+      height: 2px;
+      pointer-events: none;
+    }
+    .timeline-eras .era {
+      position: absolute;
+      top: 0; bottom: 0;
+      pointer-events: none;
+    }
+    .timeline-eras .era span { display: none; }
+    /* Era colors — soft, just enough to hint era boundaries */
+    .timeline-eras .era-medieval   { background: #c2a988; }
+    .timeline-eras .era-otoman     { background: #c19972; }
+    .timeline-eras .era-portliber  { background: #6ea58f; }
+    .timeline-eras .era-wwi        { background: #c25a45; }
+    .timeline-eras .era-interbelic { background: #d8b574; }
+    .timeline-eras .era-wwii       { background: #c25a45; }
+    .timeline-eras .era-comunist   { background: #997272; }
+    .timeline-eras .era-modern     { background: #8298b0; }
+
+    /* Event markers — small minimalist circles on the line */
+    .timeline-events {
+      position: absolute;
+      left: 0; right: 0;
+      top: 11px;
+      height: 14px;
+      pointer-events: none;
+      z-index: 3;
+    }
+    .timeline-events .event {
+      position: absolute;
+      top: 0;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      transform: translateX(-50%);
+      background: var(--paper);
+      border: 1.5px solid rgba(15,15,14,0.55);
+      box-shadow: 0 1px 1px rgba(0,0,0,.12);
+      pointer-events: auto;
+      cursor: pointer;
+      transition: transform .14s ease, background .14s ease, border-color .14s ease;
+    }
+    .timeline-events .event:hover {
+      transform: translateX(-50%) scale(1.6);
+      border-color: var(--accent);
+      z-index: 5;
+    }
+    .timeline-events .event.near {
+      transform: translateX(-50%) scale(1.6);
+      background: var(--accent);
+      border-color: var(--paper);
+      z-index: 5;
+    }
+    /* Event tag — bottom-LEFT of map, dar IA STÂNGA-DREAPTA bulelor de strat.
+     * Bulele sunt la left:18, lățime 56, deci începem la ~94px. */
+    .timeline-current-event {
+      position: absolute;
+      bottom: 24px;
+      left: 94px;
+      /* Above markers (Leaflet marker-pane z-index 600), cluster icons (~700),
+         popups (~700). 1100 ensures the text is never covered by a cluster
+         bubble that happens to land at the same screen position. */
+      z-index: 1100;
+      max-width: min(640px, calc(100% - 110px));
+      padding: 14px 20px;
+      /* Fully opaque so cluster icons don't bleed through the panel */
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--accent-red);
+      box-shadow: 0 6px 22px rgba(43, 31, 18, .14);
+      font-size: 14.5px;
+      color: var(--ink);
+      line-height: 1.5;
+      pointer-events: none;
+    }
+    .timeline-current-event strong {
+      font-family: var(--font-mono);
+      color: var(--accent-deep);
+      font-size: 16px;
+      font-weight: 700;
+    }
+    @media (max-width: 700px) {
+      /* Pe mobil, bulele dispar; revenim la marginea stângă */
+      .timeline-current-event {
+        left: 16px;
+        bottom: 16px;
+        max-width: calc(100% - 32px);
+        padding: 10px 14px;
+        font-size: 13px;
+      }
+      .timeline-current-event strong { font-size: 14px; }
+    }
+    .timeline-current-event[hidden] { display: none; }
+    .timeline-current-event > strong:first-child,
+    .timeline-current-event .event-line strong {
+      margin-right: 10px;
+      font-weight: 700;
+    }
+    .timeline-current-event .event-line + .event-line {
+      margin-top: 4px;
+      padding-top: 4px;
+      border-top: 1px solid rgba(15,15,14,0.06);
+    }
+    .timeline-current-event .event-line.from-chronology strong {
+      color: var(--muted);
+    }
+
+    /* Slider — almost invisible, only the thumb stands out */
+    .timeline input[type=range] {
+      position: absolute;
+      left: 0; right: 0; top: 0;
+      z-index: 4;
+      width: 100%;
+      height: 36px;
+      margin: 0;
+      background: transparent;
+      cursor: grab;
+      appearance: none;
+      -webkit-appearance: none;
+      /* pan-x = browser handles horizontal drag for the slider, doesn't pass it to
+         the OS as a scroll/system gesture. Critical on Android with gesture-nav. */
+      touch-action: pan-x;
+    }
+    .timeline input[type=range]:active { cursor: grabbing; }
+    .timeline input[type=range]::-webkit-slider-runnable-track {
+      height: 36px;
+      background: transparent;
+    }
+    .timeline input[type=range]::-webkit-slider-thumb {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      margin-top: 9px;
+      border: 0;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px var(--paper), 0 1px 4px rgba(0,0,0,.25);
+      cursor: grab;
+    }
+    .timeline input[type=range]:active::-webkit-slider-thumb { cursor: grabbing; }
+    .timeline input[type=range]::-moz-range-track {
+      height: 36px;
+      background: transparent;
+    }
+    .timeline input[type=range]::-moz-range-thumb {
+      width: 16px;
+      height: 16px;
+      border: 0;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px var(--paper), 0 1px 4px rgba(0,0,0,.25);
+    }
+
+    /* Year ticks — below the line, simple */
+    .timeline-meta {
+      position: absolute;
+      left: 0; right: 0;
+      top: 24px;
+      height: 12px;
+      font-size: 10px; color: var(--muted);
+      letter-spacing: 0.04em;
+      pointer-events: none;
+    }
+    .timeline-meta .tick {
+      position: absolute;
+      top: 0;
+      transform: translateX(-50%);
+      text-align: center;
+      white-space: nowrap;
+    }
+    .timeline-meta .tick:first-child { transform: translateX(0); text-align: left; }
+    .timeline-meta .tick:last-child { transform: translateX(-100%); text-align: right; }
+    .timeline-meta .tick::before { display: none; }
+    .timeline-meta .tick span {
+      display: block;
+      font-size: 10.5px; font-weight: 600;
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.02em;
+    }
+    /* Markere "dispărute" — gri cu hash pattern */
+    .marker-bubble.demolished {
+      background: #8a847a;
+      border-color: #ddd6c8;
+      opacity: 0.75;
+    }
+    .marker-bubble.demolished svg { opacity: 0.6; }
+    .marker-bubble.demolished::after {
+      content: '×';
+      position: absolute; top: -2px; right: -2px;
+      width: 14px; height: 14px;
+      background: var(--hot); color: white;
+      border-radius: 50%; font-size: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800;
+      box-shadow: 0 1px 3px rgba(0,0,0,.3);
+    }
+    .marker-bubble.ruin {
+      background: #6f5d3f;
+      border-color: #d4c39d;
+      opacity: 0.85;
+    }
+    /* Iteme de listă pentru pinuri dispărute */
+    .item.is-demolished .num { background: #8a847a; }
+    .item.is-demolished .body strong { text-decoration: line-through; text-decoration-thickness: 1px; text-decoration-color: rgba(0,0,0,.25); }
+    .item.is-demolished .body em { color: var(--hot); }
+    .item.is-ruin .num { background: #6f5d3f; }
+    /* On image cards keep strikethrough visible against the dark overlay */
+    .item.is-demolished.has-image .body strong { text-decoration-color: rgba(255,255,255,0.55); }
+    .item.is-demolished.has-image .body em { text-shadow: 0 1px 2px rgba(0,0,0,0.6); }
+    /* „Galați de altădată" — buline mici colorate diferit (fotografii istorice) */
+    .pubcrawl-dot {
+      width: 11px; height: 11px;
+      border-radius: 50%;
+      background: #d97706;  /* amber/orange — distinct de verdele pinurilor */
+      border: 2px solid white;
+      box-shadow: 0 1px 3px rgba(0,0,0,.4), 0 0 0 1px rgba(217,119,6,.4);
+      cursor: pointer;
+      transition: transform .08s ease, box-shadow .08s ease, opacity .2s ease;
+    }
+    .custom-marker:has(.pubcrawl-dot) { transition: opacity .2s ease; }
+    .pubcrawl-dot:hover {
+      transform: scale(1.6);
+      z-index: 1000;
+      box-shadow: 0 2px 6px rgba(0,0,0,.5), 0 0 0 3px rgba(217,119,6,.3);
+    }
+    .pubcrawl-dot.lit {
+      background: var(--hot);
+      transform: scale(1.8);
+      box-shadow: 0 0 0 4px rgba(179,65,40,.25), 0 2px 8px rgba(0,0,0,.5);
+    }
+    .historic-opacity {
+      margin: -6px 0 18px; padding: 8px 0 2px 46px;
+      background: transparent;
+      border: 0;
+    }
+    .historic-opacity .timeline-row {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 11.5px; letter-spacing: 0.04em;
+      color: var(--muted); text-transform: uppercase;
+      font-weight: 600;
+    }
+    .historic-opacity .timeline-row output {
+      flex: 1; font-size: 13px; font-weight: 700;
+      letter-spacing: 0; text-transform: none;
+      color: var(--accent-deep); font-variant-numeric: tabular-nums;
+      text-align: right;
+    }
+    .historic-opacity input[type=range] { width: 100%; accent-color: var(--accent); }
+    .historic-select-wrap {
+      position: relative;
+      display: block;
+      border-bottom: 1px solid var(--line);
+      padding: 2px 0 8px;
+    }
+    .historic-select-wrap:focus-within {
+      border-color: var(--accent);
+      box-shadow: 0 1px 0 var(--accent);
+    }
+    .historic-select-wrap::after {
+      content: '';
+      position: absolute;
+      right: 3px;
+      top: 10px;
+      width: 7px;
+      height: 7px;
+      border-right: 1.5px solid var(--ink);
+      border-bottom: 1.5px solid var(--ink);
+      transform: rotate(45deg);
+      pointer-events: none;
+    }
+    .historic-layer-select {
+      width: 100%; max-width: 100%;
+      border: 0;
+      background: transparent;
+      padding: 0 26px 0 0;
+      font: inherit; font-size: 12.5px;
+      color: var(--ink);
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      outline: none;
+    }
+    .tabs {
+      display: flex;
+      gap: 0;
+      margin: 0 0 14px;
+      padding: 0;
+      background: transparent;
+      border: 0;
+      border-bottom: 1px solid var(--line);
+      border-radius: 0;
+    }
+    .tabs .tab {
+      flex: 1;
+      min-width: 0;
+      border: 0;
+      background: transparent;
+      padding: 12px 4px;
+      font: inherit;
+      font-family: var(--font-ui);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0;
+      text-transform: none;
+      color: var(--muted);
+      cursor: pointer;
+      border-radius: 0;
+      transition: color .14s, border-color .14s;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+    }
+    .tabs .tab:hover { color: var(--ink); }
+    .tabs .tab.active {
+      color: var(--ink);
+      background: transparent;
+      border-bottom-color: var(--ink);
+      box-shadow: none;
+    }
+    .tab-panel { display: block; }
+    .tab-panel[hidden] { display: none; }
+    .tab-intro {
+      font-size: 13px; color: var(--muted); line-height: 1.5;
+      margin: 0 0 14px;
+    }
+    .tour-cards { display: grid; gap: 10px; }
+    .tour-card {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 12px;
+      width: 100%;
+      border: 1px solid var(--line);
+      background: white;
+      padding: 10px;
+      cursor: pointer;
+      text-align: left;
+      font: inherit;
+      align-items: center;
+      transition: border-color .12s, box-shadow .12s;
+    }
+    .tour-card:hover { border-color: var(--accent); box-shadow: 0 6px 18px rgba(31,37,34,.08); }
+    .tour-card .cover {
+      width: 80px; height: 80px;
+      object-fit: cover;
+      background: var(--paper-deep);
+      flex-shrink: 0;
+    }
+    .tour-card .cover-fallback {
+      width: 80px; height: 80px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--accent-soft); color: var(--accent-deep);
+      font-weight: 800; font-size: 24px; letter-spacing: -0.02em;
+    }
+    .tour-card .body strong {
+      display: block; font-weight: 700; font-size: 14.5px;
+      line-height: 1.25; margin-bottom: 4px; letter-spacing: -0.005em;
+      overflow-wrap: anywhere;
+    }
+    .tour-card .body em {
+      font-style: normal; font-size: 10.5px; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--accent); font-weight: 600;
+      display: block; margin-bottom: 3px;
+    }
+    .tour-card .body span { color: var(--muted); font-size: 11.5px; }
+    .tour-card .body,
+    .tour-stops .stop .body,
+    .item .body {
+      min-width: 0;
+    }
+    #tour-active { display: block; }
+    .exit-tour {
+      border: 0; background: transparent; padding: 6px 0; margin: 0 0 14px;
+      font: inherit; font-size: 12px; font-weight: 600;
+      letter-spacing: 0.04em; color: var(--accent);
+      cursor: pointer; text-align: left;
+    }
+    .exit-tour:hover { color: var(--accent-deep); text-decoration: underline; }
+    /* Language switcher (tururi ghidate) */
+    .tour-lang-bar {
+      display: flex; gap: 6px; align-items: center;
+      margin: 0 0 14px;
+      flex-wrap: wrap;
+    }
+    .tour-lang-bar .lbl {
+      font-size: 10.5px; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--muted);
+      font-weight: 700; margin-right: 4px;
+    }
+    .tour-lang-bar button {
+      border: 1px solid var(--line);
+      background: var(--paper);
+      color: var(--ink-soft);
+      font: inherit; font-size: 12px; font-weight: 600;
+      padding: 4px 10px; border-radius: 999px;
+      cursor: pointer; line-height: 1.2;
+      transition: background .15s, color .15s, border-color .15s;
+    }
+    .tour-lang-bar button:hover {
+      border-color: var(--accent);
+      color: var(--accent-deep);
+    }
+    .tour-lang-bar button.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .tour-cover {
+      width: 100%; max-height: 180px; object-fit: cover;
+      background: var(--paper-deep); display: block;
+      margin-bottom: 14px;
+    }
+    .tour-meta {
+      font-size: 10.5px; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--accent);
+      font-weight: 700; margin: 0 0 6px;
+    }
+    .tour-title {
+      font-weight: 800; font-size: 22px;
+      line-height: 1.15; margin: 0 0 6px;
+      letter-spacing: -0.01em;
+      overflow-wrap: anywhere;
+    }
+    .tour-subtitle {
+      color: var(--ink-soft); font-size: 14px;
+      line-height: 1.4; margin: 0 0 16px;
+      font-style: italic;
+    }
+    .tour-description {
+      font-size: 13.5px; line-height: 1.6;
+      color: var(--ink-soft); margin: 0 0 22px;
+    }
+    .tour-stops-heading {
+      font-size: 11px; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--accent-deep);
+      font-weight: 700; margin: 0 0 12px; padding-bottom: 6px;
+      border-bottom: 1px solid var(--line);
+    }
+    .tour-stops { list-style: none; padding: 0; margin: 0; counter-reset: none; }
+    .tour-stops .stop {
+      display: grid;
+      grid-template-columns: 32px 1fr;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--line-soft);
+      cursor: pointer;
+      align-items: start;
+      background: transparent;
+      border-left: 0; border-right: 0; border-top: 0;
+      width: 100%;
+      text-align: left;
+      font: inherit;
+    }
+    .tour-stops .stop:hover { background: rgba(44,97,87,0.04); }
+    .tour-stops .stop.active { background: var(--accent-soft); }
+    .tour-stops .stop .num {
+      width: 28px; height: 28px;
+      display: inline-flex; align-items: center; justify-content: center;
+      background: var(--accent); color: white;
+      font-weight: 700; font-size: 13px;
+      border-radius: 50%; flex-shrink: 0;
+    }
+    .tour-stops .stop:first-child .num { background: var(--ok, #3a7a4f); }
+    .tour-stops .stop:last-child .num { background: var(--hot); }
+    .tour-stops .stop strong {
+      display: block; font-weight: 700; font-size: 13.5px;
+      line-height: 1.3; margin-bottom: 2px;
+      overflow-wrap: anywhere;
+    }
+    .tour-stops .stop span { color: var(--muted); font-size: 11.5px; line-height: 1.3; }
+    .marker-bubble.tour-stop {
+      background: var(--accent);
+      font-weight: 800; font-size: 13px;
+      width: 32px; height: 32px;
+    }
+    .marker-bubble.tour-stop.first { background: #3a7a4f; }
+    .marker-bubble.tour-stop.last { background: var(--hot); }
+    .marker-bubble.tour-stop svg { display: none; }
+    .marker-bubble.tour-stop::before { content: attr(data-num); }
+

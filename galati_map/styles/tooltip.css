@@ -1,0 +1,57 @@
+    /* ─────────── Hover-preview tooltip pe pin-uri cu imagini ─────────── */
+    /* Leaflet tooltip default e o casetă mică text — îl rescriem pentru a
+       găzdui o miniatură de imagine + titlu. Apare la hover pe desktop;
+       pe mobil tap-ul deschide direct popup-ul (Leaflet nu emite hover pe touch). */
+    .leaflet-tooltip.preview-tip {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 4px;
+      box-shadow: 0 6px 20px rgba(0,0,0,.18);
+      max-width: 180px;
+      pointer-events: none;
+      opacity: 1 !important;
+    }
+    .leaflet-tooltip.preview-tip::before {
+      border-top-color: var(--line);
+    }
+    .marker-preview img {
+      display: block;
+      width: 168px;
+      height: 112px;
+      object-fit: cover;
+      border-radius: 5px;
+      background: var(--paper-deep);
+    }
+    .marker-preview .cap {
+      margin-top: 5px;
+      padding: 0 4px 2px;
+      font-size: 11.5px;
+      font-weight: 600;
+      line-height: 1.3;
+      color: var(--ink);
+      white-space: normal;
+      max-width: 168px;
+      overflow-wrap: anywhere;
+    }
+    .marker-preview.pubcrawl .cap {
+      font-weight: 500;
+      color: var(--ink-soft);
+    }
+    .marker-preview .year-badge {
+      display: inline-block;
+      background: #d97706;
+      color: #fff;
+      padding: 0 6px;
+      border-radius: 999px;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      margin-right: 5px;
+      vertical-align: middle;
+    }
+    /* Pe mobil — ascundem complet preview-ul (nu există hover, doar i-ar bloca popup-ul) */
+    @media (hover: none) {
+      .leaflet-tooltip.preview-tip { display: none !important; }
+    }
+

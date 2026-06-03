@@ -39,6 +39,19 @@ Hartă interactivă cu obiective de patrimoniu, clădiri istorice și locuri din
     └── extract_pdfs.py          # script extragere OCR (pypdf)
 ```
 
+### Foldere de lucru / sursă (netracked, nedeploiate)
+
+Pe disc mai există câteva foldere cu **materiale brute** folosite la curatarea conținutului. Sunt ignorate de git (vezi `.gitignore`) și **nu** ajung pe site — doar versiunile finale, optimizate, intră în `assets/images/`:
+
+| Folder | Conținut |
+|--------|----------|
+| `ocr/` | PDF scanat + script OCR (artefacte de procesare) |
+| `Batalia de la Galati/` | imagini sursă + benzi desenate pentru articolul 1918 |
+| `Poze galati/` | pool de fotografii istorice/social înainte de optimizare |
+| `Branding si Grafice/` | surse de design (`.psd`, `.svg`) |
+| `Pub Crawl - Traseu/` | poze full-res ale traseului (optimizate în `assets/images/pubcrawl/`) |
+| `Surse/` | cercetare documentară (PDF-uri ignorate, `.txt` extras păstrat pentru grep) |
+
 ## Cum rulez harta local
 
 Aplicație 100% statică, dar `fetch()` cere un server HTTP. Din rădăcina proiectului:

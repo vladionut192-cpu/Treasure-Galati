@@ -1,0 +1,162 @@
+/* Heritage Galați — main stylesheet
+ * Extracted from index.html in refactor 2026-05-11.
+ * Future: split into base/map/panels/lightbox/tooltips/modals.
+ */
+
+    :root {
+      color-scheme: light;
+      /* ── Editorial museum palette (from design inspiration) ──
+       * Paper + ink + 5 named accents. Variable names kept stable so all
+       * downstream rules pick up the new values automatically. */
+      --paper:        #F1EBE1;             /* warm cream — primary background */
+      --paper-deep:   #EAE4D9;             /* section-alt — slightly deeper */
+      --panel:        #FBF6EC;             /* lighter than paper — for panels/popups */
+      --ink:          #2B1F12;             /* warm dark brown — primary text */
+      --ink-soft:     rgba(43, 31, 18, .72);
+      --muted:        rgba(43, 31, 18, .50);
+      --line:         rgba(43, 31, 18, .14);
+      --line-soft:    rgba(43, 31, 18, .07);
+      /* Heritage teal — primary brand accent (close to old --accent) */
+      --accent:       #3E7A71;
+      --accent-deep:  #2D2F5A;             /* navy — used for headings + key links */
+      --accent-soft:  rgba(62, 122, 113, .10);
+      /* Editorial accent set */
+      --accent-red:   #B8303D;
+      --accent-ochre: #C9952B;
+      --accent-rust:  #A0522D;
+      --accent-navy:  #2D2F5A;
+      --accent-teal:  #3E7A71;
+      /* Legacy aliases kept so older rules still work */
+      --hot:          var(--accent-red);
+      --gold:         var(--accent-ochre);
+      --burgundy:     #6f1f22;
+      /* Type stacks */
+      --font-headline: 'Playfair Display', 'Vollkorn', Georgia, serif;
+      --font-slab:     'Vollkorn SC', 'Playfair Display', serif;
+      --font-body:     'Vollkorn', Georgia, 'Iowan Old Style', serif;
+      --font-ui:       'DM Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+      --font-mono:     'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+      --shadow:       0 14px 36px rgba(43, 31, 18, .10);
+      --topbar-h:     58px;
+      --timeline-h:   78px;
+    }
+    * { box-sizing: border-box; }
+    html { overflow-x: hidden; max-width: 100vw; width: 100%; }
+    body {
+      margin: 0; padding: 0;
+      min-height: 100vh;
+      width: 100%; max-width: 100vw;
+      overflow-x: hidden;
+      position: relative;
+      font-family: var(--font-ui);
+      font-weight: 400;
+      color: var(--ink);
+      background: var(--paper);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+    html.map-mode,
+    body.map-mode {
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* ────────── BASE / CHROME-FREE PRIMITIVES ──────────
+       Unified scrollbars, selection, focus rings, form chrome. */
+    *::-webkit-scrollbar { width: 6px; height: 6px; }
+    *::-webkit-scrollbar-track { background: transparent; }
+    *::-webkit-scrollbar-thumb {
+      background: rgba(15,15,14,.18);
+      border-radius: 0;
+    }
+    *::-webkit-scrollbar-thumb:hover { background: rgba(15,15,14,.34); }
+    * { scrollbar-width: thin; scrollbar-color: rgba(15,15,14,.22) transparent; }
+    ::selection { background: var(--accent); color: #fff; }
+    :focus-visible {
+      outline: 1px solid var(--accent);
+      outline-offset: 2px;
+    }
+    /* Default form-control chrome — minimal, no shadows, hairline borders */
+    button, input, select, textarea {
+      font: inherit;
+      color: inherit;
+      letter-spacing: inherit;
+    }
+    select {
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: linear-gradient(45deg, transparent 50%, currentColor 50%),
+                         linear-gradient(135deg, currentColor 50%, transparent 50%);
+      background-position: calc(100% - 14px) center, calc(100% - 9px) center;
+      background-size: 5px 5px, 5px 5px;
+      background-repeat: no-repeat;
+      padding-right: 28px !important;
+      cursor: pointer;
+    }
+
+    /* ────────── LEAFLET CHROME OVERRIDE ──────────
+       Default rounded zoom controls feel out of place on a minimalist
+       page. Flatten them into subtle hairline tiles. */
+    .leaflet-control-zoom.leaflet-bar {
+      border: 0;
+      box-shadow: none;
+      background: transparent;
+    }
+    .leaflet-bar a,
+    .leaflet-bar a:hover,
+    .leaflet-bar a:focus {
+      width: 28px; height: 28px;
+      line-height: 28px;
+      border-radius: 0;
+      border: 1px solid var(--line);
+      background: rgba(247,245,239,.94);
+      backdrop-filter: blur(8px) saturate(1.05);
+      -webkit-backdrop-filter: blur(8px) saturate(1.05);
+      color: var(--ink-soft);
+      font-size: 16px;
+      font-weight: 400;
+      box-shadow: none;
+      transition: background .12s, color .12s, border-color .12s;
+    }
+    .leaflet-bar a + a { border-top: 0; }
+    .leaflet-bar a:hover {
+      background: var(--ink);
+      color: var(--paper);
+      border-color: var(--ink);
+    }
+    .leaflet-bar a.leaflet-disabled {
+      background: rgba(247,245,239,.55);
+      color: var(--muted);
+      cursor: not-allowed;
+    }
+    .leaflet-control-attribution {
+      background: rgba(247,245,239,.85) !important;
+      color: var(--muted) !important;
+      font-size: 10.5px !important;
+      letter-spacing: .02em;
+      padding: 2px 6px !important;
+      border: 0 !important;
+      box-shadow: none !important;
+    }
+    .leaflet-control-attribution a { color: var(--ink-soft) !important; text-decoration: none; }
+    .leaflet-popup-content-wrapper {
+      border-radius: 0;
+      box-shadow: 0 8px 28px rgba(0,0,0,.16);
+      border: 1px solid var(--line);
+      background: var(--panel);
+    }
+    .leaflet-popup-tip {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      box-shadow: none;
+    }
+    .leaflet-popup-close-button {
+      color: var(--muted) !important;
+      font-size: 18px !important;
+      font-weight: 400 !important;
+      padding: 6px 8px !important;
+    }
+    .leaflet-popup-close-button:hover { color: var(--ink) !important; }
+    .leaflet-container { background: var(--paper-deep); font-family: inherit; }
+

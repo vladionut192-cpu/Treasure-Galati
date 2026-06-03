@@ -1,0 +1,313 @@
+    /* ────────── Language picker (topbar dreapta) ──────────
+     * Un singur buton cu drapelul curent + chevron. Click → deschide
+     * dropdown cu cele 2 opțiuni. */
+    .topbar nav .lang-picker {
+      position: relative;
+      margin-left: 14px;
+      padding-left: 14px;
+      align-self: center;
+      border-left: 1px solid var(--line);
+    }
+    .lang-current {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: transparent;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 5px 9px 5px 8px;
+      cursor: pointer;
+      transition: background .12s, border-color .12s;
+      font-family: var(--font-ui);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--ink);
+      line-height: 1;
+    }
+    .lang-current:hover {
+      background: var(--paper-deep);
+      border-color: rgba(43, 31, 18, .22);
+    }
+    .lang-current[aria-expanded="true"] {
+      background: var(--paper-deep);
+      border-color: rgba(43, 31, 18, .22);
+    }
+    .lang-current .flag {
+      display: inline-flex;
+      align-items: center;
+      line-height: 0;
+    }
+    .lang-current .flag svg {
+      display: block;
+      border: 1px solid rgba(43, 31, 18, .12);
+      border-radius: 2px;
+    }
+    .lang-current .lang-chevron {
+      color: var(--ink-soft);
+      margin-left: 2px;
+      transition: transform .15s ease;
+    }
+    .lang-current[aria-expanded="true"] .lang-chevron {
+      transform: rotate(180deg);
+    }
+    /* Dropdown — position:fixed ca să scape de overflow:hidden al .topbar.
+       Poziționarea exactă (top/left) e calculată din JS la deschidere. */
+    .lang-menu {
+      position: fixed;
+      min-width: 140px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      box-shadow: 0 6px 22px rgba(43, 31, 18, .14);
+      z-index: 1300;
+      padding: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+    .lang-menu[hidden] { display: none; }
+    .lang-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: transparent;
+      border: 0;
+      border-radius: 3px;
+      padding: 8px 10px;
+      cursor: pointer;
+      text-align: left;
+      width: 100%;
+      font-family: var(--font-ui);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink);
+      transition: background .12s;
+    }
+    .lang-option:hover {
+      background: var(--paper-deep);
+    }
+    .lang-option[aria-selected="true"] {
+      background: var(--accent-soft);
+      font-weight: 700;
+    }
+    .lang-option[aria-selected="true"]::after {
+      content: '✓';
+      margin-left: auto;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .lang-option .flag svg {
+      display: block;
+      border: 1px solid rgba(43, 31, 18, .12);
+      border-radius: 2px;
+    }
+    /* Mobil: butonul curent mai mic, meniu de jos */
+    @media (max-width: 720px) {
+      .topbar nav .lang-picker {
+        margin-left: 0;
+        margin-top: 14px;
+        padding-left: 0;
+        padding-top: 14px;
+        border-left: 0;
+        border-top: 1px solid var(--line);
+        align-self: stretch;
+        display: flex;
+        justify-content: center;
+      }
+    }
+
+    /* Banner avertisment EN — apare în detail panel când descrierea e doar RO */
+    #detail-ro-notice {
+      margin: 14px 0 18px;
+      padding: 10px 14px;
+      background: rgba(184, 48, 61, .08);
+      border-left: 3px solid var(--accent-red);
+      border-radius: 0 3px 3px 0;
+      font-family: var(--font-ui);
+      font-size: 12.5px;
+      color: var(--ink-soft);
+      line-height: 1.5;
+    }
+    #detail-ro-notice[hidden] { display: none; }
+
+    /* „Știați că?" — pinuri violet cu semnul întrebării pentru curiozități */
+    .trivia-pin {
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 32% 28%, #a78bfa, #7c3aed 55%, #5b21b6 100%);
+      border: 2px solid white;
+      box-shadow: 0 2px 5px rgba(0,0,0,.45), 0 0 0 1px rgba(124,58,237,.4);
+      color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-ui);
+      font-size: 13.5px;
+      font-weight: 800;
+      line-height: 1;
+      cursor: pointer;
+      transition: transform .1s ease, box-shadow .1s ease;
+    }
+    .trivia-pin:hover {
+      transform: scale(1.15);
+      box-shadow: 0 4px 9px rgba(0,0,0,.5), 0 0 0 4px rgba(124,58,237,.25);
+    }
+    .trivia-pin.lit {
+      transform: scale(1.25);
+      box-shadow: 0 0 0 5px rgba(124,58,237,.35), 0 4px 10px rgba(0,0,0,.5);
+    }
+    .marker-cluster.trivia-cluster div {
+      background: radial-gradient(circle at 32% 28%, #a78bfa, #7c3aed 55%, #5b21b6 100%);
+      color: #fff;
+      box-shadow:
+        0 0 0 4px rgba(124, 58, 237, 0.12),
+        0 6px 16px rgba(70, 27, 130, 0.32),
+        inset 0 -3px 6px rgba(0, 0, 0, 0.18),
+        inset 0 1px 2px rgba(255, 255, 255, 0.34);
+    }
+
+    /* „Legende" — pin discret cu pictogramă scroll/manuscris. Cromatic
+       muted (aur antic vs. aur strălucitor), bordură fină, umbră subtilă.
+       La hover/lit creștem doar puțin — markerii nu trebuie să fure atenția
+       de la fotografiile portocalii ale Galațiului de altădată. */
+    .legenda-pin {
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      background: #d6b67a;       /* aur antic, fără gradient agresiv */
+      border: 1.5px solid #fff8e7;
+      box-shadow: 0 1px 3px rgba(48,30,0,.35);
+      color: #3d2a08;            /* maro închis pentru pictograma scroll */
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .legenda-pin svg { width: 13px; height: 13px; opacity: .9; }
+    .legenda-pin:hover {
+      transform: scale(1.25);
+      background: #c9a25e;
+      box-shadow: 0 2px 6px rgba(48,30,0,.45), 0 0 0 3px rgba(214,182,122,.32);
+    }
+    .legenda-pin.lit {
+      transform: scale(1.35);
+      background: #b9892f;
+      box-shadow: 0 0 0 4px rgba(185,137,47,.35), 0 3px 8px rgba(48,30,0,.5);
+    }
+    .marker-cluster.legenda-cluster div {
+      background: radial-gradient(circle at 32% 28%, #e9d39a, #c9a25e 60%, #8a5a00 100%);
+      color: #3d2a08;
+      box-shadow:
+        0 0 0 3px rgba(201, 162, 94, 0.16),
+        0 4px 12px rgba(90, 60, 0, 0.30),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.14),
+        inset 0 1px 2px rgba(255, 248, 231, 0.40);
+    }
+
+    /* Modal text (curiozități + legende) */
+    .text-modal {
+      position: fixed; inset: 0;
+      background: rgba(20, 14, 8, .72);
+      display: none;
+      align-items: center; justify-content: center;
+      z-index: 9000;
+      padding: 24px;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+    .text-modal[data-open="1"] { display: flex; }
+    .text-modal .sheet {
+      background: #fbf7ee;
+      border-radius: 4px;
+      max-width: 560px; width: 100%;
+      max-height: 90vh;
+      overflow: auto;
+      box-shadow: 0 30px 80px rgba(0,0,0,.45);
+      position: relative;
+      font-family: var(--font-body, Vollkorn, Georgia, serif);
+    }
+    .text-modal .sheet img {
+      display: block;
+      width: 100%;
+      max-height: 280px;
+      object-fit: cover;
+      background: var(--paper-deep, #e6e2d6);
+      border-radius: 4px 4px 0 0;
+    }
+    .text-modal .sheet .body-wrap {
+      padding: 24px 32px 32px;
+    }
+    .text-modal .sheet .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-family: var(--font-ui);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    /* Badge-ul de categorie e ascuns pentru ambele tipuri — meta + titlu sunt
+       suficiente, categoria mai e și pe pagina admin pentru organizare. */
+    .text-modal .sheet .badge { display: none; }
+    /* Imaginea din modal e clickable → deschide lightbox-ul mare. */
+    .text-modal .sheet img { cursor: zoom-in; }
+    .text-modal .sheet .meta {
+      font-family: var(--font-ui);
+      font-size: 12px;
+      letter-spacing: .04em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .text-modal .sheet h2 {
+      font-family: var(--font-display, "Playfair Display", Georgia, serif);
+      font-size: 24px;
+      line-height: 1.25;
+      margin: 0 0 16px;
+      color: var(--ink);
+    }
+    .text-modal .sheet p.body {
+      font-size: 15px;
+      line-height: 1.62;
+      color: var(--ink);
+      margin: 0;
+      white-space: pre-wrap;
+    }
+    .text-modal .sheet button.close {
+      position: absolute;
+      top: 10px; right: 12px;
+      background: rgba(255,255,255,.85);
+      border: 0;
+      font-size: 22px;
+      line-height: 1;
+      cursor: pointer;
+      color: var(--ink, #222);
+      padding: 2px 9px;
+      border-radius: 999px;
+      box-shadow: 0 2px 6px rgba(0,0,0,.15);
+      z-index: 2;
+    }
+    .text-modal .sheet button.close:hover { color: var(--ink); background: white; }
+    /* Buton edit (admin local — gated prin html.local-dev). */
+    .text-modal .sheet button.edit {
+      position: absolute;
+      top: 10px; left: 12px;
+      z-index: 2;
+      padding: 5px 11px;
+      border: 1px solid rgba(255,255,255,.55);
+      background: rgba(15,15,14,.7);
+      color: white;
+      font: inherit; font-size: 11px;
+      font-weight: 700; letter-spacing: .06em;
+      text-transform: uppercase;
+      cursor: pointer; border-radius: 3px;
+      transition: background .12s, border-color .12s;
+    }
+    .text-modal.trivia .sheet button.edit:hover { background: var(--accent-trivia, #7c3aed); border-color: var(--accent-trivia, #7c3aed); }
+    .text-modal.legenda .sheet button.edit:hover { background: var(--accent-legenda-deep, #8a5a00); border-color: var(--accent-legenda-deep, #8a5a00); }
+    @media (max-width: 560px) {
+      .text-modal { padding: 12px; }
+      .text-modal .sheet { max-height: 92vh; }
+      .text-modal .sheet img { max-height: 200px; }
+      .text-modal .sheet .body-wrap { padding: 20px 22px 24px; }
+      .text-modal .sheet h2 { font-size: 20px; }
+    }

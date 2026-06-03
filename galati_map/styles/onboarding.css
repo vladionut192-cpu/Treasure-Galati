@@ -1,0 +1,358 @@
+    /* ─────────── Onboarding floating tooltips ───────────
+       Mesaje plutitoare lângă elementele cheie. Verde-pin solid (#2c6157),
+       același folosit la tururi tematice. Fiecare are X; persistent în localStorage. */
+    .tour-tip {
+      position: fixed;
+      z-index: 9500;
+      background: #2c6157;
+      color: #fff;
+      padding: 12px 30px 12px 14px;
+      border: 0;
+      border-radius: 6px;
+      box-shadow: 0 4px 14px rgba(31,37,34,.18);
+      max-width: 260px;
+      font-size: 13px; line-height: 1.45;
+      pointer-events: auto;
+    }
+    .tour-tip[hidden] { display: none; }
+    .tour-tip .tip-eyebrow {
+      font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: #d6a86e; font-weight: 700;
+      margin: 0 0 4px;
+    }
+    .tour-tip .tip-title {
+      font-size: 13.5px; font-weight: 700;
+      margin: 0 0 4px; color: #fff;
+    }
+    .tour-tip .tip-body {
+      font-size: 12.5px; color: rgba(255,255,255,.85); line-height: 1.5;
+      margin: 0;
+    }
+    .tour-tip .tip-body strong { color: #fff; font-weight: 600; }
+    .tour-tip .tip-body kbd {
+      display: inline-block;
+      padding: 1px 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--paper);
+      background: rgba(255,255,255,.14);
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 3px;
+      margin: 0 2px;
+      vertical-align: 1px;
+    }
+    .tour-tip .tip-close {
+      position: absolute;
+      top: 6px; right: 6px;
+      background: transparent;
+      border: 0;
+      color: rgba(255,255,255,.55);
+      font-size: 16px; font-weight: 600;
+      width: 22px; height: 22px;
+      cursor: pointer;
+      line-height: 1;
+      border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      transition: color .12s, background .12s;
+    }
+    .tour-tip .tip-close:hover {
+      color: #fff;
+      background: rgba(255,255,255,.12);
+    }
+    /* Săgeata solidă spre element */
+    .tour-tip::before {
+      content: '';
+      position: absolute;
+      width: 8px; height: 8px;
+      background: #2c6157;
+      transform: rotate(45deg);
+      z-index: -1;
+    }
+    .tour-tip[data-arrow="left"]::before {
+      left: -4px; top: 50%; margin-top: -4px;
+    }
+    .tour-tip[data-arrow="right"]::before {
+      right: -4px; top: 50%; margin-top: -4px;
+    }
+    .tour-tip[data-arrow="top"]::before {
+      top: -4px; left: 50%; margin-left: -4px;
+    }
+    .tour-tip[data-arrow="bottom"]::before {
+      bottom: -4px; left: 50%; margin-left: -4px;
+    }
+    @media (max-width: 600px) {
+      .tour-tip { max-width: calc(100vw - 32px); font-size: 12px; }
+      .tour-tip .tip-title { font-size: 13px; }
+      .tour-tip .tip-body { font-size: 12px; }
+    }
+    .lightbox-edit {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      z-index: 5;
+      padding: 9px 14px;
+      border: 1px solid rgba(255,255,255,.45);
+      background: rgba(15,15,14,.65);
+      color: #fff;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background .12s;
+    }
+    .lightbox-edit:hover { background: #d97706; border-color: #d97706; }
+    .lightbox:not([data-open="1"]) .lightbox-edit { display: none; }
+
+    .footer-note {
+      margin-top: 28px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 11.5px;
+      line-height: 1.55;
+    }
+    .footer-note p { margin: 0 0 10px; }
+    .footer-note p:last-child { margin-bottom: 0; }
+    .footer-note strong { color: var(--ink-soft); }
+    .footer-note a {
+      color: var(--accent-deep);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .footer-note a:hover { color: var(--hot); }
+    @media (max-width: 900px) {
+      .app {
+        grid-template-columns: 1fr;
+        grid-template-rows: 50vh 1fr;
+        height: calc(100vh - var(--topbar-h) - var(--timeline-h));
+        height: calc(100dvh - var(--topbar-h) - var(--timeline-h));
+      }
+      aside.sidebar { height: 100%; border-right: 0; border-bottom: 1px solid var(--line); }
+      main.map-area { height: 100%; }
+      #map { position: absolute; }
+      .detail { width: 100vw; }
+      .timeline {
+        padding: 14px 18px 12px;
+      }
+      .timeline-meta .tick:nth-child(3),
+      .timeline-meta .tick:nth-child(4),
+      .timeline-meta .tick:nth-child(6) {
+        display: none;
+      }
+    }
+
+    /* ───── Mobile (≤720px): hartă full-screen, sidebar ascuns,
+       timeline în jos, layer-toggles pe FAB. ───── */
+    @media (max-width: 720px) {
+      /* Page-map devine flex column: app sus, timeline jos.
+       * dvh > vh ca să țină cont de bara de URL care apare/dispare în
+       * Safari/Chrome mobile — altfel timeline-ul rămânea sub fold. */
+      body.map-mode #page-map {
+        display: flex;
+        flex-direction: column;
+        height: calc(100vh - var(--topbar-h));
+        height: calc(100dvh - var(--topbar-h));
+      }
+      body.map-mode #page-map > .timeline {
+        order: 2;
+        flex: 0 0 auto;
+        border-top: 1px solid var(--line);
+        border-bottom: 0;
+        /* Bottom padding accounts for Android/iOS safe-area (gesture bar, notch in
+           landscape). Without this, the slider thumb sits in the system gesture
+           zone on devices with gesture nav (Galaxy S22, Pixel etc.) and taps get
+           swallowed by the OS instead of reaching the slider. */
+        padding: 8px 12px max(14px, env(safe-area-inset-bottom));
+        /* Anchor to viewport bottom regardless of any 100dvh discrepancy during
+           Chrome Android URL-bar animations. Background opaque so map underneath
+           doesn't bleed through. */
+        position: sticky;
+        bottom: 0;
+        z-index: 100;
+        background: var(--paper);
+      }
+      /* Header timeline pe mobil — pe un singur rând, fără subtitlu wrap */
+      .timeline-header {
+        gap: 8px;
+        margin-bottom: 6px;
+      }
+      .timeline-header .timeline-title {
+        font-size: 11px;
+        letter-spacing: 0.08em;
+      }
+      .timeline-header .timeline-sub { display: none; }
+      .timeline-header .timeline-icon svg { width: 14px; height: 14px; }
+      /* Track înălțime mai mare pe mobil pentru touch target generos (≥44px).
+         Slider input rămâne 36px vizibil dar are hitbox 44px sus/jos. */
+      .timeline-track { height: 44px; }
+      .timeline-events { top: 16px; }
+      .timeline-events .event { width: 8px; height: 8px; }
+      .timeline-eras { top: 21px; }
+      .timeline input[type=range] { height: 44px; }
+      .timeline input[type=range]::-webkit-slider-runnable-track { height: 44px; }
+      .timeline input[type=range]::-moz-range-track { height: 44px; }
+      .timeline input[type=range]::-webkit-slider-thumb { margin-top: 14px; }
+      body.map-mode #page-map > main.app {
+        order: 1;
+        flex: 1 1 auto;
+        min-height: 0;
+        height: auto;
+        grid-template-rows: 1fr;
+      }
+      /* Sidebar complet ascuns; harta ocupă tot */
+      aside.sidebar { display: none !important; }
+      main.map-area { height: 100%; }
+      #map { position: absolute; inset: 0; }
+    }
+
+    /* Mobile FAB-uri pentru straturi + tururi + aventuri — ascunse pe desktop.
+       Plasate în bottom-left ca să nu conflict cu Leaflet zoom (top-left)
+       sau year-overlay (top-right la timeline engaged). */
+    .layers-fab,
+    .tours-fab,
+    .hunts-fab {
+      display: none;
+      position: absolute;
+      left: 12px;
+      z-index: 880;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: var(--panel);
+      color: var(--accent-deep);
+      border: 1px solid var(--line);
+      box-shadow: 0 4px 12px rgba(0,0,0,.12);
+      cursor: pointer;
+      align-items: center; justify-content: center;
+      transition: transform .12s ease, background .12s;
+    }
+    /* bottom margins account for Android safe-area (gesture nav bar). */
+    .layers-fab { bottom: max(16px, calc(env(safe-area-inset-bottom) + 8px)); }
+    .tours-fab  { bottom: max(72px, calc(env(safe-area-inset-bottom) + 64px)); }
+    .hunts-fab  { bottom: max(128px, calc(env(safe-area-inset-bottom) + 120px)); color: #8b1e22; }
+    .layers-fab svg,
+    .tours-fab svg,
+    .hunts-fab svg { width: 20px; height: 20px; }
+    .layers-fab[aria-expanded="true"],
+    .tours-fab[aria-expanded="true"] {
+      background: var(--accent-deep);
+      color: #fff;
+    }
+    .hunts-fab[aria-expanded="true"] {
+      background: #8b1e22;
+      color: #fff;
+    }
+    .layers-sheet {
+      display: none;
+      position: fixed;
+      left: 0; right: 0;
+      bottom: 0;
+      z-index: 1300;
+      background: var(--panel);
+      border-top: 1px solid var(--line);
+      border-radius: 16px 16px 0 0;
+      box-shadow: 0 -8px 24px rgba(0,0,0,.18);
+      max-height: 70vh;
+      overflow: hidden;
+      flex-direction: column;
+      transform: translateY(100%);
+      transition: transform .25s cubic-bezier(.21,.61,.34,1);
+    }
+    .layers-sheet:not([hidden]) { display: flex; }
+    .layers-sheet.open { transform: translateY(0); }
+    .layers-sheet-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px 10px;
+      border-bottom: 1px solid var(--line-soft);
+    }
+    .layers-sheet-header h3 {
+      margin: 0;
+      font-size: 12px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 700;
+    }
+    .layers-sheet-close {
+      background: transparent;
+      border: 0;
+      font-size: 24px;
+      line-height: 1;
+      color: var(--muted);
+      cursor: pointer;
+      padding: 0 4px;
+    }
+    .layers-sheet-body {
+      padding: 8px 18px 22px;
+      overflow-y: auto;
+    }
+    .layers-sheet-backdrop {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.32);
+      z-index: 1290;
+      opacity: 0;
+      transition: opacity .25s;
+    }
+    .layers-sheet-backdrop:not([hidden]) { display: block; }
+    .layers-sheet-backdrop.open { opacity: 1; }
+
+    @media (max-width: 720px) {
+      /* FAB-urile de straturi + tururi + aventuri vizibile pe mobil */
+      .layers-fab,
+      .tours-fab,
+      .hunts-fab { display: flex; }
+      /* Toggle-urile mutate în sheet — păstrează pill-style, doar mai aerisit */
+      .layers-sheet-body .toggle-overlay { padding: 12px 14px; }
+      /* Tours panel + Hunts panel portat în sheet — forțăm vizibilitatea
+         (indiferent de starea tab-urilor desktop care îi pun pe `hidden`). */
+      .layers-sheet-body #panel-tours,
+      .layers-sheet-body #panel-hunts { display: block !important; }
+      /* În sheet-ul mobil, tour-cards / hunt-cards merg pe coloană simplă. */
+      .layers-sheet-body .tour-cards,
+      .layers-sheet-body .hunt-cards { display: block; }
+      .layers-sheet-body .tour-cards > *,
+      .layers-sheet-body .hunt-cards > * { margin-bottom: 14px; }
+      /* FAB-urile de admin (dev only) — la dreapta-jos ca să nu colideze
+         cu layers/tours/hunts FAB de la stânga-jos. */
+      .add-pin-fab { bottom: 16px; right: 16px; }
+      .add-photo-fab { bottom: 76px; right: 16px; }
+    }
+
+    @media (max-width: 520px) {
+      aside.sidebar { padding: 22px 16px 28px; }
+      .tabs .tab {
+        font-size: 13px;
+        padding: 10px 4px;
+      }
+      .toggle-overlay {
+        gap: 8px;
+        padding: 11px 12px;
+      }
+      .toggle-overlay .lbl {
+        white-space: normal;
+      }
+      .toggle-overlay .lbl-meta {
+        width: 100%;
+        margin-left: 42px;
+      }
+      .detail .scroll { padding: 24px 20px 52px; }
+      .detail h2 { font-size: 26px; }
+      /* Compact popup on mobile — narrower, shorter image, tighter padding so
+         the card doesn't dominate the screen. */
+      .popup { width: min(240px, 72vw); }
+      .popup .pop-img { height: 140px; margin: -20px -20px 12px; width: calc(100% + 40px); }
+      .popup h3 { font-size: 15px; line-height: 1.2; margin: 0 0 6px; }
+      .popup p { font-size: 12.5px; -webkit-line-clamp: 3; line-clamp: 3; }
+      .popup .pop-num { font-size: 10.5px; margin-bottom: 6px; }
+      .popup .popup-actions { margin-top: 2px; }
+      .leaflet-popup-content-wrapper { padding: 20px !important; }
+      .timeline { padding-inline: 16px; }
+      .timeline .timeline-row { font-size: 10px; }
+      .timeline-meta .tick span { font-size: 9px; }
+    }
+

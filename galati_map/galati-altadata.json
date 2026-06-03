@@ -1762,5 +1762,14 @@
     "lat": 45.436508,
     "lon": 28.056325,
     "year": 1970
+  },
+  {
+    "src": "../assets/images/local/zona-potcoava-de-aur-ce357e1c.jpg",
+    "caption_ro": "Zona Potcoava de Aur",
+    "caption_en": "",
+    "folder": "local",
+    "lat": 45.432901,
+    "lon": 28.051309,
+    "year": 1970
   }
 ]

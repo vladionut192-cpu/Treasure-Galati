@@ -1,0 +1,441 @@
+    /* ────────── Heritage polish layer ──────────
+       Coherent interwar/editorial skin applied after the functional map CSS. */
+    h1, h2, h3,
+    .page-content h1.page-title,
+    #page-stories .battle-article h1,
+    #page-stories .ev-card .card-title,
+    .tour-title,
+    .detail h2 {
+      font-family: var(--font-headline);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    /* Body prose — paragraphe lungi devin serif lectura (Vollkorn) */
+    .page-content p,
+    .detail .scroll p,
+    .detail .excerpt,
+    .tour-card .desc,
+    .hunt-card .desc,
+    .leaflet-popup-content p,
+    .ev-card p {
+      font-family: var(--font-body);
+      font-weight: 400;
+      line-height: 1.65;
+    }
+    /* Numere & date — IBM Plex Mono pentru ritm editorial */
+    .timeline-meta .tick span,
+    .map-year-overlay .year-num,
+    #year-num,
+    .demo-pop,
+    .stat-num {
+      font-family: var(--font-mono);
+      font-feature-settings: "tnum" 1, "ss01" 1;
+    }
+    /* Section labels în topbar / chips — DM Sans uppercase */
+    .topbar nav button,
+    .topbar nav a.nav-link,
+    .chip,
+    .tab,
+    .filter-group-label,
+    .toggle-overlay,
+    .lbl,
+    .lbl-meta {
+      font-family: var(--font-ui);
+    }
+    .topbar .logo {
+      color: var(--accent-deep);
+      letter-spacing: .14em;
+      font-family: var(--font-ui);
+    }
+
+    aside.sidebar {
+      background: var(--panel);
+      border-right-color: var(--line);
+      box-shadow: none;
+    }
+
+    .sidebar-intro {
+      position: relative;
+      margin: 0 0 18px;
+      padding: 22px 22px 18px;
+      border: 1px solid var(--line);
+      /* Textură ziar vechi cu un voal subtil ca să rămână textul lizibil */
+      background:
+        linear-gradient(rgba(241, 235, 225, 0.74), rgba(241, 235, 225, 0.74)),
+        url('../../assets/images/bg-ziar.jpg') center / cover no-repeat,
+        var(--paper-deep);
+      box-shadow: 0 1px 3px rgba(43, 31, 18, .06);
+    }
+
+    .sidebar-intro::before {
+      display: none;
+    }
+
+    .sidebar-kicker {
+      margin: 0 0 8px;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--accent-red);
+      font-family: var(--font-ui);
+    }
+
+    .sidebar-intro h1 {
+      position: relative;
+      margin: 0 0 8px;
+      font-family: var(--font-headline);
+      font-size: clamp(24px, 3vw, 31px);
+      line-height: 1.06;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      text-wrap: balance;
+    }
+
+    .sidebar-intro p:last-child {
+      position: relative;
+      margin: 0;
+      color: var(--ink-soft);
+      font-family: var(--font-body);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .tabs {
+      gap: 0;
+      padding: 0;
+      background: transparent;
+      border: 0;
+      border-bottom: 1px solid var(--line);
+      border-radius: 0;
+    }
+
+    .tabs .tab {
+      border-radius: 0;
+      background: transparent;
+      color: var(--muted);
+      padding: 12px 4px;
+      white-space: nowrap;
+      font-family: var(--font-ui);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0;
+      text-transform: none;
+      position: relative;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+    }
+    .tabs .tab:hover {
+      color: var(--ink);
+      background: transparent;
+    }
+    .tabs .tab.active {
+      background: transparent;
+      color: var(--ink);
+      box-shadow: none;
+      border-bottom-color: var(--ink);
+    }
+
+    .field {
+      padding: 12px 12px 11px;
+      border: 1px solid var(--line);
+      background: var(--paper);
+      border-radius: 0;
+    }
+
+    .field:focus-within {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-soft);
+    }
+
+    .field-label,
+    .filter-group-label,
+    .tour-stops-heading,
+    .timeline-header .timeline-title {
+      color: var(--accent-deep);
+      font-family: var(--font-ui);
+      letter-spacing: 0.10em;
+    }
+
+    .filter-chips .chip,
+    .tour-lang-bar button {
+      border: 1px solid var(--line);
+      background: var(--paper);
+      border-radius: 0;
+      font-family: var(--font-ui);
+      color: var(--ink-soft);
+    }
+
+    .filter-chips .chip.active,
+    .tour-lang-bar button.active {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: var(--paper);
+      box-shadow: none;
+    }
+
+    .timeline {
+      background: var(--paper-deep);
+      border-top-color: var(--line);
+      border-bottom-color: var(--line);
+      box-shadow: none;
+    }
+
+    .timeline-header .timeline-icon {
+      color: var(--accent-red);
+    }
+
+    .timeline-eras {
+      height: 3px;
+      box-shadow: 0 1px 0 rgba(255,255,255,.4);
+    }
+
+    .timeline-events .event {
+      background: var(--paper);
+      border-color: var(--ink);
+      border-radius: 0;
+      transform: translateX(-50%) rotate(45deg);
+    }
+
+    .timeline-events .event:hover,
+    .timeline-events .event.near {
+      transform: translateX(-50%) rotate(45deg) scale(1.45);
+      background: var(--accent-red);
+      border-color: var(--paper);
+    }
+
+    /* Slider thumb — pulse animat cât utilizatorul n-a apucat de el încă, ca să
+     * semnaleze că se poate trage. Ring-ul roșu pulsează în jurul pătratului. */
+    @keyframes timelineThumbPulse {
+      0%   { box-shadow: 0 0 0 0   rgba(184, 48, 61, .55), 0 0 0 3px var(--paper), 0 2px 6px rgba(43, 31, 18, .24); }
+      70%  { box-shadow: 0 0 0 14px rgba(184, 48, 61, 0),  0 0 0 3px var(--paper), 0 2px 6px rgba(43, 31, 18, .24); }
+      100% { box-shadow: 0 0 0 0   rgba(184, 48, 61, 0),  0 0 0 3px var(--paper), 0 2px 6px rgba(43, 31, 18, .24); }
+    }
+    .timeline input[type=range]::-webkit-slider-thumb {
+      background: var(--accent-red);
+      border-radius: 0;
+      transform: rotate(45deg);
+      box-shadow: 0 0 0 3px var(--paper), 0 2px 6px rgba(43, 31, 18, .24);
+      animation: timelineThumbPulse 1.8s ease-out infinite;
+    }
+    .timeline input[type=range]::-moz-range-thumb {
+      background: var(--accent-red);
+      border-radius: 0;
+      transform: rotate(45deg);
+      box-shadow: 0 0 0 3px var(--paper), 0 2px 6px rgba(43, 31, 18, .24);
+      animation: timelineThumbPulse 1.8s ease-out infinite;
+    }
+    /* După prima interacțiune (timeline.engaged) sau hover/focus → oprim pulse */
+    .timeline.engaged input[type=range]::-webkit-slider-thumb,
+    .timeline input[type=range]:hover::-webkit-slider-thumb,
+    .timeline input[type=range]:focus::-webkit-slider-thumb,
+    .timeline input[type=range]:active::-webkit-slider-thumb {
+      animation: none;
+    }
+    .timeline.engaged input[type=range]::-moz-range-thumb,
+    .timeline input[type=range]:hover::-moz-range-thumb,
+    .timeline input[type=range]:focus::-moz-range-thumb,
+    .timeline input[type=range]:active::-moz-range-thumb {
+      animation: none;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .timeline input[type=range]::-webkit-slider-thumb,
+      .timeline input[type=range]::-moz-range-thumb {
+        animation: none;
+      }
+    }
+
+    .map-area {
+      background: var(--paper-deep);
+    }
+
+    .leaflet-container {
+      background: var(--paper-deep);
+      filter: none;
+    }
+
+    .leaflet-bar a,
+    .leaflet-bar a:hover,
+    .leaflet-bar a:focus,
+    .leaflet-popup-content-wrapper,
+    .map-year-overlay,
+    .timeline-current-event {
+      border-color: var(--line);
+      background: var(--panel);
+    }
+
+    .marker-bubble {
+      background: var(--accent-deep);
+      border-color: var(--paper);
+      box-shadow: 0 2px 0 rgba(43,31,18,.20), 0 0 0 1px rgba(45,47,90,.18);
+    }
+
+    .marker-bubble.active {
+      background: var(--accent-red);
+      box-shadow: 0 0 0 4px rgba(184,48,61,.16), 0 5px 14px rgba(43,31,18,.22);
+    }
+
+    .toggle-overlay,
+    .tour-card,
+    .hunt-card,
+    #page-stories .ev-card,
+    #page-stories .comic-reader,
+    .detail {
+      border-color: var(--line);
+      background: var(--panel);
+      box-shadow: 0 1px 2px rgba(43, 31, 18, .04);
+    }
+
+    .toggle-overlay {
+      border-left: 3px solid transparent;
+      border-radius: 999px;
+    }
+
+    .toggle-overlay:hover,
+    .toggle-overlay[aria-pressed="true"] {
+      border-left-color: var(--accent-red);
+      background: var(--paper-deep);
+    }
+
+    .tour-card:hover,
+    .hunt-card:hover,
+    #page-stories .ev-card:hover {
+      border-color: var(--accent-ochre);
+      box-shadow: 0 6px 18px rgba(43, 31, 18, .10);
+    }
+
+    .count {
+      color: var(--accent-red);
+      font-weight: 700;
+      font-family: var(--font-mono);
+    }
+
+    .list .item,
+    .tour-stops .stop,
+    .hunt-stops .stop {
+      border-bottom-color: var(--line);
+    }
+
+    .item .num,
+    .tour-stops .stop .num {
+      background: var(--ink);
+      color: var(--paper);
+      font-family: var(--font-mono);
+    }
+
+    .detail {
+      background: var(--panel);
+    }
+
+    .detail .close,
+    .add-pin-fab,
+    .add-photo-fab,
+    .ar-pilot-btn {
+      border-radius: 0;
+    }
+    /* .help-fab keeps its circular shape (overrides the heritage-polish layer) */
+
+    .help-fab {
+      background: var(--accent-deep);
+      color: var(--paper);
+      box-shadow: 0 4px 10px rgba(45,47,90,.22);
+    }
+
+    .help-fab:hover {
+      background: var(--ink);
+    }
+
+    .tour-tip {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      color: var(--ink);
+      border-radius: 0;
+      box-shadow: 0 8px 22px rgba(43, 31, 18, .14);
+    }
+
+    .tour-tip .tip-eyebrow {
+      color: var(--accent-red);
+      font-family: var(--font-ui);
+    }
+
+    .tour-tip .tip-title {
+      color: var(--ink);
+      font-family: var(--font-headline);
+      letter-spacing: -0.01em;
+    }
+
+    .tour-tip .tip-body {
+      color: var(--ink-soft);
+      font-family: var(--font-body);
+    }
+
+    .tour-tip .tip-body strong {
+      color: var(--accent-red);
+    }
+
+    .tour-tip .tip-close {
+      color: var(--muted);
+    }
+
+    .tour-tip::before {
+      border-color: var(--line);
+    }
+
+    .page-content {
+      max-width: 850px;
+    }
+
+    .page-content .label-eyebrow,
+    #page-stories .battle-article .eyebrow,
+    #page-stories .ev-card .card-year,
+    .tour-meta,
+    .hunt-card .body em {
+      color: var(--accent-red);
+      font-family: var(--font-ui);
+      letter-spacing: 0.06em;
+    }
+
+    .stats-grid,
+    #page-stories .battle-article .stat {
+      border-color: var(--line);
+      background: var(--line);
+    }
+
+    .stat,
+    #page-stories .battle-article .stat {
+      background: var(--panel);
+    }
+    .stat .stat-num,
+    .stat strong {
+      font-family: var(--font-mono);
+      color: var(--ink);
+    }
+
+    .footer-note {
+      border-top: 1px solid var(--line);
+      margin-top: 24px;
+      padding-top: 18px;
+    }
+
+    .footer-note p {
+      color: var(--muted);
+    }
+
+    /* ─── Timeline: ascunde TOATE rombulețele de eveniment, mai puțin cele care
+     * marchează granița dintre ere (start / sfârșit de epocă). Lista anilor
+     * derivă din benzile `.era-*` din header-ul timeline-ului: 1445, 1538,
+     * 1829, 1916, 1918, 1939*, 1944, 1989, 2026*. Doar anii la care există
+     * efectiv un eveniment în HTML rămân vizibili. Folosim visibility ca să
+     * păstrăm spațiul dar fără pointer-events (nu mai sunt interactive). */
+    .timeline-events .event { visibility: hidden; pointer-events: none; }
+    .timeline-events .event[data-year="1445"],
+    .timeline-events .event[data-year="1538"],
+    .timeline-events .event[data-year="1829"],
+    .timeline-events .event[data-year="1916"],
+    .timeline-events .event[data-year="1918"],
+    .timeline-events .event[data-year="1944"],
+    .timeline-events .event[data-year="1989"] {
+      visibility: visible;
+      pointer-events: auto;
+    }
+

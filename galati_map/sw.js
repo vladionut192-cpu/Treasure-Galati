@@ -20,6 +20,23 @@ const PRECACHE_URLS = [
   'piata-regala-ar.html',
   'piata_regala_buildings.geojson',
   'styles/main.css',
+  // Partiale CSS importate de main.css (refactor 2026-06): trebuie pre-cache-uite
+  // explicit, altfel offline pagina ar fi nestilată (main.css are doar @import-uri).
+  'styles/base.css',
+  'styles/topbar.css',
+  'styles/pages.css',
+  'styles/widgets.css',
+  'styles/tooltip.css',
+  'styles/hunts.css',
+  'styles/onboarding.css',
+  'styles/polish.css',
+  'styles/layer-bubbles.css',
+  'styles/language-picker.css',
+  // CSS + JS specifice paginii lists.html (extrase din inline la refactor 2026-06)
+  'styles/lists.css',
+  'js/lists.head.js',
+  'js/lists.js',
+  'js/boot.js',
   'js/main.js',
   'js/i18n.js',
   'vendor/leaflet/leaflet.css',

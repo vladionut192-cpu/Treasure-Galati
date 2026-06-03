@@ -45,8 +45,20 @@ Aplicatia Treasure Galati/
 design inspiration/
 titles.txt
 
+# Foldere de lucru / sursă — materiale brute folosite la curatare, NU parte din site:
+#   ocr/                  — PDF scanat + script OCR (~789MB, artefacte de procesare)
+#   Batalia de la Galati/ — imagini sursă + benzi desenate pt. articolul 1918 (~92MB)
+#   Poze galati/          — pool de fotografii istorice/social înainte de optimizare (~40MB)
+#   Branding si Grafice/  — surse de design (.psd, .svg, ~23MB)
+# Versiunile finale, optimizate, ajung în assets/images/ și sunt cele deploiate.
+ocr/
+Batalia de la Galati/
+Poze galati/
+Branding si Grafice/
+
 # Generate-on-deploy: SEO static pages (scripts/generate_static_pages.py)
 # Acestea sunt regenerate de CI înainte de upload, deci nu trebuie tracked.
 galati_map/loc/
 galati_map/tour/
 galati_map/hunt/
+.gstack/
