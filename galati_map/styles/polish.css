@@ -190,18 +190,25 @@
       box-shadow: 0 1px 0 rgba(255,255,255,.4);
     }
 
+    /* Gradații de riglă: linii verticale subțiri în loc de rombulețe.
+       Stilul de bază = gradație MINORĂ (scurtă, discretă, decorativă). Anii
+       de graniță de epocă sunt promovați la gradații MAJORE mai jos. */
     .timeline-events .event {
-      background: var(--paper);
-      border-color: var(--ink);
+      width: 1.5px;
+      height: 9px;
+      top: 3px;
+      border: 0;
       border-radius: 0;
-      transform: translateX(-50%) rotate(45deg);
+      background: rgba(43, 31, 18, .4);
+      box-shadow: none;
+      transform: translateX(-50%);
     }
 
     .timeline-events .event:hover,
     .timeline-events .event.near {
-      transform: translateX(-50%) rotate(45deg) scale(1.45);
+      transform: translateX(-50%) scaleY(1.3);
       background: var(--accent-red);
-      border-color: var(--paper);
+      border-color: transparent;
     }
 
     /* Slider thumb — pulse animat cât utilizatorul n-a apucat de el încă, ca să
@@ -211,18 +218,25 @@
       70%  { box-shadow: 0 0 0 14px rgba(184, 48, 61, 0),  0 0 0 3px var(--paper), 0 2px 6px rgba(43, 31, 18, .24); }
       100% { box-shadow: 0 0 0 0   rgba(184, 48, 61, 0),  0 0 0 3px var(--paper), 0 2px 6px rgba(43, 31, 18, .24); }
     }
+    /* Cursorul slider-ului = o linie verticală (ca pe cursorul unei rigle),
+       nu un romb. Bară roșie subțire și înaltă, ușor de prins. */
     .timeline input[type=range]::-webkit-slider-thumb {
+      width: 6px;
+      height: 20px;
+      margin-top: 7px;
       background: var(--accent-red);
-      border-radius: 0;
-      transform: rotate(45deg);
-      box-shadow: 0 0 0 3px var(--paper), 0 2px 6px rgba(43, 31, 18, .24);
+      border-radius: 1px;
+      transform: none;
+      box-shadow: 0 0 0 2px var(--paper), 0 2px 6px rgba(43, 31, 18, .24);
       animation: timelineThumbPulse 1.8s ease-out infinite;
     }
     .timeline input[type=range]::-moz-range-thumb {
+      width: 6px;
+      height: 20px;
       background: var(--accent-red);
-      border-radius: 0;
-      transform: rotate(45deg);
-      box-shadow: 0 0 0 3px var(--paper), 0 2px 6px rgba(43, 31, 18, .24);
+      border-radius: 1px;
+      transform: none;
+      box-shadow: 0 0 0 2px var(--paper), 0 2px 6px rgba(43, 31, 18, .24);
       animation: timelineThumbPulse 1.8s ease-out infinite;
     }
     /* După prima interacțiune (timeline.engaged) sau hover/focus → oprim pulse */
@@ -421,13 +435,11 @@
       color: var(--muted);
     }
 
-    /* ─── Timeline: ascunde TOATE rombulețele de eveniment, mai puțin cele care
-     * marchează granița dintre ere (start / sfârșit de epocă). Lista anilor
-     * derivă din benzile `.era-*` din header-ul timeline-ului: 1445, 1538,
-     * 1829, 1916, 1918, 1939*, 1944, 1989, 2026*. Doar anii la care există
-     * efectiv un eveniment în HTML rămân vizibili. Folosim visibility ca să
-     * păstrăm spațiul dar fără pointer-events (nu mai sunt interactive). */
-    .timeline-events .event { visibility: hidden; pointer-events: none; }
+    /* ─── Timeline ca o riglă: toate evenimentele sunt gradații minore
+     * (decorative, non-interactive). Anii care marchează granița dintre ere
+     * — 1445, 1538, 1829, 1916, 1918, 1944, 1989 — devin gradații MAJORE:
+     * linii mai înalte, mai întunecate și interactive (cu etichetă la hover). */
+    .timeline-events .event { pointer-events: none; }
     .timeline-events .event[data-year="1445"],
     .timeline-events .event[data-year="1538"],
     .timeline-events .event[data-year="1829"],
@@ -435,7 +447,10 @@
     .timeline-events .event[data-year="1918"],
     .timeline-events .event[data-year="1944"],
     .timeline-events .event[data-year="1989"] {
-      visibility: visible;
+      width: 2px;
+      height: 16px;
+      top: 0;
+      background: var(--ink);
       pointer-events: auto;
     }
 

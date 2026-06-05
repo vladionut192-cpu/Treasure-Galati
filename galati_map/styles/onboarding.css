@@ -15,6 +15,51 @@
       pointer-events: auto;
     }
     .tour-tip[hidden] { display: none; }
+
+    /* ── Ghid pas-cu-pas: overlay (blochează interacțiunea) + spotlight ── */
+    .tour-overlay {
+      position: fixed; inset: 0;
+      z-index: 9480;
+      background: transparent;
+      cursor: default;
+    }
+    .tour-overlay[hidden] { display: none; }
+    /* Spotlight: gaura luminoasă peste secțiunea curentă; restul ecranului e
+       întunecat prin box-shadow uriaș. Tranziție lină între pași. */
+    .tour-spotlight {
+      position: fixed;
+      z-index: 9490;
+      border-radius: 8px;
+      box-shadow: 0 0 0 9999px rgba(20, 14, 6, .74);
+      pointer-events: none;
+      transition: left .28s ease, top .28s ease, width .28s ease, height .28s ease;
+    }
+    .tour-spotlight[hidden] { display: none; }
+
+    /* Footer de navigare injectat în fiecare tooltip: Înapoi · contor · Următor */
+    .tour-tip .tip-nav {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 8px; margin-top: 12px;
+    }
+    .tour-tip .tip-step {
+      font-family: var(--font-mono);
+      font-size: 11px; font-weight: 600;
+      color: rgba(255,255,255,.6);
+    }
+    .tour-tip .tip-back,
+    .tour-tip .tip-next {
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.22);
+      color: #fff; font-weight: 600; font-size: 12px;
+      padding: 5px 12px; border-radius: 5px; cursor: pointer;
+      transition: background .12s, opacity .12s;
+    }
+    .tour-tip .tip-next {
+      background: #d6a86e; border-color: #d6a86e; color: #2b1f12;
+    }
+    .tour-tip .tip-back:hover { background: rgba(255,255,255,.22); }
+    .tour-tip .tip-next:hover { background: #e0b885; }
+    .tour-tip .tip-back:disabled { opacity: .35; cursor: default; }
     .tour-tip .tip-eyebrow {
       font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
       color: #d6a86e; font-weight: 700;
@@ -189,12 +234,14 @@
          Slider input rămâne 36px vizibil dar are hitbox 44px sus/jos. */
       .timeline-track { height: 44px; }
       .timeline-events { top: 16px; }
-      .timeline-events .event { width: 8px; height: 8px; }
+      /* Gradații de riglă pe mobil — linii verticale subțiri (minorele).
+         Anii majori își iau înălțimea din polish.css (selector pe data-year). */
+      .timeline-events .event { width: 1.5px; height: 12px; }
       .timeline-eras { top: 21px; }
       .timeline input[type=range] { height: 44px; }
       .timeline input[type=range]::-webkit-slider-runnable-track { height: 44px; }
       .timeline input[type=range]::-moz-range-track { height: 44px; }
-      .timeline input[type=range]::-webkit-slider-thumb { margin-top: 14px; }
+      .timeline input[type=range]::-webkit-slider-thumb { margin-top: 12px; }
       body.map-mode #page-map > main.app {
         order: 1;
         flex: 1 1 auto;

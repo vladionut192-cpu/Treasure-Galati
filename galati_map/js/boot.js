@@ -83,26 +83,72 @@
       });
     })();
 
-    // ─── Onboarding — floating tooltips ───
-    // 6 mesaje plutitoare pe elementele cheie. Apar automat la prima vizită,
-    // fiecare cu X de închidere individual. Persistent per-tooltip via
-    // localStorage `tg.tip.{id}.seen`. Buton mic discret în topbar pentru reset.
+    // ─── Onboarding — ghid pas cu pas (walkthrough) ───
+    // Un singur tooltip vizibil pe rând, cu spotlight peste secțiunea curentă
+    // (restul ecranului întunecat), butoane Înapoi / Următor și închidere oricând
+    // (X sau Esc). Persistent printr-un singur flag localStorage `tg.tour.seen`.
+    // Pe mobil rămâne sheet-ul dedicat (#mobile-help-sheet).
     (function () {
-      const tipKey = (id) => `tg.tip.${id}.seen`;
-      const allTips = () => document.querySelectorAll('.tour-tip[data-tip-id]');
+      const TOUR_SEEN_KEY = 'tg.tour.seen';
+      // Ordinea narativă a pașilor (după data-tip-id); restul, în ordinea din DOM.
+      const STEP_ORDER = ['header', 'timeline', 'tabs', 'layers', 'map-point', 'help'];
 
-      function isTipSeen(id) {
-        try { return localStorage.getItem(tipKey(id)) === '1'; }
+      function isTourSeen() {
+        try { return localStorage.getItem(TOUR_SEEN_KEY) === '1'; }
         catch (e) { return false; }
       }
-      function markTipSeen(id) {
-        try { localStorage.setItem(tipKey(id), '1'); } catch (e) {}
+      function markTourSeen() {
+        try { localStorage.setItem(TOUR_SEEN_KEY, '1'); } catch (e) {}
       }
-      function clearAllTipsSeen() {
-        try {
-          allTips().forEach(t => localStorage.removeItem(tipKey(t.dataset.tipId)));
-        } catch (e) {}
+
+      // Lista ordonată de pași (tooltip-uri)
+      function tipList() {
+        const tips = Array.from(document.querySelectorAll('.tour-tip[data-tip-id]'));
+        tips.sort((a, b) => {
+          const ia = STEP_ORDER.indexOf(a.dataset.tipId);
+          const ib = STEP_ORDER.indexOf(b.dataset.tipId);
+          return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib);
+        });
+        return tips;
       }
+
+      // Overlay (blochează interacțiunea cu UI-ul de dedesubt) + spotlight
+      // (gaura luminoasă + întunericul din jur). Create lazy, o singură dată.
+      let overlayEl = null, spotlightEl = null;
+      function ensureChrome() {
+        if (!overlayEl) {
+          overlayEl = document.createElement('div');
+          overlayEl.className = 'tour-overlay';
+          overlayEl.hidden = true;
+          document.body.appendChild(overlayEl);
+        }
+        if (!spotlightEl) {
+          spotlightEl = document.createElement('div');
+          spotlightEl.className = 'tour-spotlight';
+          spotlightEl.hidden = true;
+          document.body.appendChild(spotlightEl);
+        }
+      }
+
+      // Injectează footer-ul de navigare (Înapoi · contor · Următor) o singură dată.
+      function ensureNav(tip) {
+        if (tip.querySelector('.tip-nav')) return;
+        const nav = document.createElement('div');
+        nav.className = 'tip-nav';
+        nav.innerHTML =
+          '<button type="button" class="tip-back"></button>' +
+          '<span class="tip-step"></span>' +
+          '<button type="button" class="tip-next"></button>';
+        tip.appendChild(nav);
+        nav.querySelector('.tip-back').addEventListener('click', () => goToStep(current - 1));
+        nav.querySelector('.tip-next').addEventListener('click', () => {
+          if (current >= steps.length - 1) endTour(true);
+          else goToStep(current + 1);
+        });
+      }
+
+      let steps = [];
+      let current = -1;
 
       function positionTip(tip) {
         const targetSel = tip.dataset.target;
@@ -123,6 +169,10 @@
             break;
           case 'below-left':
             left = r.left + 16;
+            top = r.bottom + gap;
+            break;
+          case 'below-right':
+            left = r.right - tipR.width;
             top = r.bottom + gap;
             break;
           case 'above-center':
@@ -158,102 +208,101 @@
         tip.style.top = top + 'px';
       }
 
-      function rectsOverlap(a, b, padding) {
-        padding = padding || 0;
-        return !(a.right + padding < b.left
-              || b.right + padding < a.left
-              || a.bottom + padding < b.top
-              || b.bottom + padding < a.top);
-      }
-      function avoidTipOverlap(tip, placedRects) {
-        let r = tip.getBoundingClientRect();
-        const margin = 12;
-        const maxShifts = 8;
-        // Multi-pass: keep shifting until no overlap or exhausted attempts
-        for (let attempts = 0; attempts < maxShifts; attempts++) {
-          let conflict = null;
-          for (const pr of placedRects) {
-            if (rectsOverlap(r, pr, margin)) {
-              conflict = pr; break;
-            }
-          }
-          if (!conflict) break;
-          // Try moving below conflict
-          const newTopDown = conflict.bottom + margin;
-          if (newTopDown + r.height < window.innerHeight - margin) {
-            tip.style.top = newTopDown + 'px';
-            r = tip.getBoundingClientRect();
-            continue;
-          }
-          // Try moving above conflict
-          const newTopUp = conflict.top - r.height - margin;
-          if (newTopUp > margin) {
-            tip.style.top = newTopUp + 'px';
-            r = tip.getBoundingClientRect();
-            continue;
-          }
-          // No vertical space; try moving right
-          const newLeftRight = conflict.right + margin;
-          if (newLeftRight + r.width < window.innerWidth - margin) {
-            tip.style.left = newLeftRight + 'px';
-            r = tip.getBoundingClientRect();
-            continue;
-          }
-          break; // Give up — leave overlap
-        }
-        return r;
-      }
-      function showTooltips() {
-        const placedRects = [];
-        allTips().forEach(tip => {
-          if (isTipSeen(tip.dataset.tipId)) {
-            tip.hidden = true;
-            return;
-          }
-          positionTip(tip);
-          if (!tip.hidden) {
-            const r = avoidTipOverlap(tip, placedRects);
-            placedRects.push(r);
-          }
-        });
-      }
-      function hideAllTooltips() {
-        allTips().forEach(t => { t.hidden = true; });
-      }
-      function dismissTip(tip) {
-        tip.hidden = true;
-        markTipSeen(tip.dataset.tipId);
+      // Poziționează spotlight-ul (gaura luminoasă) peste o țintă.
+      function positionSpotlight(target) {
+        const r = target.getBoundingClientRect();
+        const pad = 6;
+        spotlightEl.hidden = false;
+        spotlightEl.style.left = Math.max(0, r.left - pad) + 'px';
+        spotlightEl.style.top = Math.max(0, r.top - pad) + 'px';
+        spotlightEl.style.width = Math.min(window.innerWidth, r.width + pad * 2) + 'px';
+        spotlightEl.style.height = Math.min(window.innerHeight, r.height + pad * 2) + 'px';
       }
 
-      // Reposition on resize
+      function showOnly(tip) {
+        steps.forEach(t => { if (t !== tip) t.hidden = true; });
+      }
+
+      function targetVisible(target) {
+        if (!target) return false;
+        const rr = target.getBoundingClientRect();
+        return rr.width > 0 || rr.height > 0;
+      }
+
+      // Mută ghidul la pasul `i`, sărind peste pașii cu țintă lipsă/invizibilă.
+      function goToStep(i) {
+        if (!steps.length) return;
+        const dir = i >= current ? 1 : -1;
+        let idx = i;
+        while (idx >= 0 && idx < steps.length) {
+          const target = document.querySelector(steps[idx].dataset.target);
+          if (targetVisible(target)) break;
+          idx += dir;
+        }
+        if (idx < 0 || idx >= steps.length) { endTour(true); return; }
+        current = idx;
+        const tip = steps[current];
+        const target = document.querySelector(tip.dataset.target);
+        showOnly(tip);
+        ensureNav(tip);
+        positionTip(tip);
+        positionSpotlight(target);
+
+        const tt = (typeof window.t === 'function') ? window.t : (k) => k;
+        const back = tip.querySelector('.tip-back');
+        const next = tip.querySelector('.tip-next');
+        const stepEl = tip.querySelector('.tip-step');
+        back.textContent = '‹ ' + tt('tour.back');
+        back.disabled = current === 0;
+        const last = current === steps.length - 1;
+        next.textContent = last ? tt('tour.done') : (tt('tour.next') + ' ›');
+        stepEl.textContent = tt('tour.step', { i: current + 1, n: steps.length });
+      }
+
+      function startTour() {
+        if (isMobileViewport()) { openMobileHelpSheet(); return; }
+        ensureChrome();
+        steps = tipList();
+        if (!steps.length) return;
+        overlayEl.hidden = false;
+        spotlightEl.hidden = false;
+        current = -1;
+        goToStep(0);
+      }
+
+      function endTour(seen) {
+        steps.forEach(t => { t.hidden = true; });
+        if (overlayEl) overlayEl.hidden = true;
+        if (spotlightEl) spotlightEl.hidden = true;
+        current = -1;
+        if (seen) markTourSeen();
+      }
+
+      function tourActive() {
+        return !!(overlayEl && !overlayEl.hidden);
+      }
+
+      // Reposiționează pasul curent la resize / scroll (timeline, sidebar etc.)
       let positionTimer = null;
       function scheduleReposition() {
+        if (!tourActive() || current < 0) return;
         clearTimeout(positionTimer);
         positionTimer = setTimeout(() => {
-          const placedRects = [];
-          allTips().forEach(tip => {
-            if (tip.hidden) return;
-            positionTip(tip);
-            const r = avoidTipOverlap(tip, placedRects);
-            placedRects.push(r);
-          });
+          const tip = steps[current];
+          if (!tip) return;
+          const target = document.querySelector(tip.dataset.target);
+          if (!targetVisible(target)) return;
+          positionTip(tip);
+          positionSpotlight(target);
         }, 60);
       }
       window.addEventListener('resize', scheduleReposition);
+      window.addEventListener('scroll', scheduleReposition, true);
 
-      // Wire up close (X) buttons
-      allTips().forEach(tip => {
+      // X pe oricare tooltip închide tot ghidul (oricând).
+      tipList().forEach(tip => {
         const x = tip.querySelector('.tip-close');
-        if (x) x.addEventListener('click', () => dismissTip(tip));
-      });
-
-      // ESC închide toate tooltip-urile pendente
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-          allTips().forEach(tip => {
-            if (!tip.hidden) dismissTip(tip);
-          });
-        }
+        if (x) x.addEventListener('click', () => endTour(true));
       });
 
       // Show on first visit — DOAR pe desktop. Pe mobil / tableta cu ecran
@@ -265,55 +314,41 @@
           || window.matchMedia('(hover: none) and (pointer: coarse)').matches
           || (typeof navigator !== 'undefined' && /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent));
       }
-      if (!isMobileViewport()) {
-        setTimeout(showTooltips, 800);
+      // Pornește automat ghidul la prima vizită — DOAR pe desktop. Pe mobil
+      // rămâne disponibil la cerere prin butonul „?".
+      if (!isMobileViewport() && !isTourSeen()) {
+        setTimeout(startTour, 800);
       }
-      // Safeguard: la resize spre mobil, dacă apar tooltip-uri, le închidem.
+      // Safeguard: la resize spre mobil, dacă ghidul e activ, îl închidem.
       window.addEventListener('resize', () => {
-        if (isMobileViewport()) {
-          allTips().forEach(t => { if (!t.hidden) t.hidden = true; });
-        }
+        if (isMobileViewport() && tourActive()) endTour(true);
       }, { passive: true });
 
-      // Buton „?" (top-right pe hartă) — TOGGLE:
-      //   • dacă există tooltip-uri vizibile  → închide toate (marchează ca seen)
-      //   • dacă toate sunt închise           → resetează flag-urile și reafișează toate
+      // Buton „?" (top-right pe hartă):
+      //   • pe mobil            → deschide sheet-ul dedicat
+      //   • dacă ghidul e activ → îl închide
+      //   • altfel              → repornește ghidul de la primul pas
       const helpFab = document.getElementById('help-fab');
       const mobileSheet = document.getElementById('mobile-help-sheet');
       function openMobileHelpSheet() {
         if (!mobileSheet) return;
         mobileSheet.hidden = false;
-        // Wire close on first open
         mobileSheet.querySelectorAll('[data-close="1"]').forEach(el => {
           el.onclick = () => { mobileSheet.hidden = true; };
         });
       }
       if (helpFab) {
         helpFab.addEventListener('click', () => {
-          // On mobile: show the dedicated sheet instead of floating tooltips
-          if (isMobileViewport()) {
-            openMobileHelpSheet();
-            return;
-          }
-          const anyVisible = Array.from(allTips()).some(t => !t.hidden);
-          if (anyVisible) {
-            // Închide toate (cu persist — marchează ca seen)
-            allTips().forEach(tip => {
-              if (!tip.hidden) dismissTip(tip);
-            });
-          } else {
-            // Reopen — resetează flag-urile și reafișează
-            clearAllTipsSeen();
-            hideAllTooltips();
-            setTimeout(showTooltips, 100);
-          }
+          if (isMobileViewport()) { openMobileHelpSheet(); return; }
+          if (tourActive()) endTour(true);
+          else startTour();
         });
       }
-      // Close mobile sheet on Esc
+      // Esc închide ghidul (oricând) sau sheet-ul mobil.
       document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && mobileSheet && !mobileSheet.hidden) {
-          mobileSheet.hidden = true;
-        }
+        if (e.key !== 'Escape') return;
+        if (tourActive()) endTour(true);
+        else if (mobileSheet && !mobileSheet.hidden) mobileSheet.hidden = true;
       });
     })();
 

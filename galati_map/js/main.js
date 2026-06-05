@@ -1805,7 +1805,11 @@
     async function initPubcrawl() {
       try {
         const r = await fetch('galati-altadata.json');
-        const data = await r.json();
+        const rawData = await r.json();
+        // Hărțile/vederile aeriene generale ale orașului (folder „0. Galati")
+        // NU mai apar ca buline portocalii pe hartă — au pagina lor dedicată,
+        // maps.html, unde sunt afișate cronologic. Vezi js/maps.js.
+        const data = rawData.filter(p => (p.folder || '').trim() !== '0. Galati');
         // Cluster pentru cele ~311 fotografii pubcrawl. Bulina portocalie
         // ascunde-se în cluster la zoom mic; spiderfy la max zoom.
         pubcrawlLayer = L.markerClusterGroup({
