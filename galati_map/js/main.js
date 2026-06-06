@@ -2342,28 +2342,20 @@
       },
     };
 
+    // Tururile urmează limba globală a site-ului (RO/EN) — bara de limbi
+    // dedicată a fost scoasă; tot conținutul e tradus global.
     function getTourLang() {
-      try {
-        const v = localStorage.getItem('tg.tour.lang');
-        if (v && TOUR_LANGS.includes(v)) return v;
-      } catch (e) {}
-      return 'ro';
+      const v = (typeof window.getLang === 'function') ? window.getLang() : 'ro';
+      return TOUR_LANGS.includes(v) ? v : 'ro';
     }
     function setTourLang(lang) {
-      if (!TOUR_LANGS.includes(lang)) return;
-      try { localStorage.setItem('tg.tour.lang', lang); } catch (e) {}
+      if (!TOUR_LANGS.includes(lang)) lang = 'ro';
       tourLang = lang;
-      // Sync all language buttons
-      document.querySelectorAll('.tour-lang-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.lang === lang);
-      });
       // Update UI labels
       const ui = TOUR_UI_STRINGS[lang] || TOUR_UI_STRINGS.ro;
       if (tourBrowseIntroEl) tourBrowseIntroEl.textContent = ui.browseIntro;
       if (exitTourBtn) exitTourBtn.textContent = ui.backToList;
       if (tourStopsHeadingLabelEl) tourStopsHeadingLabelEl.textContent = ui.stopsHeading;
-      if (tourLangLabelBrowseEl) tourLangLabelBrowseEl.textContent = ui.langLabel;
-      if (tourLangLabelActiveEl) tourLangLabelActiveEl.textContent = ui.langLabel;
       // Re-render whichever view is open
       if (activeTour) enterTour(activeTour, /*keepLang*/ true);
       else renderTourBrowse();
@@ -2386,11 +2378,9 @@
       return orig ? orig[field] : '';
     }
 
-    // Wire up language buttons (delegated)
-    document.querySelectorAll('.tour-lang-btn').forEach(btn => {
-      btn.addEventListener('click', () => setTourLang(btn.dataset.lang));
-    });
-    // Apply persisted language on load
+    // Sincronizează limba tururilor cu limba globală a site-ului.
+    window.addEventListener('langchange', () => setTourLang(getTourLang()));
+    // Aplică limba curentă la încărcare
     setTourLang(tourLang);
 
     function renderTourBrowse() {
@@ -3113,6 +3103,36 @@
     }
 
     navBtns.forEach(btn => btn.addEventListener('click', () => activatePage(btn.dataset.page)));
+
+    // ─── Colaps sidebar (desktop) — săgeată pe marginea hărții ────
+    // Strânge coloana sidebar-ului la 0 ca harta să fie mai mare. Starea se
+    // reține în localStorage. După tranziție, invalidateSize ca Leaflet să
+    // re-randeze tile-urile pe noua lățime.
+    (function () {
+      const toggle = document.getElementById('sidebar-toggle');
+      const appEl = document.querySelector('.app');
+      if (!toggle || !appEl) return;
+      const KEY = 'tg.sidebar.collapsed';
+      function refreshMapSize() {
+        [0, 90, 260, 440].forEach(d => setTimeout(() => {
+          try { map.invalidateSize({ pan: false }); } catch (e) {}
+        }, d));
+      }
+      function setCollapsed(on, persist) {
+        appEl.classList.toggle('sidebar-collapsed', on);
+        toggle.setAttribute('aria-expanded', on ? 'false' : 'true');
+        const lbl = on ? 'Arată panoul' : 'Ascunde panoul';
+        toggle.setAttribute('aria-label', lbl);
+        toggle.title = lbl;
+        if (persist) { try { localStorage.setItem(KEY, on ? '1' : '0'); } catch (e) {} }
+        refreshMapSize();
+      }
+      toggle.addEventListener('click', () => {
+        setCollapsed(!appEl.classList.contains('sidebar-collapsed'), true);
+      });
+      // Restaurează starea salvată (fără re-persist).
+      try { if (localStorage.getItem(KEY) === '1') setCollapsed(true, false); } catch (e) {}
+    })();
 
     // ─── Mobile topbar: hamburger menu ──────────────────────────
     const burgerBtn = document.getElementById('topbar-burger');

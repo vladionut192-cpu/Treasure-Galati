@@ -647,7 +647,43 @@
       width: 100%;
       max-width: 100%;
       overflow-x: hidden;
+      transition: grid-template-columns .28s ease;
     }
+    /* Sidebar colapsat — coloana se strânge la 0, harta ocupă tot. */
+    .app.sidebar-collapsed { grid-template-columns: 0 minmax(0, 1fr); }
+    .app.sidebar-collapsed aside.sidebar {
+      padding-left: 0;
+      padding-right: 0;
+      border-right: 0;
+      opacity: 0;
+      pointer-events: none;
+    }
+    /* Săgeata de colaps — ancorată pe marginea stângă a hărții (granița sidebar/hartă).
+       Când e colapsat, harta ocupă tot, deci săgeata ajunge la marginea ecranului. */
+    .sidebar-toggle {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      z-index: 700;
+      width: 26px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--accent);
+      border: 0;
+      border-radius: 0 10px 10px 0;
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 2px 0 12px rgba(62, 122, 113, .45);
+      transition: background .12s, transform .12s;
+    }
+    .sidebar-toggle:hover { background: var(--accent-deep); transform: translateY(-50%) scaleX(1.12); }
+    .sidebar-toggle svg { width: 16px; height: 16px; transition: transform .25s ease; }
+    .app.sidebar-collapsed .sidebar-toggle svg { transform: rotate(180deg); }
+    /* Sub 900px layout-ul devine pe rânduri / sidebar ascuns — butonul nu are sens. */
+    @media (max-width: 900px) { .sidebar-toggle { display: none; } }
     aside.sidebar {
       background: var(--panel);
       border-right: 1px solid var(--line);

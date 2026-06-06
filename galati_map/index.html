@@ -223,22 +223,10 @@
       <section class="tab-panel" id="panel-tours" hidden>
         <div id="tour-browse">
           <p class="tab-intro" id="tour-browse-intro">Tururi gândite pentru o singură poveste, parcurse pe jos. Click pe un tur ca să-l urmărești pe hartă.</p>
-          <div class="tour-lang-bar" role="group" aria-label="Limba tururilor ghidate">
-            <span class="lbl" id="tour-lang-label-browse">Limbă:</span>
-            <button type="button" data-lang="ro" class="tour-lang-btn active">Română</button>
-            <button type="button" data-lang="en" class="tour-lang-btn">English</button>
-            <button type="button" data-lang="fr" class="tour-lang-btn">Français</button>
-          </div>
           <div class="tour-cards" id="tour-cards"></div>
         </div>
         <article id="tour-active" hidden>
           <button class="exit-tour" id="exit-tour" type="button">← Înapoi la lista de tururi</button>
-          <div class="tour-lang-bar" role="group" aria-label="Limba turului">
-            <span class="lbl" id="tour-lang-label-active">Limbă:</span>
-            <button type="button" data-lang="ro" class="tour-lang-btn active">Română</button>
-            <button type="button" data-lang="en" class="tour-lang-btn">English</button>
-            <button type="button" data-lang="fr" class="tour-lang-btn">Français</button>
-          </div>
           <img class="tour-cover" id="tour-cover" alt="" hidden loading="lazy" decoding="async">
           <p class="tour-meta" id="tour-category"></p>
           <h2 class="tour-title" id="tour-title"></h2>
@@ -282,6 +270,11 @@
     </aside>
     <main class="map-area">
       <div id="map" aria-label="Hartă interactivă Galați"></div>
+      <!-- Buton de colaps al sidebar-ului (desktop) — săgeată pe marginea stângă
+           a hărții. Ascunde panoul ca harta să fie mai mare; click din nou îl readuce. -->
+      <button type="button" class="sidebar-toggle" id="sidebar-toggle" aria-label="Ascunde panoul" aria-expanded="true" title="Ascunde panoul">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
       <!-- Buton „?" — top-right sub timeline. Redeschide tooltip-urile dismiss-uite. -->
       <button type="button" class="help-fab" id="help-fab" aria-label="Reia ghidul" title="Reia ghidul (tooltip-uri)">?</button>
       <!-- Year overlay (top-right of map, shown when timeline is engaged) -->
