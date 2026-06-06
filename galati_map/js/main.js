@@ -3448,6 +3448,73 @@
         `,
       },
       {
+        id: '1940', year: '1940', title: 'Eroul de la Giurgiulești: căpitanul Napoleon Popescu',
+        eyebrow: '2 iulie 1940 · Incidentul armat de la Giurgiulești',
+        hook: 'Cu șase ore înainte de cedarea oficială a Basarabiei, un singur ofițer a nesocotit ordinele Marelui Stat Major, a trecut Prutul și a oprit o coloană de 70 de blindate sovietice care se îndreptau spre Galați.',
+        content: `
+          <p class="article-lede">În data de <strong>2 iulie 1940</strong>, cu doar șase ore înainte de cedarea oficială a Basarabiei, Bucovinei de Nord și ținutului Herța, căpitanul <strong>Napoleon Alexandru Popescu</strong> — comandantul Companiei a V-a din Regimentul V Care de Luptă de la Galați — a trecut Prutul și a oprit o coloană de tancuri sovietice care se îndrepta spre Galați. A nesocotit ordinele înaltului stat major al armatei române pentru că așa a simțit să apere pământul românesc, oprindu-i pe sovietici să treacă și să anexeze teritorii la vest de Prut.</p>
+
+          <h2>Contextul: ultimatumul și invazia</h2>
+          <p>Ultimatumul sovietic cerea ca Armata Română să evacueze Basarabia și nordul Bucovinei în patru zile, începând cu <strong>28 iunie 1940</strong>. Chiar și așa, trupele sovietice au invadat teritoriile cerute încă din noaptea de 27/28 iunie, unitățile motorizate și de cavalerie înaintând rapid spre Prut și devansând formațiunile românești aflate în curs de evacuare.</p>
+          <p>Sovieticii au aplicat tactici agresive: au instalat puncte de control, i-au dezarmat, umilit și uneori arestat pe soldații români — în special pe cei basarabeni — punându-i în situații periculoase sau fatale. Au existat numeroase incidente, morți și răniți. În dimineața de 28 iunie, Marele Stat Major român a dispus ca trupele să <strong>nu deschidă focul</strong> și să nu reacționeze la provocări, iar comandanții să ia contact cu trupele sovietice.</p>
+
+          <h2>Misiunea: capul de pod de la Giurgiulești</h2>
+          <p>Hotărând să-și evacueze trupele din Basarabia și să organizeze rezistența pe aliniamentul Prutului, Marele Stat Major a instalat servicii de pază la toate trecerile peste râu, cu misiunea de a asigura evacuarea pe jos a trupelor, securitatea căilor ferate, a podurilor, depozitelor și aerodromurilor, precum și protecția împotriva sabotajelor.</p>
+          <p>La <strong>Giurgiulești</strong> — la extremitatea sudică a județului Cahul, unde Prutul se varsă în Dunăre — un pod cu două fire de circulație (unul de cale ferată) lega județul Cahul de Galați. Printr-o directivă a colonelului <strong>Eftimiu</strong>, șeful de Stat Major al Corpului de Cavalerie (2 iulie 1940), trupele române trebuiau să mențină capul de pod de la est de Prut până în dimineața de 3 iulie, iar orice tentativă de dezarmare urma să primească <em>„ripostă cu foc"</em>. În capul de pod rămâneau un batalion din Regimentul 46 Infanterie, un batalion de infanterie ușoară, o secție de artilerie și o companie de care de luptă sub comanda căpitanului Popescu — dotată cu mașini de luptă <strong>Škoda</strong>. Culoarul spre Galați urma blocat la poduri cu artilerie și armament anticar, podurile fiind distruse în caz de tentativă de trecere.</p>
+          <p>La Galați se afla în același timp comunistul <strong>Gheorghe Apostol</strong>, cu sarcina de a aștepta trupele ruse pentru a le preda orașul.</p>
+          <p>Carele de luptă au fost dispuse la marginea satului și camuflate sub copacii din grădinile sătenilor, terenul plan permițând observarea la câțiva kilometri:</p>
+          <ul>
+            <li><strong>Plutonul 1</strong> (lt. Mihail Pană) — intrările dinspre <strong>est</strong>;</li>
+            <li><strong>Plutonul 2</strong> (lt. Mihai Teodorescu) — intrarea dinspre <strong>nord</strong>;</li>
+            <li><strong>Plutonul 3</strong> — în rezervă, cu 5 tancuri, la capătul podului.</li>
+          </ul>
+          <p>Un agent motociclist asigura legătura dintre căpitan și comandanții de plutoane. În dimineața de 1 iulie, divizionul de cavalerie purtată a părăsit capul de pod — în apărare a rămas doar compania de tancuri.</p>
+
+          <h2>2 iulie 1940 — duelul de la pod</h2>
+          <p>În dimineața de 2 iulie, o coloană de <strong>70 de vehicule blindate</strong> ale Armatei Roșii, mergând spre Galați, s-a îndreptat spre pod — cu șase ore înainte de predarea oficială a Basarabiei. Confruntat cu înaintarea agresivă, căpitanul Popescu a ordonat încărcarea de proiectile perforante în toate tunurile și tragerea de la <strong>sub 300 m, în foc plin, fără somație</strong>.</p>
+          <p>Tanchiștii români au tras aproximativ <strong>80 de proiectile</strong> (plutonul de est al lt. Pană, sprijinit de rezervă). Rușii au ripostat ineficient, cu proiectile explozive brizante care nu străpungeau blindajul. Rezultatul: <strong>4 mașini de luptă inamice distruse</strong> (3 tanchete și un tanc, incendiate). O companie de infanterie română, pe cale să fie tăiată de la retragere, s-a retras în ordine pe sub malul râului și a trecut podul spre Galați. Retragerea trupelor de la vest de Prut s-a făcut sub protecția tancurilor — infanteria și celelalte unități fiind salvate.</p>
+
+          <h2>Parlamentarii și podul aruncat în aer</h2>
+          <p>După retragerea infanteriei, dinspre coloana sovietică au venit, cu steag alb și un țăran translator, trei ofițeri ruși (un căpitan de aviație, unul de parașutiști și unul de tancuri) ca să negocieze oprirea focului și salvarea podului. Între timp a sosit și șeful de Stat Major al diviziei române, colonelul <strong>Vasiliu</strong>, împreună cu căpitanul Dămăceanu, care a preluat tratativele; rușii s-au retras, iar compania a primit ordin să se retragă peste pod.</p>
+          <p>Geniștii români voiau să arunce podul în aer imediat, dar Popescu a întors tancurile spre ei, amenințând că deschide focul dacă nu e lăsat să-și retragă tehnica peste pod. Retragerea s-a făcut <strong>tanc cu tanc</strong>, așteptându-se și ultimii refugiați; abia apoi podul minat a fost detonat. Detașamentul a fost dislocat la cazarma aerodromului Galați, pentru a apăra aeroportul de eventualele tancuri amfibii sovietice care ar fi încercat să treacă peste Brateș. <a class="pin-link" href="#map" data-loc="loc-307">Vezi locul pe hartă</a>.</p>
+
+          <h2>Versiunea rusă (istoricul Meltiukhov)</h2>
+          <p>Istoricul militar rus <strong>Mihail Meltiukhov</strong> dă o altă versiune. În zona Cahul–Reni se aflau Brigada 204 Aeropurtată și Divizia a 9-a Cavalerie (tancuri). Devansând retragerea românească, sovieticii au instalat la Reni un punct de control, confiscând materiale. Unitățile române aflate în traversarea Prutului ar fi deschis foc răzleț spre parașutiști; în cursul zilei un parașutist rus și un soldat român au fost uciși. În noaptea de 2 iulie s-a tras 30 de minute de pe malul românesc, fără ripostă rusă. La 1,5 km est de Giurgiulești o companie română a deschis foc cu puști și mitraliere, fiind apoi retrasă peste Prut. La 18:30–19:00, 5–6 monitoare fluviale românești au deschis focul în timp ce ultimele subunități se retrăgeau; sovieticii s-au oprit la 250 m, fără să riposteze. La 19:45, după retragerea completă, podul a fost distrus de patru explozii (două pe firul auto, două pe cel feroviar). Românii au susținut că distrugerea a fost efectul atacului tancurilor ruse. În jurnalul de seară din 2 iulie 1940, radioul național de la București a anunțat evenimentul.</p>
+
+          <h2>Mărturia veteranului Nicolae Bacalbașa</h2>
+          <p>Singurul veteran al luptei care mai trăia la inaugurarea monumentului, fostul ofițer de legătură (pe atunci plutonier) <strong>Nicolae Bacalbașa</strong>, povestea:</p>
+          <blockquote>
+            Rușii voiau să pună mâna pe Galați. Noi, România, eram o piesă măruntă în jocul lor — piesa cea mare era Istanbulul. Doar cucerind Galațiul puteau intra ușor în Turcia. (…) Comandantul, un mare erou, Napoleon Popescu, a trecut podul cu tancurile și i-a așteptat pe ruși. Cu șase ore înainte ca România să predea oficial Basarabia, la poduri a apărut o coloană de 70 de blindate. Norocul nostru a fost că rușii aveau doar proiectile brizante, care nu străpungeau blindajul. Noi eram pregătiți! (…) Rușii s-au retras de frica unui măcel, dar și de teama unui scandal internațional. După aceea, geniștii au vrut să arunce podul în aer — a întors tancurile spre ei și i-a amenințat că deschide focul dacă nu îi lasă să revină peste pod!
+            <cite>— Nicolae Bacalbașa, veteran</cite>
+          </blockquote>
+          <p>Tancul amfibiu sovietic <strong>T-40</strong>, pe care rușii voiau să-l folosească la Galați, intrase în dotare la 19 decembrie 1939 — în aceeași zi cu T-34 și KV-1 — și fusese ținut secret. Despre forța blindată sovietică, generalul Heinz Guderian spunea: <em>„Dacă aș fi știut că rușii au o asemenea cantitate de tancuri, probabil nu aș fi început războiul!"</em></p>
+
+          <h2>Eroul: căpitanul Napoleon Alexandru Popescu</h2>
+          <p>Considerat un adevărat strateg militar, Napoleon Alexandru Popescu s-a născut în ianuarie 1909 la Pietroșița (Dâmbovița). Absolvent al Școlii Superioare de Comerț și al Școlii Superioare de Infanterie nr. 1, ajunge în 1929 sublocotenent comandant de pluton la Regimentul Care de Luptă I; în 1940 este avansat căpitan.</p>
+          <p>Cariera i se axează pe luptele din Basarabia. Fondul de Memorii Originale din Arhivele Militare Pitești notează că <em>„buna judecată și discernământ"</em> i-au permis la Giurgiulești să facă față atacului carelor rusești, <strong>salvând un batalion de infanterie</strong> și alte unități în timpul evacuării. În 1941 luptă la Lipnic (ocupă gara, salvând-o de la distrugere), Soroca, Chișinău, Kremdovsko și Argirovskaia. La 18 august 1941 străpunge poziția de la Doncevo–Karpovo, la nord de Odesa, ușurând operațiunile Regimentului III Dorobanți — faptă pentru care e decorat cu <strong>Steaua României</strong> clasa a V-a cu spade. A fost decorat și cu Virtutea Militară de Pace (1940), Steaua României (1940 și 1942) și cu <strong>Crucea de Fier</strong> germană, clasa a II-a (1940). Părăsește armata în 1947, în grad de locotenent-colonel. A murit la 3 decembrie 1996.</p>
+
+          <h2>Monumentul (octombrie 2014)</h2>
+          <p>Un monument format dintr-o <strong>troiță</strong> și o placă comemorativă, dedicat soldaților români din Al Doilea Război Mondial, a fost inaugurat la <strong>3 octombrie 2014</strong> la intrarea în Punctul de trecere a frontierei Galați-Rutier (Giurgiulești), în amintirea luptelor de aici. A fost ridicat de comunitatea locală, la inițiativa Muzeului de Istorie „Paul Păltănea" din Galați.</p>
+          <blockquote>
+            In memoriam căpitanului Napoleon Alexandru Popescu, comandantul Companiei a V-a Regimentul V Care de Luptă de la Galați, 26.01.1909 – 03.12.1996. În ziua de 2 iulie 1940, cu șase ore înainte de evacuarea și cedarea oficială a Basarabiei, Bucovinei de Nord și ținutului Herței, căpitanul Napoleon Alexandru Popescu a fost singurul ofițer român care a oprit înaintarea trupelor sovietice de ocupație din Basarabia, la capul de pod de peste Prut, Galați-Giurgiulești.
+            <cite>— inscripția de pe placa comemorativă</cite>
+          </blockquote>
+          <p>La ceremonie, Cristian Căldăraru, directorul Muzeului „Paul Păltănea", a rezumat miza: <em>„N-am fost autoritate sovietică datorită acestui om care a nesocotit ordinele înaltului stat major, a trecut de la sine, pentru că așa a simțit să apere pământul românesc, și i-a oprit pe ruși de a trece și de a ne ocupa."</em> A fost prezent și fiul eroului, <strong>Gabriel Popescu</strong>: <em>„Nu a făcut lucruri deosebite, ci pur și simplu și-a servit țara."</em></p>
+
+          <div class="sources">
+            <p><strong>Surse</strong></p>
+            <ul>
+              <li>Dumitru, Sandel — <em>Galațiul, așa cum mi-l amintesc</em>, vol. IX (episodul căpitanului Napoleon Popescu și monumentul din 2014).</li>
+              <li><em>Jurnalul de operații al Corpului de Cavalerie</em>, directiva colonelului Eftimiu (2 iulie 1940), Arhivele Militare.</li>
+              <li>Fondul de Memorii Originale, Arhivele Militare Naționale Pitești (fișa căpitanului N. A. Popescu).</li>
+              <li>Mărturia veteranului Nicolae Bacalbașa (interviu la inaugurarea monumentului, 2014).</li>
+              <li>Mihail Meltiukhov — versiunea rusă a evenimentelor din 1–2 iulie 1940.</li>
+              <li>Muzeul de Istorie „Paul Păltănea" Galați (Cristian Căldăraru) — ceremonia din octombrie 2014.</li>
+            </ul>
+          </div>
+        `,
+      },
+      {
         id: '1962', year: '1962–1963', title: 'Războiul cu istoria: bisericile-monument distruse de comuniști',
         eyebrow: 'Decembrie 1962 – decembrie 1963',
         hook: 'Doi ani. Două crime arhitecturale. O cicatrice care nu s-a vindecat. Cum a șters sistematizarea comunistă șapte secole de istorie a Galațiului.',
@@ -3500,7 +3567,7 @@
     ];
     // 1918 has a full article inline; 1821, 1856, 1907, 1944, 1962 have
     // structured content rendered dynamically via the `content` field below.
-    const READY_EVENT_IDS = new Set(['1821', '1856', '1907', '1918', '1944', '1962']);
+    const READY_EVENT_IDS = new Set(['1821', '1856', '1907', '1918', '1940', '1944', '1962']);
 
     const eventsGrid = document.getElementById('events-grid');
     const evSingle = document.getElementById('ev-single');

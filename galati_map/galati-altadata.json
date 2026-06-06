@@ -1771,5 +1771,50 @@
     "lat": 45.432901,
     "lon": 28.051309,
     "year": 1970
+  },
+  {
+    "src": "../assets/images/local/podul-giurgiulesti-1943-iulie-68ef1e25.jpg",
+    "caption_ro": "Podul Giurgiulești 1943 iulie",
+    "caption_en": "",
+    "folder": "local",
+    "lat": 45.471447,
+    "lon": 28.197076,
+    "year": 1943
+  },
+  {
+    "src": "../assets/images/local/foto-a9dcbc69.jpg",
+    "caption_ro": "",
+    "caption_en": "",
+    "folder": "local",
+    "lat": 45.435418,
+    "lon": 28.056832,
+    "year": 1922
+  },
+  {
+    "src": "../assets/images/local/str-brailei-c-c-i-l-caragiale-in-anii-70-d4665546.jpg",
+    "caption_ro": "str. Brăilei c/c I.L. Caragiale în anii 70",
+    "caption_en": "",
+    "folder": "local",
+    "lat": 45.432487,
+    "lon": 28.048536,
+    "year": 1970
+  },
+  {
+    "src": "../assets/images/local/dunarea-inghetata-in-anii-80-daca-priviti-cu-atentie-observa-5c72cf18.jpg",
+    "caption_ro": "Dunărea înghețată în anii 80. Dacă priviți cu atenție, observați oameni trecând pe podul de gheață.",
+    "caption_en": "",
+    "folder": "local",
+    "lat": 45.428086,
+    "lon": 28.057956,
+    "year": 1984
+  },
+  {
+    "src": "../assets/images/local/anii-60-zona-de-case-pe-locatia-unde-se-afla-in-prezent-tele-ff64d0d5.jpg",
+    "caption_ro": "Anii 60 - zona de case pe locația unde se află în prezent Telekom-ul. Se vede și Complexul comercial ”Rapid” care a existat pe locația actualului Palat de Justiție.",
+    "caption_en": "",
+    "folder": "local",
+    "lat": 45.427921,
+    "lon": 28.038821,
+    "year": 1960
   }
 ]
