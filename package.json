@@ -1,0 +1,12 @@
+{
+  "name": "treasure-galati",
+  "private": true,
+  "description": "Heritage Galați — teste smoke (Playwright). Site-ul în sine e static, fără build.",
+  "scripts": {
+    "test": "playwright test",
+    "test:local": "PW_CHANNEL=chrome playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.0"
+  }
+}

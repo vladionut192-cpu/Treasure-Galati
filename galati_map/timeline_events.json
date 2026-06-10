@@ -1,0 +1,402 @@
+{
+  "_comment": "SURSA UNICĂ pentru evenimentele cronologiei. events = lista curatoriată (tooltip overlay + lupa mobilă); track_years = gradațiile vizibile pe riglă; major_years = gradații majore (granițe de ere, mai înalte). Generat inițial din allEvents (js/main.js) + span-urile din index.html, 2026-06-10.",
+  "min_year": 1445,
+  "max_year": 2026,
+  "track_years": [
+    1445,
+    1538,
+    1600,
+    1645,
+    1700,
+    1709,
+    1789,
+    1821,
+    1828,
+    1829,
+    1837,
+    1856,
+    1882,
+    1907,
+    1916,
+    1918,
+    1940,
+    1944,
+    1948,
+    1963,
+    1966,
+    1977,
+    1989,
+    2007
+  ],
+  "major_years": [
+    1445,
+    1538,
+    1829,
+    1916,
+    1918,
+    1944,
+    1989
+  ],
+  "events": [
+    {
+      "year": 1445,
+      "label": "Prima atestare documentară · uricul lui Ștefan al II-lea (23 sept) — scutire de vamă pentru două căruțe cu pește livrate Mănăstirii Humor",
+      "label_en": "First documentary attestation · the deed of Stephen II (23 Sept) — customs exemption for two carts of fish delivered to Humor Monastery"
+    },
+    {
+      "year": 1530,
+      "label": "Stelița lui Petru Rareș (palat domnesc fortificat la malul Dunării)",
+      "label_en": "Petru Rareș's stelița (fortified princely palace on the Danube bank)"
+    },
+    {
+      "year": 1600,
+      "label": "Mihai Viteazul își stabilește o tabără la Galați înainte de campania moldoveană",
+      "label_en": "Michael the Brave sets up camp at Galați before his Moldavian campaign"
+    },
+    {
+      "year": 1538,
+      "label": "Soliman Magnificul invadează Moldova · suzeranitate otomană directă (Galați rămâne moldovenesc, niciodată parte din raiale)",
+      "label_en": "Suleiman the Magnificent invades Moldavia · direct Ottoman suzerainty (Galați remains Moldavian, never part of the raias)"
+    },
+    {
+      "year": 1540,
+      "label": "Brăila cucerită de turci · devine raialaua Brăilei (50 de sate, până în 1829) · Galați devine principalul port moldovean de comerț",
+      "label_en": "Brăila conquered by the Turks · becomes the Brăila raia (50 villages, until 1829) · Galați becomes the main Moldavian trading port"
+    },
+    {
+      "year": 1645,
+      "label": "Biserica fortificată Sf. Precista ridicată de Vasile Lupu — cea mai veche clădire din Galați",
+      "label_en": "The fortified St. Precista Church built by Vasile Lupu — the oldest building in Galați"
+    },
+    {
+      "year": 1700,
+      "label": "Biserica Mavromol (ctitorie Antioh Cantemir) — centrul comunității greco-comerciale",
+      "label_en": "Mavromol Church (founded by Antioh Cantemir) — centre of the Greek merchant community"
+    },
+    {
+      "year": 1709,
+      "label": "Hatmanul cazac Ivan Mazepa îngropat la biserica Sf. Gheorghe după bătălia de la Poltava",
+      "label_en": "Cossack hetman Ivan Mazepa buried at St. George Church after the Battle of Poltava"
+    },
+    {
+      "year": 1789,
+      "label": "Distrugere · războiul ruso-turc · primul incendiu major al orașului",
+      "label_en": "Destruction · Russo-Turkish War · the city's first major fire"
+    },
+    {
+      "year": 1821,
+      "label": "Eteria · grecii lui Vasile Karavia atacă garnizoana otomană · oraș incendiat",
+      "label_en": "Heterist uprising · Vasile Karavia's Greeks attack the Ottoman garrison · the city is set on fire"
+    },
+    {
+      "year": 1828,
+      "label": "Primul consulat la Galați — Franța",
+      "label_en": "First consulate in Galați — France"
+    },
+    {
+      "year": 1829,
+      "label": "Pacea de la Adrianopol · liberalizarea comerțului dunărean · ieșire de sub turci",
+      "label_en": "Treaty of Adrianople · liberalisation of Danubian trade · end of Turkish rule"
+    },
+    {
+      "year": 1834,
+      "label": "Consulat Prusia (al treilea, după Belgia 1832)",
+      "label_en": "Prussian consulate (the third, after Belgium 1832)"
+    },
+    {
+      "year": 1837,
+      "label": "Port liber declarat oficial · vapoare din Marsilia, Genova, Constantinopol fără taxe",
+      "label_en": "Free port officially declared · ships from Marseille, Genoa, Constantinople tax-free"
+    },
+    {
+      "year": 1842,
+      "label": "Prima fabrică de bere — Marcu Schein, preluată de Josef Ploll în 1860",
+      "label_en": "First brewery — Marcu Schein, taken over by Josef Ploll in 1860"
+    },
+    {
+      "year": 1853,
+      "label": "Inundație devastatoare a Dunării (prima dintr-o serie 1853–1861)",
+      "label_en": "Devastating Danube flood (first of a 1853–1861 series)"
+    },
+    {
+      "year": 1856,
+      "label": "Comisia Europeană a Dunării · prima organizație supranațională europeană · sediul la Galați",
+      "label_en": "European Commission of the Danube · the first European supranational organisation · headquartered in Galați"
+    },
+    {
+      "year": 1860,
+      "label": "Inundație majoră a Dunării",
+      "label_en": "Major Danube flood"
+    },
+    {
+      "year": 1861,
+      "label": "Inundație majoră a Dunării (a treia într-un deceniu)",
+      "label_en": "Major Danube flood (the third in a decade)"
+    },
+    {
+      "year": 1862,
+      "label": "Cuza Vodă cumpără casa de pe Domnească 80 (azi muzeul Casa Cuza)",
+      "label_en": "Cuza Vodă buys the house at Domnească 80 (today the Casa Cuza Museum)"
+    },
+    {
+      "year": 1866,
+      "label": "Recensământ — 48.799 locuitori (vârful intermediar)",
+      "label_en": "Census — 48,799 inhabitants (the interim peak)"
+    },
+    {
+      "year": 1877,
+      "label": "România declară independența · Reg. 11 Siret pe front în Bulgaria",
+      "label_en": "Romania declares independence · 11th Siret Regiment on the front in Bulgaria"
+    },
+    {
+      "year": 1882,
+      "label": "Sfârșit port liber · Galați intră în vama națională",
+      "label_en": "End of the free port · Galați joins the national customs system"
+    },
+    {
+      "year": 1893,
+      "label": "Fondat Șantierul Naval Fernic — peste 2.000 angajați la apogeu",
+      "label_en": "Fernic Shipyard founded — over 2,000 employees at its peak"
+    },
+    {
+      "year": 1899,
+      "label": "Galațiul are 22 sinagogi active",
+      "label_en": "Galați has 22 active synagogues"
+    },
+    {
+      "year": 1902,
+      "label": "Dimitrie Frigator lasă prin testament 700.000 lei aur (~12 mil. EUR) pentru filantropie",
+      "label_en": "Dimitrie Frigator bequeaths 700,000 gold lei (~€12 million) for philanthropy"
+    },
+    {
+      "year": 1905,
+      "label": "Prima cursă auto intercontinentală din lume — Galați → Ispahan (3 mașini, 2 luni)",
+      "label_en": "The world's first intercontinental car race — Galați → Isfahan (3 cars, 2 months)"
+    },
+    {
+      "year": 1907,
+      "label": "Răscoala țărănească · represiune sângeroasă · Reg. 11 Siret implicat",
+      "label_en": "Peasants' uprising · bloody repression · 11th Siret Regiment involved"
+    },
+    {
+      "year": 1911,
+      "label": "Inaugurată statuia Eminescu de Frederic Storck — prima din România",
+      "label_en": "Eminescu statue by Frederic Storck unveiled — Romania's first"
+    },
+    {
+      "year": 1912,
+      "label": "Gheorghe Gheorghiu-Dej lucrează ca hamal în port (apoi atelierele CFR)",
+      "label_en": "Gheorghe Gheorghiu-Dej works as a porter in the harbour (then the CFR workshops)"
+    },
+    {
+      "year": 1913,
+      "label": "Galați — al treilea oraș al țării (71.641 loc.) · Al Doilea Război Balcanic",
+      "label_en": "Galați — the country's third-largest city (71,641 inh.) · Second Balkan War"
+    },
+    {
+      "year": 1916,
+      "label": "România intră în Primul Război Mondial (15 august) · începe asediul de 1,4 ani",
+      "label_en": "Romania enters the First World War (15 August) · the 1.4-year siege begins"
+    },
+    {
+      "year": 1918,
+      "label": "Bătălia de la Galați (22 ianuarie) · Unirea cu Basarabia (27 martie) · ~3.000 vs ~12.000 (Kiriţescu); ~500 vs 12.000 în memoria populară",
+      "label_en": "Battle of Galați (22 January) · Union with Bessarabia (27 March) · ~3,000 vs ~12,000 (Kirițescu); ~500 vs 12,000 in popular memory"
+    },
+    {
+      "year": 1920,
+      "label": "Inaugurat Aeroportul Galați — funcțional până 1958, cu vamă",
+      "label_en": "Galați Airport inaugurated — operating until 1958, with customs"
+    },
+    {
+      "year": 1921,
+      "label": "Crucea de Război italiană („La Croce di Guerra\") · gen. Pietro Badoglio o aduce la Galați",
+      "label_en": "Italian Cross of War (\"La Croce di Guerra\") · Gen. Pietro Badoglio brings it to Galați"
+    },
+    {
+      "year": 1921,
+      "label": "Sosește samuraiul Shintaro Tsutsumi cu nava „Kilimaru\" · moare aici",
+      "label_en": "The samurai Shintaro Tsutsumi arrives aboard the \"Kilimaru\" · dies here"
+    },
+    {
+      "year": 1922,
+      "label": "Gen. Henri Berthelot decorează Galațiul cu „Croix de Guerre\" franceză",
+      "label_en": "Gen. Henri Berthelot decorates Galați with the French \"Croix de Guerre\""
+    },
+    {
+      "year": 1923,
+      "label": "Galați — 100.000 locuitori, 295 străzi, 15 km tramvai",
+      "label_en": "Galați — 100,000 inhabitants, 295 streets, 15 km of tramway"
+    },
+    {
+      "year": 1926,
+      "label": "Primul zbor cu pasager plătitor — Anninos (1.800 lei, de 4× prețul biletului de tren)",
+      "label_en": "First flight with a paying passenger — Anninos (1,800 lei, 4× the price of a train ticket)"
+    },
+    {
+      "year": 1929,
+      "label": "Sinucidere sculptorul Dimitrie Măţăuanu — autorul bustului România Mare neturnat",
+      "label_en": "Sculptor Dimitrie Mățăuanu commits suicide — author of the never-cast Greater Romania bust"
+    },
+    {
+      "year": 1932,
+      "label": "Smaranda Brăescu sare cu parașuta de la 7.000 m — record mondial femei",
+      "label_en": "Smaranda Brăescu parachutes from 7,000 m — women's world record"
+    },
+    {
+      "year": 1934,
+      "label": "Fondată Filatura Atlantic de frații armeni Seferian",
+      "label_en": "Atlantic Spinning Mill founded by the Armenian Seferian brothers"
+    },
+    {
+      "year": 1938,
+      "label": "Carol al II-lea + iahtul „Luceafărul\" în Galați · întâlnire diplomatică Polonia (criza München)",
+      "label_en": "Carol II + the yacht \"Luceafărul\" in Galați · diplomatic meeting with Poland (Munich crisis)"
+    },
+    {
+      "year": 1940,
+      "label": "Pierderea Basarabiei și Bucovinei (28 iun) — refugiați masivi prin Galați",
+      "label_en": "Loss of Bessarabia and Bukovina (28 June) — massive flow of refugees through Galați"
+    },
+    {
+      "year": 1940,
+      "label": "Cutremur Vrancea (10 nov) · M 7,7 · pagube majore în oraș",
+      "label_en": "Vrancea earthquake (10 Nov) · M 7.7 · major damage in the city"
+    },
+    {
+      "year": 1941,
+      "label": "Pogromul de la Iași (28-30 iun) + ecou la Galați — comunitatea evreiască decimată",
+      "label_en": "Iași pogrom (28-30 June) + echo in Galați — the Jewish community decimated"
+    },
+    {
+      "year": 1941,
+      "label": "România reintră în Basarabia · frații Mendel (șantier naval) trimiși în Transnistria",
+      "label_en": "Romania re-enters Bessarabia · the Mendel brothers (shipyard) sent to Transnistria"
+    },
+    {
+      "year": 1943,
+      "label": "Bombardamentele aliate americane — multiple raiduri pe șantierul naval",
+      "label_en": "American Allied bombings — multiple raids on the shipyard"
+    },
+    {
+      "year": 1944,
+      "label": "23 august — lovitura de stat anti-Antonescu · România întoarce armele",
+      "label_en": "23 August — anti-Antonescu coup · Romania switches sides"
+    },
+    {
+      "year": 1944,
+      "label": "Retragere germană (24-25 aug) · Piața Regală devastată · niciodată reconstruită",
+      "label_en": "German withdrawal (24-25 Aug) · the Royal Square devastated · never rebuilt"
+    },
+    {
+      "year": 1944,
+      "label": "Galați ocupat de Armata Sovietică (26 aug)",
+      "label_en": "Galați occupied by the Soviet Army (26 Aug)"
+    },
+    {
+      "year": 1948,
+      "label": "Naționalizare · Liceul Israelit închis · industriile expropriate",
+      "label_en": "Nationalisation · Israelite High School closed · industries expropriated"
+    },
+    {
+      "year": 1952,
+      "label": "Campania anti-cosmopolită · medicii evrei dați afară din Spitalul Israelit",
+      "label_en": "Anti-cosmopolitan campaign · Jewish doctors expelled from the Israelite Hospital"
+    },
+    {
+      "year": 1958,
+      "label": "Aeroportul Galați închis definitiv",
+      "label_en": "Galați Airport permanently closed"
+    },
+    {
+      "year": 1962,
+      "label": "Demolare biserica Sf. Gheorghe (decembrie) — trasă în Dunăre cu remorcherele Navrom",
+      "label_en": "St. George Church demolished (December) — pulled into the Danube by Navrom tugboats"
+    },
+    {
+      "year": 1963,
+      "label": "Demolarea bisericii Sf. Sofia (decembrie) · sistematizare comunistă",
+      "label_en": "St. Sophia Church demolished (December) · communist systematisation"
+    },
+    {
+      "year": 1964,
+      "label": "Inaugurat Cinematograful Țiglina (13 apr) · sală Cinemascop 800 locuri",
+      "label_en": "Țiglina Cinema inaugurated (13 Apr) · 800-seat Cinemascope hall"
+    },
+    {
+      "year": 1965,
+      "label": "Campionatul Mondial de pescuit staționar la Galați — RO campioană",
+      "label_en": "World Coarse Angling Championship in Galați — Romania champion"
+    },
+    {
+      "year": 1966,
+      "label": "Decret pentru Combinatul Siderurgic · 12.000 muncitori la construcție",
+      "label_en": "Decree for the Steel Combine · 12,000 workers on the construction site"
+    },
+    {
+      "year": 1967,
+      "label": "Combinatul produce primul oțel",
+      "label_en": "The Combine produces its first steel"
+    },
+    {
+      "year": 1969,
+      "label": "Inaugurată Casa de Cultură a Sindicatelor (4 oct) · închinată lui Gheorghiu-Dej",
+      "label_en": "Trade Unions House of Culture inaugurated (4 Oct) · dedicated to Gheorghiu-Dej"
+    },
+    {
+      "year": 1970,
+      "label": "Inundațiile catastrofale ale Siretului (mai) · pagube imense în luncă",
+      "label_en": "Catastrophic Siret floods (May) · huge damage on the floodplain"
+    },
+    {
+      "year": 1971,
+      "label": "Pe esplanadă — bustul Gheorghe Gheorghiu-Dej",
+      "label_en": "On the esplanade — the bust of Gheorghe Gheorghiu-Dej"
+    },
+    {
+      "year": 1972,
+      "label": "Inaugurată Sala Sporturilor „Dunărea\"",
+      "label_en": "\"Dunărea\" Sports Hall inaugurated"
+    },
+    {
+      "year": 1977,
+      "label": "Cutremur Vrancea (4 mar) · M 7,4 · accelerează sistematizarea",
+      "label_en": "Vrancea earthquake (4 March) · M 7.4 · accelerates systematisation"
+    },
+    {
+      "year": 1989,
+      "label": "Revoluția (22 dec) · bustul Gheorghiu-Dej dărâmat de mulțime",
+      "label_en": "The Revolution (22 Dec) · the Gheorghiu-Dej bust torn down by the crowd"
+    },
+    {
+      "year": 1990,
+      "label": "Universitatea „Dunărea de Jos\" își ia denumirea actuală",
+      "label_en": "\"Dunărea de Jos\" University takes its current name"
+    },
+    {
+      "year": 2001,
+      "label": "Combinatul privatizat · LNM Holdings (devenit ArcelorMittal în 2006)",
+      "label_en": "The Combine privatised · LNM Holdings (became ArcelorMittal in 2006)"
+    },
+    {
+      "year": 2007,
+      "label": "România intră în Uniunea Europeană · 1 ianuarie",
+      "label_en": "Romania joins the European Union · 1 January"
+    },
+    {
+      "year": 2010,
+      "label": "Inundațiile Prutului (iulie) · stare de urgență · zeci de localități afectate",
+      "label_en": "Prut floods (July) · state of emergency · dozens of villages affected"
+    },
+    {
+      "year": 2014,
+      "label": "Restaurată Sinagoga Templul Meseriașilor (singura activă din 22)",
+      "label_en": "Craftsmen's Temple Synagogue restored (the only active one of 22)"
+    },
+    {
+      "year": 2018,
+      "label": "Centenarul Marii Uniri — restaurări Palatul Comisiei Europene a Dunării",
+      "label_en": "Centenary of the Great Union — restoration of the European Commission of the Danube Palace"
+    }
+  ]
+}

@@ -18,9 +18,43 @@ permissions:
   contents: read
 
 jobs:
+  # Gate înainte de deploy: smoke test Playwright pe site-ul static.
+  # Dacă harta nu se încarcă / timeline-ul nu filtrează / detaliul nu se
+  # deschide, nu livrăm nimic. Testele: tests/smoke.spec.js.
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install test dependencies
+        run: npm ci
+
+      - name: Install Playwright chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Run smoke tests
+        run: npx playwright test
+
+      - name: Upload report on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7
+
   deploy:
     runs-on: ubuntu-latest
     timeout-minutes: 45
+    needs: smoke
 
     steps:
       - name: Checkout
@@ -48,18 +82,21 @@ jobs:
         # and browser caches would never refresh.
         run: |
           python3 - <<'PY'
-          import os, re, pathlib
+          import os, re, pathlib, sys
           sw = pathlib.Path('galati_map/sw.js')
           c = sw.read_text(encoding='utf-8')
           sha = (os.environ.get('GITHUB_SHA') or 'local')[:7]
           m = re.search(r"const CACHE_VERSION = '(tg-v\d+)'", c)
-          if m:
-              base = m.group(1)
-              new = f"{base}-{sha}"
-              sw.write_text(c.replace(f"'{base}'", f"'{new}'", 1), encoding='utf-8')
-              print(f"  ✓ SW cache: {base} → {new}")
-          else:
-              print("  ⚠ CACHE_VERSION pattern not found, skipping bump")
+          if not m:
+              # Fail loudly: dacă pattern-ul dispare, deploy-ul ar livra cod nou
+              # cu versiune de cache veche → utilizatorii recurenți ar rămâne
+              # blocați pe versiunea precedentă fără niciun semnal.
+              print("  ✗ CACHE_VERSION pattern not found in sw.js — refusing to deploy stale cache version")
+              sys.exit(1)
+          base = m.group(1)
+          new = f"{base}-{sha}"
+          sw.write_text(c.replace(f"'{base}'", f"'{new}'", 1), encoding='utf-8')
+          print(f"  ✓ SW cache: {base} → {new}")
           PY
 
       - name: Deploy galati_map/ via FTP

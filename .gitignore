@@ -62,3 +62,11 @@ galati_map/loc/
 galati_map/tour/
 galati_map/hunt/
 .gstack/
+
+# Teste (Playwright)
+node_modules/
+playwright-report/
+test-results/
+
+# Claude Code — config local de unealtă
+.claude/

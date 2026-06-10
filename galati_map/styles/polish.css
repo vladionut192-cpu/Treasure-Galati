@@ -440,13 +440,10 @@
      * — 1445, 1538, 1829, 1916, 1918, 1944, 1989 — devin gradații MAJORE:
      * linii mai înalte, mai întunecate și interactive (cu etichetă la hover). */
     .timeline-events .event { pointer-events: none; }
-    .timeline-events .event[data-year="1445"],
-    .timeline-events .event[data-year="1538"],
-    .timeline-events .event[data-year="1829"],
-    .timeline-events .event[data-year="1916"],
-    .timeline-events .event[data-year="1918"],
-    .timeline-events .event[data-year="1944"],
-    .timeline-events .event[data-year="1989"] {
+    /* Clasa .major vine din timeline_events.json (major_years) — gradațiile
+       sunt generate de js/modules/timeline.js, nu mai există selectori
+       hardcodați pe data-year. */
+    .timeline-events .event.major {
       width: 2px;
       height: 16px;
       top: 0;

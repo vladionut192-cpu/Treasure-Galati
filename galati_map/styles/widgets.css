@@ -63,6 +63,34 @@
       }
     }
 
+    /* ─── Banner „serviciul extern nu răspunde" (eHarta WMS) ───
+       Afișat de watchdog-ul din overlays.js când geo-spatial.org nu livrează
+       niciun tile în timp util. Dismissibil; dispare singur la primul tile. */
+    .map-service-notice {
+      position: absolute;
+      top: 14px; left: 50%;
+      transform: translateX(-50%);
+      z-index: 900;
+      display: flex; align-items: center; gap: 10px;
+      max-width: min(440px, calc(100% - 28px));
+      padding: 10px 12px 10px 14px;
+      background: var(--panel);
+      border: 1px solid var(--hot);
+      border-left-width: 4px;
+      box-shadow: 0 6px 20px rgba(43, 31, 18, .18);
+      font-size: 12.5px; line-height: 1.45;
+      color: var(--ink);
+    }
+    .map-service-notice[hidden] { display: none; }
+    .map-service-notice button {
+      flex-shrink: 0;
+      background: transparent; border: 0;
+      font-size: 17px; line-height: 1;
+      color: var(--muted); cursor: pointer;
+      padding: 2px 4px;
+    }
+    .map-service-notice button:hover { color: var(--hot); }
+
     /* ─── Mobile help sheet ───
        On small screens, tapping "?" shows this centered modal instead of
        floating tooltips that overlap the map. The individual .tour-tip cards
@@ -822,6 +850,128 @@
       font-variant-numeric: tabular-nums;
       letter-spacing: 0.02em;
     }
+    /* ─── Timeline touch loupe (mobil) ───
+       Apare deasupra degetului cât timp utilizatorul ține apăsat pe
+       cronologie. Poziționată fixed deasupra timeline-ului (care pe mobil
+       e sticky jos); left urmărește degetul, clamped la viewport. */
+    .timeline-loupe {
+      position: fixed;
+      z-index: 1500;
+      width: min(300px, calc(100vw - 16px));
+      padding: 10px 14px 9px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--accent);
+      box-shadow: 0 12px 32px rgba(31, 37, 34, .24);
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(8px) scale(.97);
+      transition: opacity .14s ease, transform .14s ease;
+    }
+    .timeline-loupe[hidden] { display: none; }
+    .timeline-loupe.on { opacity: 1; transform: none; }
+    .timeline-loupe.fine { border-left-color: var(--accent-red); }
+    .loupe-head {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+    .loupe-year {
+      font-family: var(--font-mono);
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--accent-deep);
+      font-variant-numeric: tabular-nums;
+    }
+    .loupe-zoom {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: #fff;
+      background: var(--accent-red);
+      padding: 1px 8px;
+      border-radius: 999px;
+    }
+    .loupe-era {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin: 1px 0 8px;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--ink-soft);
+      letter-spacing: 0.03em;
+    }
+    .loupe-era-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    /* Rigla mărită — fereastră cu ac central fix; banda (strip) culisează
+       sub el via translateX. Gradațiile: linii fine la fiecare an (10px),
+       accentuate la decade (100px) — offsetul pe anii rotunzi e setat din JS. */
+    .loupe-scale {
+      position: relative;
+      height: 48px;
+      overflow: hidden;
+      background: var(--paper);
+      border: 1px solid var(--line-soft);
+    }
+    .loupe-strip {
+      position: absolute;
+      top: 0; bottom: 0;
+      left: 0;
+      will-change: transform;
+      background-image:
+        repeating-linear-gradient(90deg, rgba(43,31,18,.38) 0 1px, transparent 1px 100px),
+        repeating-linear-gradient(90deg, rgba(43,31,18,.13) 0 1px, transparent 1px 10px);
+    }
+    .loupe-era-band {
+      position: absolute;
+      bottom: 0;
+      height: 5px;
+      opacity: .9;
+    }
+    .loupe-decade {
+      position: absolute;
+      top: 3px;
+      transform: translateX(-50%);
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      font-weight: 600;
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+    }
+    .loupe-event-dot {
+      position: absolute;
+      top: 58%;
+      width: 7px; height: 7px;
+      transform: translate(-50%, -50%) rotate(45deg);
+      background: var(--accent-red);
+      border: 1px solid var(--paper);
+    }
+    .loupe-needle {
+      position: absolute;
+      left: 50%;
+      top: 0; bottom: 0;
+      width: 2px;
+      margin-left: -1px;
+      background: var(--accent-red);
+      box-shadow: 0 0 0 1px rgba(255,255,255,.45);
+    }
+    .loupe-hint {
+      margin-top: 7px;
+      font-size: 10.5px;
+      color: var(--muted);
+      text-align: center;
+      letter-spacing: 0.04em;
+    }
+    .timeline-loupe.fine .loupe-hint {
+      color: var(--accent-red);
+      font-weight: 600;
+    }
+
     /* Markere "dispărute" — gri cu hash pattern */
     .marker-bubble.demolished {
       background: #8a847a;

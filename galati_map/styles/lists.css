@@ -1,28 +1,9 @@
+/* Tokens partajate (paletă + tipografie) — sursa unică: tokens.css. */
+@import url("tokens.css");
+    /* Override-uri specifice paginii Liste */
     :root {
-      color-scheme: light;
-      --paper:        #F1EBE1;
-      --paper-deep:   #EAE4D9;
-      --panel:        #FBF6EC;
-      --ink:          #2B1F12;
-      --ink-soft:     rgba(43, 31, 18, .72);
-      --muted:        rgba(43, 31, 18, .50);
-      --line:         rgba(43, 31, 18, .14);
-      --line-soft:    rgba(43, 31, 18, .07);
-      --accent:       #3E7A71;
-      --accent-deep:  #2D2F5A;
-      --accent-soft:  rgba(62, 122, 113, .10);
-      --accent-red:   #B8303D;
-      --accent-ochre: #C9952B;
-      --accent-rust:  #A0522D;
-      --hot:          #B8303D;
-      --gold:         #C9952B;
-      --burgundy:     #B8303D;
-      --font-headline: 'Playfair Display', Georgia, serif;
-      --font-body:    'Vollkorn', Georgia, serif;
-      --font-ui:      'DM Sans', ui-sans-serif, system-ui, sans-serif;
-      --font-mono:    'IBM Plex Mono', ui-monospace, Menlo, monospace;
-      --topbar-h:     58px;
-      --max-w:        1080px;
+      --burgundy: #B8303D;   /* logo-ul pe paginile secundare e roșu accent, nu vișiniu */
+      --max-w:    1080px;
     }
     * { box-sizing: border-box; }
     body {

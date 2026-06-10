@@ -1,45 +1,9 @@
 /* Heritage Galați — main stylesheet
  * Extracted from index.html in refactor 2026-05-11.
- * Future: split into base/map/panels/lightbox/tooltips/modals.
+ * Tokens (paletă + tipografie) trăiesc în tokens.css — sursa unică partajată
+ * cu lists.css și maps.css (unificare 2026-06-10).
  */
-
-    :root {
-      color-scheme: light;
-      /* ── Editorial museum palette (from design inspiration) ──
-       * Paper + ink + 5 named accents. Variable names kept stable so all
-       * downstream rules pick up the new values automatically. */
-      --paper:        #F1EBE1;             /* warm cream — primary background */
-      --paper-deep:   #EAE4D9;             /* section-alt — slightly deeper */
-      --panel:        #FBF6EC;             /* lighter than paper — for panels/popups */
-      --ink:          #2B1F12;             /* warm dark brown — primary text */
-      --ink-soft:     rgba(43, 31, 18, .72);
-      --muted:        rgba(43, 31, 18, .50);
-      --line:         rgba(43, 31, 18, .14);
-      --line-soft:    rgba(43, 31, 18, .07);
-      /* Heritage teal — primary brand accent (close to old --accent) */
-      --accent:       #3E7A71;
-      --accent-deep:  #2D2F5A;             /* navy — used for headings + key links */
-      --accent-soft:  rgba(62, 122, 113, .10);
-      /* Editorial accent set */
-      --accent-red:   #B8303D;
-      --accent-ochre: #C9952B;
-      --accent-rust:  #A0522D;
-      --accent-navy:  #2D2F5A;
-      --accent-teal:  #3E7A71;
-      /* Legacy aliases kept so older rules still work */
-      --hot:          var(--accent-red);
-      --gold:         var(--accent-ochre);
-      --burgundy:     #6f1f22;
-      /* Type stacks */
-      --font-headline: 'Playfair Display', 'Vollkorn', Georgia, serif;
-      --font-slab:     'Vollkorn SC', 'Playfair Display', serif;
-      --font-body:     'Vollkorn', Georgia, 'Iowan Old Style', serif;
-      --font-ui:       'DM Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
-      --font-mono:     'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
-      --shadow:       0 14px 36px rgba(43, 31, 18, .10);
-      --topbar-h:     58px;
-      --timeline-h:   78px;
-    }
+@import url("tokens.css");
     * { box-sizing: border-box; }
     html { overflow-x: hidden; max-width: 100vw; width: 100%; }
     body {

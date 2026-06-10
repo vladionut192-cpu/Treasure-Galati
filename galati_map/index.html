@@ -2,12 +2,18 @@
 <html lang="ro" class="map-mode">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- viewport-fit=cover: fără el, env(safe-area-inset-bottom) e mereu 0 pe
+       iPhone-urile cu notch, iar timeline-ul sticky de jos intră sub bara de gesturi. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Heritage Galați — patrimoniu și obiective</title>
   <meta name="description" content="Hartă interactivă a patrimoniului cultural al Galațiului. 148 de obiective documentate, povești istorice, cronologie an cu an, fototecă și tururi tematice.">
   <link rel="canonical" href="https://heritage-galati.ro/galati_map/index.html">
   <link rel="icon" type="image/svg+xml" href="../assets/logo-sigiliu.svg">
-  <link rel="apple-touch-icon" href="../assets/logo-sigiliu.svg">
+  <!-- PWA: manifest + iconițe raster (Add to Home Screen pe Android/iOS).
+       Service worker-ul (sw.js) există deja — manifestul completează instalabilitatea. -->
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="theme-color" content="#F9EFD8">
   <!-- Open Graph / Twitter -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Heritage Galați — patrimoniu și obiective">
@@ -33,6 +39,24 @@
     <link rel="preload" href="locations.json" as="fetch" type="application/json" crossorigin>
     <link rel="dns-prefetch" href="https://a.basemaps.cartocdn.com">
     <link rel="dns-prefetch" href="https://b.basemaps.cartocdn.com">
+  <!-- JSON-LD: identitatea site-ului pentru motoarele de căutare. Paginile
+       statice per-locație (loc/*.html) au propriul JSON-LD generat. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Heritage Galați",
+    "alternateName": "Treasure Galați",
+    "url": "https://heritage-galati.ro/galati_map/",
+    "description": "Hartă interactivă a patrimoniului cultural al Galațiului: obiective documentate, povești istorice, cronologie, fototecă și tururi tematice.",
+    "inLanguage": ["ro", "en"],
+    "about": {
+      "@type": "City",
+      "name": "Galați",
+      "address": { "@type": "PostalAddress", "addressCountry": "RO" }
+    }
+  }
+  </script>
   <!-- Stylesheet: extras în styles/main.css în refactor 2026-05-11. -->
   <link rel="stylesheet" href="styles/main.css">
   <!-- i18n: dicționar + helper. Trebuie încărcat ÎNAINTE de main.js. -->
@@ -107,32 +131,9 @@
         <span class="era era-modern"    style="left:93.63%; width:6.37%"  title="Post-1989 · modern"><span>Modern</span></span>
       </div>
       <input id="timeline-slider" type="range" min="1445" max="2026" step="1" value="2026">
-      <div class="timeline-events" aria-hidden="true">
-        <span class="event" data-year="1445" style="left:0%"     data-label="Prima atestare documentară · uricul lui Ștefan al II-lea (23 sept) prin care scutea de vamă două căruțe cu pește pentru Mănăstirea Humor"></span>
-        <span class="event" data-year="1538" style="left:16.01%" data-label="Soliman Magnificul invadează Moldova · Moldova devine vasal otoman (Galați rămâne moldovenesc, niciodată raiale)"></span>
-        <span class="event" data-year="1600" style="left:26.68%" data-label="Mihai Viteazul își stabilește o tabără la Galați înainte de campania moldoveană"></span>
-        <span class="event" data-year="1645" style="left:34.42%" data-label="Biserica fortificată Sf. Precista ridicată de Vasile Lupu — cea mai veche clădire din Galați"></span>
-        <span class="event" data-year="1700" style="left:43.89%" data-label="Biserica Mavromol (ctitorie Antioh Cantemir) — centrul comunității greco-comerciale"></span>
-        <span class="event" data-year="1709" style="left:45.44%" data-label="Hatmanul cazac Ivan Mazepa îngropat la biserica Sf. Gheorghe după bătălia de la Poltava"></span>
-        <span class="event" data-year="1789" style="left:59.21%" data-label="Distrugere · războiul ruso-turc · primul incendiu major al orașului"></span>
-        <span class="event" data-year="1821" style="left:64.72%" data-label="Eteria · grecii lui Vasile Karavia atacă garnizoana otomană · oraș incendiat"></span>
-        <span class="event" data-year="1828" style="left:65.92%" data-label="Primul consulat la Galați — Franța"></span>
-        <span class="event" data-year="1829" style="left:66.09%" data-label="Pacea de la Adrianopol · liberalizarea comerțului dunărean · ieșire de sub turci"></span>
-        <span class="event" data-year="1837" style="left:67.47%" data-label="Port liber declarat oficial · vapoare din Marsilia, Genova, Constantinopol fără taxe"></span>
-        <span class="event" data-year="1856" style="left:70.74%" data-label="Comisia Europeană a Dunării · prima organizație supranațională europeană · sediul la Galați"></span>
-        <span class="event" data-year="1882" style="left:75.22%" data-label="Sfârșit port liber · Galați intră în vama națională"></span>
-        <span class="event" data-year="1907" style="left:79.52%" data-label="Răscoala țărănească · represiune sângeroasă · Regimentul 11 Siret implicat"></span>
-        <span class="event" data-year="1916" style="left:81.07%" data-label="România intră în Primul Război Mondial (15 august) · începe asediul de 1,4 ani"></span>
-        <span class="event" data-year="1918" style="left:81.41%" data-label="Bătălia de la Galați (22 ianuarie) · Unirea cu Basarabia (27 martie) · ~3.000 vs ~12.000 (Kiriţescu); ~500 vs 12.000 în versiunea populară"></span>
-        <span class="event" data-year="1940" style="left:85.20%" data-label="Cutremur Vrancea (10 noiembrie) · M 7,7 · pagube majore"></span>
-        <span class="event" data-year="1944" style="left:85.89%" data-label="Retragere germană (24-25 august) · Piața Regală devastată · niciodată reconstruită"></span>
-        <span class="event" data-year="1948" style="left:86.57%" data-label="Naționalizare · școlile confesionale închise · industriile expropriate"></span>
-        <span class="event" data-year="1963" style="left:89.16%" data-label="Demolarea bisericii Sf. Sofia (decembrie) · sistematizare comunistă"></span>
-        <span class="event" data-year="1966" style="left:89.67%" data-label="Începe Combinatul Siderurgic · 12.000 muncitori la construcție"></span>
-        <span class="event" data-year="1977" style="left:91.57%" data-label="Cutremur Vrancea (4 martie) · M 7,4 · accelerează sistematizarea"></span>
-        <span class="event" data-year="1989" style="left:93.63%" data-label="Revoluția · 22 decembrie · bustul Gheorghiu-Dej dărâmat de mulțime"></span>
-        <span class="event" data-year="2007" style="left:96.73%" data-label="România intră în Uniunea Europeană · 1 ianuarie"></span>
-      </div>
+      <!-- Gradațiile (evenimente) sunt generate de js/modules/timeline.js din
+           timeline_events.json — sursa unică de adevăr pentru evenimente. -->
+      <div class="timeline-events" aria-hidden="true"></div>
       <div class="timeline-meta">
         <span class="tick" style="left:0%"><span>1445</span></span>
         <span class="tick" style="left:16.01%"><span>1538</span></span>
@@ -530,7 +531,7 @@
         </div>
         <div class="scroll" id="detail-scroll"></div>
       </article>
-      <div class="lightbox" id="lightbox" role="dialog" aria-label="Imagine mărită">
+      <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Imagine mărită" tabindex="-1">
         <img id="lightbox-img" alt="">
         <button type="button" id="lightbox-edit" class="lightbox-edit" title="Editează foto">✎ Editează</button>
         <button type="button" id="lightbox-prev" class="lightbox-nav prev" aria-label="Foto anterioară (apropiată)" hidden>‹</button>
@@ -593,7 +594,7 @@
       <ul class="mhs-tips">
         <li><strong>Pin pe hartă</strong> — tap pe oricare pentru poveste + galerie de poze.</li>
         <li><strong>Buline portocalii</strong> — fotografii istorice geolocate; tap pentru lightbox cu swipe stânga / dreapta.</li>
-        <li><strong>Cronologie jos</strong> — trage cursorul ca să vezi cum se schimbă orașul în timp.</li>
+        <li><strong>Cronologie jos</strong> — ține degetul pe riglă: apare o lupă cu anul; trage în sus pentru selecție an-cu-an.</li>
         <li><strong>Meniu (≡ sus)</strong> — Povești, Liste, Hărți, Despre.</li>
         <li><strong>Butoane stânga-jos</strong> — straturi, tururi tematice și aventuri.</li>
       </ul>
@@ -911,6 +912,8 @@
   <script src="vendor/leaflet/leaflet.markercluster.js"></script>
   <script src="vendor/fuse/fuse.basic.min.js"></script>
   <script src="js/boot.js" defer></script>
-  <script src="js/main.js" defer></script>
+  <!-- Module ES: importă js/modules/*.js. Scripturile type="module" sunt
+       implicit deferred și rulează în ordinea din document, după boot.js. -->
+  <script type="module" src="js/main.js"></script>
 </body>
 </html>

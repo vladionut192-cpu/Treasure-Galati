@@ -197,14 +197,28 @@ def generate_locations(urls: list) -> int:
         canonical = f"{BASE_URL}/galati_map/loc/{lid}.html"
         spa_url = f"{BASE_URL}/galati_map/?loc={lid}"
         image = resolve_image(L.get("image") or "")
-        # JSON-LD: Place
+        # JSON-LD: TouristAttraction pentru obiectivele care mai există (Google
+        # le poate afișa ca rich results); Place generic pentru cele dispărute —
+        # o clădire demolată nu e o „atracție" vizitabilă.
+        status = (L.get("status") or "").lower()
+        gone = status in ("demolished", "lost")
         jsonld = {
             "@context": "https://schema.org",
-            "@type": "Place",
+            "@type": "Place" if gone else ["TouristAttraction", "LandmarksOrHistoricalBuildings"],
             "name": title_clean,
             "description": excerpt,
             "url": canonical,
+            "containedInPlace": {
+                "@type": "City",
+                "name": "Galați",
+                "address": {"@type": "PostalAddress", "addressCountry": "RO"},
+            },
         }
+        if image != DEFAULT_IMAGE:
+            jsonld["image"] = image
+        if not gone:
+            # Obiectivele de patrimoniu de pe hartă se văd liber, din stradă.
+            jsonld["isAccessibleForFree"] = True
         if L.get("lat") and L.get("lon"):
             jsonld["geo"] = {
                 "@type": "GeoCoordinates",
@@ -237,6 +251,11 @@ def generate_tours(urls: list) -> int:
     data = json.loads(p.read_text(encoding="utf-8"))
     out_dir = GMAP / "tour"
     out_dir.mkdir(parents=True, exist_ok=True)
+    # Titlurile opririlor (pentru itinerariul JSON-LD) vin din locations.json,
+    # prin câmpul `article` — singura legătură stop → locație.
+    loc_data = json.loads((GMAP / "locations.json").read_text(encoding="utf-8"))
+    locs = loc_data if isinstance(loc_data, list) else loc_data.get("locations", [])
+    title_by_article = {L["article"]: L.get("title") for L in locs if L.get("article")}
     count = 0
     for t in data.get("tours", []):
         tid = t.get("id")
@@ -255,6 +274,27 @@ def generate_tours(urls: list) -> int:
             "description": description,
             "url": canonical,
         }
+        if image != DEFAULT_IMAGE:
+            jsonld["image"] = image
+        # Itinerariul: lista ordonată a opririlor, cu numele locațiilor.
+        stop_names = []
+        for s in t.get("stops", []):
+            name = title_by_article.get(s.get("article"))
+            if not name:
+                # Fallback: nota începe cu „N. Numele opririi — …"
+                note = (s.get("note") or "").strip()
+                name = re.sub(r"^\d+\.\s*", "", note).split("—")[0].strip()
+            if name:
+                stop_names.append(name)
+        if stop_names:
+            jsonld["itinerary"] = {
+                "@type": "ItemList",
+                "numberOfItems": len(stop_names),
+                "itemListElement": [
+                    {"@type": "ListItem", "position": i + 1, "name": nm}
+                    for i, nm in enumerate(stop_names)
+                ],
+            }
         make_page(
             out_path=out_dir / f"{tid}.html",
             title=title,
@@ -295,7 +335,15 @@ def generate_hunts(urls: list) -> int:
             "description": description,
             "url": canonical,
             "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+            # Event fără location e respins de validatorul Google de rich results.
+            "location": {
+                "@type": "City",
+                "name": "Galați",
+                "address": {"@type": "PostalAddress", "addressLocality": "Galați", "addressCountry": "RO"},
+            },
         }
+        if image != DEFAULT_IMAGE:
+            jsonld["image"] = image
         make_page(
             out_path=out_dir / f"{hid}.html",
             title=title,

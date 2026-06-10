@@ -5,7 +5,9 @@
 //   - Tile-uri OpenStreetMap/CARTO: cache-first cu TTL lung
 //   - Imagini: cache-first
 
-const CACHE_VERSION = 'tg-v115';
+// Versiunea e suprascrisă automat la deploy de CI (tg-<git sha>) — vezi
+// .github/workflows/deploy.yml. Valoarea de aici contează doar pe local.
+const CACHE_VERSION = 'tg-v118';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const DATA_CACHE = `${CACHE_VERSION}-data`;
 const IMAGE_CACHE = `${CACHE_VERSION}-images`;
@@ -23,6 +25,7 @@ const PRECACHE_URLS = [
   'styles/main.css',
   // Partiale CSS importate de main.css (refactor 2026-06): trebuie pre-cache-uite
   // explicit, altfel offline pagina ar fi nestilată (main.css are doar @import-uri).
+  'styles/tokens.css',
   'styles/base.css',
   'styles/topbar.css',
   'styles/pages.css',
@@ -44,6 +47,27 @@ const PRECACHE_URLS = [
   'js/boot.js',
   'js/main.js',
   'js/i18n.js',
+  // Modulele ES importate de main.js (refactor 2026-06) — fără ele offline
+  // pagina ar rămâne fără hartă (import-urile ar eșua).
+  'js/modules/a11y.js',
+  'js/modules/core-map.js',
+  'js/modules/timeline.js',
+  'js/modules/overlays.js',
+  'js/modules/altadata.js',
+  'js/modules/text-pins.js',
+  'js/modules/deep-links.js',
+  'js/modules/tours.js',
+  'js/modules/hunts.js',
+  'js/modules/chrome.js',
+  'js/modules/events-page.js',
+  'js/modules/admin.js',
+  'timeline_events.json',
+  // PWA: manifest + iconițe (Add to Home Screen)
+  'manifest.json',
+  'icons/icon-192.png',
+  'icons/icon-512.png',
+  'icons/maskable-512.png',
+  'icons/apple-touch-icon.png',
   'vendor/leaflet/leaflet.css',
   'vendor/leaflet/leaflet.js',
   'vendor/leaflet/leaflet.markercluster.js',

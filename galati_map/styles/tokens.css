@@ -1,0 +1,46 @@
+/* Heritage Galați — design tokens (SURSA UNICĂ pentru paletă + tipografie).
+ * Importat de: base.css (index.html), lists.css (lists.html), maps.css (maps.html).
+ * Înainte de 2026-06-10 fiecare pagină își redefinea propriul :root, cu valori
+ * ușor divergente — orice ajustare de brand trebuia făcută în 3 locuri.
+ * Paginile pot SUPRASCRIE punctual într-un :root local (ex. --burgundy pe
+ * lists/maps e roșul accent, nu vișiniul din index; --max-w diferă per pagină).
+ */
+:root {
+  color-scheme: light;
+  /* ── Editorial museum palette — paper + ink + 5 accente numite ── */
+  --paper:        #F1EBE1;             /* crem cald — fundal primar */
+  --paper-deep:   #EAE4D9;             /* secțiuni alternative — puțin mai adânc */
+  --panel:        #FBF6EC;             /* mai deschis decât paper — panouri/popup-uri */
+  --ink:          #2B1F12;             /* maro închis cald — text primar */
+  --ink-soft:     rgba(43, 31, 18, .72);
+  /* Contrast: .65 (nu .50, valoarea istorică) ca textul mic să treacă WCAG AA
+   * (4.57:1 pe --paper, 4.66:1 pe --panel). Sub .65 textele meta de 10-13px
+   * pică sub pragul de 4.5:1. */
+  --muted:        rgba(43, 31, 18, .65);
+  --line:         rgba(43, 31, 18, .14);
+  --line-soft:    rgba(43, 31, 18, .07);
+  /* Heritage teal — accentul primar de brand */
+  --accent:       #3E7A71;
+  --accent-deep:  #2D2F5A;             /* navy — titluri + link-uri cheie */
+  --accent-soft:  rgba(62, 122, 113, .10);
+  /* Setul de accente editoriale */
+  --accent-red:   #B8303D;
+  --accent-ochre: #C9952B;
+  --accent-rust:  #A0522D;
+  --accent-navy:  #2D2F5A;
+  --accent-teal:  #3E7A71;
+  /* Alias-uri legacy — regulile vechi continuă să funcționeze */
+  --hot:          var(--accent-red);
+  --gold:         var(--accent-ochre);
+  --burgundy:     #6f1f22;
+  --orange:       #d97706;             /* badge-uri foto istorice (altădată/maps) */
+  /* Type stacks */
+  --font-headline: 'Playfair Display', 'Vollkorn', Georgia, serif;
+  --font-slab:     'Vollkorn SC', 'Playfair Display', serif;
+  --font-body:     'Vollkorn', Georgia, 'Iowan Old Style', serif;
+  --font-ui:       'DM Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono:     'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --shadow:       0 14px 36px rgba(43, 31, 18, .10);
+  --topbar-h:     58px;
+  --timeline-h:   78px;
+}

@@ -26,6 +26,10 @@
       // ──────── TIMELINE ────────
       'timeline.title': 'Cronologie · 1445 → 2026',
       'timeline.sub': 'trage cursorul pentru a vedea cum arăta orașul în orice an',
+      'timeline.loupe.hint': 'trage degetul în sus pentru precizie',
+      'timeline.loupe.fine': 'precizie fină — mișcă lateral pentru anul exact',
+      'timeline.aria.label': 'Selectează anul pe cronologie',
+      'timeline.aria.present': 'prezent — fără filtru de an',
 
       // ──────── SIDEBAR INTRO ────────
       'intro.kicker': 'Galați, port cosmopolit',
@@ -56,6 +60,7 @@
       'layer.cartiere.full': 'Afișează cartierele',
       'layer.historic': 'Hartă istorică',
       'layer.historic.full': 'Hartă istorică suprapusă',
+      'layer.historic.timeout': 'Serviciul extern de hărți istorice (eHarta · geo-spatial.org) nu răspunde momentan. Încearcă din nou mai târziu.',
       'layer.fortif': 'Fortificații',
       'layer.fortif.full': 'Fortificații antice',
       'layer.judet': 'Granița',
@@ -267,6 +272,10 @@
       // ──────── TIMELINE ────────
       'timeline.title': 'Chronology · 1445 → 2026',
       'timeline.sub': 'drag the slider to see how the city looked in any given year',
+      'timeline.loupe.hint': 'slide your finger up for precision',
+      'timeline.loupe.fine': 'fine precision — move sideways to pick the exact year',
+      'timeline.aria.label': 'Select the year on the chronology',
+      'timeline.aria.present': 'present — no year filter',
 
       // ──────── SIDEBAR INTRO ────────
       'intro.kicker': 'Galați, cosmopolitan Danube port',
@@ -297,6 +306,7 @@
       'layer.cartiere.full': 'Show city districts',
       'layer.historic': 'Historic map',
       'layer.historic.full': 'Overlay historic map',
+      'layer.historic.timeout': 'The external historic-map service (eHarta · geo-spatial.org) is not responding right now. Please try again later.',
       'layer.fortif': 'Fortifications',
       'layer.fortif.full': 'Ancient fortifications',
       'layer.judet': 'Boundary',

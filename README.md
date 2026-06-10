@@ -51,6 +51,8 @@ Pe disc mai există câteva foldere cu **materiale brute** folosite la curatarea
 | `Branding si Grafice/` | surse de design (`.psd`, `.svg`) |
 | `Pub Crawl - Traseu/` | poze full-res ale traseului (optimizate în `assets/images/pubcrawl/`) |
 | `Surse/` | cercetare documentară (PDF-uri ignorate, `.txt` extras păstrat pentru grep) |
+| `Aplicatia Treasure Galati/` | **arhivă** — prototip de aplicație mobilă (Node/React Native) abandonat; păstrat doar ca referință pentru conținutul Treasure Hunts |
+| `design inspiration/` | **arhivă** — proiect React de referință vizuală; nu face parte din site |
 
 ## Cum rulez harta local
 
