@@ -231,6 +231,37 @@ def validate_image_references(valid: dict) -> None:
             print(f"      … și încă {len(missing) - 10}")
 
 
+INDEX_HEAVY_FIELDS = {
+    "description", "description_en", "gallery",
+    "image_then", "image_now", "image_then_year", "image_now_year",
+}
+
+
+def validate_locations_index(valid: dict) -> None:
+    """locations-index.json (varianta ușoară, încărcată la primul paint) trebuie
+    să fie sincron cu locations.json — altfel prod ar servi un index învechit.
+    E un fișier DERIVAT: dacă diferă, rulează `python3 scripts/build_data_index.py`."""
+    lp = "galati_map/locations.json"
+    if lp not in valid:
+        return
+    idx_path = GMAP / "locations-index.json"
+    if not idx_path.exists():
+        err("locations-index.json lipsește — rulează scripts/build_data_index.py")
+        return
+    locs = valid[lp] if isinstance(valid[lp], list) else valid[lp].get("locations", [])
+    expected = [{k: v for k, v in L.items() if k not in INDEX_HEAVY_FIELDS} for L in locs]
+    try:
+        actual = json.loads(idx_path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as e:
+        err(f"locations-index.json invalid: {e}")
+        return
+    if actual != expected:
+        err("locations-index.json e DESINCRONIZAT cu locations.json — "
+            "rulează scripts/build_data_index.py și comite rezultatul")
+    else:
+        print(f"  locations-index.json: sincron ({len(actual)} locații)")
+
+
 def audit_i18n_coverage(valid: dict) -> None:
     """Raport de acoperire a traducerilor EN (pct. 11 din STRUCTURA).
 
@@ -297,6 +328,9 @@ def main() -> int:
 
     print("\n📋 Imagini referențiate → există pe disc:")
     validate_image_references(valid)
+
+    print("\n📋 locations-index.json sincron cu locations.json:")
+    validate_locations_index(valid)
 
     print("\n📋 Acoperire traduceri EN (i18n):")
     audit_i18n_coverage(valid)

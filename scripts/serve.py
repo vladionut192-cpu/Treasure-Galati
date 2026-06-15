@@ -74,6 +74,12 @@ def first_field(fields: dict[str, list[dict]], name: str) -> dict | None:
 
 ROOT = Path(__file__).resolve().parent.parent
 LOCATIONS = ROOT / "galati_map" / "locations.json"
+LOCATIONS_INDEX = ROOT / "galati_map" / "locations-index.json"
+# Câmpurile grele excluse din index (vezi scripts/build_data_index.py).
+INDEX_HEAVY_FIELDS = {
+    "description", "description_en", "gallery",
+    "image_then", "image_now", "image_then_year", "image_now_year",
+}
 PUBCRAWL = ROOT / "galati_map" / "galati-altadata.json"
 TRIVIA = ROOT / "galati_map" / "trivia.json"
 LEGENDE = ROOT / "galati_map" / "legende.json"
@@ -425,11 +431,8 @@ class Handler(SimpleHTTPRequestHandler):
                         except ValueError:
                             pass
         locations.append(entry)
-        # Write atomically
-        tmp = LOCATIONS.with_suffix(".json.tmp")
-        with tmp.open("w", encoding="utf-8") as fp:
-            json.dump(locations, fp, ensure_ascii=False, indent=2)
-        tmp.replace(LOCATIONS)
+        # Scriere atomică (regenerează și locations-index.json — vezi helper).
+        self._atomic_write_json(LOCATIONS, locations)
 
         return self._send_json(HTTPStatus.OK, {"ok": True, "entry": entry})
 
@@ -576,6 +579,14 @@ class Handler(SimpleHTTPRequestHandler):
         with tmp.open("w", encoding="utf-8") as fp:
             json.dump(data, fp, ensure_ascii=False, indent=2)
         tmp.replace(path)
+        # Orice scriere în locations.json regenerează indexul ușor, ca dev-ul
+        # local să rămână sincron (aplicația încarcă locations-index.json).
+        if path == LOCATIONS and isinstance(data, list):
+            index = [{k: v for k, v in L.items() if k not in INDEX_HEAVY_FIELDS} for L in data]
+            itmp = LOCATIONS_INDEX.with_suffix(".json.tmp")
+            with itmp.open("w", encoding="utf-8") as fp:
+                json.dump(index, fp, ensure_ascii=False, indent=2)
+            itmp.replace(LOCATIONS_INDEX)
 
     # ─── Edit / delete: locations ──────────────────────────────────
     def _handle_update_location(self) -> None:

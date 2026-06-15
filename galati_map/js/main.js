@@ -42,9 +42,18 @@ import { initAdminTools } from './modules/admin.js';
     return r.json();
   });
   let locations, cartiere, toursData, toursRoutes, huntsData, timelineEvents;
+  // Încărcăm întâi indexul UȘOR (~400 KB: tot, fără descrierile lungi +
+  // galerii). Harta/lista/căutarea/timeline se randează imediat; datele
+  // complete vin în fundal (vezi ensureFullData mai jos). Fallback la
+  // locations.json complet dacă indexul lipsește (ex. server static fără build).
+  let loadedFullData = false;
+  const locationsPromise = fetchJson('locations-index.json').catch(() => {
+    loadedFullData = true;
+    return fetchJson('locations.json');
+  });
   try {
     [locations, cartiere, toursData, toursRoutes, huntsData, timelineEvents] = await Promise.all([
-      fetchJson('locations.json'),
+      locationsPromise,
       fetchJson('cartiere.geojson'),
       fetchJson('tours.json'),
       fetchJson('tours_routes.json').catch(() => ({ tours: {} })), // optional
@@ -81,6 +90,34 @@ import { initAdminTools } from './modules/admin.js';
     triviaMarkers: [], legendaMarkers: [],
   };
 
+  // ── Încărcare lazy a datelor complete (descrieri + galerii) ──
+  // Indexul are deja toate metadatele ușoare; aici aducem câmpurile grele și
+  // le îmbinăm IN-PLACE în `ctx.locations` (păstrăm referința array-ului, ca
+  // modulele care o țin să vadă datele îmbogățite). Apoi reconstruim indexul
+  // Fuse (ca să caute și în descrieri) și re-randăm detaliul deschis.
+  const HEAVY_FIELDS = ['description', 'description_en', 'gallery',
+    'image_then', 'image_now', 'image_then_year', 'image_now_year'];
+  ctx.fullDataLoaded = loadedFullData;
+  let fullDataPromise = loadedFullData ? Promise.resolve() : null;
+  ctx.ensureFullData = function () {
+    if (fullDataPromise) return fullDataPromise;
+    fullDataPromise = fetchJson('locations.json').then((full) => {
+      const byId = new Map(full.map((l) => [l.id, l]));
+      for (const loc of ctx.locations) {
+        const f = byId.get(loc.id);
+        if (!f) continue;
+        for (const k of HEAVY_FIELDS) if (k in f) loc[k] = f[k];
+      }
+      ctx.fullDataLoaded = true;
+      if (typeof ctx.rebuildFuseIndex === 'function') ctx.rebuildFuseIndex();
+      if (typeof window.__rerenderActiveDetail === 'function') window.__rerenderActiveDetail();
+    }).catch((err) => {
+      console.warn('Nu am putut încărca datele complete:', err);
+      fullDataPromise = null; // permite reîncercarea (ex. la deschiderea unui detaliu)
+    });
+    return fullDataPromise;
+  };
+
   initCoreMap(ctx);
   initTimeline(ctx);
   initOverlays(ctx);
@@ -97,4 +134,12 @@ import { initAdminTools } from './modules/admin.js';
   initChrome(ctx);
   initEventsPage(ctx);
   initAdminTools(ctx);
+
+  // După primul paint, aducem datele complete în fundal (idle), ca să fie gata
+  // căutarea în descrieri + deschiderea instantă a detaliilor. Deschiderea unui
+  // detaliu sau o căutare declanșează oricum ensureFullData() mai devreme.
+  if (!ctx.fullDataLoaded) {
+    const idle = window.requestIdleCallback || ((fn) => setTimeout(fn, 1200));
+    idle(() => ctx.ensureFullData(), { timeout: 3000 });
+  }
 })();

@@ -183,6 +183,9 @@ Pe lângă punctele 3 și 13 de mai sus (imagini, analytics), auditul a găsit p
 
 **F. ✅ Fonturi self-hostate.** Cele 5 familii Google (cu Vollkorn SC nefolosit + `vendor/inter` mort) → `scripts/fetch_fonts.py` descarcă woff2 (latin + latin-ext pt. diacritice) în `vendor/fonts/`, generează `fonts.css`. Eliminate requesturile către Google (GDPR) + conexiunea externă la primul load. Scos Vollkorn SC și `vendor/inter`.
 
+**G. ✅ Split `locations.json` (2,4 MB) — index ușor + lazy.** — *implementat 2026-06-14.*
+~1,9 MB din `locations.json` erau descrierile lungi + galeriile, necesare DOAR la deschiderea unui detaliu, dar se încărcau pe calea critică (preload, blocant). `scripts/build_data_index.py` generează **`locations-index.json`** (= tot, minus cele 5 câmpuri grele) — **419 KB, −83%**. Aplicația încarcă întâi indexul (harta/lista/căutarea/timeline se randează de ~6× mai repede), apoi aduce datele complete **în fundal** (`requestIdleCallback`) și le îmbină IN-PLACE în `ctx.locations`, reconstruind indexul Fuse (căutarea în descrieri) și re-randând detaliul deschis. Deschiderea unui detaliu sau o căutare declanșează `ensureFullData()` mai devreme; până la sosire se vede excerpt-ul. Fallback la `locations.json` complet dacă indexul lipsește. Indexul e **derivat și păzit**: `validate_data.py` eșuează dacă e desincronizat (pre-commit + CI), `serve.py` îl regenerează după fiecare scriere admin. Verificat: first paint din index, search „bombardament" (cuvânt doar din descrieri) → 25 rezultate după merge, detaliu + deep-link `?loc=` complet, 4/4 smoke tests.
+
 ---
 
 ## 5. Pe scurt

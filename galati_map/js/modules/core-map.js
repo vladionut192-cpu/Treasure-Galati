@@ -512,6 +512,11 @@ export function initCoreMap(ctx) {
     function openDetail(id) {
       const item = locations.find(l => l.id === id);
       if (!item) return;
+      // Datele complete (descriere + galerie) se încarcă lazy. Dacă încă nu au
+      // sosit, le declanșăm; la merge, ensureFullData cheamă __rerenderActiveDetail
+      // care re-deschide acest detaliu cu textul integral. Până atunci se vede
+      // excerpt-ul (fallback în randarea de mai jos).
+      if (typeof ctx.ensureFullData === 'function' && !ctx.fullDataLoaded) ctx.ensureFullData();
       // Pe mobil, dacă un bottom-sheet (straturi/tururi) e deschis, îl închidem
       // ca să fie vizibil panel-ul detail care alunecă din dreapta.
       if (typeof ctx.closeAllSheets === 'function') ctx.closeAllSheets();
@@ -892,7 +897,12 @@ export function initCoreMap(ctx) {
       }
     });
 
-    search.addEventListener('input', render);
+    // La prima căutare, ne asigurăm că descrierile sunt încărcate (Fuse le
+    // indexează cu weight 0.5); ensureFullData reconstruiește indexul la sosire.
+    search.addEventListener('input', () => {
+      if (typeof ctx.ensureFullData === 'function' && !ctx.fullDataLoaded) ctx.ensureFullData();
+      render();
+    });
     category.addEventListener('change', render);
 
     // ─── Filter chips ────────────────────────────────────────────
@@ -925,6 +935,9 @@ export function initCoreMap(ctx) {
     ctx.render = render;
     ctx.highlight = highlight;
     ctx.openDetail = openDetail;
+    // Expus pentru main.js: după ce datele complete se îmbină în ctx.locations,
+    // reconstruim indexul Fuse ca să caute și în descrieri.
+    ctx.rebuildFuseIndex = () => { fuseIndex = null; rebuildFuseIndex(); };
     ctx.closeDetail = closeDetail;
     ctx.closeLightbox = closeLightbox;
     ctx.openImageInLightbox = openImageInLightbox;

@@ -7,7 +7,7 @@
 
 // Versiunea e suprascrisă automat la deploy de CI (tg-<git sha>) — vezi
 // .github/workflows/deploy.yml. Valoarea de aici contează doar pe local.
-const CACHE_VERSION = 'tg-v118';
+const CACHE_VERSION = 'tg-v119';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const DATA_CACHE = `${CACHE_VERSION}-data`;
 const IMAGE_CACHE = `${CACHE_VERSION}-images`;
@@ -63,6 +63,9 @@ const PRECACHE_URLS = [
   'js/modules/events-page.js',
   'js/modules/admin.js',
   'timeline_events.json',
+  // Indexul ușor de locații — calea critică pentru primul paint al hărții.
+  // locations.json (complet) se cache-uiește la cerere prin handler-ul fetch.
+  'locations-index.json',
   // PWA: manifest + iconițe (Add to Home Screen)
   'manifest.json',
   'icons/icon-192.png',
