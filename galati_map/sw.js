@@ -47,6 +47,7 @@ const PRECACHE_URLS = [
   'js/boot.js',
   'js/main.js',
   'js/i18n.js',
+  'js/analytics.js',
   // Modulele ES importate de main.js (refactor 2026-06) — fără ele offline
   // pagina ar rămâne fără hartă (import-urile ar eșua).
   'js/modules/a11y.js',
@@ -73,11 +74,14 @@ const PRECACHE_URLS = [
   'vendor/leaflet/leaflet.markercluster.js',
   'vendor/fuse/fuse.basic.min.js',
   'vendor/leaflet/MarkerCluster.css',
-  'vendor/inter/inter.css',
-  'vendor/inter/inter-400-latin.woff2',
-  'vendor/inter/inter-400-latin-ext.woff2',
-  'vendor/inter/inter-600-latin.woff2',
-  'vendor/inter/inter-600-latin-ext.woff2',
+  // Fonturi self-hosted (vendor/fonts/). Precache doar fonts.css + DM Sans
+  // (UI dominant, latin + latin-ext pentru diacritice); restul greutăților se
+  // cache-uiesc la cerere prin handler-ul fetch (same-origin, stale-while-revalidate).
+  'vendor/fonts/fonts.css',
+  'vendor/fonts/dm-sans-400-latin.woff2',
+  'vendor/fonts/dm-sans-400-latin-ext.woff2',
+  'vendor/fonts/dm-sans-600-latin.woff2',
+  'vendor/fonts/dm-sans-600-latin-ext.woff2',
 ];
 
 self.addEventListener('install', (event) => {

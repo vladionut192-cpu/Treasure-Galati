@@ -5,41 +5,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Hărți · Heritage Galați</title>
   <meta name="description" content="Hărți istorice, planuri de oraș și vederi aeriene ale Galațiului, în ordine cronologică — din 1540 până în 1968.">
-  <link rel="canonical" href="https://heritage-galati.ro/galati_map/maps.html">
+  <link rel="canonical" href="https://ionpeblog.ro/galati_map/maps.html">
+  <link rel="alternate" hreflang="ro" href="https://ionpeblog.ro/galati_map/maps.html">
+  <link rel="alternate" hreflang="en" href="https://ionpeblog.ro/galati_map/maps.html?lang=en">
+  <link rel="alternate" hreflang="x-default" href="https://ionpeblog.ro/galati_map/maps.html">
   <link rel="icon" type="image/svg+xml" href="../assets/logo-sigiliu.svg">
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
   <meta name="theme-color" content="#F9EFD8">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Vollkorn:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Vollkorn:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"></noscript>
+  <!-- Fonturi self-hosted (vendor/fonts/) — fără requesturi terțe (GDPR). -->
+  <link rel="preload" href="vendor/fonts/dm-sans-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="vendor/fonts/dm-sans-600-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="vendor/fonts/fonts.css">
   <!-- Open Graph / Twitter -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Hărți · Heritage Galați">
   <meta property="og:description" content="Hărți istorice, planuri de oraș și vederi aeriene ale Galațiului, în ordine cronologică (1540–1968).">
-  <meta property="og:url" content="https://heritage-galati.ro/galati_map/maps.html">
-  <meta property="og:image" content="https://heritage-galati.ro/assets/og-default.jpg">
+  <meta property="og:url" content="https://ionpeblog.ro/galati_map/maps.html">
+  <meta property="og:image" content="https://ionpeblog.ro/assets/og-default.jpg">
   <meta property="og:locale" content="ro_RO">
+  <meta property="og:locale:alternate" content="en_US">
   <meta property="og:site_name" content="Heritage Galați">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Hărți · Heritage Galați">
   <meta name="twitter:description" content="Hărți istorice și vederi aeriene ale Galațiului, în ordine cronologică.">
-  <meta name="twitter:image" content="https://heritage-galati.ro/assets/og-default.jpg">
+  <meta name="twitter:image" content="https://ionpeblog.ro/assets/og-default.jpg">
   <!-- JSON-LD: galeria de hărți istorice ca o colecție. -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     "name": "Galațiul în hărți și vederi aeriene",
-    "url": "https://heritage-galati.ro/galati_map/maps.html",
+    "url": "https://ionpeblog.ro/galati_map/maps.html",
     "description": "Hărți istorice, planuri de oraș și vederi aeriene ale Galațiului, în ordine cronologică (1540–1968).",
     "inLanguage": ["ro", "en"],
-    "isPartOf": { "@type": "WebSite", "name": "Heritage Galați", "url": "https://heritage-galati.ro/galati_map/" }
+    "isPartOf": { "@type": "WebSite", "name": "Heritage Galați", "url": "https://ionpeblog.ro/galati_map/" }
   }
   </script>
   <link rel="stylesheet" href="styles/maps.css">
   <script src="js/i18n.js" defer></script>
+  <script src="js/analytics.js" defer></script>
 </head>
 <body>
   <header class="topbar">

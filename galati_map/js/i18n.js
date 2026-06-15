@@ -499,6 +499,15 @@
   };
 
   // Limba curentă din localStorage sau default
+  // Seed o singură dată din `?lang=` (linkuri partajabile/crawlabile pentru EN,
+  // ex. hreflang). URL-ul are prioritate la prima încărcare, apoi localStorage
+  // preia controlul, ca toggle-ul din picker să nu fie suprascris de URL.
+  (function seedLangFromUrl() {
+    try {
+      const u = new URLSearchParams(location.search).get('lang');
+      if (u === 'ro' || u === 'en') localStorage.setItem('tg.lang', u);
+    } catch (e) {}
+  })();
   function getLang() {
     try {
       const stored = localStorage.getItem('tg.lang');

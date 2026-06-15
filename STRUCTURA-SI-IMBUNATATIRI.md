@@ -122,8 +122,8 @@ Monolitul a fost spart în 11 module sub `js/modules/` (vezi tabelul din §2.1),
 **2. ✅ Automatizarea versiunii service worker-ului.** — *exista deja parțial; întărit 2026-06-10.*
 CI-ul avea deja pasul care adaugă SHA-ul commitului la `CACHE_VERSION` la fiecare deploy (deci în producție cache-ul se împrospăta corect — analiza inițială a fost prea pesimistă; problema apare doar pe local). Întărit: dacă pattern-ul `CACHE_VERSION` nu mai e găsit în `sw.js`, deploy-ul **eșuează** în loc să continue silențios cu versiunea veche.
 
-**3. Optimizarea imaginilor (327 MB).**
-Cea mai mare frână de performanță pe mobil. Recomandat: conversie în WebP/AVIF cu fallback (`<picture>`), generare de 2–3 dimensiuni (`srcset`) pentru galerii vs. thumbnail-uri, și un script `optimize_images.py` în pipeline. La 4G, o galerie de pin se poate ușura de la mai mulți MB la câteva sute de KB.
+**3. ✅ Optimizarea imaginilor.** — *implementat 2026-06-14 (audit extern).*
+Abordare care reduce transferul FĂRĂ pierdere de calitate și fără a atinge originalele: **WebP transparent prin negociere de conținut**. `scripts/optimize_images.py` generează `foo.jpg.webp` (q=88, vizual fără pierdere) lângă fiecare imagine; `assets/.htaccess` servește varianta WebP browserelor care o acceptă (`Accept: image/webp` + `Vary: Accept`), iar restul primesc originalul. `src`-urile din JSON/HTML rămân neatinse. Rezultat: −39% transfer global, −80…90% pe imaginile grele (un PNG de 12,9 MB → 1,3 MB). CI completează automat WebP pentru imaginile noi (`--skip-existing`). *Rămas pentru viitor:* `srcset`/dimensiuni multiple pentru thumbnail-uri vs. lightbox (necesită refactor de render) — câștig suplimentar pe mobil, dar opțional acum.
 
 **4. ✅ Eliminarea dublei surse de adevăr pentru evenimentele din timeline.** — *implementat 2026-06-10.*
 Acum există un singur `timeline_events.json` (72 evenimente + `track_years` + `major_years`); `js/modules/timeline.js` generează din el gradațiile de pe riglă (procentul `left` e calculat), romburile din lupa mobilă și textele overlay-ului. Span-urile hardcodate din `index.html` și array-ul `allEvents` din JS au dispărut; selectorii pe `data-year` din `polish.css` au devenit clasa `.major`.
@@ -156,13 +156,32 @@ Auditul a arătat o acoperire mult mai bună decât estimarea inițială: `title
 **12. ✅ Date structurate SEO.** — *implementat 2026-06-10.*
 JSON-LD exista deja în paginile generate, dar generic. Acum: locațiile existente sunt `TouristAttraction` + `LandmarksOrHistoricalBuildings` (cele demolate rămân `Place` — nu poți „vizita" o clădire dispărută), cu `image`, `geo`, `containedInPlace` și `isAccessibleForFree`; tururile (`TouristTrip`) au `image` + `itinerary` (ItemList cu numele opririlor, rezolvate din `locations.json`); hunturile (`Event`) au `location` (obligatoriu pentru rich results Google) + `image`. Paginile principale au primit blocuri statice: `WebSite` pe index.html, `CollectionPage` pe lists.html și maps.html.
 
-**13. Analytics privacy-friendly.** Un Plausible/GoatCounter (fără cookie banner) ar arăta ce locații/tururi sunt populare — informație utilă pentru prioritizarea conținutului.
+**13. ✅ Analytics privacy-friendly.** — *implementat 2026-06-14 (audit extern).*
+`js/analytics.js` (inclus pe toate paginile) încarcă **GoatCounter** — fără cookieuri, fără PII, fără cookie banner. E **inert până pui codul**: cât timp `GC_CODE` e gol, zero requesturi externe (safe de deployat). Activare = creezi un site gratuit pe goatcounter.com și pui codul într-un singur loc → activ pe toate paginile. Tratează și navigarea SPA prin hash (count manual la `hashchange`). **Uptime:** încă de configurat extern (UptimeRobot, gratuit) — monitorizează `https://ionpeblog.ro/galati_map/index.html` și `…/locations.json`; nu se poate face din repo.
 
 **14. ✅ Curățenie în rădăcina repo-ului.** — *implementat 2026-06-10.*
 Ambele foldere erau deja gitignored (cu explicații în `.gitignore`), dar lipseau din tabelul „Foldere de lucru" al README-ului rădăcină — adăugate, marcate explicit **arhivă**. În plus, fiecare a primit un README *în interiorul folderului* (force-add peste gitignore, deci versionat și vizibil în clone): `Aplicatia Treasure Galati/README.md` și `design inspiration/README-ARHIVA.md` (numit așa ca să nu intre în conflict cu README-ul proiectului React) spun explicit „arhivă — nu face parte din site" și unde e versiunea live.
 
 **15. ✅ Monitorizare a dependențelor externe.** — *implementat 2026-06-10.*
 Watchdog pe stratul eHarta în `overlays.js`: dacă în 15 s nu sosește niciun tile valid (sau primele ≥6 tile-uri eșuează — drum scurt, fără așteptat tot timeout-ul), spinner-ul se oprește și apare un banner dismissibil pe hartă: „Serviciul extern de hărți istorice (eHarta · geo-spatial.org) nu răspunde momentan" (tradus RO/EN, cheia `layer.historic.timeout`). Banner-ul dispare singur la primul tile reușit. Testat cu un nume de strat WMS inexistent: banner la eroare, recuperare curată la revenirea pe strat valid. Tile-urile CARTO sunt folosite cu atribuire (conform politicii lor de fair-use pentru proiecte necomerciale); la trafic semnificativ crescut, de luat în calcul un provider dedicat.
+
+---
+
+## 4bis. Audit extern (2026-06-14) — elemente noi rezolvate
+
+Pe lângă punctele 3 și 13 de mai sus (imagini, analytics), auditul a găsit probleme care nu erau în lista inițială:
+
+**A. ✅ Split-brain de domeniu (SEO critic).** Paginile principale aveau `canonical`/OG/JSON-LD pe `heritage-galati.ro` (domeniu inactiv), dar sitemap-ul + generatorul + hostul real pe `ionpeblog.ro`. Google primea semnale contradictorii spre un domeniu inaccesibil. Unificat tot pe **ionpeblog.ro** (singurul live). *Migrare viitoare la heritage-galati.ro:* setezi `vars.HG_BASE_URL` în CI + `grep -rl ionpeblog.ro galati_map/*.html` pentru cele 4 pagini hardcodate + redirect 301.
+
+**B. ✅ `_headers` mort înlocuit cu `.htaccess`.** `_headers` (format Netlify) nu se aplica pe Apache/cPanel — live, `locations.json` se servea fără niciun `Cache-Control`, iar headerele de securitate lipseau complet. Creat `galati_map/.htaccess` (cache pe tip de fișier, `X-Content-Type-Options`, `Referrer-Policy`, `X-Frame-Options`, `Permissions-Policy`, gzip), `galati_map/vendor/.htaccess` (imutabil 1 an) și `assets/.htaccess` (imagini 30 zile + negociere WebP). `_headers` șters.
+
+**C. ✅ Igiena vocabularului de date.** `status` avea `ruin` ȘI `ruins` (14 intrări nu primeau stilul/filtrul de ruină) — normalizat la `ruin`; `Lăcașuri de Cult`/`de cult` unificate. `validate_data.py` are acum vocabular controlat: `status` enum ÎNCHIS (error la valori noi — codul face switch pe el), `category` set cunoscut (warning la variante noi, ca typo-urile să fie vizibile). Perechile `Industrie`/`Industrial-Tehnic`, `Case`/`Clădiri istorice`, `Spații verzi`/`Natură` NU au fost unite — sunt distincții intenționate, nu dubluri.
+
+**D. ✅ hreflang RO/EN.** Site bilingv pe aceeași URL (toggle client-side). Adăugat suport `?lang=en` (seed o singură dată în i18n, apoi localStorage preia), `<link rel="alternate" hreflang>` (ro/en/x-default) și `og:locale:alternate` pe cele 3 pagini SPA — acum Google știe că există versiune EN.
+
+**E. ✅ CSS bundle.** `styles/main.css` (manifest de 10 `@import` + tokens.css imbricat) cauza un round-trip + 12 cereri la primul load. `scripts/build_css.py` aplatizează `@import`-urile într-un singur fișier per pagină, rulat în CI înainte de FTP (ca bump-ul SW) — repo-ul păstrează `@import` pentru dezvoltare.
+
+**F. ✅ Fonturi self-hostate.** Cele 5 familii Google (cu Vollkorn SC nefolosit + `vendor/inter` mort) → `scripts/fetch_fonts.py` descarcă woff2 (latin + latin-ext pt. diacritice) în `vendor/fonts/`, generează `fonts.css`. Eliminate requesturile către Google (GDPR) + conexiunea externă la primul load. Scos Vollkorn SC și `vendor/inter`.
 
 ---
 

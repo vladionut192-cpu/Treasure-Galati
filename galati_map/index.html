@@ -6,8 +6,11 @@
        iPhone-urile cu notch, iar timeline-ul sticky de jos intră sub bara de gesturi. -->
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Heritage Galați — patrimoniu și obiective</title>
-  <meta name="description" content="Hartă interactivă a patrimoniului cultural al Galațiului. 148 de obiective documentate, povești istorice, cronologie an cu an, fototecă și tururi tematice.">
-  <link rel="canonical" href="https://heritage-galati.ro/galati_map/index.html">
+  <meta name="description" content="Hartă interactivă a patrimoniului cultural al Galațiului. sute de obiective documentate, povești istorice, cronologie an cu an, fototecă și tururi tematice.">
+  <link rel="canonical" href="https://ionpeblog.ro/galati_map/index.html">
+  <link rel="alternate" hreflang="ro" href="https://ionpeblog.ro/galati_map/index.html">
+  <link rel="alternate" hreflang="en" href="https://ionpeblog.ro/galati_map/index.html?lang=en">
+  <link rel="alternate" hreflang="x-default" href="https://ionpeblog.ro/galati_map/index.html">
   <link rel="icon" type="image/svg+xml" href="../assets/logo-sigiliu.svg">
   <!-- PWA: manifest + iconițe raster (Add to Home Screen pe Android/iOS).
        Service worker-ul (sw.js) există deja — manifestul completează instalabilitatea. -->
@@ -17,22 +20,25 @@
   <!-- Open Graph / Twitter -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Heritage Galați — patrimoniu și obiective">
-  <meta property="og:description" content="Hartă interactivă a patrimoniului cultural al Galațiului. 148 de obiective documentate, povești istorice, cronologie an cu an.">
-  <meta property="og:url" content="https://heritage-galati.ro/galati_map/index.html">
-  <meta property="og:image" content="https://heritage-galati.ro/assets/og-default.jpg">
+  <meta property="og:description" content="Hartă interactivă a patrimoniului cultural al Galațiului. sute de obiective documentate, povești istorice, cronologie an cu an.">
+  <meta property="og:url" content="https://ionpeblog.ro/galati_map/index.html">
+  <meta property="og:image" content="https://ionpeblog.ro/assets/og-default.jpg">
   <meta property="og:locale" content="ro_RO">
+  <meta property="og:locale:alternate" content="en_US">
   <meta property="og:site_name" content="Heritage Galați">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Heritage Galați — patrimoniu și obiective">
   <meta name="twitter:description" content="Hartă interactivă a patrimoniului cultural al Galațiului.">
-  <meta name="twitter:image" content="https://heritage-galati.ro/assets/og-default.jpg">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Vollkorn:ital,wght@0,400;0,600;0,700;1,400&family=Vollkorn+SC:wght@700&family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <meta name="twitter:image" content="https://ionpeblog.ro/assets/og-default.jpg">
+    <!-- Fonturi self-hosted (vendor/fonts/) — fără requesturi terțe (GDPR) și fără
+         conexiune externă la fonts.gstatic la primul load. Preload pe DM Sans
+         (fontul de UI dominant) pentru text instant. -->
+    <link rel="preload" href="vendor/fonts/dm-sans-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="vendor/fonts/dm-sans-600-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="vendor/fonts/fonts.css">
     <link rel="preload" href="vendor/leaflet/leaflet.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="preload" href="vendor/leaflet/MarkerCluster.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Vollkorn:ital,wght@0,400;0,600;0,700;1,400&family=Vollkorn+SC:wght@700&family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
       <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
       <link rel="stylesheet" href="vendor/leaflet/MarkerCluster.css">
     </noscript>
@@ -47,7 +53,7 @@
     "@type": "WebSite",
     "name": "Heritage Galați",
     "alternateName": "Treasure Galați",
-    "url": "https://heritage-galati.ro/galati_map/",
+    "url": "https://ionpeblog.ro/galati_map/",
     "description": "Hartă interactivă a patrimoniului cultural al Galațiului: obiective documentate, povești istorice, cronologie, fototecă și tururi tematice.",
     "inLanguage": ["ro", "en"],
     "about": {
@@ -61,6 +67,7 @@
   <link rel="stylesheet" href="styles/main.css">
   <!-- i18n: dicționar + helper. Trebuie încărcat ÎNAINTE de main.js. -->
   <script src="js/i18n.js" defer></script>
+  <script src="js/analytics.js" defer></script>
 </head>
 <body class="map-mode">
   <header class="topbar">

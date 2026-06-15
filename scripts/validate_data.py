@@ -21,6 +21,20 @@ from collections import Counter
 ROOT = Path(__file__).resolve().parent.parent
 GMAP = ROOT / "galati_map"
 
+# Vocabular controlat pentru locații (pct. 3 din audit — previne dublurile gen
+# „ruin"/„ruins" sau „Lăcașuri de Cult"/„de cult" care sparg filtrele).
+#   STATUS_ENUM: vocabular ÎNCHIS — codul face switch pe el (un status nou
+#     ar fi randat greșit, silențios) → orice valoare în afară e EROARE.
+#   CATEGORY_SET: setul curent cunoscut — o categorie nouă e permisă, dar
+#     produce WARNING (ca o variantă cu typo/case să fie vizibilă la commit).
+STATUS_ENUM = {"active", "demolished", "lost", "ruin"}
+CATEGORY_SET = {
+    "Alte locuri", "Case istorice", "Clădiri Istorice", "Comerț istoric",
+    "Consulate", "Educație", "Industrial / Tehnic", "Industrie",
+    "Lăcașuri de cult", "Monumente", "Monumente Comemorative",
+    "Natură și Agrement", "Palate", "Sate Istorice", "Spații verzi",
+}
+
 errors: list[str] = []
 warnings: list[str] = []
 
@@ -76,6 +90,23 @@ def validate_locations(data: dict | list) -> None:
     no_coords = [L.get("id") for L in locs if not L.get("lat") or not L.get("lon")]
     if no_coords:
         err(f"locations.json: {len(no_coords)} entries missing lat/lon: {no_coords[:3]}…")
+
+    # Vocabular controlat — status (enum închis) + categorie (set cunoscut).
+    bad_status = {}
+    for L in locs:
+        s = L.get("status")
+        if s is not None and s not in STATUS_ENUM:
+            bad_status.setdefault(s, []).append(L.get("id"))
+    for val, who in bad_status.items():
+        err(f"locations.json: status necunoscut {val!r} ({len(who)}×, ex: {who[:3]}) — permise: {sorted(STATUS_ENUM)}")
+
+    new_cats = {}
+    for L in locs:
+        c = L.get("category")
+        if c and c not in CATEGORY_SET:
+            new_cats.setdefault(c, []).append(L.get("id"))
+    for val, who in new_cats.items():
+        warn(f"locations.json: categorie nouă {val!r} ({len(who)}×, ex: {who[:3]}) — dacă e intenționată, adaug-o în CATEGORY_SET; altfel e typo/variantă")
 
 
 def validate_cross_references(valid: dict) -> None:

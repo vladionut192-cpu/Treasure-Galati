@@ -145,7 +145,7 @@ def main() -> int:
     # Domain bottom-right
     draw.text(
         (text_right, H - 45),
-        "heritage-galati.ro",
+        "ionpeblog.ro/galati_map",
         fill=MUTED,
         font=domain_font,
         anchor="rs",

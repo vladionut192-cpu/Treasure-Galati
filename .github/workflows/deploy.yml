@@ -99,6 +99,13 @@ jobs:
           print(f"  ✓ SW cache: {base} → {new}")
           PY
 
+      - name: Bundle CSS (flatten @imports)
+        # Înlocuiește @import-urile din main.css/lists.css/maps.css cu conținutul
+        # efectiv → un singur fișier CSS per pagină (un round-trip mai puțin +
+        # 12 cereri eliminate la primul load). Ca bump-ul SW, mutația rămâne în
+        # workspace-ul CI; repo-ul păstrează manifestul cu @import pentru dev.
+        run: python3 scripts/build_css.py --write
+
       - name: Deploy galati_map/ via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
@@ -124,6 +131,16 @@ jobs:
             **/*.pyo
             **/*.swp
             **/*.log
+
+      - name: Generate WebP for any new images
+        # Variantele .webp ale imaginilor existente sunt comise în repo. Acest pas
+        # completează DOAR imaginile noi (--skip-existing → determinist, nu atinge
+        # cele existente), ca o poză adăugată recent să fie servită optimizat.
+        # Non-fatal: un hiccup la pip nu trebuie să blocheze deploy-ul.
+        continue-on-error: true
+        run: |
+          python3 -m pip install --quiet Pillow
+          python3 scripts/optimize_images.py --skip-existing
 
       - name: Deploy assets/ via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5

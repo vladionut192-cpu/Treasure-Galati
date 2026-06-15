@@ -1,0 +1,51 @@
+# Apache / cPanel — config pentru /galati_map/
+# Înlocuiește fostul `_headers` (format Netlify/Cloudflare, INACTIV pe Apache).
+# Acoperă: cache per tip de fișier, headere de securitate, compresie gzip
+# (Brotli e deja activ pe host pentru clienții care trimit `br`).
+#
+# Notă: cache-ul imutabil pentru vendor/ e în galati_map/vendor/.htaccess
+# (un .htaccess de subdirector suprascrie regulile de aici pentru acel folder).
+
+<IfModule mod_headers.c>
+  # HTML — mereu revalidat, ca deploy-urile să fie vizibile imediat.
+  <FilesMatch "\.html$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+
+  # Date JSON / GeoJSON — cache scurt + revalidare în fundal.
+  <FilesMatch "\.(json|geojson)$">
+    Header set Cache-Control "public, max-age=300, stale-while-revalidate=3600"
+  </FilesMatch>
+
+  # JS / CSS de aplicație (main.js, module ES, styles) — NU au hash în nume,
+  # deci revalidare scurtă; service worker-ul servește din cache între timp.
+  <FilesMatch "\.(js|mjs|css)$">
+    Header set Cache-Control "public, max-age=600, stale-while-revalidate=86400"
+  </FilesMatch>
+
+  # Service worker — niciodată cache agresiv (trebuie să preia update-urile).
+  # Plasat DUPĂ regula .js ca să o suprascrie pentru sw.js.
+  <FilesMatch "^sw\.js$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+
+  # Headere de securitate (lipseau complet — _headers nu se aplica pe Apache).
+  Header set X-Content-Type-Options "nosniff"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set X-Frame-Options "SAMEORIGIN"
+  # Geolocalizarea e folosită de aventurile GPS (doar same-origin).
+  Header set Permissions-Policy "geolocation=(self), camera=(), microphone=()"
+</IfModule>
+
+# Compresie pentru clienții fără Brotli (gzip).
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml application/geo+json application/manifest+json
+</IfModule>
+
+# Tipuri MIME corecte (unele configurări cPanel nu le au pe toate).
+<IfModule mod_mime.c>
+  AddType application/json .json
+  AddType application/geo+json .geojson
+  AddType application/manifest+json .webmanifest
+  AddType image/svg+xml .svg
+</IfModule>

@@ -1,0 +1,5 @@
+# vendor/ — Leaflet, Fuse, fonturi self-hosted. Versionate manual, se schimbă
+# foarte rar → cache imutabil 1 an. Suprascrie regula .js/.css din ../.htaccess.
+<IfModule mod_headers.c>
+  Header set Cache-Control "public, max-age=31536000, immutable"
+</IfModule>
