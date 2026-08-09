@@ -104,7 +104,11 @@ jobs:
         # efectiv → un singur fișier CSS per pagină (un round-trip mai puțin +
         # 12 cereri eliminate la primul load). Ca bump-ul SW, mutația rămâne în
         # workspace-ul CI; repo-ul păstrează manifestul cu @import pentru dev.
-        run: python3 scripts/build_css.py --write
+        # --minify: scoate comentariile + indentarea (conservator, conștient de
+        # string-uri). Verificat pixel-cu-pixel identic pe index/lists/maps.
+        # main.css: 33,3 KB → 20,8 KB gzip. Scriptul EȘUEAZĂ acum dacă rămâne
+        # vreun @import nerezolvat, în loc să livreze tăcut CSS incomplet.
+        run: python3 scripts/build_css.py --write --minify
 
       - name: Deploy galati_map/ via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -141,6 +145,14 @@ jobs:
         run: |
           python3 -m pip install --quiet Pillow
           python3 scripts/optimize_images.py --skip-existing
+
+      - name: Generate 480px thumbnails for any new images
+        # Miniaturile (assets/thumbs/) sunt comise în repo; acest pas completează
+        # doar imaginile noi, la fel ca pasul WebP de mai sus. --skip-existing e
+        # determinist (mtime-ul de la checkout git nu e de încredere).
+        # Non-fatal: JS-ul are fallback pe original dacă miniatura lipsește.
+        continue-on-error: true
+        run: python3 scripts/build_thumbnails.py --skip-existing
 
       - name: Deploy assets/ via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5

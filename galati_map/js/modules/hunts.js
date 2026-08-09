@@ -73,8 +73,14 @@ export function initHunts(ctx) {
           ? `<span class="badge-progress${done === total ? ' complete' : ''}">${done === total ? '✓ Complet' : `${done}/${total} obiective`}</span>`
           : '';
         // Cover image cu fallback la inițiala stilizată dacă lipsește fișierul
+        // Coperta: miniatura de 480px → original → inițiala stilizată.
+        // Inițiala trece prin `dataset`, nu interpolată într-un string JS din
+        // atributul onerror: acolo `escapeHtml` produce `&#039;`, pe care parserul
+        // HTML îl decodează înapoi în `'` ÎN INTERIORUL literalului JS, deci un
+        // titlu care începe cu apostrof rupea handler-ul.
+        const coverThumb = ctx.thumbUrl ? ctx.thumbUrl(h.cover) : null;
         const coverHtml = h.cover
-          ? `<img class="cover" src="${escapeHtml(h.cover)}" alt="${escapeHtml(h.title)}" loading="lazy" decoding="async" onerror="this.outerHTML='<div class=&quot;cover-fallback&quot;>${escapeHtml(initial)}</div>'">`
+          ? `<img class="cover" src="${escapeHtml(coverThumb || h.cover)}" data-full="${escapeHtml(h.cover)}" data-initial="${escapeHtml(initial)}" alt="${escapeHtml(h.title)}" loading="lazy" decoding="async" onerror="this.dataset.err=(+this.dataset.err||0)+1;if(this.dataset.err==1&amp;&amp;this.dataset.full){this.src=this.dataset.full}else{this.onerror=null;var d=document.createElement('div');d.className='cover-fallback';d.textContent=this.dataset.initial||'';this.replaceWith(d)}">`
           : `<div class="cover-fallback">${escapeHtml(initial)}</div>`;
         card.innerHTML = `
           ${coverHtml}

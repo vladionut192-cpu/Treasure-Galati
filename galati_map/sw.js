@@ -7,7 +7,7 @@
 
 // Versiunea e suprascrisă automat la deploy de CI (tg-<git sha>) — vezi
 // .github/workflows/deploy.yml. Valoarea de aici contează doar pe local.
-const CACHE_VERSION = 'tg-v119';
+const CACHE_VERSION = 'tg-v120';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const DATA_CACHE = `${CACHE_VERSION}-data`;
 const IMAGE_CACHE = `${CACHE_VERSION}-images`;
@@ -22,20 +22,14 @@ const PRECACHE_URLS = [
   'batalia-galati-1918.html',
   'piata-regala-ar.html',
   'piata_regala_buildings.geojson',
+  // În PRODUCȚIE main.css e un fișier unic: CI rulează `build_css.py --write`
+  // înainte de upload și aplatizează cele 11 @import-uri în el (vezi deploy.yml).
+  // Partialele nu mai sunt cerute de nicio pagină, deci nu se pre-cache-uiesc —
+  // altfel fiecare deploy (CACHE_VERSION primește SHA-ul commitului) ar pune
+  // fiecare utilizator recurent să redescarce ~166 KB de CSS mort.
+  // Pe local main.css păstrează @import-urile, deci modul offline în dev arată
+  // nestilat — compromis acceptat: offline-ul se testează pe build-ul real.
   'styles/main.css',
-  // Partiale CSS importate de main.css (refactor 2026-06): trebuie pre-cache-uite
-  // explicit, altfel offline pagina ar fi nestilată (main.css are doar @import-uri).
-  'styles/tokens.css',
-  'styles/base.css',
-  'styles/topbar.css',
-  'styles/pages.css',
-  'styles/widgets.css',
-  'styles/tooltip.css',
-  'styles/hunts.css',
-  'styles/onboarding.css',
-  'styles/polish.css',
-  'styles/layer-bubbles.css',
-  'styles/language-picker.css',
   // CSS + JS specifice paginii lists.html (extrase din inline la refactor 2026-06)
   'styles/lists.css',
   'js/lists.head.js',

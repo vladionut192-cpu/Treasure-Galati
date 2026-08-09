@@ -128,8 +128,24 @@ export function initCoreMap(ctx) {
     function _tt(key, params) {
       return (typeof window.t === 'function') ? window.t(key, params) : key;
     }
+    // Miniatura de 480px pentru contextele mici (card în listă, popup pe hartă).
+    // `assets/images/x/foo.jpg` → `assets/thumbs/x/foo.jpg.webp`, generate de
+    // scripts/build_thumbnails.py. Aceeași transformare, în ambele sensuri.
+    // Dacă miniatura lipsește, `onerror` din markup cade înapoi pe original —
+    // deci o imagine nouă neprocesată încă arată corect, doar mai greu.
+    // Detaliul și lightbox-ul folosesc mai departe originalul (vor rezoluție).
+    function thumbUrl(src) {
+      if (typeof src !== 'string' || !src.includes('/assets/images/')) return null;
+      return src.replace('/assets/images/', '/assets/thumbs/') + '.webp';
+    }
     function _catLabel(cat) {
-      return _tt('cat.' + cat) || cat || '';
+      if (!cat) return '';
+      // t() întoarce CHEIA când nu găsește traducerea, iar cheia e truthy — deci
+      // un `|| cat` nu se declanșa niciodată și utilizatorul vedea literal
+      // „cat.Industrial / Tehnic". Comparăm explicit cu cheia.
+      const key = 'cat.' + cat;
+      const label = _tt(key);
+      return (label === key) ? cat : label;
     }
     if (count) count.textContent = `${locations.length} ${_tt('results.count', {total: locations.length})}`;
 
@@ -199,8 +215,9 @@ export function initCoreMap(ctx) {
       const title = _locField(item, 'title');
       const location = _locField(item, 'location');
       const excerptTxt = _locField(item, 'excerpt');
+      const popThumb = thumbUrl(item.image);
       const img = item.image
-        ? `<img class="pop-img" src="${escapeHtml(item.image)}" alt="${escapeHtml(title)}" loading="lazy" decoding="async">`
+        ? `<img class="pop-img" src="${escapeHtml(popThumb || item.image)}" data-full="${escapeHtml(item.image)}"${popThumb ? ' onerror="this.onerror=null;this.src=this.dataset.full"' : ''} alt="${escapeHtml(title)}" loading="lazy" decoding="async">`
         : `<div class="pop-img pop-img-placeholder" aria-hidden="true"><span class="ph-eyebrow">${escapeHtml(catLabel || 'Obiectiv')}</span><svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="0"/><path d="M3 16l5-5 4 4 3-3 6 6"/><circle cx="9" cy="10" r="1.5"/></svg><span class="ph-note">${escapeHtml(phNote)}</span></div>`;
       // Address is intentionally NOT rendered in the popup — the map context
       // already shows the location, and removing it keeps the popup compact.
@@ -425,8 +442,11 @@ export function initCoreMap(ctx) {
         // Background image (when present) loads natively via `loading="lazy"` —
         // browser only fetches when the card is near the viewport, so 200+ cards
         // don't blow up the initial page load.
+        // Sursa e MINIATURA de 480px (~29 KB), nu originalul (~218 KB): cardul are
+        // ~367px lățime. `data-full` + onerror = fallback dacă miniatura lipsește.
+        const bgThumb = thumbUrl(item.image);
         const bgImg = hasImage
-          ? `<img class="item-bg" src="${escapeHtml(item.image)}" loading="lazy" decoding="async" alt="" aria-hidden="true">`
+          ? `<img class="item-bg" src="${escapeHtml(bgThumb || item.image)}" data-full="${escapeHtml(item.image)}"${bgThumb ? ' onerror="this.onerror=null;this.src=this.dataset.full"' : ''} loading="lazy" decoding="async" alt="" aria-hidden="true">`
           : '';
         btn.innerHTML = `
           ${bgImg}
@@ -910,14 +930,14 @@ export function initCoreMap(ctx) {
     chipsEl.querySelectorAll('.chip').forEach(chip => {
       chip.addEventListener('click', () => {
         activeFilter = chip.dataset.filter;
-        const groupRow = chip.closest('.filter-group-row');
-        if (groupRow) {
-          groupRow.querySelectorAll('.chip').forEach(c => {
-            const isActive = c === chip;
-            c.classList.toggle('active', isActive);
-            c.setAttribute('aria-pressed', isActive ? 'true' : 'false');
-          });
-        }
+        // Containerul e #filter-chips. (Până la 2026-08 se căuta `.filter-group-row`,
+        // clasă care nu există nicăieri — deci `.active`/`aria-pressed` nu se mutau
+        // niciodată: lista se filtra corect, dar „Toate" rămânea evidențiat.)
+        chipsEl.querySelectorAll('.chip').forEach(c => {
+          const isActive = c === chip;
+          c.classList.toggle('active', isActive);
+          c.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
         render();
       });
     });
@@ -929,6 +949,7 @@ export function initCoreMap(ctx) {
     ctx.tours = tours;
     ctx.locsByArticle = locsByArticle;
     ctx.escapeHtml = escapeHtml;
+    ctx.thumbUrl = thumbUrl;
     ctx.tt = _tt;
     ctx.catLabel = _catLabel;
     ctx.iconSvg = iconSvg;

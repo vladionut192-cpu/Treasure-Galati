@@ -77,11 +77,13 @@
       'cat.Consulate': 'Consulate',
       'cat.Educație': 'Educație',
       'cat.Industrie': 'Industrie',
+      'cat.Industrial / Tehnic': 'Industrial / tehnic',
       'cat.Comerț istoric': 'Comerț istoric',
       'cat.Alte locuri': 'Alte locuri',
       'cat.Natură și Agrement': 'Natură și agrement',
       'cat.Sate Istorice': 'Sate istorice',
       'cat.Spații verzi': 'Spații verzi',
+      'cat.Monumente Comemorative': 'Monumente comemorative',
 
       // ──────── STATUS ────────
       'status.active': 'existentă',
@@ -323,11 +325,13 @@
       'cat.Consulate': 'Consulates',
       'cat.Educație': 'Education',
       'cat.Industrie': 'Industry',
+      'cat.Industrial / Tehnic': 'Industrial / technical',
       'cat.Comerț istoric': 'Historic commerce',
       'cat.Alte locuri': 'Other places',
       'cat.Natură și Agrement': 'Nature & leisure',
       'cat.Sate Istorice': 'Historic villages',
       'cat.Spații verzi': 'Green spaces',
+      'cat.Monumente Comemorative': 'Commemorative monuments',
 
       // ──────── STATUS ────────
       'status.active': 'standing',

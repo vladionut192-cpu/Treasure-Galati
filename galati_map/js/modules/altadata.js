@@ -206,7 +206,7 @@ export function initAltadata(ctx) {
             const cap = (_lang === 'en' && photo.caption_en) ? photo.caption_en : (photo.caption_ro || '');
             const previewHtml =
               `<div class="marker-preview pubcrawl">
-                 <img src="${escapeHtml(photo.src)}" alt="" loading="lazy" decoding="async">
+                 <img src="${escapeHtml((ctx.thumbUrl && ctx.thumbUrl(photo.src)) || photo.src)}" alt="" loading="lazy" decoding="async">
                  ${yearBadge || cap ? `<div class="cap">${yearBadge}${cap ? escapeHtml(cap) : ''}</div>` : ''}
                </div>`;
             m.bindTooltip(previewHtml, {
