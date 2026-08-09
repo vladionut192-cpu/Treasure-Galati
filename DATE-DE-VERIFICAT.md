@@ -306,3 +306,86 @@ Linterul le prinde acum automat (`scripts/lint_content.py`, secțiunea „Rezidu
 | `loc-197` | fragment în engleză: „(composed of villages: Brăhășești, Corcioveni…)" |
 
 **Greșeli de tipar corectate:** `loc-226` „a rasolit complet zona" → „a ras locul"; `loc-254` „Întreprinderea Întreprinderea de Întreprinderi Metalurgice de Stat"; `loc-297` „pisicultura" → „piscicultură"; `loc-138` „Industrași" păstrat neatins, fiind într-o citare.
+
+---
+
+## 6. Ridicate la traducerea în engleză (loturile 01-24, august 2026)
+
+Traducerea a pus româna sub o a doua pereche de ochi: ca să redea o frază în
+altă limbă, agentul trebuie mai întâi să o înțeleagă, iar unde nu se putea a
+semnalat în loc să inventeze. Nimic din ce urmează nu a fost corectat tacit.
+
+### 6a. Trimiteri interne greșite — CORECTAT
+
+Singurele reparate direct, fiindcă sunt erori de pointer verificabile din date,
+nu chestiuni de istorie. Validatorul le prinde de acum (`validate_text_hygiene`).
+
+| Fișă | Scria | Este | De ce era greșit |
+|---|---|---|---|
+| `loc-266` | „Stadionul Dunărea (loc-167)", de două ori | `loc-218` | `loc-167` e Foișorul de pe Faleză; cititorul ajungea pe un foișor |
+| `loc-258` | „George Maksay (loc-81)" | `loc-32` | `loc-81` nu există; Casa Maksay e `loc-32` |
+| `loc-262` | „Institutul «Notre Dame de Sion» (loc-179)" | `loc-142` | `loc-179` nu există |
+
+### 6b. Datări care se bat cap în cap în aceeași fișă
+
+| Fișă | Contradicția |
+|---|---|
+| `loc-114` | gara: „distrusă în Al Doilea Război Mondial" vs. „demolată în 2005" (vol. VII). Fișa spune explicit că sursele nu se acordă |
+| `loc-118` | palatul: 1923-1925 la Sandel Dumitru, 1921-1923 în descrierea de arhivă, iar `REPERE` dă 1921-1925, interval care le acoperă pe amândouă |
+| `loc-261` | demolarea: cutremurul din 1977 vs. „demolată în anii '70"; și profilul sportiv „două decenii din 1958", abandonat abia în 1982, deși școala e redenumită în 1977 |
+| `loc-254` | „fabrica «Titan», din 1912" în `REPERE`, „a început ca fabrică de cuie" în rezumat, iar textul nu dă anul deschiderii fabricii Coltifeanu |
+
+### 6c. Adrese duble
+
+| Fișă | Contradicția |
+|---|---|
+| `loc-273` | Bd. George Coșbuc nr. 207 **sau** 203, după Decretul 92/1950 |
+| `loc-254` | Str. Portului nr. 203, „azi 213" |
+
+### 6d. Afirmații de verificat în sursă
+
+| Fișă | Ce e de verificat |
+|---|---|
+| `loc-116` | „primul consul al Austro-Ungariei la Galați", cu osemintele așezate în 1825. Austro-Ungaria există din 1867: anacronism, tradus fidel |
+| `loc-291` | „Rectorul este profesorul William B. Harvey" la o universitate privată românească. Neobișnuit, posibil învechit |
+| `loc-280` | secțiunea se cheamă `ÎN CELE DOUĂ RĂZBOAIE:` dar acoperă trei |
+| `loc-253` | firma apare și `Götz`, și `Goetz`, în aceeași fișă. Ambele grafii păstrate acolo unde erau |
+| `loc-268` | inscripția latină scrie „redivivea", nu „redivivae". Reprodusă verbatim, fiind citat |
+| `loc-296` | comparația finală cu cele 355 de milioane de lei ale patinoarului e juxtapunere redacțională, nu fapt din sursă |
+
+### 6e. Formulări românești ambigue, traduse fidel fără a fi rezolvate
+
+| Fișă | Ambiguitatea |
+|---|---|
+| `loc-251` | citatul din Sandel Dumitru, vol. VI, p. 351: „…petrecea în mod curent datorită prezenței active a zarafilor…". Subiectul lipsește, iar „petrecea" poate însemna și „își petrecea timpul", și „chefuia" |
+| `loc-292` | „au mai rămas Zătunul și Brateșul mic, redus la circa 2.000 de hectare": cele 2.000 ha sunt doar ale Brateșului mic sau ale amândurora? |
+| `loc-285` | „cu publicul așezat și pe scenă" la galele de kickboxing: „scenă" e ciudat pentru un patinoar |
+| `loc-254` | „trei mașini de plumbuit tabla" (1924, din Anglia): acoperire cu plumb sau cositorire? |
+| `loc-257` | „tovarășul care urma să aterizeze cu elicopterul «La pastila»": „La pastila" pare poreclă locală de loc, nelămurită în text |
+| `loc-295` | „decontaminarea… estimată la încă milioane de euro": vag în original, păstrat vag |
+
+### 6f. Convenții stabilite pentru engleză
+
+Decise de utilizator și aplicate mecanic prin `scripts/harmonize_en.py`
+(856 de înlocuiri) și `scripts/clean_short_fields.py` (225 de câmpuri).
+
+- **Adrese:** `Domnească St. no. 56`. Erau patru convenții concurente în paralel
+  (`Strada X` 131 de fișe, `Str. X` 32, `X St.` 32, `X Street` 39), plus încă
+  patru în `title_en`/`location_en`.
+- **Nume proprii:** forma engleză consacrată. `King Michael` (nu `King Mihai`),
+  `Kyiv`, `Chernivtsi`, `Chernihiv`.
+- **Neatinse deliberat:** blocul `SOURCES:`, fiindcă titlurile de carte sunt
+  titluri românești; și textul din ghilimele, fiindcă citatele se redau cum au
+  fost scrise. 23 de reziduuri în citate și 8 în `SOURCES:` sunt corecte așa.
+- **`Piața`, `Calea`, `Bulevardul`, `Faleza`** rămân nume proprii întregi; nu au
+  făcut obiectul deciziei.
+
+### 6g. Defect de randare găsit în trecere — CORECTAT
+
+`loc-264` … `loc-271` aveau terminatoare de linie Windows în `description_en`.
+Rendererul (`core-map.js`, `renderBlock`) taie blocurile pe `\n\n`, secvență care
+nu apare niciodată în `\r\n\r\n`, așa că engleza acestor opt fișe se afișa pe
+site ca **un singur bloc** de text în loc de 29-31: fără titlul `KEY FACTS`, fără
+liste, fără subtitluri. `lint_content.py` le dădea „conforme" fiindcă el
+normalizează `\r\n` înainte de a valida, iar rendererul nu. Reparat de
+traducerea lotului 21; validatorul îl prinde de acum.

@@ -321,3 +321,62 @@ python3 scripts/lint_content.py --strict       # exit 1 la orice abatere (CI)
 ```
 
 Verificarea de umplutură compară cu `git HEAD`. După comiterea acestei rescrieri, baza devine textul nou — corect pentru modificările viitoare.
+
+---
+
+## 9. Versiunea engleză
+
+Româna e sursa de adevăr. Engleza se derivă din ea, cu **exact aceeași
+structură**: același număr de blocuri, aceleași bullets, aceleași secțiuni, în
+aceeași ordine. Se traduce, nu se rezumă și nu se adaugă.
+
+Denumirile fixe: `REPERE:` → `KEY FACTS:`, `SURSE:` → `SOURCES:`. Titlurile de
+secțiune se traduc păstrând majusculele și cele două puncte.
+
+Plafonul de lungime e **6000** de caractere, nu 5500: engleza se dilată cu 3-8%
+față de română, așa că o fișă românească la limită ar produce o traducere peste
+limită fără să fi adăugat nimic.
+
+### 9.1 Convenții de nume (august 2026)
+
+| Ce | Cum | Nu |
+|---|---|---|
+| Adrese | `Domnească St. no. 56` | `Strada Domnească`, `Str. Domnească`, `Domnească Street` |
+| Grade în numele arterei | `Col. Holban St.` | `col. Holban St.` |
+| Suverani | `King Michael`, `King Carol I` | `King Mihai` |
+| Toponime străine | `Kyiv`, `Chernivtsi`, `Chernihiv` | `Kiev`, `Cernăuți`, `Cernihiv` |
+| Ghilimele | `“ ”` | `„ ”`, `"` |
+| Numărul imobilului | `no. 56` | `nr. 56` |
+
+`Piața`, `Calea`, `Bulevardul` și `Faleza` rămân nume proprii întregi și nu se
+inversează. Numele proprii românești fără echivalent consacrat rămân în română,
+cu o glosă scurtă la prima apariție: `pârcălab (district governor)`,
+`stânjeni (old Romanian fathoms)`.
+
+**Titlurile de carte din `SOURCES:` nu se traduc.** Sunt titluri de publicații
+românești. Din același motiv, uniformizarea automată sare peste tot blocul
+`SOURCES:` și peste orice text din ghilimele: un citat se redă cum a fost scris,
+nu cum l-am scrie noi azi.
+
+### 9.2 Câmpurile scurte
+
+`title`, `title_en`, `location`, `location_en` respectă aceeași politică de
+punctuație ca descrierile, ceea ce mult timp nu s-a întâmplat. Liniuța dintre
+cuvinte devine virgulă (în titluri e mereu apoziție), iar cea dintre cifre devine
+cratimă, ca restul corpusului: `1861-1872`, nu `1861–1872`.
+
+### 9.3 Verificare
+
+```bash
+python3 scripts/lint_content.py --lang en          # structură și ton
+python3 scripts/harmonize_en.py --dry-run          # convenții de nume
+python3 scripts/clean_short_fields.py --dry-run    # punctuație în title/location
+python3 scripts/validate_data.py                   # CRLF, trimiteri (loc-N), i18n
+```
+
+Ambele scripturi de uniformizare sunt idempotente: a doua rulare raportează zero.
+
+Atenție la o capcană: `lint_content.py` normalizează `\r\n` înainte de a valida,
+rendererul nu. O fișă cu terminatoare de linie Windows trece drept „conformă" și
+se afișează totuși ca un singur bloc. Verificarea stă acum în
+`validate_data.py`, unde textul e citit așa cum îl vede browserul.

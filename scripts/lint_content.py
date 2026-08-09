@@ -73,7 +73,12 @@ AI_PATTERNS = [
     ("bustling",             r"\bbustling\b",                                 0, 1),
 ]
 
-HEAD_RE = re.compile(r"^[A-ZĂÂÎȘȚ0-9][^.\n]{1,60}:$")
+# Trebuie să se potrivească cu regula RENDERERULUI (core-map.js: o linie,
+# sub 140 de caractere, terminată cu „:"). Varianta anterioară excludea
+# punctul, deci nu vedea titluri cu abrevieri („PRUTUL S.A.:") pe care
+# aplicația le afișează totuși ca subtitlu — iar secțiunile ieșeau
+# subnumărate. Lungimea maximă a titlului rămâne verificată separat.
+HEAD_RE = re.compile(r"^[A-ZĂÂÎȘȚ0-9][^\n]{1,90}:$")
 BULLET_RE = re.compile(r"^\s*[•▪‣]\s*")
 
 
@@ -173,12 +178,17 @@ def check(loc: dict, field: str, lang: str) -> list[str]:
         # Cele două se excludeau reciproc. Marcăm „cercetare:", iar contorul de
         # conformitate ignoră aceste intrări (vezi is_research_debt).
         problems.append(f"cercetare: {total} car. — sursă subțire, nu defect de redactare")
-    elif total > 5500:
+    # Engleza se dilată tipic cu 5-10% față de română pentru același conținut
+    # (articole, prepoziții, glose pentru termeni fără echivalent). O fișă
+    # românească aflată la plafon produce o traducere peste el, fără să fi
+    # adăugat nimic. Plafonul EN e proporțional mai larg.
+    cap = 5500 if lang == "ro" else 6000
+    if total > cap:
         # Plafon de lizibilitate. Ținta rămâne 4.000, dar câteva surse au
         # 6.000-9.000 de caractere de cercetare reală, iar a le forța sub 4.000
         # ar însemna să tăiem fapte (§5 interzice). Garda împotriva umpluturii
         # nu e plafonul, ci comparația cu originalul — vezi --patch. Vezi §4.
-        problems.append(f"lungime: {total} car. (plafon 5.500)")
+        problems.append(f"lungime: {total} car. (plafon {cap})")
 
     rezumat = bl[0] if bl and not is_heading(bl[0]) else ""
     if rezumat and not (200 <= len(rezumat) <= 600):

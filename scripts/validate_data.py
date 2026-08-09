@@ -330,6 +330,73 @@ def validate_locations_index(valid: dict) -> None:
         print(f"  locations-index.json: sincron ({len(actual)} locații)")
 
 
+def validate_text_hygiene(valid: dict) -> None:
+    """Două clase de defecte care au trecut nevăzute pe lângă lint_content.py.
+
+    1. Terminatoarele de linie Windows. Rendererul (`core-map.js`, `renderBlock`)
+       taie blocurile pe `\\n\\n`, secvență care nu apare NICIODATĂ în `\\r\\n\\r\\n`.
+       Opt fișe aveau CRLF în `description_en` și se afișau ca un singur bloc:
+       fără `KEY FACTS`, fără liste, fără subtitluri. Linterul le trecea drept
+       conforme fiindcă el normalizează `\\r\\n` înainte de a valida, iar
+       rendererul nu.
+
+    2. Punctuația din `title` și `location`. `lint_content.py` verifică doar
+       `description`, așa că titlurile au rămas cu em dash-uri și ghilimele
+       drepte, adică exact ce s-a curățat din descrieri. Se repară cu
+       `scripts/clean_short_fields.py`.
+    """
+    lp = "galati_map/locations.json"
+    if lp not in valid:
+        return
+    locs = valid[lp] if isinstance(valid[lp], list) else valid[lp].get("locations", [])
+
+    crlf = [f"{L.get('id')}.{f}" for L in locs
+            for f in ("title", "description", "excerpt", "location",
+                      "title_en", "description_en", "excerpt_en", "location_en")
+            if isinstance(L.get(f), str) and "\r" in L[f]]
+    if crlf:
+        err(f"{len(crlf)} câmpuri cu CRLF (rendererul le vede ca un singur bloc): "
+            + ", ".join(crlf[:5]) + ("…" if len(crlf) > 5 else ""))
+
+    # Trimiterile „(loc-N)" din proză sunt scrise de mână și nu erau verificate
+    # nicăieri: `loc-258` trimitea la `loc-81` și `loc-262` la `loc-179`, fișe
+    # care nu există, iar `loc-266` numea „Stadionul Dunărea (loc-167)", unde
+    # `loc-167` e Foișorul de pe Faleză. Cititorul ajungea pe altă fișă.
+    ids = {L.get("id") for L in locs}
+    dead = sorted({(L.get("id"), m.group(0)) for L in locs
+                   for f in ("description", "description_en", "excerpt", "excerpt_en")
+                   for m in re.finditer(r"\bloc-\d+\b", L.get(f) or "")
+                   if m.group(0) not in ids})
+    if dead:
+        err(f"{len(dead)} trimiteri către fișe inexistente: "
+            + ", ".join(f"{a}→{b}" for a, b in dead[:5])
+            + ("…" if len(dead) > 5 else ""))
+
+    checks = (("—", "em dash"), ("–", "en dash"), ("→", "săgeată"))
+    dirty: list[str] = []
+    for L in locs:
+        for f in ("title", "title_en", "location", "location_en"):
+            v = L.get(f)
+            if not isinstance(v, str) or not v:
+                continue
+            for ch, label in checks:
+                # Liniuța dintre cifre e interval de ani, nu punctuație de proză.
+                if re.search(rf"(?<!\d)\s*{re.escape(ch)}|{re.escape(ch)}\s*(?!\d)", v):
+                    dirty.append(f"{L.get('id')}.{f} ({label})")
+                    break
+            else:
+                bad_q = '"' in v or ("„" in v if f.endswith("_en") else "“" in v)
+                if bad_q:
+                    dirty.append(f"{L.get('id')}.{f} (ghilimele)")
+    if dirty:
+        warn(f"{len(dirty)} titluri/adrese cu punctuație interzisă — rulează "
+             f"scripts/clean_short_fields.py: " + ", ".join(dirty[:5])
+             + ("…" if len(dirty) > 5 else ""))
+    if not crlf and not dirty and not dead:
+        print(f"  igienă text: {len(locs)} fișe, fără CRLF, fără punctuație interzisă, "
+              f"trimiteri (loc-N) valide")
+
+
 def audit_i18n_coverage(valid: dict) -> None:
     """Raport de acoperire a traducerilor EN (pct. 11 din STRUCTURA).
 
@@ -402,6 +469,9 @@ def main() -> int:
 
     print("\n📋 locations-index.json sincron cu locations.json:")
     validate_locations_index(valid)
+
+    print("\n📋 Igienă text (CRLF, punctuație în titluri și adrese):")
+    validate_text_hygiene(valid)
 
     print("\n📋 Acoperire traduceri EN (i18n):")
     audit_i18n_coverage(valid)
