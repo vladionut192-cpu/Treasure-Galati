@@ -59,6 +59,32 @@ def trim(text: str, limit: int = 200) -> str:
     return cut + "…"
 
 
+def meta_description(text: str, limit: int = 155) -> str:
+    """Meta-description pentru <head>: fraze întregi, sub limita afișată de Google.
+
+    Google taie snippetul în jur de 155-160 de caractere. `excerpt` e acum
+    rezumatul fișei (250-450 car., vezi CONTENT-STYLE.md §2.1), deci trebuie
+    scurtat. Tăiem la graniță de frază, nu la mijloc de cuvânt cu „…”: un
+    snippet care se termină cu punct se citește ca text, nu ca fragment rupt.
+    """
+    if not text:
+        return ""
+    text = re.sub(r"\s+", " ", text).strip()
+    if len(text) <= limit:
+        return text
+    out = ""
+    for sent in re.split(r"(?<=[.!?])\s+", text):
+        if not out:
+            out = sent
+            if len(out) > limit:          # prima frază e deja prea lungă
+                return trim(out, limit)
+            continue
+        if len(out) + 1 + len(sent) > limit:
+            break
+        out += " " + sent
+    return out
+
+
 def resolve_image(image_path: str) -> str:
     """Convert relative image path to absolute URL."""
     if not image_path:
@@ -231,7 +257,10 @@ def generate_locations(urls: list) -> int:
         make_page(
             out_path=out_dir / f"{lid}.html",
             title=title_clean,
-            description=excerpt,
+            # Meta-description scurtată la fraze întregi: `excerpt` e acum
+            # rezumatul fișei (250-450 car.), iar Google taie pe la 155.
+            # JSON-LD-ul de mai sus păstrează varianta completă.
+            description=meta_description(excerpt),
             canonical=canonical,
             spa_url=spa_url,
             image=image,

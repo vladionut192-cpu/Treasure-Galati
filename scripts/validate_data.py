@@ -237,6 +237,54 @@ INDEX_HEAVY_FIELDS = {
 }
 
 
+def validate_thumbnails(valid: dict) -> None:
+    """Miniaturile de 480px (assets/thumbs/) există pentru imaginile din listă?
+
+    Sursa de adevăr e `scripts/build_thumbnails.py`; aici doar verificăm că a fost
+    rulat. Lipsa unei miniaturi NU e eroare — `thumbUrl()` din core-map.js are
+    fallback `onerror` pe original, deci pagina arată corect, doar transferă mai
+    mult. Rămâne warning ca să fie vizibil la commit.
+    """
+    IMAGES_DIR, THUMBS_DIR = "assets/images/", "assets/thumbs/"
+
+    def norm(src):
+        if not src or not isinstance(src, str):
+            return None
+        s = src.lstrip("./")
+        while s.startswith("../"):
+            s = s[3:]
+        return s if s.startswith(IMAGES_DIR) else None
+
+    wanted = set()
+    lp = "galati_map/locations.json"
+    if lp in valid:
+        locs = valid[lp] if isinstance(valid[lp], list) else valid[lp].get("locations", [])
+        for L in locs:
+            if (n := norm(L.get("image"))):
+                wanted.add(n)
+    for fname, key in (("tours.json", "tours"), ("treasure_hunts.json", "hunts")):
+        p = f"galati_map/{fname}"
+        if p in valid:
+            for it in valid[p].get(key, []) or []:
+                if (n := norm(it.get("cover"))):
+                    wanted.add(n)
+    ap = "galati_map/galati-altadata.json"
+    if ap in valid and isinstance(valid[ap], list):
+        for ph in valid[ap]:
+            if (n := norm(ph.get("src"))):
+                wanted.add(n)
+
+    missing = [r for r in sorted(wanted)
+               if not (ROOT / (THUMBS_DIR + r[len(IMAGES_DIR):] + ".webp")).exists()]
+    print(f"  {len(wanted)} miniaturi așteptate, {len(wanted) - len(missing)} prezente")
+    if missing:
+        warn(f"{len(missing)} miniaturi lipsesc — rulează: python3 scripts/build_thumbnails.py")
+        for r in missing[:5]:
+            print(f"      • {r}")
+        if len(missing) > 5:
+            print(f"      … și încă {len(missing) - 5}")
+
+
 def validate_locations_index(valid: dict) -> None:
     """locations-index.json (varianta ușoară, încărcată la primul paint) trebuie
     să fie sincron cu locations.json — altfel prod ar servi un index învechit.
@@ -328,6 +376,9 @@ def main() -> int:
 
     print("\n📋 Imagini referențiate → există pe disc:")
     validate_image_references(valid)
+
+    print("\n📋 Miniaturi 480px (assets/thumbs/) → există pe disc:")
+    validate_thumbnails(valid)
 
     print("\n📋 locations-index.json sincron cu locations.json:")
     validate_locations_index(valid)
