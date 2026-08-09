@@ -195,6 +195,49 @@ pip install pypdf
 python3 extract_pdfs.py
 ```
 
+## Redactarea fișelor de locație
+
+Formula unitară pentru câmpul `description` e definită în [CONTENT-STYLE.md](CONTENT-STYLE.md):
+rezumat → `REPERE:` (fișă de date pe bullets) → 2-4 secțiuni narative → `SURSE:`.
+Acolo sunt și regulile de ton (fără em dash, fără tipare AI) și lista de formulări interzise.
+
+```bash
+# ce fișe nu respectă formula, pe tipuri de abatere
+python3 scripts/lint_content.py
+python3 scripts/lint_content.py --id loc-8         # o singură fișă
+python3 scripts/lint_content.py --show loc-8       # textul + problemele
+python3 scripts/lint_content.py --lang en          # versiunea engleză
+python3 scripts/lint_content.py --strict           # exit 1 la abateri (CI)
+
+# rescriere în loturi
+python3 scripts/export_batch.py --out /tmp/b --size 12 --only-bad
+python3 scripts/lint_content.py --patch /tmp/b/patch-01.json   # autoverificare
+python3 scripts/apply_content.py /tmp/b/patch-01.json          # scriere atomică
+python3 scripts/validate_data.py
+```
+
+`apply_content.py` scrie într-un `.tmp` și face `replace()`, deci `locations.json`
+(2,5 MB) nu poate rămâne trunchiat dacă procesul moare la mijloc. Refuză și
+rescrierile care taie sub 40% din lungimea veche, în afară de `--allow-shrink`.
+
+Regula care nu se încalcă: **nu se inventează fapte și nu se inventează surse.**
+O fișă scurtă și onestă e preferabilă uneia lungite cu generalități. Vezi §2.3
+„Forma scurtă" și §2.4 din CONTENT-STYLE.md.
+
+## Miniaturi de imagine
+
+Lista, popup-urile și coperțile folosesc miniaturi de 480px, nu originalele:
+
+```bash
+python3 scripts/build_thumbnails.py               # assets/images → assets/thumbs
+python3 scripts/build_thumbnails.py --skip-existing  # doar imaginile noi (CI)
+python3 scripts/build_thumbnails.py --prune        # curăță miniaturile orfane
+```
+
+`thumbUrl()` din `js/modules/core-map.js` face aceeași transformare de cale
+(`/assets/images/` → `/assets/thumbs/` + `.webp`) și cade înapoi pe original
+prin `onerror` dacă miniatura lipsește. `validate_data.py` semnalează lipsurile.
+
 ## Licență
 
 Codul: MIT.
