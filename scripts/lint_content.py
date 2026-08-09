@@ -39,6 +39,7 @@ AI_PATTERNS = [
     ("semnul §",             r"§",                                            1, 1),
     ("săgeată în proză",     r"→",                                            1, 1),
     ("ghilimele drepte",     r'"',                                            1, 1),
+    ("ghilimele RO în EN",   r"„|”",                                          0, 1),
     ("nu doar… ci și",       r"nu (doar|numai)[^.]{0,80}\bci (și|si)\b",       1, 0),
     ("nu este/era doar",     r"nu (este|era|a fost|erau|au fost) (doar|numai)\b", 1, 0),
     ("mărturie",             r"\bmărturi[ea]\b",                              1, 0),
@@ -122,40 +123,43 @@ def check(loc: dict, field: str, lang: str) -> list[str]:
     if is_heading(bl[0]):
         problems.append("structură: începe cu subtitlu, nu cu rezumat")
 
-    if "REPERE" not in head_names:
-        problems.append("structură: lipsește blocul REPERE:")
+    # Denumirile blocurilor fixe diferă pe limbă: „REPERE"/„SURSE" nu spun
+    # nimic unui cititor englez.
+    FACTS, SOURCES = ("REPERE", "SURSE") if lang == "ro" else ("KEY FACTS", "SOURCES")
+    if FACTS not in head_names:
+        problems.append(f"structură: lipsește blocul {FACTS}:")
     else:
-        idx = head_names.index("REPERE")
+        idx = head_names.index(FACTS)
         if heads[idx] != 1:
-            problems.append(f"structură: REPERE: e blocul {heads[idx] + 1}, ar trebui al 2-lea")
+            problems.append(f"structură: {FACTS}: e blocul {heads[idx] + 1}, ar trebui al 2-lea")
         # bullets imediat după
         nxt = bl[heads[idx] + 1] if heads[idx] + 1 < len(bl) else ""
         bullets = [l for l in nxt.split("\n") if BULLET_RE.match(l)]
         if len(bullets) < 4:
-            problems.append(f"REPERE: {len(bullets)} bullets (minim 4)")
+            problems.append(f"{FACTS}: {len(bullets)} bullets (minim 4)")
         elif len(bullets) > 7:
-            problems.append(f"REPERE: {len(bullets)} bullets (maxim 7)")
+            problems.append(f"{FACTS}: {len(bullets)} bullets (maxim 7)")
         for b in bullets:
             v = BULLET_RE.sub("", b).strip()
             if len(v) > 90:
-                problems.append(f"REPERE: bullet peste 90 car. ({len(v)})")
+                problems.append(f"{FACTS}: bullet peste 90 car. ({len(v)})")
                 break
             if ":" not in v:
-                problems.append("REPERE: bullet fără etichetă „Etichetă: valoare”")
+                problems.append(f"{FACTS}: bullet fără etichetă „Etichetă: valoare”")
                 break
 
     # Forma scurtă (§2.3): sub 1.500 de caractere materialul nu susține 2-4
     # secțiuni, iar a cere asta ar produce umplutură inventată. Peste prag,
     # secțiunile devin obligatorii.
-    narrative = [n for n in head_names if n not in ("REPERE", "SURSE")]
+    narrative = [n for n in head_names if n not in (FACTS, SOURCES)]
     total_len = len(text)
     if total_len >= 1500 and len(narrative) < 2:
         problems.append(f"structură: {len(narrative)} secțiuni narative (minim 2 peste 1.500 car.)")
     elif len(narrative) > 4:
         problems.append(f"structură: {len(narrative)} secțiuni narative (maxim 4)")
 
-    if "SURSE" in head_names and head_names[-1] != "SURSE":
-        problems.append("structură: SURSE: nu e ultimul bloc")
+    if SOURCES in head_names and head_names[-1] != SOURCES:
+        problems.append(f"structură: {SOURCES}: nu e ultimul bloc")
 
     for n in narrative:
         if len(n) > 40:
