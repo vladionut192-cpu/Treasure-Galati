@@ -177,15 +177,26 @@ Am comparat toate perechile de locații aflate la sub 400 m una de alta, cu titl
 
 Sandel Dumitru vol. VII spune explicit: grădina Palatului Cuza a fost „vândută pentru cinema **Trianon (astăzi Republica)**", iar alt fragment plasează Trianonul pe traseul corsoului, pornind din Piața Regală. Asta susține varianta din `loc-231`. Nu explică însă de ce `loc-150` revendică același nume pentru clădirea de pe Domnească. Fie au existat succesiv două săli numite Republica, fie una dintre fișe atribuie greșit numele. **Necesită verificare într-o sursă locală; nu am modificat niciuna.**
 
-### 3d. `article` ca cheie străină
+### 3d. `article` ca cheie străină — rezolvat
 
-221 de locații au un câmp `article` care indică `../assets/articles/<slug>/index.html`. Folderul **nu există**. Câmpul nu e randat nicăieri ca link, dar e singura cheie prin care `tours.json` leagă opririle de locații (`js/modules/core-map.js:125`). Consecințe:
+221 de locații aveau un câmp `article` care indica `../assets/articles/<slug>/index.html`, un folder care **nu există**. Câmpul nu era randat nicăieri ca link, dar era singura cheie prin care `tours.json` lega opririle de locații. Consecințe: ștergerea sau redenumirea unei locații rupea opriri de tur în tăcere (`tours.js` filtrează fără mesaj), iar `grep <loc-id>` nu găsea legăturile.
 
-- ștergerea sau redenumirea unei locații rupe opriri de tur, tăcut (`tours.js:139` filtrează opririle nerezolvate fără mesaj);
-- 4 opriri sunt deja pierdute astfel (vezi §3 din audit);
-- `grep <loc-id>` nu găsește aceste legături.
+**Migrat pe `loc_id` (9 august 2026).** Cele 101 opriri rezolvabile au trecut la `{loc_id, note}`; `core-map.js`, `tours.js`, `generate_static_pages.py` și `build_tour_routes.py` folosesc acum join pe `id`. Validatorul dă **eroare**, nu avertisment, la o oprire fără `loc_id` sau cu unul inexistent, și avertizează dacă două opriri indică aceeași fișă.
 
-Reparația de fond: `stops: [{loc_id, note}]` în loc de join pe cale de fișier, plus eroare, nu avertisment, la o oprire nerezolvată.
+**Patru opriri au fost scoase**, fiind nerezolvabile — erau planificate, dar locațiile nu au fost create niciodată. Se pot readăuga când apar fișele:
+
+| Tur | Nota opririi |
+|---|---|
+| `tour-consulate` | „5. Casa Macri." (familia Macri apare doar în textul altor fișe, nu are fișă proprie) |
+| `tour-comunism` | „3. Proiectul urban-comunitar Țiglina." (concept, nu clădire anume) |
+| `tour-scoli` | „3. Liceul de băieți «Notre Dame de Sion»." (`loc-142` e institutul de fete, nu se potrivește) |
+| `tour-evreiesc` | „1. Casa unui negustor evreu (de identificat)." (marcat explicit neidentificat în original) |
+
+**Două opriri duplicate unite.** În `tour-personalitatile-galati` și `tour-evreiesc`, „Casa Osias Auschnitt" și „Casa Max Auschnitt" indicau amândouă `loc-71`, care acoperă ambii frați. Contorul turului arăta cu una mai mult decât punctele de pe hartă. Notele au fost păstrate ambele.
+
+> Soluția de fond ar fi **împărțirea lui `loc-71` în două locații** (Osias, N. Bălcescu 82; Max, Domnească 70). Ar reface cele două opriri distincte și ar recupera și conținutul tăiat de plafonul de lungime (§4a).
+
+**Checkpoint-ul rupt** din `pe-urmele-domnesti.cp7` („Consiliul Județean Galați") indica `loc-154`, inexistent, iar nicio locație din date nu corespunde clădirii. `loc_id` a fost scos; checkpoint-ul are lat/lon proprii, deci jocul funcționează neschimbat.
 
 ## 3e. Numere de pagină fabricate în citări — corectat
 

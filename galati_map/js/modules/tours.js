@@ -1,7 +1,7 @@
 // Heritage Galați — modul: tab-urile din sidebar + tururile tematice
 // (browse, enter/exit, traduceri RO/EN/FR din tours.json).
 export function initTours(ctx) {
-  const { escapeHtml, render, highlight, openDetail, tours, locsByArticle } = ctx;
+  const { escapeHtml, render, highlight, openDetail, tours, locsById } = ctx;
     // ─────────── Tabs ───────────
     const tabBtns = document.querySelectorAll('.tabs .tab');
     const panelLocations = document.getElementById('panel-locations');
@@ -136,7 +136,7 @@ export function initTours(ctx) {
         return;
       }
       tours.forEach(t => {
-        const validStops = (t.stops || []).filter(s => locsByArticle[s.article]);
+        const validStops = (t.stops || []).filter(s => locsById[s.loc_id]);
         const card = document.createElement('button');
         card.className = 'tour-card';
         card.type = 'button';
@@ -188,11 +188,11 @@ export function initTours(ctx) {
       tourDescriptionEl.hidden = !descriptionStr;
       // Render stops list
       tourStopsEl.innerHTML = '';
-      const validStops = (tour.stops || []).filter(s => locsByArticle[s.article]);
+      const validStops = (tour.stops || []).filter(s => locsById[s.loc_id]);
       const stopsLabel = validStops.length === 1 ? ui.stopOne : ui.stopMany;
       tourStopsCountEl.textContent = `${validStops.length} ${stopsLabel}`;
       validStops.forEach((s, idx) => {
-        const loc = locsByArticle[s.article];
+        const loc = locsById[s.loc_id];
         const li = document.createElement('li');
         const btn = document.createElement('button');
         btn.type = 'button';

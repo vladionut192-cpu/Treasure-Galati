@@ -10,43 +10,43 @@
       "cover": "../assets/images/Palatul-Comsiei-Europene-1-1024x859-5a9acc9657cf.jpg",
       "stops": [
         {
-          "article": "../assets/articles/palatul-navigatiei/index.html",
+          "loc_id": "loc-76",
           "note": "1. Palatul Navigației — sediul Navigației Fluviale Române (1909-1912), arhitect Petre Antonescu."
         },
         {
-          "article": "../assets/articles/palatul-postelor-str-general-iacob-lahovary-nr-6/index.html",
+          "loc_id": "loc-78",
           "note": "2. Palatul Poștelor — clădirea poștei oficiale."
         },
         {
-          "article": "../assets/articles/palatul-comercial-al-lui-simion-gheorghiu-str-domneasca-cc-str-gamulea/index.html",
+          "loc_id": "loc-118",
           "note": "3. Palatul Comercial al lui Simion Gheorghiu."
         },
         {
-          "article": "../assets/articles/palatul-administrativ-str-domneasca-nr-56/index.html",
+          "loc_id": "loc-72",
           "note": "4. Palatul Administrativ — Domnească 56."
         },
         {
-          "article": "../assets/articles/palatul-comisiunii-europene-a-dunarii-astazi-sediul-central-al-bibliotecii-judetene-v-a-urechia-str-mihai-bravu-nr-16/index.html",
+          "loc_id": "loc-73",
           "note": "5. Palatul CED — astăzi Biblioteca V. A. Urechia."
         },
         {
-          "article": "../assets/articles/palatul-robescu-astazi-sediul-palatului-copiilor-str-mihai-bravu-nr-28/index.html",
+          "loc_id": "loc-79",
           "note": "6. Palatul Robescu — astăzi Palatul Copiilor, opera lui Ion Mincu."
         },
         {
-          "article": "../assets/articles/seminarul-teologic/index.html",
+          "loc_id": "loc-82",
           "note": "7. Seminarul Teologic."
         },
         {
-          "article": "../assets/articles/palatul-episcopal-in-prezent-muzeul-istoriei-culturii-si-spiritualitatii-crestine-de-la-dunarea-de-jos-str-domneasca-nr-141/index.html",
+          "loc_id": "loc-75",
           "note": "8. Palatul Episcopal — astăzi Muzeul Spiritualității Creștine."
         },
         {
-          "article": "../assets/articles/institutul-notre-dame-de-sion/index.html",
+          "loc_id": "loc-142",
           "note": "9. Institutul Catolic „Notre Dame de Sion\" — fondat 1867."
         },
         {
-          "article": "../assets/articles/palatul-scolilor-comerciale/index.html",
+          "loc_id": "loc-143",
           "note": "10. Palatul Școlilor Comerciale — Strada Gării 63-65."
         }
       ],
@@ -139,91 +139,87 @@
       "cover": "../assets/images/Casa-Negropontes-1024x683-dc5a82b1a003.jpg",
       "stops": [
         {
-          "article": "../assets/articles/monumentul-unirii-al-domnitorului-alexandru-ioan-cuza-str-domneasca-rondoul-gradinii-publice/index.html",
+          "loc_id": "loc-102",
           "note": "1. Monumentul Unirii / Statuia Cuza."
         },
         {
-          "article": "../assets/articles/casa-negroponte-str-domneasca-nr-82/index.html",
+          "loc_id": "loc-36",
           "note": "2. Casa Negroponte — Domnească 82."
         },
         {
-          "article": "../assets/articles/industriasul-max-fischer-str-al-i-cuza-nr-53-casa-resedinta-ibidem-nr-71-casa-2/index.html",
+          "loc_id": "loc-100",
           "note": "3. Casele Max Fischer."
         },
         {
-          "article": "../assets/articles/casa-nae-leonard/index.html",
+          "loc_id": "loc-35",
           "note": "4. Casa Nae Leonard — tenorul gălățean (1886-1928)."
         },
         {
-          "article": "../assets/articles/casa-ioan-d-prodrom/index.html",
+          "loc_id": "loc-28",
           "note": "5. Casa Ioan D. Prodrom — primar."
         },
         {
-          "article": "../assets/articles/casele-cavallioti-str-maior-iancu-fotea-nr-2-si-nr-36/index.html",
+          "loc_id": "loc-41",
           "note": "6. Casele Cavallioti."
         },
         {
-          "article": "../assets/articles/farmacia-aburel/index.html",
+          "loc_id": "loc-64",
           "note": "7. Farmacia Aburel."
         },
         {
-          "article": "../assets/articles/hristo-botev-placa-comemorativa-str-nicolae-balcescu-nr-33/index.html",
+          "loc_id": "loc-242",
           "note": "8. Casa Hristo Botev — placă comemorativă."
         },
         {
-          "article": "../assets/articles/casa-medicului-nicolae-alexandrescu-strada-nicolae-balcescu-nr-80/index.html",
+          "loc_id": "loc-23",
           "note": "9. Casa Dr. Nicolae Alexandrescu."
         },
         {
-          "article": "../assets/articles/osias-auschnitt-str-nicolae-balcescu-nr-82-si-max-auschnitt-str-domneasca-nr-70/index.html",
-          "note": "10. Casa Osias Auschnitt."
+          "loc_id": "loc-71",
+          "note": "10. Casa Osias Auschnitt. 11. Casa Max Auschnitt."
         },
         {
-          "article": "../assets/articles/osias-auschnitt-str-nicolae-balcescu-nr-82-si-max-auschnitt-str-domneasca-nr-70/index.html",
-          "note": "11. Casa Max Auschnitt."
-        },
-        {
-          "article": "../assets/articles/casa-plesnila/index.html",
+          "loc_id": "loc-37",
           "note": "12. Casele Plesnilă."
         },
         {
-          "article": "../assets/articles/casa-draganescu/index.html",
+          "loc_id": "loc-175",
           "note": "13. Casa Dumitru Drăgănescu."
         },
         {
-          "article": "../assets/articles/casele-malaxa-str-eroilor-nr-6-8-28/index.html",
+          "loc_id": "loc-42",
           "note": "14. Casele Malaxa."
         },
         {
-          "article": "../assets/articles/casa-serfioti/index.html",
+          "loc_id": "loc-38",
           "note": "15. Casa Serfioti."
         },
         {
-          "article": "../assets/articles/casa-monferrato-str-universitatii-nr-6/index.html",
+          "loc_id": "loc-33",
           "note": "16. Casa Monferatto — sediul PNL."
         },
         {
-          "article": "../assets/articles/grand-hotel/index.html",
+          "loc_id": "loc-65",
           "note": "17. Grand Hotel."
         },
         {
-          "article": "../assets/articles/casa-vincenzo-fanciotti-str-domneasca-nr-45/index.html",
+          "loc_id": "loc-40",
           "note": "18. Casa Vincenzo Fanciotti."
         },
         {
-          "article": "../assets/articles/familia-fernic-casa-1-str-mihai-eminescu-nr-7-casa-2-str-iancu-fotea-cc-str-gen-iacob-lahovary/index.html",
+          "loc_id": "loc-63",
           "note": "19. Casele Fernic — fondatorii Uzinelor Mecanice (1893)."
         },
         {
-          "article": "../assets/articles/casa-maksay/index.html",
+          "loc_id": "loc-32",
           "note": "20. Casa și atelierul lui George Maksay — sculptor."
         },
         {
-          "article": "../assets/articles/statuia-lui-costache-negri-str-domneasca-nr-12-parc-spicul/index.html",
+          "loc_id": "loc-84",
           "note": "21. Statuia lui Costache Negri."
         },
         {
-          "article": "../assets/articles/statuia-lui-ion-c-bratianu-faleza-dunarii/index.html",
+          "loc_id": "loc-85",
           "note": "22. Statuia lui Ion C. Brătianu."
         }
       ],
@@ -388,19 +384,19 @@
       "cover": "../assets/images/local/sigiliul-galatiului-b82ebaf2.webp",
       "stops": [
         {
-          "article": "../assets/articles/casa-bals-str-domneasca-nr-77/index.html",
+          "loc_id": "loc-16",
           "note": "1. Casa Balș — locuință boierească."
         },
         {
-          "article": "../assets/articles/industriasul-max-fischer-str-al-i-cuza-nr-53-casa-resedinta-ibidem-nr-71-casa-2/index.html",
+          "loc_id": "loc-100",
           "note": "2. Casele Max Fischer."
         },
         {
-          "article": "../assets/articles/casa-cuza-strada-al-i-cuza-nr-80/index.html",
+          "loc_id": "loc-99",
           "note": "3. Casa Cuza Vodă — Muzeul Cuza, semnatarul statutului „Discipolilor\"."
         },
         {
-          "article": "../assets/articles/casa-serfioti/index.html",
+          "loc_id": "loc-38",
           "note": "4. Casa Serfioti — dr. Aristide Serfioti, fondatorul Comitetului Filantropic."
         }
       ],
@@ -457,23 +453,23 @@
       "cover": "../assets/images/Cavoul-Serfiotti-1-1024x734-07bfe0ec9193.jpg",
       "stops": [
         {
-          "article": "../assets/articles/casa-gheorghiade-str-domneasca-nr-61-astazi-centrul-cultural-dunarea-de-jos/index.html",
+          "loc_id": "loc-24",
           "note": "1. Casa Gheorghiadis."
         },
         {
-          "article": "../assets/articles/casa-serfioti/index.html",
+          "loc_id": "loc-38",
           "note": "2. Casa Serfioti — Aristide Serfioti, doctor de origine greacă."
         },
         {
-          "article": "../assets/articles/casa-lambrinidi/index.html",
+          "loc_id": "loc-30",
           "note": "3. Casa Epaminonda Lambrinidi."
         },
         {
-          "article": "../assets/articles/grand-hotel/index.html",
+          "loc_id": "loc-65",
           "note": "4. Grand Hotel — proprietar Elie Climi (Climis), grec."
         },
         {
-          "article": "../assets/articles/casele-cavallioti-str-maior-iancu-fotea-nr-2-si-nr-36/index.html",
+          "loc_id": "loc-41",
           "note": "5. Casele Cavallioti."
         }
       ],
@@ -536,59 +532,59 @@
       "cover": "../assets/images/Biserica-Precista-1024x782-fd0fbdb6d774.jpg",
       "stops": [
         {
-          "article": "../assets/articles/catedrala-episcopala-sf-nicolae-str-domneasca-104/index.html",
+          "loc_id": "loc-116",
           "note": "1. Catedrala Episcopală Sf. Nicolae."
         },
         {
-          "article": "../assets/articles/biserica-lipoveneasca-hram-sf-nicolae-str-episcop-melchisedec-stefanescu-nr-30-32-cc-str-stiintei/index.html",
+          "loc_id": "loc-94",
           "note": "2. Biserica Lipovenească — comunitatea rusă de rit vechi."
         },
         {
-          "article": "../assets/articles/biserica-protestanta-evanghelica-astazi-biserica-baptista-golgota-str-nicolae-balcescu-nr-67/index.html",
+          "loc_id": "loc-7",
           "note": "3. Biserica Protestantă Evanghelică."
         },
         {
-          "article": "../assets/articles/biserica-romano-catolica-str-domneasca-nr-88/index.html",
+          "loc_id": "loc-9",
           "note": "4. Biserica Romano-Catolică."
         },
         {
-          "article": "../assets/articles/biserica-sfintii-apostoli-petru-si-pavel-str-sindicatelor-nr-68-intrare-dinspre-str-portului/index.html",
+          "loc_id": "loc-12",
           "note": "5. Biserica „Sf. Apostoli Petru și Pavel\" (Pescarilor)."
         },
         {
-          "article": "../assets/articles/manastirea-sf-arhangheli-metoc-str-egalitatii-nr-6/index.html",
+          "loc_id": "loc-6",
           "note": "6. Biserica „Sf. Arhangheli Mihail și Gavriil\" (Metoc)."
         },
         {
-          "article": "../assets/articles/biserica-sf-ierarh-spiridon-str-sf-spiridon-nr-13/index.html",
+          "loc_id": "loc-95",
           "note": "7. Biserica Sf. Ierarh Spiridon."
         },
         {
-          "article": "../assets/articles/biserica-mavromol-hram-adormirea-maicii-domnului-aleea-mavromol-cc-str-nicolae-balcescu/index.html",
+          "loc_id": "loc-92",
           "note": "8. Biserica Mavromol — „Stânca Neagră\" (1702)."
         },
         {
-          "article": "../assets/articles/biserica-greaca-hram-schimbarea-la-fata-metamorphosis-str-maior-iancu-fotea-nr-1-cc-str-domneasca/index.html",
+          "loc_id": "loc-5",
           "note": "9. Biserica Greacă (1872)."
         },
         {
-          "article": "../assets/articles/biserica-vovidenia-hram-intrarea-in-biserica-a-maicii-domnului-str-logofat-tautu-nr-24/index.html",
+          "loc_id": "loc-11",
           "note": "10. Biserica Vovidenia."
         },
         {
-          "article": "../assets/articles/biserica-reformata-calvina-str-eroilor-nr-58/index.html",
+          "loc_id": "loc-8",
           "note": "11. Biserica Reformată Calvină."
         },
         {
-          "article": "../assets/articles/bustul-lui-spiridon-vranceanu-str-domneasca-nr-51/index.html",
+          "loc_id": "loc-13",
           "note": "12. Bustul lui Spiridon Vrânceanu."
         },
         {
-          "article": "../assets/articles/biserica-apostolica-ortodoxa-armeana-sfanta-maria-hram-adormirea-maicii-domnului-bld-prelungirea-traian-nr-13/index.html",
+          "loc_id": "loc-93",
           "note": "13. Biserica Apostolică Armeană „Sfânta Maria\"."
         },
         {
-          "article": "../assets/articles/biserica-fortificata-sf-precista-hram-adormirea-maicii-domnului-str-traian-nr-1/index.html",
+          "loc_id": "loc-4",
           "note": "14. Biserica fortificată „Sfânta Precista\" (sec. XVII)."
         }
       ],
@@ -705,47 +701,43 @@
       "cover": "../assets/images/Consulat-Franta-0bbc7789b8d5.jpg",
       "stops": [
         {
-          "article": "../assets/articles/consulatul-poloniei-str-vultur-nr-18/index.html",
+          "loc_id": "loc-53",
           "note": "1. Consulatul Poloniei."
         },
         {
-          "article": "../assets/articles/consulatul-norvegiei-si-suediei-str-domneasca-nr-106/index.html",
+          "loc_id": "loc-52",
           "note": "2. Consulatul Suediei și Norvegiei."
         },
         {
-          "article": "../assets/articles/consulatul-elvetiei-str-basarabiei-nr-11/index.html",
+          "loc_id": "loc-49",
           "note": "3. Consulatul Elveției."
         },
         {
-          "article": "../assets/articles/consulatul-frantei-str-domneasca-nr-90/index.html",
+          "loc_id": "loc-50",
           "note": "4. Consulatul Franței."
         },
         {
-          "article": "../assets/articles/casa-macri/index.html",
-          "note": "5. Casa Macri."
-        },
-        {
-          "article": "../assets/articles/consulatul-germaniei-str-nicolae-holban/index.html",
+          "loc_id": "loc-55",
           "note": "6. Consulatul Prusiei (ulterior Germaniei)."
         },
         {
-          "article": "../assets/articles/consulatul-rusiei/index.html",
+          "loc_id": "loc-176",
           "note": "7. Consulatul Rusiei."
         },
         {
-          "article": "../assets/articles/consulatul-cehoslovaciei-str-eroilor-nr-7/index.html",
+          "loc_id": "loc-48",
           "note": "8. Consulatul Cehoslovaciei."
         },
         {
-          "article": "../assets/articles/consulatul-turciei-inainte-de-primul-razboi-mondial-str-eroilor-nr-14/index.html",
+          "loc_id": "loc-58",
           "note": "9. Consulatul Turciei."
         },
         {
-          "article": "../assets/articles/consulatul-belgiei-str-universitatii-nr-20/index.html",
+          "loc_id": "loc-47",
           "note": "10. Consulatul Belgiei."
         },
         {
-          "article": "../assets/articles/consulatul-greciei-str-a-i-cuza-nr-15/index.html",
+          "loc_id": "loc-51",
           "note": "11. Consulatul Greciei."
         }
       ],
@@ -844,31 +836,31 @@
       "cover": "../assets/images/Palatul-Episcopal-1024x683-0f900edea234.jpg",
       "stops": [
         {
-          "article": "../assets/articles/palatul-comercial-al-lui-simion-gheorghiu-str-domneasca-cc-str-gamulea/index.html",
+          "loc_id": "loc-118",
           "note": "1. Palatul Comercial Simion Gheorghiu."
         },
         {
-          "article": "../assets/articles/palatul-de-justitie-astazi-rectoratul-universitatii-dunarea-de-jos-str-domneasca-nr-47/index.html",
+          "loc_id": "loc-74",
           "note": "2. Palatul de Justiție — astăzi rectoratul UDJ."
         },
         {
-          "article": "../assets/articles/palatul-pescariilor-statului-str-portului-nr-56/index.html",
+          "loc_id": "loc-77",
           "note": "3. Palatul Pescăriilor."
         },
         {
-          "article": "../assets/articles/palatul-robescu-astazi-sediul-palatului-copiilor-str-mihai-bravu-nr-28/index.html",
+          "loc_id": "loc-79",
           "note": "4. Palatul Robescu."
         },
         {
-          "article": "../assets/articles/seminarul-teologic/index.html",
+          "loc_id": "loc-82",
           "note": "5. Seminarul Teologic."
         },
         {
-          "article": "../assets/articles/palatul-episcopal-in-prezent-muzeul-istoriei-culturii-si-spiritualitatii-crestine-de-la-dunarea-de-jos-str-domneasca-nr-141/index.html",
+          "loc_id": "loc-75",
           "note": "6. Palatul Episcopal."
         },
         {
-          "article": "../assets/articles/gradina-publica/index.html",
+          "loc_id": "loc-67",
           "note": "7. Grădina Publică (1846)."
         }
       ],
@@ -943,19 +935,15 @@
       "cover": "../assets/images/Turn-TV-683x1024-118b39429659.jpg",
       "stops": [
         {
-          "article": "../assets/articles/monument-13-iunie-1916-str-portului-cc-str-george-enescu/index.html",
+          "loc_id": "loc-104",
           "note": "1. Monumentul „13 Iunie 1916\"."
         },
         {
-          "article": "../assets/articles/fantana-arteziana-puful-de-papadie-str-brailei-intersectia-cu-str-cosbuc/index.html",
+          "loc_id": "loc-121",
           "note": "2. Fântâna „Puful de Păpădie\" — emblemă modernistă."
         },
         {
-          "article": "../assets/articles/proiect-urban-tiglina/index.html",
-          "note": "3. Proiectul urban-comunitar Țiglina."
-        },
-        {
-          "article": "../assets/articles/turnul-de-televiziune-str-victor-valcovici-nr-2/index.html",
+          "loc_id": "loc-86",
           "note": "4. Turnul de Televiziune."
         }
       ],
@@ -1012,19 +1000,19 @@
       "cover": "../assets/images/Casa-Hristo-Botev-2-683x1024-a7a212753f92.jpg",
       "stops": [
         {
-          "article": "../assets/articles/grand-hotel/index.html",
+          "loc_id": "loc-65",
           "note": "1. Grand Hotel — fondat de elvețianul Climi/Climis."
         },
         {
-          "article": "../assets/articles/hristo-botev-placa-comemorativa-str-nicolae-balcescu-nr-33/index.html",
+          "loc_id": "loc-242",
           "note": "2. Casa Hristo Botev — poetul-revoluționar bulgar (1871-1872)."
         },
         {
-          "article": "../assets/articles/institutul-notre-dame-de-sion/index.html",
+          "loc_id": "loc-142",
           "note": "3. Institutul Catolic „Notre Dame de Sion\" — călugărițele franceze."
         },
         {
-          "article": "../assets/articles/atlantic-filatura-egrenare-si-tesatorie-de-bumbac-str-lozoveni-nr-115-astazi-sediu-dlc-grup/index.html",
+          "loc_id": "loc-1",
           "note": "4. Fabrica Atlantic — filatura de bumbac, fondată de comunitatea evreiască."
         }
       ],
@@ -1081,31 +1069,27 @@
       "cover": "../assets/images/Liceul-Israelit-scaled-1024x683-cf13030f84fc.jpg",
       "stops": [
         {
-          "article": "../assets/articles/seminarul-teologic/index.html",
+          "loc_id": "loc-82",
           "note": "1. Seminarul Teologic."
         },
         {
-          "article": "../assets/articles/institutul-notre-dame-de-sion/index.html",
+          "loc_id": "loc-142",
           "note": "2. Notre Dame de Sion (pentru fete)."
         },
         {
-          "article": "../assets/articles/liceul-baieti-notre-dame/index.html",
-          "note": "3. Liceul de băieți „Notre Dame de Sion\"."
-        },
-        {
-          "article": "../assets/articles/scoala-germana-scoala-comunitatii-evanghelice-str-garii-nr-66/index.html",
+          "loc_id": "loc-89",
           "note": "4. Școala Germană / Comunității Evanghelice."
         },
         {
-          "article": "../assets/articles/palatul-scolilor-comerciale/index.html",
+          "loc_id": "loc-143",
           "note": "5. Palatul Școlilor Comerciale."
         },
         {
-          "article": "../assets/articles/colegiul-national-vasile-alecsandri-str-nicolae-balcescu-nr-41/index.html",
+          "loc_id": "loc-46",
           "note": "6. Colegiul Național „Vasile Alecsandri\"."
         },
         {
-          "article": "../assets/articles/scoala-normala-costache-negri-str-brailei-nr-134/index.html",
+          "loc_id": "loc-90",
           "note": "7. Școala Normală „Costache Negri\"."
         }
       ],
@@ -1180,43 +1164,43 @@
       "cover": "../assets/images/Fabrica-Dunareana-2-1024x698-e7f7fbec43fc.jpg",
       "stops": [
         {
-          "article": "../assets/articles/atlantic-filatura-egrenare-si-tesatorie-de-bumbac-str-lozoveni-nr-115-astazi-sediu-dlc-grup/index.html",
+          "loc_id": "loc-1",
           "note": "1. Fabrica Atlantic — filatura de bumbac."
         },
         {
-          "article": "../assets/articles/navodul-fabrica-de-franghii-heinrich-juster-et-a-haldner-str-traian-nr-239-sediu-firma-s-f-tex-s-a/index.html",
+          "loc_id": "loc-60",
           "note": "2. Fabrica „Năvodul\" — frânghii Heinrich Juster."
         },
         {
-          "article": "../assets/articles/casa-guiller/index.html",
+          "loc_id": "loc-25",
           "note": "3. Casa Guiller."
         },
         {
-          "article": "../assets/articles/casa-gheorghiade-str-domneasca-nr-61-astazi-centrul-cultural-dunarea-de-jos/index.html",
+          "loc_id": "loc-24",
           "note": "4. Casa Gheorghiadis."
         },
         {
-          "article": "../assets/articles/industriasul-max-fischer-str-al-i-cuza-nr-53-casa-resedinta-ibidem-nr-71-casa-2/index.html",
+          "loc_id": "loc-100",
           "note": "5. Casele Max Fischer."
         },
         {
-          "article": "../assets/articles/societatea-romana-de-ulei-fleming-mc-dowall-et-comp-astazi-fabrica-de-ulei-prutul-str-ana-ipatescu-nr-12/index.html",
+          "loc_id": "loc-83",
           "note": "6. Fabrica de ulei Fleming („Prutul\")."
         },
         {
-          "article": "../assets/articles/grand-hotel/index.html",
+          "loc_id": "loc-65",
           "note": "7. Grand Hotel."
         },
         {
-          "article": "../assets/articles/casa-lambrinidi/index.html",
+          "loc_id": "loc-30",
           "note": "8. Casa Epaminonda Lambrinidi."
         },
         {
-          "article": "../assets/articles/casele-malaxa-str-eroilor-nr-6-8-28/index.html",
+          "loc_id": "loc-42",
           "note": "9. Casele Malaxa."
         },
         {
-          "article": "../assets/articles/farmacia-aburel/index.html",
+          "loc_id": "loc-64",
           "note": "10. Farmacia Aburel."
         }
       ],
@@ -1309,31 +1293,23 @@
       "cover": "../assets/images/00-Biserica-Bulgareasca-1-copy-937x1024-d5071806023b.jpg",
       "stops": [
         {
-          "article": "../assets/articles/casa-negustor-evreu/index.html",
-          "note": "1. Casa unui negustor evreu (de identificat)."
+          "loc_id": "loc-71",
+          "note": "2. Casa Osias Auschnitt. 3. Casa Max Auschnitt — Domnească 70."
         },
         {
-          "article": "../assets/articles/osias-auschnitt-str-nicolae-balcescu-nr-82-si-max-auschnitt-str-domneasca-nr-70/index.html",
-          "note": "2. Casa Osias Auschnitt."
-        },
-        {
-          "article": "../assets/articles/osias-auschnitt-str-nicolae-balcescu-nr-82-si-max-auschnitt-str-domneasca-nr-70/index.html",
-          "note": "3. Casa Max Auschnitt — Domnească 70."
-        },
-        {
-          "article": "../assets/articles/industriasul-max-fischer-str-al-i-cuza-nr-53-casa-resedinta-ibidem-nr-71-casa-2/index.html",
+          "loc_id": "loc-100",
           "note": "4. Casele Max Fischer."
         },
         {
-          "article": "../assets/articles/consulatul-frantei-str-domneasca-nr-90/index.html",
+          "loc_id": "loc-50",
           "note": "5. Consulatul Franței — clădire cu istorie evreiască."
         },
         {
-          "article": "../assets/articles/spitalul-israelit-str-nicolae-alexandrescu-nr-99/index.html",
+          "loc_id": "loc-98",
           "note": "6. Spitalul Evreiesc."
         },
         {
-          "article": "../assets/articles/cimitirul-evreiesc-str-stefan-cel-mare-nr-34/index.html",
+          "loc_id": "loc-45",
           "note": "7. Cimitirul Evreiesc."
         }
       ],

@@ -76,7 +76,9 @@ def main():
 
     locs = json.loads(LOC_JSON.read_text(encoding="utf-8"))
     tours = json.loads(TOURS_JSON.read_text(encoding="utf-8")).get("tours", [])
-    locs_by_article = {l["article"]: l for l in locs if l.get("article")}
+    # Opririle se leagă prin `loc_id` (migrare august 2026; înainte se folosea
+    # `article`, o cale de fișier care rupea tăcut opriri de tur).
+    locs_by_id = {l["id"]: l for l in locs if l.get("id")}
 
     cache = {}
     leg_cache = {}  # cache leg-by-leg ca să reluăm dacă scriptul a fost întrerupt
@@ -95,7 +97,7 @@ def main():
         tid = t["id"]
         stops = []
         for s in t.get("stops", []):
-            loc = locs_by_article.get(s.get("article"))
+            loc = locs_by_id.get(s.get("loc_id"))
             if loc:
                 stops.append((float(loc["lat"]), float(loc["lon"])))
         if len(stops) < 2:

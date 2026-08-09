@@ -122,7 +122,11 @@ export function initCoreMap(ctx) {
     const lightboxImg = document.getElementById('lightbox-img');
     const lightboxCaption = document.getElementById('lightbox-caption');
     const tours = (toursData && toursData.tours) || [];
-    const locsByArticle = Object.fromEntries(locations.map(l => [l.article, l]));
+    // Tururile leagă opririle prin `loc_id`. Până în august 2026 legătura se făcea
+    // prin `article`, o cale de fișier către un folder care nu există: orice
+    // redenumire sau ștergere de locație rupea opriri de tur în tăcere, iar un
+    // grep după id-ul locației nu le găsea (vezi DATE-DE-VERIFICAT.md §3d).
+    const locsById = Object.fromEntries(locations.map(l => [l.id, l]));
 
     // Total locații — afișat lângă chips (text-ul exact e pus de render())
     function _tt(key, params) {
@@ -165,7 +169,7 @@ export function initCoreMap(ctx) {
     function buildIcon(item, isActive) {
       // In tour mode: numbered bubble with first/last accents
       if (ctx.activeTour) {
-        const idx = ctx.activeTour.stops.findIndex(s => s.article === item.article);
+        const idx = ctx.activeTour.stops.findIndex(s => s.loc_id === item.id);
         if (idx >= 0) {
           const first = idx === 0;
           const last = idx === ctx.activeTour.stops.length - 1;
@@ -295,7 +299,7 @@ export function initCoreMap(ctx) {
     function matches(item) {
       // Tour mode: only show items in the active tour
       if (ctx.activeTour) {
-        return ctx.activeTour.stops.some(s => s.article === item.article);
+        return ctx.activeTour.stops.some(s => s.loc_id === item.id);
       }
       const q = search.value.trim().toLowerCase();
       const cat = category.value;
@@ -320,8 +324,8 @@ export function initCoreMap(ctx) {
     function drawTourRoute() {
       if (tourRouteLayer) { map.removeLayer(tourRouteLayer); tourRouteLayer = null; }
       if (!ctx.activeTour) return;
-      const stopArticles = ctx.activeTour.stops.map(s => s.article);
-      const stopLocs = stopArticles.map(a => locsByArticle[a]).filter(Boolean);
+      const stopIds = ctx.activeTour.stops.map(s => s.loc_id);
+      const stopLocs = stopIds.map(id => locsById[id]).filter(Boolean);
       if (stopLocs.length < 2) return;
 
       const precomputed = (toursRoutes && toursRoutes.tours && toursRoutes.tours[ctx.activeTour.id]) || null;
@@ -331,7 +335,7 @@ export function initCoreMap(ctx) {
       let activeStopIdx = -1;
       if (isDetailOpen && ctx.activeId) {
         const activeLoc = locations.find(l => l.id === ctx.activeId);
-        if (activeLoc) activeStopIdx = stopArticles.indexOf(activeLoc.article);
+        if (activeLoc) activeStopIdx = stopIds.indexOf(activeLoc.id);
       }
 
       // Single-leg mode: detail open + active stop is in tour + has a "next" stop
@@ -382,8 +386,8 @@ export function initCoreMap(ctx) {
 
       // In tour mode: sort by tour stop order
       if (ctx.activeTour) {
-        const order = new Map(ctx.activeTour.stops.map((s, i) => [s.article, i]));
-        filtered = filtered.slice().sort((a, b) => (order.get(a.article) ?? 999) - (order.get(b.article) ?? 999));
+        const order = new Map(ctx.activeTour.stops.map((s, i) => [s.loc_id, i]));
+        filtered = filtered.slice().sort((a, b) => (order.get(a.id) ?? 999) - (order.get(b.id) ?? 999));
         count.textContent = _tt('results.count.tour', {n: filtered.length});
       } else {
         count.textContent = `${filtered.length} ${_tt('results.count', {total: locations.length})}`;
@@ -947,7 +951,7 @@ export function initCoreMap(ctx) {
     ctx.map = map;
     ctx.markers = markers;
     ctx.tours = tours;
-    ctx.locsByArticle = locsByArticle;
+    ctx.locsById = locsById;
     ctx.escapeHtml = escapeHtml;
     ctx.thumbUrl = thumbUrl;
     ctx.tt = _tt;

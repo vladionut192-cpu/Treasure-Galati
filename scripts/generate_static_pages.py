@@ -281,10 +281,11 @@ def generate_tours(urls: list) -> int:
     out_dir = GMAP / "tour"
     out_dir.mkdir(parents=True, exist_ok=True)
     # Titlurile opririlor (pentru itinerariul JSON-LD) vin din locations.json,
-    # prin câmpul `article` — singura legătură stop → locație.
+    # prin `loc_id`. Legătura se făcea până în august 2026 prin `article`, o cale
+    # de fișier către un folder inexistent, care rupea tăcut opriri de tur.
     loc_data = json.loads((GMAP / "locations.json").read_text(encoding="utf-8"))
     locs = loc_data if isinstance(loc_data, list) else loc_data.get("locations", [])
-    title_by_article = {L["article"]: L.get("title") for L in locs if L.get("article")}
+    loc_by_id = {L["id"]: L for L in locs if L.get("id")}
     count = 0
     for t in data.get("tours", []):
         tid = t.get("id")
@@ -308,7 +309,8 @@ def generate_tours(urls: list) -> int:
         # Itinerariul: lista ordonată a opririlor, cu numele locațiilor.
         stop_names = []
         for s in t.get("stops", []):
-            name = title_by_article.get(s.get("article"))
+            loc = loc_by_id.get(s.get("loc_id"))
+            name = loc.get("title") if loc else None
             if not name:
                 # Fallback: nota începe cu „N. Numele opririi — …"
                 note = (s.get("note") or "").strip()

@@ -118,23 +118,43 @@ def validate_cross_references(valid: dict) -> None:
     id_set = {L.get("id") for L in locs_list if L.get("id")}
     art_set = {L.get("article") for L in locs_list if L.get("article")}
 
-    # tours.json
+    # tours.json — opririle se leagă prin `loc_id`. EROARE, nu avertisment:
+    # `tours.js` filtrează tăcut opririle nerezolvate, deci un tur pierde
+    # puncte fără ca nimeni să observe (tour-comunism pierdea 1 din 4).
+    # Migrarea de la `article` la `loc_id` s-a făcut în august 2026; câmpul
+    # `article` nu mai are rol de cheie străină.
     tp = "galati_map/tours.json"
     if tp in valid:
         for t in valid[tp].get("tours", []):
-            for s in t.get("stops", []):
-                art = s.get("article")
-                if art and art not in art_set:
-                    warn(f"tours.json {t['id']}: orphan article {art}")
+            seen: dict[str, int] = {}
+            for i, s in enumerate(t.get("stops", [])):
+                lid_dup = s.get("loc_id")
+                if lid_dup and lid_dup in seen:
+                    # Două opriri către aceeași fișă: turul afișează un contor
+                    # mai mare decât numărul de puncte de pe hartă.
+                    warn(f"tours.json {t['id']}: opririle {seen[lid_dup] + 1} și {i + 1} "
+                         f"indică aceeași locație ({lid_dup})")
+                elif lid_dup:
+                    seen[lid_dup] = i
+                lid = s.get("loc_id")
+                if not lid:
+                    err(f"tours.json {t['id']}: oprirea {i + 1} nu are loc_id")
+                elif lid not in id_set:
+                    err(f"tours.json {t['id']}: oprirea {i + 1} indică {lid}, care nu există")
+                if "article" in s:
+                    warn(f"tours.json {t['id']}: oprirea {i + 1} mai are câmpul „article” "
+                         f"(rămășiță din vechea legătură; se poate șterge)")
 
-    # treasure_hunts.json
+    # treasure_hunts.json — `loc_id` e opțional (checkpoint-urile au lat/lon
+    # proprii), dar dacă există trebuie să rezolve.
     hp = "galati_map/treasure_hunts.json"
     if hp in valid:
         for h in valid[hp].get("hunts", []):
             for cp in h.get("checkpoints", []):
                 lid = cp.get("loc_id")
                 if lid and lid not in id_set:
-                    warn(f"treasure_hunts.json {h['id']}.{cp.get('id')}: orphan loc_id {lid}")
+                    err(f"treasure_hunts.json {h['id']}.{cp.get('id')}: "
+                        f"loc_id {lid} nu există")
 
 
 def validate_timeline_events(valid: dict) -> None:
