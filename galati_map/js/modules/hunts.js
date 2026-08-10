@@ -154,7 +154,15 @@ export function initHunts(ctx) {
           iconSize: [32, 32],
           iconAnchor: [16, 16],
         });
-        const m = L.marker([cp.lat, cp.lon], { icon }).addTo(huntLayer);
+        const m = L.marker([cp.lat, cp.lon], {
+          icon,
+          title: cp.title,
+          alt: cp.title,
+        }).addTo(huntLayer);
+        m.on('add', function () {
+          const el = this.getElement();
+          if (el) el.setAttribute('aria-label', cp.title);
+        });
         m.on('click', () => {
           map.setView([cp.lat, cp.lon], Math.max(map.getZoom(), 17), { animate: true });
           // Pentru solved: deschidem detaliul locației (din locations.json)

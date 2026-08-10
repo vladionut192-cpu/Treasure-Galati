@@ -191,10 +191,20 @@ export function initAltadata(ctx) {
           },
         });
         data.forEach((photo) => {
+          const numeAccesibil = (photo.caption_ro || photo.caption || photo.caption_en || 'Fotografie de arhivă');
+            // Leaflet pune role="button" și tabindex="0" pe marker, dar numele
+            // accesibil vine doar din `options.title`. Fără el, cititorul de
+            // ecran anunța doar „button".
           const m = L.marker([photo.lat, photo.lon], {
             icon: pubcrawlIcon(),
             zIndexOffset: -100,
             riseOnHover: true,
+            title: numeAccesibil,
+            alt: numeAccesibil,
+          });
+          m.on('add', function () {
+            const el = this.getElement();
+            if (el) el.setAttribute('aria-label', numeAccesibil);
           });
           // Hover-preview cu fotografia (toate pubcrawl markers au src valid).
           // Pe mobil tooltip-ul e ascuns prin @media (hover: none) — tap deschide direct lightbox-ul.

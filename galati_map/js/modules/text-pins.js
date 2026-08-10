@@ -143,10 +143,20 @@ export function initTextPins(ctx) {
         });
         data.forEach((item) => {
           if (typeof item.lat !== 'number' || typeof item.lon !== 'number') return;
+          const numeAccesibil = localizedField(item, 'title');
+            // Leaflet pune role="button" și tabindex="0" pe marker, dar numele
+            // accesibil vine doar din `options.title`. Fără el, cititorul de
+            // ecran anunța doar „button".
           const m = L.marker([item.lat, item.lon], {
             icon: triviaIcon(),
             zIndexOffset: 50,
             riseOnHover: true,
+            title: numeAccesibil,
+            alt: numeAccesibil,
+          });
+          m.on('add', function () {
+            const el = this.getElement();
+            if (el) el.setAttribute('aria-label', numeAccesibil);
           });
           const imgSrc = resolveTextItemImage('trivia', item);
           const tooltipHtml =
@@ -201,10 +211,17 @@ export function initTextPins(ctx) {
         });
         data.forEach((item) => {
           if (typeof item.lat !== 'number' || typeof item.lon !== 'number') return;
+          const numeAccesibil = localizedField(item, 'title');
           const m = L.marker([item.lat, item.lon], {
             icon: legendaIcon(),
             zIndexOffset: 60,
             riseOnHover: true,
+            title: numeAccesibil,
+            alt: numeAccesibil,
+          });
+          m.on('add', function () {
+            const el = this.getElement();
+            if (el) el.setAttribute('aria-label', numeAccesibil);
           });
           const imgSrc = resolveTextItemImage('legenda', item);
           const tooltipHtml =

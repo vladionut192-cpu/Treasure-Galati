@@ -63,6 +63,24 @@ export function initChrome(ctx) {
 
     navBtns.forEach(btn => btn.addEventListener('click', () => activatePage(btn.dataset.page)));
 
+    // ─── Skip link ────────────────────────────────────────────────────────
+    // Mută focusul în lista de locații, nu în hartă: containerul Leaflet e
+    // urmat de 349 de markere focalizabile, deci un utilizator de tastatură
+    // care ajunge acolo trebuie să le parcurgă pe toate ca să iasă.
+    // preventDefault fiindcă navigarea la fragment ar schimba hash-ul, iar
+    // `initialHash` de mai jos îl citește la pornire: un `#list` rămas în URL
+    // ar cere pagina „list", care nu există, și ar lăsa ecranul gol la reload.
+    (function () {
+      const skip = document.querySelector('.skip-link');
+      const list = document.getElementById('list');
+      if (!skip || !list) return;
+      skip.addEventListener('click', (e) => {
+        e.preventDefault();
+        list.focus();
+        list.scrollIntoView({ block: 'nearest' });
+      });
+    })();
+
     // ─── Colaps sidebar (desktop) — săgeată pe marginea hărții ────
     // Strânge coloana sidebar-ului la 0 ca harta să fie mai mare. Starea se
     // reține în localStorage. După tranziție, invalidateSize ca Leaflet să

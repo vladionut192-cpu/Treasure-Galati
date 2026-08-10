@@ -7,6 +7,7 @@
   const I18N = {
     ro: {
       // ──────── NAV / TOPBAR ────────
+      'a11y.skip': 'Sari la conținut',
       'nav.map': 'Hartă',
       'nav.stories': 'Povești',
       'nav.lists': 'Liste',
@@ -255,6 +256,7 @@
     },
     en: {
       // ──────── NAV / TOPBAR ────────
+      'a11y.skip': 'Skip to content',
       'nav.map': 'Map',
       'nav.stories': 'Stories',
       'nav.lists': 'Lists',

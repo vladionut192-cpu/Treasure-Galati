@@ -403,8 +403,21 @@ export function initCoreMap(ctx) {
       // de cluster în loc de 148).
       const batch = [];
       filtered.forEach(item => {
-        const marker = L.marker([item.lat, item.lon], { icon: buildIcon(item, item.id === ctx.activeId) })
-          .bindPopup(popupHtml(item), { closeButton: true, autoPan: true });
+        // Leaflet pune `role="button"` și `tabindex="0"` pe elementul
+        // markerului, dar numele accesibil îl dă doar `options.title`. Fără el,
+        // un cititor de ecran anunța „button" de 251 de ori la rând, fiindcă
+        // titlul nostru stătea pe div-ul interior, nu pe cel focalizabil.
+        // `aria-label` se pune mai jos, la adăugare, ca să bată `title`-ul.
+        const numeAccesibil = _locField(item, 'title');
+        const marker = L.marker([item.lat, item.lon], {
+          icon: buildIcon(item, item.id === ctx.activeId),
+          title: numeAccesibil,
+          alt: numeAccesibil,
+        }).bindPopup(popupHtml(item), { closeButton: true, autoPan: true });
+        marker.on('add', function () {
+          const el = this.getElement();
+          if (el) el.setAttribute('aria-label', numeAccesibil);
+        });
         // Hover-preview cu imagine (doar pentru puncte cu poză, doar pe desktop hover).
         // Pe mobil tooltip-urile nu se afișează la touch — flow-ul rămâne tap → popup.
         if (item.image) {

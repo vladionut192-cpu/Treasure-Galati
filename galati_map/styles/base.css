@@ -124,3 +124,25 @@
     .leaflet-popup-close-button:hover { color: var(--ink) !important; }
     .leaflet-container { background: var(--paper-deep); font-family: inherit; }
 
+
+/* Skip link — primul element din ordinea de tabulare. Ascuns vizual până
+   primește focus, ca un utilizator de tastatură să poată sări peste topbar
+   și meniu direct la hartă, fără să treacă prin toate butoanele de navigare. */
+.skip-link {
+  position: absolute;
+  left: 8px;
+  top: -60px;
+  z-index: 10000;
+  padding: 10px 16px;
+  border-radius: 0 0 8px 8px;
+  background: var(--ink, #1f2c4a);
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  transition: top .15s ease;
+}
+.skip-link:focus {
+  top: 0;
+  outline: 3px solid var(--accent, #2c6157);
+  outline-offset: 2px;
+}

@@ -176,7 +176,7 @@
         height: calc(100dvh - var(--topbar-h) - var(--timeline-h));
       }
       aside.sidebar { height: 100%; border-right: 0; border-bottom: 1px solid var(--line); }
-      main.map-area { height: 100%; }
+      .map-area { height: 100%; }
       #map { position: absolute; }
       .detail { width: 100vw; }
       .timeline {
@@ -257,7 +257,7 @@
       }
       /* Sidebar complet ascuns; harta ocupă tot */
       aside.sidebar { display: none !important; }
-      main.map-area { height: 100%; }
+      .map-area { height: 100%; }
       #map { position: absolute; inset: 0; }
     }
 

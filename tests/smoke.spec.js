@@ -96,3 +96,27 @@ test('rigla nu arată clădiri dispărute fără an de construcție', async ({ p
     expect(gasite, `clădiri dispărute afișate la anul ${an}`).toEqual([]);
   }
 });
+
+test('accesibilitate: skip link, un singur main, markere cu nume', async ({ page }) => {
+  // beforeEach intră pe /index.html#map; pentru skip link contează intrarea
+  // fără fragment, fiindcă navigarea la un fragment mută punctul de pornire al
+  // tabulării pe elementul țintă și sare peste tot ce e înaintea lui.
+  await page.goto('/index.html');
+  await expect(page.locator('#list .item').first()).toBeVisible({ timeout: 20_000 });
+
+  expect(await page.locator('main').count(), 'un singur landmark main').toBe(1);
+
+  await page.keyboard.press('Tab');
+  await expect(page.locator('.skip-link')).toBeFocused();
+  await page.keyboard.press('Enter');
+  await expect(page.locator('#list')).toBeFocused();
+
+  // Leaflet pune role="button" și tabindex="0" pe fiecare marker; fără
+  // `options.title` un cititor de ecran anunța doar „button", de sute de ori.
+  await page.waitForTimeout(800);
+  const fara = await page.evaluate(() =>
+    [...document.querySelectorAll('.leaflet-marker-icon')]
+      .filter((e) => !e.className.includes('marker-cluster'))
+      .filter((e) => !(e.getAttribute('aria-label') || e.getAttribute('title') || '').trim()).length);
+  expect(fara, 'markere fără nume accesibil').toBe(0);
+});

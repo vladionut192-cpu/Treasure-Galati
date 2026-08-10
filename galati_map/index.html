@@ -70,6 +70,7 @@
   <script src="js/analytics.js" defer></script>
 </head>
 <body class="map-mode">
+  <a class="skip-link" href="#list" data-i18n="a11y.skip">Sari la conținut</a>
   <header class="topbar">
     <a class="logo" href="#map" aria-label="Heritage Galați — pagina principală">
       <span class="logo-mark" aria-hidden="true"></span>
@@ -226,7 +227,7 @@
             <span class="lbl-meta">Covurlui · Regiuni · Galați — sincronizat cu anul</span>
           </button>
         </div>
-        <ol class="list" id="list"></ol>
+        <ol class="list" id="list" tabindex="-1"></ol>
       </section>
       <section class="tab-panel" id="panel-tours" hidden>
         <div id="tour-browse">
@@ -276,7 +277,7 @@
         <p>Dacă dorești să te alături proiectului și să contribui la promovarea și dezvoltarea patrimoniului cultural local, te invităm să accesezi pagina <a href="#contribute">Contribuie</a>.</p>
       </div>
     </aside>
-    <main class="map-area">
+    <div class="map-area">
       <div id="map" aria-label="Hartă interactivă Galați"></div>
       <!-- Buton de colaps al sidebar-ului (desktop) — săgeată pe marginea stângă
            a hărții. Ascunde panoul ca harta să fie mai mare; click din nou îl readuce. -->
@@ -546,7 +547,7 @@
         <div class="lightbox-counter" id="lightbox-counter" hidden></div>
         <div class="lightbox-caption" id="lightbox-caption" hidden></div>
       </div>
-    </main>
+    </div>
   </main>
 
   <!-- Onboarding tooltips — floating callouts pe elementele cheie. Fiecare are X. -->
