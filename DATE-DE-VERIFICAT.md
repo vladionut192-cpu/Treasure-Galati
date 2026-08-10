@@ -409,9 +409,9 @@ cititoarele de ecran și e rezervă pentru legendă când aceasta lipsește.
 La fel câmpul `geocoded_as` (81), unde liniuța face parte din notația de
 provenență, nu din proză.
 
-### 7a. Ghilimele neîmperecheate — NEATINSE, de reparat manual
+### 7a. Ghilimele neîmperecheate
 
-51 de câmpuri au un număr **impar** de ghilimele, adică o pereche care nu se
+51 de câmpuri aveau un număr **impar** de ghilimele, adică o pereche care nu se
 închide în datele sursă. Normalizarea alternează deschis/închis, deci pe un
 număr impar ar fi produs un semn de deschidere fără pereche. Scriptul le sare și
 le raportează, în loc să strice textul.
@@ -426,9 +426,29 @@ le raportează, în loc să strice textul.
 | `locations.json` · `gallery[].alt` și `gallery[].caption` | 2 |
 | `galati-altadata.json` · `caption_ro` | 1 |
 
-Sunt texte OCR-izate din surse tipărite, unde ghilimelele lipsesc din scanare.
-Cele mai multe sunt în cronologie, care amestecă și ghilimele franceze « » cu
-cele românești. Se repară citind sursa, nu ghicind unde se închidea citatul.
+**Șase reparate**, acolo unde perechea se deducea fără să ghicesc:
+
+| Câmp | Ce era | Ce s-a făcut |
+|---|---|---|
+| `loc-110` · `caption` și `alt` | trei ghilimele drepte pe două nume de instituții | împerecheate: „Grigore Trancu-Iași”, „Casa Copilu” |
+| `galati-altadata.json` · `caption_ro` | citatul se închidea după „Seminarul Teologic." dar nu se deschidea nicăieri | deschis la început, atribuirea „Text și foto: prof. Ion Ca…" rămâne în afara citatului |
+| `cronologie.json` 1596 · `text` și `label_en` | la fel, citat închis după „români neaoși." fără deschidere, în ambele limbi | deschis la început |
+| `cronologie.json` 1852 · `label_en` | începea cu resturi de curățare, „Negri., «When at the head…", și citatul rămânea deschis | prefixul scos, citatul închis |
+
+**Rămân 45**, toate în câmpurile lungi din `cronologie.json`. Sunt texte
+OCR-izate din surse tipărite, unde ghilimelele lipsesc din scanare, iar
+cronologia amestecă și ghilimele franceze « » cu cele românești. Se repară
+citind sursa, nu ghicind unde se închidea citatul.
+
+### 7c. `label_en` din cronologie NU e incomplet
+
+La prima verificare a părut că engleza cronologiei e trunchiată: 77 din 161 de
+intrări au `label_en` sub 50% din lungimea lui `text`, iar anul 1879 are 157 de
+caractere de engleză față de 7.485 de română. **Nu e un defect.** `label_en` e
+prin construcție eticheta de tooltip a riglei cronologice, pretrunchiată și
+pretradusă (`timeline.js:119`), iar româna trece la randare prin
+`chronologyLabel`, care taie la 260 de caractere la graniță de frază. Cele
+141-294 de caractere sunt exact ținta. Notat aici ca să nu se mai „repare".
 
 ### 7b. Săgeți păstrate intenționat
 
