@@ -5,15 +5,27 @@ De ce: Facebook, Twitter, WhatsApp NU execută JavaScript când scrape-uiesc o p
 pentru preview. Văd doar HTML-ul static din `<head>`. Pentru deep-link-urile noastre
 SPA (`?loc=loc-113`), nu ar arăta preview corect.
 
-Soluție pentru cPanel (static hosting): generăm câte un fișier HTML minim pentru
+Soluție pentru cPanel (static hosting): generăm câte un fișier HTML pentru
 fiecare locație/tur/hunt, cu Open Graph tags + JSON-LD. Fișierul redirectează
-JS-side spre SPA (`/galati_map/?loc=<id>`).
+JS-side spre SPA (`/galati_map/?loc=<id>`), dar numai pentru oameni: crawlerele
+primesc pagina ca atare.
+
+Din august 2026 pagina de locație conține **textul complet al fișei**, nu doar
+titlul și 155 de caractere de meta-description. Înainte, cele 4.000 de caractere
+de conținut documentat trăiau doar în JSON-ul încărcat de aplicație și nu
+ajungeau niciodată în indexul motoarelor de căutare.
+
+Tot de atunci se generează și versiunea engleză, la `loc/en/<id>.html`, legată
+de cea românească prin `hreflang`. Fără pagină proprie, cele 287 de fișe traduse
+nu erau indexabile: engleza trăia doar în `?lang=en`, un parametru pe care
+Google nu îl tratează ca pagină separată.
 
 Output:
-  galati_map/loc/<id>.html      (~226 fișiere)
-  galati_map/tour/<id>.html     (~13 fișiere)
+  galati_map/loc/<id>.html      (287 fișiere, RO)
+  galati_map/loc/en/<id>.html   (287 fișiere, EN)
+  galati_map/tour/<id>.html     (~12 fișiere)
   galati_map/hunt/<id>.html     (~4 fișiere)
-  galati_map/sitemap.xml        (index pentru Google)
+  galati_map/sitemap.xml        (620 URL-uri)
 
 Rulează:
   python3 scripts/generate_static_pages.py
@@ -100,14 +112,61 @@ def resolve_image(image_path: str) -> str:
 
 # ─────────────────────────────────────────────────────────────────────────
 
+BULLET_RE = re.compile(r"^[•▪‣]\s*")
+BOLD_RE = re.compile(r"\*\*(.+?)\*\*")
+
+
+def render_prose(text: str) -> str:
+    """Descrierea completă, ca HTML. Oglindă a `renderBlock` din core-map.js.
+
+    Până în august 2026 paginile din `loc/` erau cioturi de redirect: titlu,
+    imagine și 155 de caractere de meta-description. Textul fișei, 4.000 de
+    caractere de conținut unic și documentat, nu ajungea niciodată în indexul
+    motoarelor de căutare, fiindcă trăia doar în JSON-ul încărcat de aplicație.
+
+    Aceleași reguli ca în renderer, ca să nu apară două gramatici de conținut:
+    un bloc cu două sau mai multe linii care încep cu bullet devine listă, o
+    linie singură terminată cu două puncte devine subtitlu, restul e paragraf.
+    """
+    if not text:
+        return ""
+    out = []
+    for block in re.split(r"\n{2,}", text.replace("\r\n", "\n")):
+        lines = [l.strip() for l in block.split("\n") if l.strip()]
+        if not lines:
+            continue
+        bullets = [l for l in lines if BULLET_RE.match(l)]
+
+        def inline(s: str) -> str:
+            return BOLD_RE.sub(r"<strong>\1</strong>", escape_html(s))
+
+        if len(bullets) >= 2 and len(bullets) == len(lines):
+            items = "".join(f"<li>{inline(BULLET_RE.sub('', l))}</li>" for l in lines)
+            out.append(f"<ul>{items}</ul>")
+        elif len(bullets) >= 2 and not BULLET_RE.match(lines[0]):
+            idx = next(i for i, l in enumerate(lines) if BULLET_RE.match(l))
+            intro = " ".join(lines[:idx])
+            items = "".join(f"<li>{inline(BULLET_RE.sub('', l))}</li>"
+                            for l in lines[idx:] if BULLET_RE.match(l))
+            out.append(f"<p>{inline(intro)}</p><ul>{items}</ul>")
+        elif len(lines) == 1 and len(lines[0]) < 140 and lines[0].endswith(":"):
+            out.append(f"<h2>{inline(lines[0].rstrip(':'))}</h2>")
+        elif len(lines) == 1 and len(lines[0]) < 60 and not re.search(r"[.!?:]$", lines[0]):
+            out.append(f"<h2>{inline(lines[0])}</h2>")
+        else:
+            out.append("<p>" + "<br>".join(inline(l) for l in lines) + "</p>")
+    return "\n  ".join(out)
+
+
 PAGE_TEMPLATE = """<!doctype html>
-<html lang="ro">
+<html lang="{lang}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{title} — Heritage Galați</title>
   <meta name="description" content="{description}">
   <link rel="canonical" href="{canonical}">
+{alternates}
 
   <!-- Open Graph -->
   <meta property="og:type" content="{og_type}">
@@ -115,7 +174,7 @@ PAGE_TEMPLATE = """<!doctype html>
   <meta property="og:description" content="{description}">
   <meta property="og:url" content="{canonical}">
   <meta property="og:image" content="{image}">
-  <meta property="og:locale" content="ro_RO">
+  <meta property="og:locale" content="{og_locale}">
   <meta property="og:site_name" content="Heritage Galați">
 
   <!-- Twitter -->
@@ -127,21 +186,24 @@ PAGE_TEMPLATE = """<!doctype html>
   <!-- JSON-LD structured data -->
   <script type="application/ld+json">{jsonld}</script>
 
-  <link rel="icon" type="image/svg+xml" href="../../assets/logo-sigiliu.svg">
+  <link rel="icon" type="image/svg+xml" href="{asset_path}assets/logo-sigiliu.svg">
   <style>
     body {{
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      max-width: 540px; margin: 60px auto; padding: 24px;
+      max-width: 680px; margin: 48px auto; padding: 24px;
       color: #1f2c4a; background: #efeeea;
-      text-align: center;
     }}
     .logo {{ font-size: 14px; letter-spacing: .14em; text-transform: uppercase; color: #8a8780; font-weight: 700; }}
-    h1 {{ font-size: 26px; margin: 14px 0 8px; }}
-    p {{ color: #555; line-height: 1.5; margin: 10px 0; }}
-    img.hero {{ max-width: 100%; max-height: 260px; object-fit: cover; border-radius: 8px; margin: 20px 0; }}
+    h1 {{ font-size: 28px; margin: 14px 0 6px; line-height: 1.25; }}
+    h2 {{ font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: #2c6157; margin: 26px 0 8px; }}
+    p {{ color: #3d4658; line-height: 1.65; margin: 12px 0; }}
+    ul {{ color: #3d4658; line-height: 1.6; padding-left: 20px; margin: 12px 0; }}
+    li {{ margin: 5px 0; }}
+    .where {{ color: #6b7280; font-size: 14px; margin: 0 0 18px; }}
+    img.hero {{ max-width: 100%; max-height: 320px; object-fit: cover; border-radius: 8px; margin: 20px 0; }}
     a {{ color: #2c6157; text-decoration: none; font-weight: 600; }}
     a:hover {{ text-decoration: underline; }}
-    .loader {{ margin-top: 24px; font-size: 13px; color: #999; }}
+    .loader {{ margin-top: 30px; padding-top: 18px; border-top: 1px solid #d8d6cf; font-size: 14px; }}
   </style>
 
   <!-- Redirect to SPA after a moment (JS-side; preserves the deep-link context). -->
@@ -162,12 +224,17 @@ PAGE_TEMPLATE = """<!doctype html>
 <body>
   <p class="logo">Heritage Galați</p>
   <h1>{title}</h1>
+  {where}
   {hero_img}
-  <p>{description}</p>
-  <p class="loader"><a href="{spa_url}">→ Deschide pe hartă</a></p>
+  {prose}
+  <p class="loader"><a href="{spa_url}">{cta}</a></p>
 </body>
 </html>
 """
+
+
+CTA = {"ro": "Deschide pe hartă", "en": "Open on the map"}
+OG_LOCALE = {"ro": "ro_RO", "en": "en_US"}
 
 
 def make_page(
@@ -180,11 +247,23 @@ def make_page(
     image: str,
     og_type: str = "article",
     jsonld: dict | None = None,
+    lang: str = "ro",
+    prose: str = "",
+    where: str = "",
+    alternates: dict[str, str] | None = None,
+    asset_depth: int = 2,
 ) -> None:
     out_path.parent.mkdir(parents=True, exist_ok=True)
     hero = ""
     if image and image != DEFAULT_IMAGE:
         hero = f'<img class="hero" src="{image}" alt="{escape_html(title)}" loading="lazy">'
+    # hreflang: fără el, Google tratează versiunea engleză drept conținut
+    # duplicat în loc de traducere, iar niciuna nu se clasează bine.
+    alt_lines = []
+    for code, href in (alternates or {}).items():
+        alt_lines.append(f'  <link rel="alternate" hreflang="{code}" href="{href}">')
+    if alternates and "ro" in alternates:
+        alt_lines.append(f'  <link rel="alternate" hreflang="x-default" href="{alternates["ro"]}">')
     # Defensively escape </ inside JSON-LD so a malformed title/description can't
     # break out of the <script> tag. (XSS hardening — unlikely in our data but cheap.)
     jsonld_text = json.dumps(jsonld or {"@context": "https://schema.org", "@type": "WebPage", "name": title})
@@ -198,6 +277,15 @@ def make_page(
         og_type=og_type,
         hero_img=hero,
         jsonld=jsonld_text,
+        lang=lang,
+        # Tururile, vânătorile, trivia și legendele nu au text lung de randat;
+        # pentru ele corpul rămâne descrierea scurtă, ca înainte.
+        prose=prose or f"<p>{escape_html(description)}</p>",
+        where=f'<p class="where">{escape_html(where)}</p>' if where else "",
+        cta=CTA.get(lang, CTA["ro"]),
+        og_locale=OG_LOCALE.get(lang, OG_LOCALE["ro"]),
+        alternates="\n".join(alt_lines),
+        asset_path="../" * asset_depth,
     )
     out_path.write_text(html, encoding="utf-8")
 
@@ -254,6 +342,17 @@ def generate_locations(urls: list) -> int:
         if L.get("location"):
             jsonld["address"] = {"@type": "PostalAddress", "addressLocality": "Galați", "streetAddress": L["location"]}
 
+        # Versiunea engleză stă la `loc/en/<id>.html`, ca traducere declarată
+        # prin hreflang. Fără o pagină proprie, cele 287 de fișe traduse nu erau
+        # indexabile deloc: engleza trăia doar în `?lang=en`, un parametru pe
+        # care Google nu îl tratează ca pagină separată.
+        title_en = (L.get("title_en") or "").replace("„", "").replace("”", "").strip()
+        has_en = bool(title_en and (L.get("description_en") or "").strip())
+        canonical_en = f"{BASE_URL}/galati_map/loc/en/{lid}.html"
+        alternates = {"ro": canonical}
+        if has_en:
+            alternates["en"] = canonical_en
+
         make_page(
             out_path=out_dir / f"{lid}.html",
             title=title_clean,
@@ -266,9 +365,41 @@ def generate_locations(urls: list) -> int:
             image=image,
             og_type="place",
             jsonld=jsonld,
+            lang="ro",
+            prose=render_prose(L.get("description") or ""),
+            where=L.get("location") or "",
+            alternates=alternates,
+            asset_depth=2,
         )
         urls.append(canonical)
         count += 1
+
+        if has_en:
+            jsonld_en = dict(jsonld)
+            jsonld_en["name"] = title_en
+            jsonld_en["description"] = L.get("excerpt_en") or ""
+            jsonld_en["url"] = canonical_en
+            if L.get("location_en"):
+                jsonld_en["address"] = {"@type": "PostalAddress",
+                                        "addressLocality": "Galați",
+                                        "streetAddress": L["location_en"]}
+            make_page(
+                out_path=out_dir / "en" / f"{lid}.html",
+                title=title_en,
+                description=meta_description(L.get("excerpt_en") or ""),
+                canonical=canonical_en,
+                spa_url=f"{BASE_URL}/galati_map/?loc={lid}&lang=en",
+                image=image,
+                og_type="place",
+                jsonld=jsonld_en,
+                lang="en",
+                prose=render_prose(L.get("description_en") or ""),
+                where=L.get("location_en") or "",
+                alternates=alternates,
+                asset_depth=3,
+            )
+            urls.append(canonical_en)
+            count += 1
     return count
 
 

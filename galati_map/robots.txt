@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /_admin/
 
-Sitemap: https://heritage-galati.ro/galati_map/sitemap.xml
+Sitemap: https://ionpeblog.ro/galati_map/sitemap.xml
