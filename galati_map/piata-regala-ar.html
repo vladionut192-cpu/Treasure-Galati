@@ -8,9 +8,21 @@
 <meta name="theme-color" content="#1f2c4a">
 
 <!-- A-Frame + AR.js: location-based AR (GPS + bussolă + cameră).
-     Sursă: https://ar-js-org.github.io/AR.js-Docs/  ~330 KB total. -->
-<script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
-<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+     Sursă: https://ar-js-org.github.io/AR.js-Docs/
+
+     AR.js se încărca de pe `raw.githack.com/AR-js-org/AR.js/master/…`, adică de
+     pe branch-ul de dezvoltare, printr-un proxy CDN terț. Orice commit în
+     master ajungea direct în browserele vizitatorilor, fără ca noi să știm.
+     Acum e fixat pe versiunea 3.4.7 de pe jsDelivr, cu `integrity`: dacă
+     fișierul servit diferă de hash, browserul refuză să îl execute.
+     La actualizare, hash-ul se recalculează cu:
+       curl -s <url> | openssl dgst -sha384 -binary | openssl base64 -A -->
+<script src="https://aframe.io/releases/1.4.2/aframe.min.js"
+        integrity="sha384-h9i4C9g01JCtnRS4pVvpve1lQqYK3CPS3SYkzku8rBcWq3Ql72pf2B4kAtj9pYbe"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@ar-js-org/ar.js@3.4.7/aframe/build/aframe-ar.js"
+        integrity="sha384-IC9Xny/2q05hlLPbZqDYB9EbdTE41ZOoHc7phBwo51cDt0Y79qZCb+a9zawiglyB"
+        crossorigin="anonymous"></script>
 
 <style>
   /* ── Base ── */

@@ -836,10 +836,25 @@ class Handler(SimpleHTTPRequestHandler):
 
 
 def main():
-    port = int(sys.argv[1]) if len(sys.argv) > 1 else 8000
+    args = [a for a in sys.argv[1:] if not a.startswith("--")]
+    flags = {a for a in sys.argv[1:] if a.startswith("--")}
+    port = int(args[0]) if args else 8000
     os.chdir(ROOT)  # serve from project root
-    addr = ("", port)
+
+    # Ascultă DOAR pe loopback, nu pe toate interfețele. Serverul ăsta expune
+    # `POST /api/add-location`, `add-photo` și CRUD pe trivia și legende: scrie
+    # în `locations.json` și pune fișiere pe disc, fără autentificare. Legat pe
+    # „" (adică 0.0.0.0), oricine din aceeași rețea, un Wi-Fi de cafenea sau de
+    # birou, putea scrie în datele proiectului.
+    #
+    # Pentru testarea pe telefon, unde chiar e nevoie de acces din LAN:
+    #     python3 scripts/serve.py 8000 --lan
+    host = "0.0.0.0" if "--lan" in flags else "127.0.0.1"
+    addr = (host, port)
     srv = ThreadingHTTPServer(addr, Handler)
+    if host != "127.0.0.1":
+        print(f"  ⚠ Ascultă pe {host}: oricine din rețea poate scrie prin /api/. "
+              f"Folosește doar în rețele de încredere.")
     print(f"Treasure Galați dev server: http://localhost:{port}/galati_map/index.html")
     print(f"  POST /api/add-location → {LOCAL_IMG_DIR.relative_to(ROOT)}/ + {LOCATIONS.relative_to(ROOT)}")
     print(f"  POST /api/add-photo    → {LOCAL_IMG_DIR.relative_to(ROOT)}/ + {PUBCRAWL.relative_to(ROOT)}")
