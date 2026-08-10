@@ -539,3 +539,39 @@ gol de date: se repară aflând anul din surse, nu schimbând filtrul.
 
 **37 de fișe fără `year_built`**, vizibile doar de la 1990. Textul lor nu dă
 niciun an.
+
+---
+
+## 9. Ghilimelele din cronologie: automatizare încercată și abandonată
+
+Cele 45 de câmpuri din §7a au fost atacate cu un script care încerca să
+recupereze pozițiile din `Surse/cronologie-galati.txt`, extracția OCR din care
+s-a construit cronologia. Ideea: găsești ghilimeaua fără pereche, iei un
+fragment de ancorare din textul de după ea, îl cauți în sursă, vezi unde se
+închide citatul acolo, și pui închiderea în același loc în JSON.
+
+**Nu a mers și scriptul a fost șters.** Din 45 de câmpuri, potrivitorul a
+propus 5 reparații, dintre care **4 erau greșite**: puneau ghilimeaua de
+închidere exact înaintea uneia care exista deja, fiindcă textul de ancorare
+cădea într-un citat ulterior din același câmp, nu în cel neînchis. Cu o rată de
+1 din 5, riscul de a strica citate istorice depășește beneficiul.
+
+Ce s-a aflat totuși, și e util pentru o reluare manuală:
+
+- **Sursa are citatele întregi.** La anul 1711, citatul din cronica lui Neculce
+  se închide după „pentru avere.", urmat de atribuirea „(P. Păltănea, Istoria
+  orașului Galați, vol. I, p. 115)". În JSON, atât ghilimeaua cât și atribuirea
+  lipsesc.
+- **Cauza e curățarea de la import.** OCR-ul a inserat marcaje de pagină în
+  mijlocul citatelor (`========== Pagina 16 ==========`), iar curățarea le-a
+  tăiat împreună cu ce urma pe aceeași linie.
+- **Nu s-a pierdut text de conținut.** Zero intrări se termină fără punctuație
+  de final, zero marcaje OCR au rămas în JSON. Lipsesc doar ghilimele de
+  închidere și câteva atribuiri.
+- **În corpus, rolurile sunt date de glifă, nu de alternanță:** `„` deschide
+  mereu, `"` și `”` închid mereu. 23 din cele 45 au o închidere fără deschidere,
+  adică le lipsește semnul de la început, nu cel de la sfârșit.
+- 14 din 45 s-ar echilibra dacă am număra și ghilimelele franceze `« »` și am
+  colapsa dublurile `„„`, dar asta ar ascunde problema, nu ar rezolva-o.
+
+Reluarea corectă cere citirea sursei tipărite, fișă cu fișă.
