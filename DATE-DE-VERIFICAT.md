@@ -457,3 +457,85 @@ de comori, `→` înseamnă „se substituie cu" (`ABCDEFGH...XYZ →
 XCVISPBDHAWLROQFKTNYJZEUMG`, `F=23, I=34, etc. → FINAL FOISOR FALEZA`). Acolo e
 notație, nu punctuație. Scriptul înlocuiește doar săgețile dintre cifre și pe
 cele patru enumerate explicit în `ARROW_TEXT`.
+
+---
+
+## 8. `year_built`, `year_founded` și `status` — REZOLVAT (august 2026)
+
+Punctele 1, 1b, 1c, 1d, 1e și parțial 1f de mai sus au fost rezolvate. Aplicat cu
+`scripts/fix_years.py`, unde fiecare valoare are ca sursă bullet-ul din propria
+fișă, citat în cod.
+
+### 8a. Decizia
+
+`year_built` **înseamnă anul clădirii**. Alimentează `passesTimeline` din
+`core-map.js`, care e o întrebare pur fizică: „lucrul din pin exista în anul X?".
+Anul instituției trece într-un câmp nou, `year_founded`, ca să nu se piardă.
+
+Motivul e concret: pinul stă pe o adresă. Consulatul Italiei, înființat în 1833,
+avea `year_built: 1833`, dar sediul de pe strada Gării a fost cumpărat în 1923.
+Cine trăgea rigla la 1840 vedea un consulat la o adresă unde nu era nimic al lor.
+
+### 8b. Ce s-a schimbat
+
+**24 de valori `year_built` corectate.** Cele mai grave erau două ani de naștere
+folosiți ca ani de clădire: `loc-106` avea 1838, anul nașterii lui Dimitrie
+Frigator, deși azilul e proiectat în 1905 și terminat în 1908; `loc-59` avea
+1866, anul nașterii lui Ludwig Josiek, deși fabrica s-a inaugurat în 1894.
+
+Nouă fișe s-au mutat pe riglă cu 22 până la 90 de ani:
+
+| Fișă | Era | Este | De ce |
+|---|---|---|---|
+| `loc-56` Consulatul Italiei | 1833 | 1923 | anul instituției vs. cumpărarea sediului |
+| `loc-106` Azilul Frigator | 1838 | 1905 | nașterea fondatorului vs. proiectul clădirii |
+| `loc-143` Palatul Școlilor | 1864 | 1922 | înființarea școlii vs. construcția palatului |
+| `loc-6` Biserica Metoc | 1853 | 1801 | 1853 era școala de alături |
+| `loc-144` Teatrul Nae Leonard | 1956 | 1900 | instituția vs. Vila Elisa, clădirea reală |
+| `loc-57` Consulatul Spaniei | 1881 | 1930 | 1881 nu corespundea nici instituției (1870) |
+| `loc-123` Hotel Continental | 1938 | 1897 | 1938 era trecerea bodegii la restaurant |
+| `loc-46` Colegiul V. Alecsandri | 1925 | 1888 | 1925 era internatul, ridicat în altă zonă |
+| `loc-59` Fabrica Josiek | 1866 | 1894 | nașterea fondatorului vs. inaugurarea fabricii |
+
+**13 câmpuri `year_founded` adăugate**, pentru consulate, școli și teatru.
+
+**13 goluri completate.** Din 50 de fișe fără `year_built` au rămas 37. Contează
+fiindcă `passesTimeline` afișează fișele fără an doar de la 1990 încolo
+(`core-map.js:261`): erau invizibile pe toată rigla istorică, deși textul lor
+dădea anul.
+
+**`status`:** `loc-110` de la `demolished` la `lost` (fabrica de bere a dispărut,
+dar clădirile stau în picioare cu alte funcțiuni), `loc-150` de la `active` la
+`ruin` (închisă și abandonată după anii 1990).
+
+**`category`:** `loc-98` (spital) și `loc-106` (azil) scoase din „Educație".
+
+### 8c. Defect de randare găsit în trecere — CORECTAT
+
+Ramura „fără `year_built`" din `passesTimeline` întorcea `timelineYear >= 1990`
+**fără să se uite nici la `year_demolished`, nici la `status`**. Opt clădiri
+demolate apăreau pe harta anilor 1990-2020 ca și cum ar sta în picioare: Hotel
+Metropol, Café Trocadero, Cofetăria Centrală, Restaurant Canellos, Palatul
+Foresta și altele.
+
+Patru s-au reparat prin date, primind anul din propriul text. Pentru celelalte
+patru, care nu au niciun an în surse, ramura verifică acum `status`: dacă nu
+știm când a apărut, dar știm că nu mai există, nu o mai afișăm ca existentă.
+Test de regresie în `tests/smoke.spec.js`.
+
+### 8d. Rămâne de decis
+
+**Taxonomia de categorii e inconsecventă**, dincolo de cele două fișe corectate.
+Nu există categorie de sănătate, iar cele 9 fișe de spital sau azil stau în cinci
+categorii diferite: „Industrial / Tehnic" (4), „Educație" (2, acum mutate),
+„Alte locuri", „Case istorice", „Comerț istoric". La fel cele 9 fișe de teatru
+sau cinema, împrăștiate în cinci categorii. Reparația cere două categorii noi
+(„Sănătate", „Cultură"), cu chei `cat.*` în `i18n.js` pentru ambele limbi, și
+reclasificarea a circa 18 fișe.
+
+**Demolate cu an de construcție dar fără an de demolare.** Rămân vizibile pe
+riglă până în prezent, fiindcă `year_demolished` e gol. Nu e defect de logică, ci
+gol de date: se repară aflând anul din surse, nu schimbând filtrul.
+
+**37 de fișe fără `year_built`**, vizibile doar de la 1990. Textul lor nu dă
+niciun an.

@@ -257,7 +257,12 @@ export function initCoreMap(ctx) {
       const demolished = item.year_demolished;
       // Pinul există în anul X dacă: construit <= X și (nu e demolat sau demolit > X)
       if (built === null || built === undefined) {
-        // Fără year_built — afișăm doar dacă timeline e la sau după 1990 (asum modern)
+        // Fără year_built nu putem plasa pinul în timp. Prezumția „e modern"
+        // e rezonabilă pentru ce stă în picioare, dar era falsă pentru ce a
+        // dispărut: Hotel Metropol, Café Trocadero și Palatul Foresta apăreau
+        // pe harta anului 2026 ca și cum ar exista, fiindcă ramura asta nu se
+        // uita nici la year_demolished, nici la status.
+        if (item.status === 'demolished' || item.status === 'lost') return false;
         return ctx.timelineYear >= 1990;
       }
       if (built > ctx.timelineYear) return false;

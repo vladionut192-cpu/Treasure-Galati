@@ -78,3 +78,21 @@ test('deep link ?loc= deschide direct detaliul locației', async ({ page }) => {
   await expect(detail).toHaveAttribute('data-open', '1', { timeout: 15_000 });
   await expect(detail.locator('h2')).toContainText('Eminescu');
 });
+
+test('rigla nu arată clădiri dispărute fără an de construcție', async ({ page }) => {
+  // Regresie: ramura „fără year_built" din passesTimeline întorcea
+  // `timelineYear >= 1990` fără să se uite la status, așa că Restaurant
+  // Canellos, Café Trocadero, Cofetăria Centrală și Manzavinatos apăreau pe
+  // harta anilor 1990-2020 ca și cum ar sta în picioare. Nu au an de
+  // construcție în surse, deci nu pot fi plasate în timp; ce se știe e că nu
+  // mai există.
+  const slider = page.locator('#timeline-slider');
+  const disparute = ['Canellos', 'Trocadero', 'Cofetăria Centrală', 'Manzavinatos'];
+  for (const an of ['1995', '2010']) {
+    await slider.fill(an);
+    await page.waitForTimeout(400);
+    const titluri = await page.locator('#list .item').allInnerTexts();
+    const gasite = disparute.filter((d) => titluri.some((t) => t.includes(d)));
+    expect(gasite, `clădiri dispărute afișate la anul ${an}`).toEqual([]);
+  }
+});
