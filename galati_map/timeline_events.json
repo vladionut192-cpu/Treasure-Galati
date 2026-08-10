@@ -40,8 +40,8 @@
   "events": [
     {
       "year": 1445,
-      "label": "Prima atestare documentară · uricul lui Ștefan al II-lea (23 sept) — scutire de vamă pentru două căruțe cu pește livrate Mănăstirii Humor",
-      "label_en": "First documentary attestation · the deed of Stephen II (23 Sept) — customs exemption for two carts of fish delivered to Humor Monastery"
+      "label": "Prima atestare documentară · uricul lui Ștefan al II-lea (23 sept), scutire de vamă pentru două căruțe cu pește livrate Mănăstirii Humor",
+      "label_en": "First documentary attestation · the deed of Stephen II (23 Sept), customs exemption for two carts of fish delivered to Humor Monastery"
     },
     {
       "year": 1530,
@@ -65,13 +65,13 @@
     },
     {
       "year": 1645,
-      "label": "Biserica fortificată Sf. Precista ridicată de Vasile Lupu — cea mai veche clădire din Galați",
-      "label_en": "The fortified St. Precista Church built by Vasile Lupu — the oldest building in Galați"
+      "label": "Biserica fortificată Sf. Precista ridicată de Vasile Lupu, cea mai veche clădire din Galați",
+      "label_en": "The fortified St. Precista Church built by Vasile Lupu, the oldest building in Galați"
     },
     {
       "year": 1700,
-      "label": "Biserica Mavromol (ctitorie Antioh Cantemir) — centrul comunității greco-comerciale",
-      "label_en": "Mavromol Church (founded by Antioh Cantemir) — centre of the Greek merchant community"
+      "label": "Biserica Mavromol (ctitorie Antioh Cantemir), centrul comunității greco-comerciale",
+      "label_en": "Mavromol Church (founded by Antioh Cantemir), centre of the Greek merchant community"
     },
     {
       "year": 1709,
@@ -90,8 +90,8 @@
     },
     {
       "year": 1828,
-      "label": "Primul consulat la Galați — Franța",
-      "label_en": "First consulate in Galați — France"
+      "label": "Primul consulat la Galați, Franța",
+      "label_en": "First consulate in Galați, France"
     },
     {
       "year": 1829,
@@ -110,13 +110,13 @@
     },
     {
       "year": 1842,
-      "label": "Prima fabrică de bere — Marcu Schein, preluată de Josef Ploll în 1860",
-      "label_en": "First brewery — Marcu Schein, taken over by Josef Ploll in 1860"
+      "label": "Prima fabrică de bere, Marcu Schein, preluată de Josef Ploll în 1860",
+      "label_en": "First brewery, Marcu Schein, taken over by Josef Ploll in 1860"
     },
     {
       "year": 1853,
-      "label": "Inundație devastatoare a Dunării (prima dintr-o serie 1853–1861)",
-      "label_en": "Devastating Danube flood (first of a 1853–1861 series)"
+      "label": "Inundație devastatoare a Dunării (prima dintr-o serie 1853-1861)",
+      "label_en": "Devastating Danube flood (first of a 1853-1861 series)"
     },
     {
       "year": 1856,
@@ -140,8 +140,8 @@
     },
     {
       "year": 1866,
-      "label": "Recensământ — 48.799 locuitori (vârful intermediar)",
-      "label_en": "Census — 48,799 inhabitants (the interim peak)"
+      "label": "Recensământ, 48.799 locuitori (vârful intermediar)",
+      "label_en": "Census, 48,799 inhabitants (the interim peak)"
     },
     {
       "year": 1877,
@@ -155,8 +155,8 @@
     },
     {
       "year": 1893,
-      "label": "Fondat Șantierul Naval Fernic — peste 2.000 angajați la apogeu",
-      "label_en": "Fernic Shipyard founded — over 2,000 employees at its peak"
+      "label": "Fondat Șantierul Naval Fernic, peste 2.000 angajați la apogeu",
+      "label_en": "Fernic Shipyard founded, over 2,000 employees at its peak"
     },
     {
       "year": 1899,
@@ -170,8 +170,8 @@
     },
     {
       "year": 1905,
-      "label": "Prima cursă auto intercontinentală din lume — Galați → Ispahan (3 mașini, 2 luni)",
-      "label_en": "The world's first intercontinental car race — Galați → Isfahan (3 cars, 2 months)"
+      "label": "Prima cursă auto intercontinentală din lume, Galați-Ispahan (3 mașini, 2 luni)",
+      "label_en": "The world's first intercontinental car race, Galați-Isfahan (3 cars, 2 months)"
     },
     {
       "year": 1907,
@@ -180,8 +180,8 @@
     },
     {
       "year": 1911,
-      "label": "Inaugurată statuia Eminescu de Frederic Storck — prima din România",
-      "label_en": "Eminescu statue by Frederic Storck unveiled — Romania's first"
+      "label": "Inaugurată statuia Eminescu de Frederic Storck, prima din România",
+      "label_en": "Eminescu statue by Frederic Storck unveiled, Romania's first"
     },
     {
       "year": 1912,
@@ -190,8 +190,8 @@
     },
     {
       "year": 1913,
-      "label": "Galați — al treilea oraș al țării (71.641 loc.) · Al Doilea Război Balcanic",
-      "label_en": "Galați — the country's third-largest city (71,641 inh.) · Second Balkan War"
+      "label": "Galați, al treilea oraș al țării (71.641 loc.) · Al Doilea Război Balcanic",
+      "label_en": "Galați, the country's third-largest city (71,641 inh.) · Second Balkan War"
     },
     {
       "year": 1916,
@@ -205,43 +205,43 @@
     },
     {
       "year": 1920,
-      "label": "Inaugurat Aeroportul Galați — funcțional până 1958, cu vamă",
-      "label_en": "Galați Airport inaugurated — operating until 1958, with customs"
+      "label": "Inaugurat Aeroportul Galați, funcțional până 1958, cu vamă",
+      "label_en": "Galați Airport inaugurated, operating until 1958, with customs"
     },
     {
       "year": 1921,
-      "label": "Crucea de Război italiană („La Croce di Guerra\") · gen. Pietro Badoglio o aduce la Galați",
-      "label_en": "Italian Cross of War (\"La Croce di Guerra\") · Gen. Pietro Badoglio brings it to Galați"
+      "label": "Crucea de Război italiană („La Croce di Guerra”) · gen. Pietro Badoglio o aduce la Galați",
+      "label_en": "Italian Cross of War (“La Croce di Guerra”) · Gen. Pietro Badoglio brings it to Galați"
     },
     {
       "year": 1921,
-      "label": "Sosește samuraiul Shintaro Tsutsumi cu nava „Kilimaru\" · moare aici",
-      "label_en": "The samurai Shintaro Tsutsumi arrives aboard the \"Kilimaru\" · dies here"
+      "label": "Sosește samuraiul Shintaro Tsutsumi cu nava „Kilimaru” · moare aici",
+      "label_en": "The samurai Shintaro Tsutsumi arrives aboard the “Kilimaru” · dies here"
     },
     {
       "year": 1922,
-      "label": "Gen. Henri Berthelot decorează Galațiul cu „Croix de Guerre\" franceză",
-      "label_en": "Gen. Henri Berthelot decorates Galați with the French \"Croix de Guerre\""
+      "label": "Gen. Henri Berthelot decorează Galațiul cu „Croix de Guerre” franceză",
+      "label_en": "Gen. Henri Berthelot decorates Galați with the French “Croix de Guerre”"
     },
     {
       "year": 1923,
-      "label": "Galați — 100.000 locuitori, 295 străzi, 15 km tramvai",
-      "label_en": "Galați — 100,000 inhabitants, 295 streets, 15 km of tramway"
+      "label": "Galați, 100.000 locuitori, 295 străzi, 15 km tramvai",
+      "label_en": "Galați, 100,000 inhabitants, 295 streets, 15 km of tramway"
     },
     {
       "year": 1926,
-      "label": "Primul zbor cu pasager plătitor — Anninos (1.800 lei, de 4× prețul biletului de tren)",
-      "label_en": "First flight with a paying passenger — Anninos (1,800 lei, 4× the price of a train ticket)"
+      "label": "Primul zbor cu pasager plătitor, Anninos (1.800 lei, de 4× prețul biletului de tren)",
+      "label_en": "First flight with a paying passenger, Anninos (1,800 lei, 4× the price of a train ticket)"
     },
     {
       "year": 1929,
-      "label": "Sinucidere sculptorul Dimitrie Măţăuanu — autorul bustului România Mare neturnat",
-      "label_en": "Sculptor Dimitrie Mățăuanu commits suicide — author of the never-cast Greater Romania bust"
+      "label": "Sinucidere sculptorul Dimitrie Măţăuanu, autorul bustului România Mare neturnat",
+      "label_en": "Sculptor Dimitrie Mățăuanu commits suicide, author of the never-cast Greater Romania bust"
     },
     {
       "year": 1932,
-      "label": "Smaranda Brăescu sare cu parașuta de la 7.000 m — record mondial femei",
-      "label_en": "Smaranda Brăescu parachutes from 7,000 m — women's world record"
+      "label": "Smaranda Brăescu sare cu parașuta de la 7.000 m, record mondial femei",
+      "label_en": "Smaranda Brăescu parachutes from 7,000 m, women's world record"
     },
     {
       "year": 1934,
@@ -250,13 +250,13 @@
     },
     {
       "year": 1938,
-      "label": "Carol al II-lea + iahtul „Luceafărul\" în Galați · întâlnire diplomatică Polonia (criza München)",
-      "label_en": "Carol II + the yacht \"Luceafărul\" in Galați · diplomatic meeting with Poland (Munich crisis)"
+      "label": "Carol al II-lea + iahtul „Luceafărul” în Galați · întâlnire diplomatică Polonia (criza München)",
+      "label_en": "Carol II + the yacht “Luceafărul” in Galați · diplomatic meeting with Poland (Munich crisis)"
     },
     {
       "year": 1940,
-      "label": "Pierderea Basarabiei și Bucovinei (28 iun) — refugiați masivi prin Galați",
-      "label_en": "Loss of Bessarabia and Bukovina (28 June) — massive flow of refugees through Galați"
+      "label": "Pierderea Basarabiei și Bucovinei (28 iun), refugiați masivi prin Galați",
+      "label_en": "Loss of Bessarabia and Bukovina (28 June), massive flow of refugees through Galați"
     },
     {
       "year": 1940,
@@ -265,8 +265,8 @@
     },
     {
       "year": 1941,
-      "label": "Pogromul de la Iași (28-30 iun) + ecou la Galați — comunitatea evreiască decimată",
-      "label_en": "Iași pogrom (28-30 June) + echo in Galați — the Jewish community decimated"
+      "label": "Pogromul de la Iași (28-30 iun) + ecou la Galați, comunitatea evreiască decimată",
+      "label_en": "Iași pogrom (28-30 June) + echo in Galați, the Jewish community decimated"
     },
     {
       "year": 1941,
@@ -275,13 +275,13 @@
     },
     {
       "year": 1943,
-      "label": "Bombardamentele aliate americane — multiple raiduri pe șantierul naval",
-      "label_en": "American Allied bombings — multiple raids on the shipyard"
+      "label": "Bombardamentele aliate americane, multiple raiduri pe șantierul naval",
+      "label_en": "American Allied bombings, multiple raids on the shipyard"
     },
     {
       "year": 1944,
-      "label": "23 august — lovitura de stat anti-Antonescu · România întoarce armele",
-      "label_en": "23 August — anti-Antonescu coup · Romania switches sides"
+      "label": "23 august, lovitura de stat anti-Antonescu · România întoarce armele",
+      "label_en": "23 August, anti-Antonescu coup · Romania switches sides"
     },
     {
       "year": 1944,
@@ -310,8 +310,8 @@
     },
     {
       "year": 1962,
-      "label": "Demolare biserica Sf. Gheorghe (decembrie) — trasă în Dunăre cu remorcherele Navrom",
-      "label_en": "St. George Church demolished (December) — pulled into the Danube by Navrom tugboats"
+      "label": "Demolare biserica Sf. Gheorghe (decembrie), trasă în Dunăre cu remorcherele Navrom",
+      "label_en": "St. George Church demolished (December), pulled into the Danube by Navrom tugboats"
     },
     {
       "year": 1963,
@@ -325,8 +325,8 @@
     },
     {
       "year": 1965,
-      "label": "Campionatul Mondial de pescuit staționar la Galați — RO campioană",
-      "label_en": "World Coarse Angling Championship in Galați — Romania champion"
+      "label": "Campionatul Mondial de pescuit staționar la Galați, RO campioană",
+      "label_en": "World Coarse Angling Championship in Galați, Romania champion"
     },
     {
       "year": 1966,
@@ -350,13 +350,13 @@
     },
     {
       "year": 1971,
-      "label": "Pe esplanadă — bustul Gheorghe Gheorghiu-Dej",
-      "label_en": "On the esplanade — the bust of Gheorghe Gheorghiu-Dej"
+      "label": "Pe esplanadă, bustul Gheorghe Gheorghiu-Dej",
+      "label_en": "On the esplanade, the bust of Gheorghe Gheorghiu-Dej"
     },
     {
       "year": 1972,
-      "label": "Inaugurată Sala Sporturilor „Dunărea\"",
-      "label_en": "\"Dunărea\" Sports Hall inaugurated"
+      "label": "Inaugurată Sala Sporturilor „Dunărea”",
+      "label_en": "“Dunărea” Sports Hall inaugurated"
     },
     {
       "year": 1977,
@@ -370,8 +370,8 @@
     },
     {
       "year": 1990,
-      "label": "Universitatea „Dunărea de Jos\" își ia denumirea actuală",
-      "label_en": "\"Dunărea de Jos\" University takes its current name"
+      "label": "Universitatea „Dunărea de Jos” își ia denumirea actuală",
+      "label_en": "“Dunărea de Jos” University takes its current name"
     },
     {
       "year": 2001,
@@ -395,8 +395,8 @@
     },
     {
       "year": 2018,
-      "label": "Centenarul Marii Uniri — restaurări Palatul Comisiei Europene a Dunării",
-      "label_en": "Centenary of the Great Union — restoration of the European Commission of the Danube Palace"
+      "label": "Centenarul Marii Uniri, restaurări Palatul Comisiei Europene a Dunării",
+      "label_en": "Centenary of the Great Union, restoration of the European Commission of the Danube Palace"
     }
   ]
 }

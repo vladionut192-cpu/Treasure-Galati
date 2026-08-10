@@ -30,11 +30,11 @@
           "clue": {
             "kind": "rot13",
             "label": "C E R P V F G N",
-            "hint": "Mesajul este criptat. Fiecare literă a fost rotită cu 13 poziții în alfabet — un truc pe care Cuza l-a învățat de la căpitanii italieni din portul Galați.",
+            "hint": "Mesajul este criptat. Fiecare literă a fost rotită cu 13 poziții în alfabet, un truc pe care Cuza l-a învățat de la căpitanii italieni din portul Galați.",
             "decoded": "PRECISTA",
             "image": "../assets/images/hunts/pe-urmele-domnesti/cp1-in.jpg"
           },
-          "monument": "La construcția bisericii s-au folosit piatră de la Bărboși, lemn din pădurile Covurluiului, cărămidă și var. Are plan triconc cu patru încăperi — pridvor, naos, pronaos și altar — și a fost construită într-o concepție originală, cu turnul clopotniță inclus în corpul bisericii și cu pod întărit, care i-a creat o a doua funcție: refugiu și apărare. La interior, turnul are o cameră pentru ascunderea valorilor, două metereze și o ușă de acces. Biserica Precista a suportat toate vitregiile vremurilor, fiind arsă în 1711 de către otomani, distrusă în războaiele ruso-otomano-austriece din 1735–1739 și 1769–1774.",
+          "monument": "La construcția bisericii s-au folosit piatră de la Bărboși, lemn din pădurile Covurluiului, cărămidă și var. Are plan triconc cu patru încăperi, pridvor, naos, pronaos și altar, și a fost construită într-o concepție originală, cu turnul clopotniță inclus în corpul bisericii și cu pod întărit, care i-a creat o a doua funcție: refugiu și apărare. La interior, turnul are o cameră pentru ascunderea valorilor, două metereze și o ușă de acces. Biserica Precista a suportat toate vitregiile vremurilor, fiind arsă în 1711 de către otomani, distrusă în războaiele ruso-otomano-austriece din 1735-1739 și 1769-1774.",
           "find_hint": "Primul indiciu i-a adus pe investigatori la Biserica Precista. Aici urma ca domnitorul Cuza să primească binecuvântare înainte de drumul lung spre Iași. În curtea bisericii, lângă o piatră, investigatorii găsiseră un plic cu semnul lui Grozea.",
           "riddle": {
             "question": "Pe partea estică a bisericii, pe un stâlp este o cutie electrică. Ce număr este scris pe cutia electrică?",
@@ -49,7 +49,7 @@
           },
           "next_clue": {
             "kind": "symbols",
-            "hint": "Plicul găsit conținea un alfabet străvechi, cu un indiciu între litera C și U — inițialele domnitorului. Decodează simbolurile pentru a afla unde mergi.",
+            "hint": "Plicul găsit conținea un alfabet străvechi, cu un indiciu între litera C și U, inițialele domnitorului. Decodează simbolurile pentru a afla unde mergi.",
             "decoded": "PALATUL NAVIGATIEI",
             "image": "../assets/images/hunts/pe-urmele-domnesti/cp1-out.jpg"
           }
@@ -61,10 +61,10 @@
           "lat": 45.4315,
           "lon": 28.0618,
           "loc_id": "loc-76",
-          "intro": "Simbolurile te-au condus către portul gălățean — locul unde Cuza a debarcat în 1859.",
+          "intro": "Simbolurile te-au condus către portul gălățean, locul unde Cuza a debarcat în 1859.",
           "clue": null,
-          "monument": "La începutul secolului al XX-lea, Primăria și comunitatea locală din Galați au ridicat un edificiu impozant care să adăpostească Navigația Fluvială Română. Construit între 1909–1912 după planurile lui Petre Antonescu (discipol al lui Ion Mincu). Astăzi face parte din lista monumentelor istorice (cod GL-II-m-B-03064), sub numele de Gara Fluvială Galați, strada Portului numărul 34.",
-          "find_hint": "La Palatul Navigației, grupul de investigatori a găsit un plic cu poza primei școli publice din Galați — locul unde a fost elev în copilărie tâlharul Grozea.",
+          "monument": "La începutul secolului al XX-lea, Primăria și comunitatea locală din Galați au ridicat un edificiu impozant care să adăpostească Navigația Fluvială Română. Construit între 1909-1912 după planurile lui Petre Antonescu (discipol al lui Ion Mincu). Astăzi face parte din lista monumentelor istorice (cod GL-II-m-B-03064), sub numele de Gara Fluvială Galați, strada Portului numărul 34.",
+          "find_hint": "La Palatul Navigației, grupul de investigatori a găsit un plic cu poza primei școli publice din Galați, locul unde a fost elev în copilărie tâlharul Grozea.",
           "riddle": {
             "question": "Câți piloni de susținere din lemn are acoperișul intrării în palat dinspre faleză?",
             "options": [
@@ -107,7 +107,7 @@
           },
           "next_clue": {
             "kind": "translation",
-            "hint": "Stânca Neagră — în greacă: „Mavromol”. Caută o biserică ce poartă acest nume.",
+            "hint": "Stânca Neagră, în greacă: „Mavromol”. Caută o biserică ce poartă acest nume.",
             "decoded": "BISERICA MAVROMOL"
           }
         },
@@ -118,10 +118,10 @@
           "lat": 45.434542,
           "lon": 28.0532678,
           "loc_id": "loc-92",
-          "intro": "„Mavromol” înseamnă „Stânca Neagră” în greacă — o aluzie la temeliile vechi ale mănăstirii.",
+          "intro": "„Mavromol” înseamnă „Stânca Neagră” în greacă, o aluzie la temeliile vechi ale mănăstirii.",
           "clue": null,
-          "monument": "Biserica Mavromol din Galați poartă hramul „Adormirea Maicii Domnului”. Construcția a fost începută de domnitorul Gheorghe Duca (1678–1683) și terminată în 1702 de fiul său, voievodul Constantin Duca. Are un plan bazilical necompartimentat, cu două turle. La exterior, intrarea se face pe latura de sud, printr-o ușă marcată de un portal cu icoana de hram și simboluri heraldice — capul de bour și doi lei. Construcția actuală datează din perioada 1858–1861.",
-          "find_hint": "Aventurierii au găsit în fața Mănăstirii Mavromol, la poarta cu blazonul Moldovei, un plic cu următorul indiciu — o stea cu șase colțuri și text în ebraică.",
+          "monument": "Biserica Mavromol din Galați poartă hramul „Adormirea Maicii Domnului”. Construcția a fost începută de domnitorul Gheorghe Duca (1678-1683) și terminată în 1702 de fiul său, voievodul Constantin Duca. Are un plan bazilical necompartimentat, cu două turle. La exterior, intrarea se face pe latura de sud, printr-o ușă marcată de un portal cu icoana de hram și simboluri heraldice, capul de bour și doi lei. Construcția actuală datează din perioada 1858-1861.",
+          "find_hint": "Aventurierii au găsit în fața Mănăstirii Mavromol, la poarta cu blazonul Moldovei, un plic cu următorul indiciu, o stea cu șase colțuri și text în ebraică.",
           "riddle": {
             "question": "Ce animale sunt pe blazonul de pe intrarea în biserică?",
             "options": [
@@ -147,10 +147,10 @@
           "lat": 45.4361594,
           "lon": 28.0516317,
           "loc_id": "loc-91",
-          "intro": "Comunitatea evreiască din Galați era una dintre cele mai mari din regiune — la 1900 avea ~19.000 din 95.000 de locuitori.",
+          "intro": "Comunitatea evreiască din Galați era una dintre cele mai mari din regiune, la 1900 avea ~19.000 din 95.000 de locuitori.",
           "clue": null,
           "monument": "Clădirea datează după unele surse din 1875, iar după altele din 1896, și a fost construită de „Societatea Meseriașilor”. A rezistat mai multor cutremure, dar și de natură politică, în perioada celui de-al doilea război mondial fiind lagăr pentru prizonierii evrei. Structura de rezistență a templului începuse să dea semne de degradare și în 2009 Federația Comunităților Evreiești din România (FCER) a decis să înceapă consolidarea, lucrări care au fost terminate în 2014.",
-          "find_hint": "La poarta Templului, grupul a zărit jos o vedere însângerată — o poză veche cu strada Traian.",
+          "find_hint": "La poarta Templului, grupul a zărit jos o vedere însângerată, o poză veche cu strada Traian.",
           "riddle": {
             "question": "Ce scrie pe Sinagogă (frontonul principal)?",
             "options": [
@@ -164,7 +164,7 @@
           },
           "next_clue": {
             "kind": "photo",
-            "hint": "Vederea ensângerată arată Strada Traian și o farmacie istorică — caută Casa Ținc.",
+            "hint": "Vederea ensângerată arată Strada Traian și o farmacie istorică, caută Casa Ținc.",
             "decoded": "CASA TINC",
             "image": "../assets/images/hunts/pe-urmele-domnesti/cp5-out.jpg"
           }
@@ -176,10 +176,10 @@
           "lat": 45.4407,
           "lon": 28.049,
           "loc_id": "loc-153",
-          "intro": "Constantin Ținc (n. 1857) a fost farmacist gălățean și primar al orașului în 3 mandate scurte: 1898, 1904 și 1914–1917.",
+          "intro": "Constantin Ținc (n. 1857) a fost farmacist gălățean și primar al orașului în 3 mandate scurte: 1898, 1904 și 1914-1917.",
           "clue": null,
-          "monument": "Constantin Ținc s-a născut la Giurgiu în anul 1857. La 5 mai 1899, primește autorizația de a construi clădirea de pe strada Traian-Codreanu-Spitalului, pentru a servi drept farmacie. Arhitectura clădirii este de influență vieneză, cu bogate decorații florale realizate în stuc. Astăzi se regăsește în lista monumentelor istorice pe anul 2004 din județul Galați, pe strada Eroilor, numărul 64. Restaurată între 1994–2006, clădirea a fost transformată în „Muzeul Colecțiilor”.",
-          "find_hint": "În podul casei Ținc, căutătorii găsiseră încă un plic — de data aceasta cu un mesaj scris în cod binar.",
+          "monument": "Constantin Ținc s-a născut la Giurgiu în anul 1857. La 5 mai 1899, primește autorizația de a construi clădirea de pe strada Traian-Codreanu-Spitalului, pentru a servi drept farmacie. Arhitectura clădirii este de influență vieneză, cu bogate decorații florale realizate în stuc. Astăzi se regăsește în lista monumentelor istorice pe anul 2004 din județul Galați, pe strada Eroilor, numărul 64. Restaurată între 1994-2006, clădirea a fost transformată în „Muzeul Colecțiilor”.",
+          "find_hint": "În podul casei Ținc, căutătorii găsiseră încă un plic, de data aceasta cu un mesaj scris în cod binar.",
           "riddle": {
             "question": "Ce scrie pe fațada casei Ținc?",
             "options": [
@@ -204,7 +204,7 @@
           "title": "Consiliul Județean Galați",
           "lat": 45.4404,
           "lon": 28.054,
-          "intro": "Coordonatele te-au dus la fosta Casă a Artei — astăzi Consiliul Județean Galați.",
+          "intro": "Coordonatele te-au dus la fosta Casă a Artei, astăzi Consiliul Județean Galați.",
           "clue": null,
           "monument": "Strada Eroilor nr. 5, fosta Primăverii, Vasanski și Codreanu. În 1910, pe Codreanu la nr. 7 (devenit 5), Leon Herpen a ridicat un imobil impunător. În 1936 este vândut statului cehoslovac pentru a adăposti consulatul, iar după ocuparea țării de către Germania Nazistă, locul a devenit Consulatul Germaniei. În perioada comunistă a fost folosită drept casă de oaspeți a Partidului Comunist Român (numită și „Casa lui Ceaușescu”). Din 2000 este sediul Consiliului Județean Galați.",
           "find_hint": "În părculeț, sub o bancă, căutătorii găsiseră cuvintele scrise pe o scândură.",
@@ -232,7 +232,7 @@
           "lat": 45.4374,
           "lon": 28.0556,
           "loc_id": "loc-155",
-          "intro": "Alexandru Stratia și-a construit aici o casă în 1935, pe colț cu Vadul Carabuș — naționalizată în 1950.",
+          "intro": "Alexandru Stratia și-a construit aici o casă în 1935, pe colț cu Vadul Carabuș, naționalizată în 1950.",
           "clue": null,
           "monument": "Aici, la fostele nr. 46 și 48, dețineau în 1911 câte un imobil frații Marcu și Moritz Wecsler. În 1934, Moritz își vinde proprietatea lui Alexandru Stratia, care își construiește aici în 1935 un imobil pe colțul cu Vadul Carabuș. Ambele imobile, atât al lui Marcu cât și al lui Stratia, sunt trecute în proprietatea statului cu decretul 92/1950.",
           "find_hint": "La Casa A. Stratia, căutătorii găsiseră după o cărămidă din zid un bilețel cu un mesaj în cod Morse.",
@@ -249,7 +249,7 @@
           },
           "next_clue": {
             "kind": "morse",
-            "hint": "Codul Morse: --.  .-.  .-  -.  -..   /   ....  ---  -  .  .-..",
+            "hint": "Codul Morse: --. .-. .- -. -.. / .... --- - . .-..",
             "decoded": "GRAND HOTEL",
             "image": "../assets/images/hunts/pe-urmele-domnesti/cp8-out.jpg"
           }
@@ -261,9 +261,9 @@
           "lat": 45.4382421,
           "lon": 28.056548,
           "loc_id": "loc-65",
-          "intro": "Codul Morse decodat: GRAND HOTEL — fosta inimă a vieții cosmopolite gălățene.",
+          "intro": "Codul Morse decodat: GRAND HOTEL, fosta inimă a vieții cosmopolite gălățene.",
           "clue": null,
-          "monument": "Imobilul din strada Domnească (nr. 38) este o construcție de la începutul secolului al XX-lea (1911–1912), ridicată la inițiativa marelui proprietar Elie (Ilie) Climi (Climis). Grand Hotel este o clădire în stil compozit, cu elemente de decorație neoclasice și baroce. Două bowindow-uri dispuse simetric față de intrarea principală. După al doilea război mondial a fost sediu al administrației Partidului Comunist, iar după 1990 a devenit sediul Primăriei Municipiului Galați. Astăzi se regăsește pe lista monumentelor istorice (cod GL-II-m-B-03012).",
+          "monument": "Imobilul din strada Domnească (nr. 38) este o construcție de la începutul secolului al XX-lea (1911-1912), ridicată la inițiativa marelui proprietar Elie (Ilie) Climi (Climis). Grand Hotel este o clădire în stil compozit, cu elemente de decorație neoclasice și baroce. Două bowindow-uri dispuse simetric față de intrarea principală. După al doilea război mondial a fost sediu al administrației Partidului Comunist, iar după 1990 a devenit sediul Primăriei Municipiului Galați. Astăzi se regăsește pe lista monumentelor istorice (cod GL-II-m-B-03012).",
           "find_hint": "La Grand Hotel, în spatele statuii din părculeț, era inscripționată următoarea strofă: «Cobori în jos, luceafăr blând, / Alunecând pe-o rază, / Pătrunde-n casă și în gând / Și viața-mi luminează!»",
           "riddle": {
             "question": "Cine este imortalizat pe statuia din părculețul de la Grand Hotel?",
@@ -285,13 +285,13 @@
         {
           "id": "cp10",
           "order": 10,
-          "title": "Parcul Eminescu — Finalul",
+          "title": "Parcul Eminescu, Finalul",
           "lat": 45.43614277229779,
           "lon": 28.054557945408416,
           "loc_id": "loc-113",
           "intro": "Ultimul popas. Aici, în fața statuii poetului, se ascunde comoara.",
           "clue": null,
-          "monument": "Parcul Eminescu a fost amenajat între 1880–1881, iar în 1913 s-au realizat o serie de lucrări de sistematizare și înfrumusețare, fiind asemănat cu parcurile englezești. A fost făcut să semene cu Parcul Ioanid din București. La lucrări s-a folosit piatră de Ulmeni, un lac, un pod rustic peste lac, o grotă cu cascadă. Astăzi găzduiește prima statuie a lui Mihai Eminescu din România, sculptată de Frederic Storck.",
+          "monument": "Parcul Eminescu a fost amenajat între 1880-1881, iar în 1913 s-au realizat o serie de lucrări de sistematizare și înfrumusețare, fiind asemănat cu parcurile englezești. A fost făcut să semene cu Parcul Ioanid din București. La lucrări s-a folosit piatră de Ulmeni, un lac, un pod rustic peste lac, o grotă cu cascadă. Astăzi găzduiește prima statuie a lui Mihai Eminescu din România, sculptată de Frederic Storck.",
           "find_hint": "În parc, la baza statuii lui Eminescu, era îngropată coroana domnitorului. Lângă statua lui Eminescu se află și statuia Veronicăi Micle.",
           "riddle": {
             "question": "Ce ține în mână Veronica Micle?",
@@ -336,8 +336,8 @@
           "lon": 28.0563,
           "loc_id": "loc-2",
           "intro": "După câteva ore de căutări intense, lipită de geamul unei vechi clădiri de lângă parc găsești o vedere ciudată cu Viviana și soțul ei stând în fața Băncii Naționale, iar lângă ei o figură stranie.",
-          "monument": "Imobil construit între 1885–1886 după planurile arhitectului francez Louis Albert Galleron (același care a proiectat și sediul central Băncii Naționale din București, dar și Ateneul). Stil eclectic, la modă în arhitectura franceză din acea perioadă. Sucursala fusese deschisă la 18 martie 1881, însă funcționase în casele Galeriu (Hotel Dacia).",
-          "find_hint": "Ajunși la Banca Națională, începeți să căutați prin arhivele băncii indicii cu privire la afacerile Vivianei. Descoperiți că ametistul apare într-un registru vechi ca fiind ținut într-o cutie de valori. Strănepotul vine cu actele necesare și deschideți cutia — ametistul nu mai este acolo, însă găsești următorul indiciu.",
+          "monument": "Imobil construit între 1885-1886 după planurile arhitectului francez Louis Albert Galleron (același care a proiectat și sediul central Băncii Naționale din București, dar și Ateneul). Stil eclectic, la modă în arhitectura franceză din acea perioadă. Sucursala fusese deschisă la 18 martie 1881, însă funcționase în casele Galeriu (Hotel Dacia).",
+          "find_hint": "Ajunși la Banca Națională, începeți să căutați prin arhivele băncii indicii cu privire la afacerile Vivianei. Descoperiți că ametistul apare într-un registru vechi ca fiind ținut într-o cutie de valori. Strănepotul vine cu actele necesare și deschideți cutia, ametistul nu mai este acolo, însă găsești următorul indiciu.",
           "riddle": {
             "question": "Câte trepte sunt la intrarea în Banca Națională a României?",
             "options": [
@@ -364,8 +364,8 @@
           "lon": 28.0535,
           "loc_id": "loc-157",
           "intro": "Ajunși la Poarta Hanului Turcesc, simți în aer un miros pucios și te cuprinde o stare negativă și o migrenă care pornește din spatele capului. Te simți privit, dar nu dai importanță și o pui pe seama oboselii.",
-          "monument": "Pe strada Egalității la nr. 16, între două blocuri de locuințe, se află ce a mai rămas din hanul demolat în 1984 de către autoritățile comuniste. Este o poartă monumentală din cărămidă, de la începutul secolului XIX. Hanul era un complex de clădiri, cu spațiile de cazare dispuse pe cele două laturi ale curții. Poarta are intrare sub formă de arcadă cu arhivoltă, pilaștri în stil ionic și ornamente florale. Lucrările de construire a noilor blocuri în 1982–1984 au necesitat demolarea hanului, poarta rămânând izolată și degradată.",
-          "find_hint": "Observi printre ruine, într-o gaură formată în zid, o hârtie mototolită și bătută de vreme. O ridici, o desfaci și găsești o hartă spre următorul indiciu — drumul pleacă de la Han Turcesc, trece pe lângă DAily și Parc Eminescu și ajunge la nr. 38 — Discipolii lui Pitagora.",
+          "monument": "Pe strada Egalității la nr. 16, între două blocuri de locuințe, se află ce a mai rămas din hanul demolat în 1984 de către autoritățile comuniste. Este o poartă monumentală din cărămidă, de la începutul secolului XIX. Hanul era un complex de clădiri, cu spațiile de cazare dispuse pe cele două laturi ale curții. Poarta are intrare sub formă de arcadă cu arhivoltă, pilaștri în stil ionic și ornamente florale. Lucrările de construire a noilor blocuri în 1982-1984 au necesitat demolarea hanului, poarta rămânând izolată și degradată.",
+          "find_hint": "Observi printre ruine, într-o gaură formată în zid, o hârtie mototolită și bătută de vreme. O ridici, o desfaci și găsești o hartă spre următorul indiciu, drumul pleacă de la Han Turcesc, trece pe lângă DAily și Parc Eminescu și ajunge la nr. 38, Discipolii lui Pitagora.",
           "riddle": {
             "question": "Câte turnulețe are Poarta Hanului?",
             "options": [
@@ -379,7 +379,7 @@
           },
           "next_clue": {
             "kind": "map",
-            "hint": "Harta marchează cu un X clădirea de la nr. 38, pe traseul Daily → Parc Eminescu.",
+            "hint": "Harta marchează cu un X clădirea de la nr. 38, pe traseul Daily-Parc Eminescu.",
             "decoded": "DISCIPOLII LUI PITAGORA",
             "image": "../assets/images/hunts/fantasmele-dunarii/cp2-out.jpg"
           }
@@ -393,7 +393,7 @@
           "loc_id": "loc-158",
           "intro": "Fostul club al masoneriei gălățene, sediul „Discipolii lui Pitagora” din a doua jumătate a sec. XIX.",
           "monument": "Printre membrii societății îl găsim pe Aristide Serfioti, proprietar al unor părți din moșiile Barboși și Calica (Covurlui). „Discipolii lui Pitagora” este singura lojă al cărei statut, semnat chiar de Domnitorul Cuza, se păstrează și astăzi în formă originală la Biblioteca Județeană din Galați. În acest statut, Domnitorul ține să mulțumească personal doctorului Aristide Serfioti pentru inițiativa de a constitui un Comitet Filantropic, pe baza căruia s-au pus mai târziu bazele Lojii „Discipolii lui Pitagora”.",
-          "find_hint": "În sediul masonic găsești în arhive o listă de membri ai lojei gălățene. Printre Aristide Serfioti și Titu Maiorescu găsești și numele Vivianei. Sub numele ei pagina este ruptă, dar între următoarele două pagini găsești un indiciu împăturit — un cifru de substituție «Fxlxyjl Nvqlhlqt Vqrstchxls» și o cheie de cod (alfabetul ABCDEFGH...XYZ → XCVISPBDHAWLROQFKTNYJZEUMG).",
+          "find_hint": "În sediul masonic găsești în arhive o listă de membri ai lojei gălățene. Printre Aristide Serfioti și Titu Maiorescu găsești și numele Vivianei. Sub numele ei pagina este ruptă, dar între următoarele două pagini găsești un indiciu împăturit, un cifru de substituție «Fxlxyjl Nvqlhlqt Vqrstchxls» și o cheie de cod (alfabetul ABCDEFGH...XYZ → XCVISPBDHAWLROQFKTNYJZEUMG).",
           "riddle": {
             "question": "Ce formă geometrică se află la geamul clădirii?",
             "options": [
@@ -420,8 +420,8 @@
           "lon": 28.0496,
           "loc_id": "loc-143",
           "intro": "Clădire construită pentru prima școală comercială din țară (1864), pe strada Gării 63-65.",
-          "monument": "Ridicarea edificiului s-a desfășurat în etape: 1922–1927 (corpul de băieți, aripa nordică, str. Gării/Lascăr Catargiu) și 1927–1933 (corpul fetelor, aripa vestică, str. Dr. Carnabel/Spitalului). Arhitecți: Guido P. Marion și A. Romano. 90 de încăperi în total, cele două aripi legate printr-un amfiteatru grandios de 300 de locuri. Liceul Comercial a funcționat aici până în 1953. Apoi Facultatea de Chimie Alimentară. Astăzi clădirea aparține Universității Dunărea de Jos și se află în stadiu avansat de degradare.",
-          "find_hint": "Căutând în subsolul Facultății afli că aici a învățat Viviana, la Liceul Comercial de Fete. Găsești și o poză cu colegii ei de clasă — evidențiați sunt Viviana și colegul ei, Grigore Bâzgan. Alături de ei, din nou își face apariția o umbră ciudată.",
+          "monument": "Ridicarea edificiului s-a desfășurat în etape: 1922-1927 (corpul de băieți, aripa nordică, str. Gării/Lascăr Catargiu) și 1927-1933 (corpul fetelor, aripa vestică, str. Dr. Carnabel/Spitalului). Arhitecți: Guido P. Marion și A. Romano. 90 de încăperi în total, cele două aripi legate printr-un amfiteatru grandios de 300 de locuri. Liceul Comercial a funcționat aici până în 1953. Apoi Facultatea de Chimie Alimentară. Astăzi clădirea aparține Universității Dunărea de Jos și se află în stadiu avansat de degradare.",
+          "find_hint": "Căutând în subsolul Facultății afli că aici a învățat Viviana, la Liceul Comercial de Fete. Găsești și o poză cu colegii ei de clasă, evidențiați sunt Viviana și colegul ei, Grigore Bâzgan. Alături de ei, din nou își face apariția o umbră ciudată.",
           "riddle": {
             "question": "Câte ferestre are latura de nord a Palatului?",
             "options": [
@@ -435,7 +435,7 @@
           },
           "next_clue": {
             "kind": "photo",
-            "hint": "Poza identifică pe G. Bâzgan — caută casa lui pe str. Domnească 107.",
+            "hint": "Poza identifică pe G. Bâzgan, caută casa lui pe str. Domnească 107.",
             "decoded": "CASA G BAZGAN",
             "image": "../assets/images/hunts/fantasmele-dunarii/cp4-out.jpg"
           }
@@ -447,8 +447,8 @@
           "lat": 45.4452,
           "lon": 28.053,
           "loc_id": "loc-159",
-          "intro": "Str. Domnească nr. 107 — casa medicului Grigore Bâzgan, prima casă din oraș cu încălzire centrală.",
-          "monument": "La 03 aprilie 1933, doctorul Grigore Bâzgan autentifica la Tribunalul Covurlui actul de vânzare-cumpărare pentru terenul din str. Domnească. Pe acest teren, medicul construiește în 1933–1934 un imobil în care a trăit până în 1943. Arhitectul I. Giurgea și constructorul italian G. Cometto au preferat un stil modern (Art Deco). Casa se distinge printr-un basorelief în medalion — Asclepios (Esculap) și toiagul său. A fost prima casă din oraș cu încălzire centrală. Naționalizată cu decretul 92/1950, revendicată, retrocedată și scoasă acum la vânzare.",
+          "intro": "Str. Domnească nr. 107, casa medicului Grigore Bâzgan, prima casă din oraș cu încălzire centrală.",
+          "monument": "La 03 aprilie 1933, doctorul Grigore Bâzgan autentifica la Tribunalul Covurlui actul de vânzare-cumpărare pentru terenul din str. Domnească. Pe acest teren, medicul construiește în 1933-1934 un imobil în care a trăit până în 1943. Arhitectul I. Giurgea și constructorul italian G. Cometto au preferat un stil modern (Art Deco). Casa se distinge printr-un basorelief în medalion, Asclepios (Esculap) și toiagul său. A fost prima casă din oraș cu încălzire centrală. Naționalizată cu decretul 92/1950, revendicată, retrocedată și scoasă acum la vânzare.",
           "find_hint": "Ajunși la casa lui Bâzgan, în unul din geamuri parcă vezi o față fantomatică cu colțul ochiului. Te uiți mai atent și vezi blocat în rama ferestrei un cartonaș mic cu portretul lui V.A. Urechia.",
           "riddle": {
             "question": "Ce se încolăcește pe toiagul lui Asclepios?",
@@ -463,7 +463,7 @@
           },
           "next_clue": {
             "kind": "portrait",
-            "hint": "Portretul cu semnătura «V.A. Urechia» te conduce la Palatul Comisiei Europene a Dunării — astăzi Biblioteca V.A. Urechia.",
+            "hint": "Portretul cu semnătura «V.A. Urechia» te conduce la Palatul Comisiei Europene a Dunării, astăzi Biblioteca V.A. Urechia.",
             "decoded": "PALATUL CED URECHIA",
             "image": "../assets/images/hunts/fantasmele-dunarii/cp5-out.jpg"
           }
@@ -475,9 +475,9 @@
           "lat": 45.4454,
           "lon": 28.057,
           "loc_id": "loc-73",
-          "intro": "Sediul vechi al Comisiei Europene a Dunării, prima organizație supranațională europeană (1856) — astăzi Biblioteca V.A. Urechia.",
-          "monument": "Comisia Europeană a Dunării s-a constituit la Galați în 4 noiembrie 1856 pentru a reglementa navigația pe Dunăre. Membri: cavalerul Becke (Austria), Edouard Enghelhard (Franța), John Stokes (Anglia), Bitter (Prusia), baronul de Offenberg (Imperiul Țarist), marchizul d'Aste (Sardinia), Omer-Pașa (Imperiul Otoman). Activitatea Comisiei a continuat până în 1948. Sediul propriu a fost achiziționat în 1893, recepție definitivă 1896, construit de Societatea Română de Construcții și Lucrări Publice. În Primul Război Mondial, în 1917, palatul a fost bombardat. Reconstrucția 1922–1923. Astăzi e sediul Bibliotecii V.A. Urechia.",
-          "find_hint": "În incinta bibliotecii cauți detalii legate de Viviana. Cu câteva secunde înainte să te dai bătut, îți amintești că strănepotul ți-a spus că Vivianei îi plăcea să viziteze des un domn pe nume Robescu. Cauți în arhive la litera R și descoperi un desen mâzgâlit, parcă, de un copil — un castel.",
+          "intro": "Sediul vechi al Comisiei Europene a Dunării, prima organizație supranațională europeană (1856), astăzi Biblioteca V.A. Urechia.",
+          "monument": "Comisia Europeană a Dunării s-a constituit la Galați în 4 noiembrie 1856 pentru a reglementa navigația pe Dunăre. Membri: cavalerul Becke (Austria), Edouard Enghelhard (Franța), John Stokes (Anglia), Bitter (Prusia), baronul de Offenberg (Imperiul Țarist), marchizul d'Aste (Sardinia), Omer-Pașa (Imperiul Otoman). Activitatea Comisiei a continuat până în 1948. Sediul propriu a fost achiziționat în 1893, recepție definitivă 1896, construit de Societatea Română de Construcții și Lucrări Publice. În Primul Război Mondial, în 1917, palatul a fost bombardat. Reconstrucția 1922-1923. Astăzi e sediul Bibliotecii V.A. Urechia.",
+          "find_hint": "În incinta bibliotecii cauți detalii legate de Viviana. Cu câteva secunde înainte să te dai bătut, îți amintești că strănepotul ți-a spus că Vivianei îi plăcea să viziteze des un domn pe nume Robescu. Cauți în arhive la litera R și descoperi un desen mâzgâlit, parcă, de un copil, un castel.",
           "riddle": {
             "question": "În curtea bibliotecii pe partea dreaptă se află un zid cu desene. Ce număr este pe desenul din mijloc?",
             "options": [
@@ -491,7 +491,7 @@
           },
           "next_clue": {
             "kind": "drawing",
-            "hint": "Desenul cu castel și semnătura «Viviana» te trimite la Casa Robescu — singurul „palat” din oraș construit ca o vilă-castel de Ion Mincu.",
+            "hint": "Desenul cu castel și semnătura «Viviana» te trimite la Casa Robescu, singurul „palat” din oraș construit ca o vilă-castel de Ion Mincu.",
             "decoded": "CASA ROBESCU",
             "image": "../assets/images/hunts/fantasmele-dunarii/cp6-out.jpg"
           }
@@ -503,8 +503,8 @@
           "lat": 45.4468,
           "lon": 28.0565,
           "loc_id": "loc-79",
-          "intro": "Strada Mihai Bravu nr. 28. Vilă-palat impunătoare, proiectată de arhitectul Ion Mincu între 1896–1897.",
-          "monument": "G.C. Robescu, doctor în drept de la facultatea din Bruxelles, a fost prim-procuror la tribunalul Galați și primar (februarie 1891–august 1892). Casa Robescu, monument istoric (cod GL-II-m-A-03058), strada Mihai Bravu nr. 28. Construită între 1896–1897 cu strânse filiații cu „Casa Lahovary” și „Bufetul” din București. Ornamentație din ceramică smălțuită policromă cu motive din arta veche românească. 460 m² construiți, 41 de încăperi, două cerdace cu stâlpi de lemn sculptați. Din 1989 — „Palatul Copiilor”.",
+          "intro": "Strada Mihai Bravu nr. 28. Vilă-palat impunătoare, proiectată de arhitectul Ion Mincu între 1896-1897.",
+          "monument": "G.C. Robescu, doctor în drept de la facultatea din Bruxelles, a fost prim-procuror la tribunalul Galați și primar (februarie 1891-august 1892). Casa Robescu, monument istoric (cod GL-II-m-A-03058), strada Mihai Bravu nr. 28. Construită între 1896-1897 cu strânse filiații cu „Casa Lahovary” și „Bufetul” din București. Ornamentație din ceramică smălțuită policromă cu motive din arta veche românească. 460 m² construiți, 41 de încăperi, două cerdace cu stâlpi de lemn sculptați. Din 1989, „Palatul Copiilor”.",
           "find_hint": "La Palatul Copiilor decizi să urci în pod, unde sunt depozitate obiecte vechi de mobilier. Lumina abia întrepătrunde prin geamurile prăfuite. Aprinzi lanterna, lumina pâlpâie câteva secunde, apoi se stinge. În dreapta vezi cu coada ochiului o umbră și auzi un vuiet puternic. Pe un dulap vechi bătea lumina fix pe un sertar. Deschizi sertarul și de sub el cade o vedere cu o anagramă: «Casa INERG».",
           "riddle": {
             "question": "Ce literă se află pe gardul ce înconjoară clădirea?",
@@ -519,7 +519,7 @@
           },
           "next_clue": {
             "kind": "anagram",
-            "hint": "Anagrama «INERG» rearanjată dă «NEGRI» — Casa Negri din strada Mihai Bravu 46.",
+            "hint": "Anagrama «INERG» rearanjată dă «NEGRI», Casa Negri din strada Mihai Bravu 46.",
             "decoded": "CASA NEGRI",
             "image": "../assets/images/hunts/fantasmele-dunarii/cp7-out.jpg"
           }
@@ -532,7 +532,7 @@
           "lon": 28.0561,
           "loc_id": "loc-160",
           "intro": "Casa lui Costache Negri pe strada Mihai Bravu nr. 46, astăzi Camera de Comerț și Industrie.",
-          "monument": "Costache Negri (1812–1876), participant la revoluția de la 1848, pârcălab al ținutului Covurlui (1851–1853), epitrop al spitalului Sf. Spiridon din Galați. Membru al Divanului ad-hoc de la Iași (1857) împreună cu Alexandru Ioan Cuza. Negri a fost candidat la tronul Moldovei, dar Cuza a fost preferat. La 24 ianuarie 1859, Costache Negri a făcut parte din delegația care a anunțat sultanul de alegerea lui Cuza. Casa apare în lista monumentelor istorice (cod GL-II-m-B-03062), construită la sfârșitul sec. XIX. Pe locul vechii case a fost inaugurat în 1924 Seminarul „Sfântul Apostol Andrei”.",
+          "monument": "Costache Negri (1812-1876), participant la revoluția de la 1848, pârcălab al ținutului Covurlui (1851-1853), epitrop al spitalului Sf. Spiridon din Galați. Membru al Divanului ad-hoc de la Iași (1857) împreună cu Alexandru Ioan Cuza. Negri a fost candidat la tronul Moldovei, dar Cuza a fost preferat. La 24 ianuarie 1859, Costache Negri a făcut parte din delegația care a anunțat sultanul de alegerea lui Cuza. Casa apare în lista monumentelor istorice (cod GL-II-m-B-03062), construită la sfârșitul sec. XIX. Pe locul vechii case a fost inaugurat în 1924 Seminarul „Sfântul Apostol Andrei”.",
           "find_hint": "Ai ajuns la Casa Negri. O ploaie cu fulgere și tunete s-a pornit. În curte găsești o baracă veche cu un geam ponosit prin care se vede o lumină fadă și mișcare. Te apropii, ușa e blocată, prin geam vezi doar umbre. Decizi să forțezi rama, geamul se deschide. Lumina din interior se stinge, un curent te doboară din picioare, ploaia se oprește, geamul rămâne aburit, iar pe el scria «Notre Dame de Sion».",
           "riddle": {
             "question": "Pe casă este o plăcuță așezată acolo cu prilejul a:",
@@ -560,8 +560,8 @@
           "lon": 28.0558,
           "loc_id": "loc-142",
           "intro": "Strada Domnească nr. 111, fost institut catolic pentru fete (1867), astăzi Facultatea de Mecanică.",
-          "monument": "Institutul „Notre Dame de Sion” a fost înființat la 24 octombrie 1867 de către congregația călugărițelor catolice Nôtre-Dame-de-Sion. Avea patru diviziuni: internat, demi-internat, externat și școala de lucru. În 1869 s-a adăugat o școală confesională gratuită și un orfelinat intern. La începutul anului 1870 institutul avea 40 de eleve, șapte ani mai târziu — 200 eleve. În 1889/90 — 481 eleve. Astăzi e Facultatea de Mecanică (cod GL-II-m-B-03034), strada Domnească nr. 111.",
-          "find_hint": "Pe holurile clădirii se aude un vuiet continuu și puternic, iar luminile indicau o direcție. La capătul unui hol care se înfundă vezi un tablou care vibrează pe perete. Ridici tabloul și sub el găsești o nouă hartă — un plan cu un X marcat: «Mă găsești aici!» și jos «Palatul Episcopal». Drumul pleacă din zona Notre Dame și se sfârșește la Grădina Publică.",
+          "monument": "Institutul „Notre Dame de Sion” a fost înființat la 24 octombrie 1867 de către congregația călugărițelor catolice Nôtre-Dame-de-Sion. Avea patru diviziuni: internat, demi-internat, externat și școala de lucru. În 1869 s-a adăugat o școală confesională gratuită și un orfelinat intern. La începutul anului 1870 institutul avea 40 de eleve, șapte ani mai târziu, 200 eleve. În 1889/90-481 eleve. Astăzi e Facultatea de Mecanică (cod GL-II-m-B-03034), strada Domnească nr. 111.",
+          "find_hint": "Pe holurile clădirii se aude un vuiet continuu și puternic, iar luminile indicau o direcție. La capătul unui hol care se înfundă vezi un tablou care vibrează pe perete. Ridici tabloul și sub el găsești o nouă hartă, un plan cu un X marcat: «Mă găsești aici!» și jos «Palatul Episcopal». Drumul pleacă din zona Notre Dame și se sfârșește la Grădina Publică.",
           "riddle": {
             "question": "Cine are bust la intrarea în Facultatea de Drept?",
             "options": [
@@ -583,12 +583,12 @@
         {
           "id": "cp10",
           "order": 10,
-          "title": "Grădina Publică — Finalul",
+          "title": "Grădina Publică, Finalul",
           "lat": 45.4522,
           "lon": 28.0531,
           "loc_id": "loc-67",
-          "intro": "Ultimul popas. În Grădina Publică se ascunde ametistul — și răspunsul la dispariția Vivianei.",
-          "monument": "Denumirea de Grădină Publică o poartă deoarece își are originea din vremurile când așa se numeau parcurile din marile orașe ale țării — în 1846. A fost reconfigurat ca un parc englez, dezvoltat de-a lungul timpului prin grija marilor oameni ce au stat la cârma urbei. Actuala fântână arteziană a fost construită în timpul regimului comunist în locul unui havuz similar celui din Parcul Cișmigiu din București.",
+          "intro": "Ultimul popas. În Grădina Publică se ascunde ametistul, și răspunsul la dispariția Vivianei.",
+          "monument": "Denumirea de Grădină Publică o poartă deoarece își are originea din vremurile când așa se numeau parcurile din marile orașe ale țării, în 1846. A fost reconfigurat ca un parc englez, dezvoltat de-a lungul timpului prin grija marilor oameni ce au stat la cârma urbei. Actuala fântână arteziană a fost construită în timpul regimului comunist în locul unui havuz similar celui din Parcul Cișmigiu din București.",
           "find_hint": "În Grădina Publică găsești la baza unui copac o scorbură. Înăuntrul ei pulsează o lumină verde, slabă. Riști și bagi mâna în scorbură. Atingi un metal rece. Scoți pumnul încet și descoperi că ții în palmă ametistul Vivianei. Instinctele îți spun să sapi...",
           "riddle": {
             "question": "Ce specie de copac găzduia ametistul?",
@@ -622,7 +622,7 @@
       "treasure": {
         "title": "Schitele și planurile armamentului",
         "location": "Pe o bancă lângă Foișor",
-        "narrative": "Pe o bancă lângă foișor observi un bărbat îmbrăcat exact ca mesagerul pe care îl căutai. Nu pare grăbit deloc, fumează relaxat și hrănește câțiva porumbei. Când ajungi în dreptul lui, ridică privirea din pământ și zâmbește deloc surprins. Îți spune că tot traseul a fost un test pentru a descoperi dacă echipa lui de informatori poate avea încredere în tine. În urma lui lasă un plic sigilat — schițele și planurile armamentului. Trimiti către superiorul tău și primești apoi o înștiințare că eforturile tale au salvat milioane de vieți. Felicitări pentru o misiune îndeplinită! Maria Vera Rosenberg — numele dat la naștere Verei Atkins..."
+        "narrative": "Pe o bancă lângă foișor observi un bărbat îmbrăcat exact ca mesagerul pe care îl căutai. Nu pare grăbit deloc, fumează relaxat și hrănește câțiva porumbei. Când ajungi în dreptul lui, ridică privirea din pământ și zâmbește deloc surprins. Îți spune că tot traseul a fost un test pentru a descoperi dacă echipa lui de informatori poate avea încredere în tine. În urma lui lasă un plic sigilat, schițele și planurile armamentului. Trimiti către superiorul tău și primești apoi o înștiințare că eforturile tale au salvat milioane de vieți. Felicitări pentru o misiune îndeplinită! Maria Vera Rosenberg, numele dat la naștere Verei Atkins..."
       },
       "checkpoints": [
         {
@@ -633,7 +633,7 @@
           "lon": 28.0285,
           "loc_id": "loc-161",
           "intro": "Pe falezei aruncând priviri peste umăr și suspectând fiecare trecător înarmat cu popcorn, când ajungi în zona foișorului un copil se apropie de tine de parcă te-ar cunoaște dintotdeauna. Scapă un bilețel pe pantoful tău: «Știu de ce ai venit în Galați. E prea periculos să discutăm aici. Urmărește indiciul de pe spate. Sunt îmbrăcat în negru și am o pălărie maro».",
-          "monument": "Monument ridicat dintr-o colectă publică pe la 1915 — pentru a marca războiul româno-bulgar din 1913, probabil cel mai ciudat conflict militar în care a fost implicată țara noastră, dat fiind că am parcurs jumătate din teritoriul Bulgariei și am fost la un pas să ocupăm Sofia fără să tragem vreun foc de armă. Pe perioada ostilităților au murit, totuși, aproximativ 2.000 de soldați, însă niciunul ucis de inamic, ci de holeră.",
+          "monument": "Monument ridicat dintr-o colectă publică pe la 1915, pentru a marca războiul româno-bulgar din 1913, probabil cel mai ciudat conflict militar în care a fost implicată țara noastră, dat fiind că am parcurs jumătate din teritoriul Bulgariei și am fost la un pas să ocupăm Sofia fără să tragem vreun foc de armă. Pe perioada ostilităților au murit, totuși, aproximativ 2.000 de soldați, însă niciunul ucis de inamic, ci de holeră.",
           "find_hint": "Pe spate găsești un cod cu o cheie 5×5 (1=A,3=C/K,4=D / 22=G,24=I / 31=L,33=N,35=P / 42=S,43=T / 51=V, 55=Z) și un șir: 23 43 33 54 23 51 33 44 / 24 51 22 42 23 51 33 44 / 11 / 34 42 24 51 44.",
           "riddle": {
             "question": "Cum se numește cel de-al 12-lea erou de pe monument?",
@@ -667,7 +667,7 @@
           "loc_id": "loc-111",
           "intro": "Presat de timp și în alertă permanentă, ajungi la monumentul indicat. E o liniște premonitorie. Te afli în fața fostului cinematograf Țiglina (acum Disco VIP 2000).",
           "monument": "„Progresul” este un monument amplasat în fața fostului cinematograf „Țiglina” (acum Disco VIP 2000). A fost ridicată în 1966, de sculptorul Peter Balogh (n. 1920), fiind concepută sub forma unei imense coloane care se înalță pe verticală, având laturile placate cu travertin. Monumentul exprimă în mod simbolic dezvoltarea pe care municipiul și județul Galați au cunoscut-o în toate domeniile vieții economice și social-culturale după cel de-al doilea război mondial.",
-          "find_hint": "Pe una din treptele cinematografului observi o foaie luminând în bătaia soarelui. Pare să fi fost printată recent, cerneala încă îți pătează degetul. Aduci foaia mai aproape de ochi și realizezi că e pătată de sânge. Dedesubt — o iconiță cu sfinții 3 Ierarhi și un plic cu un poem.",
+          "find_hint": "Pe una din treptele cinematografului observi o foaie luminând în bătaia soarelui. Pare să fi fost printată recent, cerneala încă îți pătează degetul. Aduci foaia mai aproape de ochi și realizezi că e pătată de sânge. Dedesubt, o iconiță cu sfinții 3 Ierarhi și un plic cu un poem.",
           "riddle": {
             "question": "Pe una din părțile monumentului sunt 2 tovarăși. Unul ține mâna peste umărul celuilalt. Ce ține în mână celălalt?",
             "options": [
@@ -693,8 +693,8 @@
           "lat": 45.4451,
           "lon": 28.0428,
           "loc_id": "loc-162",
-          "intro": "Biserica din Mazepa II — locul unei legende: hatmanul Mazepa a fost îngropat aici după bătălia de la Poltava (1709). Astăzi e biserica Sf. Trei Ierarhi.",
-          "monument": "Biserica din Mazepa II a fost ridicată între 1867–1871, în acest fost cartier de pescari, pe un loc mai vechi. Pisania bisericii dă mărturie că a fost sfințită prima dată în 28 septembrie 1886, de Episcopul Iosif Gheorghian al Dunării de Jos. Definitivarea a trenat ani buni: în 1905 a fost realizată catapeteasma și prima pictură în ulei. În 1911 a fost ridicat turnul clopotniță.",
+          "intro": "Biserica din Mazepa II, locul unei legende: hatmanul Mazepa a fost îngropat aici după bătălia de la Poltava (1709). Astăzi e biserica Sf. Trei Ierarhi.",
+          "monument": "Biserica din Mazepa II a fost ridicată între 1867-1871, în acest fost cartier de pescari, pe un loc mai vechi. Pisania bisericii dă mărturie că a fost sfințită prima dată în 28 septembrie 1886, de Episcopul Iosif Gheorghian al Dunării de Jos. Definitivarea a trenat ani buni: în 1905 a fost realizată catapeteasma și prima pictură în ulei. În 1911 a fost ridicat turnul clopotniță.",
           "find_hint": "Esti întrerupt de niște copii care trec alergând și sar peste gurile de canalizare. Te uiți rapid stânga-dreapta, sufleci manecile și sari și tu gardul. Chiar când pui mâna pe șipca de metal, simți o hârtie mototolită și îngrămădită acolo. Descoperi o bucată ruptă de ziar cu un grilaj de litere ascunzând cuvinte: BISERICA, GREACA, ROSU etc.",
           "riddle": {
             "question": "Câte cruci sunt pe acoperișurile din curtea bisericii?",
@@ -721,7 +721,7 @@
           "lat": 45.4371,
           "lon": 28.0556,
           "loc_id": "loc-5",
-          "intro": "Biserica Greacă cu hramul «Schimbarea la Față» — sfințită în 1872, distrusă parțial la cutremurul din 1940.",
+          "intro": "Biserica Greacă cu hramul «Schimbarea la Față», sfințită în 1872, distrusă parțial la cutremurul din 1940.",
           "monument": "La data de 6 august 1866 se pune piatra de temelie a bisericii cu hramul «Schimbarea la Față», sfințirea făcându-se la 17 septembrie 1872 de către episcopul Melchisedec, alături de Arhimandritul Eughenie Xiropotamo. Biserica e în formă de cruce înscrisă cu turla și are pe latura vestică două clopotnițe (cele două turle de aici au căzut la cutremurul din noiembrie 1940). Pictura a fost realizată de pictorul Papadopoulos din Adrianopol. Pe catapeteasma sunt icoane mari reprezentând pe Sf. Fecioara Maria cu Pruncul, Învierea Domnului, Sf. Gherasim, Sf. Sofia, Sf. Grigorie și Sf. Vasile cel Mare.",
           "find_hint": "Un preot agitat încearcă să își găsească ocupație în curte. Îți pune în mână o cruciuliță și o foaie mototolită cu un cifru pigpen (sau «freemason cipher»).",
           "riddle": {
@@ -749,8 +749,8 @@
           "lat": 45.4323,
           "lon": 28.0523,
           "loc_id": "loc-93",
-          "intro": "Biserica armeană din Galați — salvată de la demolare în comunism doar prin intervenția curajoasă a IPS Dirayr Mardichian.",
-          "monument": "Construcția bisericii a început la 15 mai 1858, piatra de temelie fiind pusă cu tot ceremonialul de arhiepiscopul Sarchis din Adrianopol, secondat de parohul Der Minas. Biserica a fost construită de arhitectul german Hermann Masche și a costat 1.175 de galbeni. Pictura reprezentând apostolii Petru și Pavel, Maica Domnului și Ioan Botezătorul aparține lui Paul Aburel. În perioada comunistă s-a propus demolarea pentru construcția cartierului Mazepa. Restaurată 2007–2008 cu fonduri exclusive ale comunității armene din Galați (~80 de membri).",
+          "intro": "Biserica armeană din Galați, salvată de la demolare în comunism doar prin intervenția curajoasă a IPS Dirayr Mardichian.",
+          "monument": "Construcția bisericii a început la 15 mai 1858, piatra de temelie fiind pusă cu tot ceremonialul de arhiepiscopul Sarchis din Adrianopol, secondat de parohul Der Minas. Biserica a fost construită de arhitectul german Hermann Masche și a costat 1.175 de galbeni. Pictura reprezentând apostolii Petru și Pavel, Maica Domnului și Ioan Botezătorul aparține lui Paul Aburel. În perioada comunistă s-a propus demolarea pentru construcția cartierului Mazepa. Restaurată 2007-2008 cu fonduri exclusive ale comunității armene din Galați (~80 de membri).",
           "find_hint": "Frustrat, te gândești să renunți. Auzi un fluier de peste stradă. Vezi silueta cu o pălărie. Înainte să dispară, silueta aruncă un plic cu o poză din satelit cu coordonatele 45.43120, 28.05718.",
           "riddle": {
             "question": "Pe latura de est a bisericii este o sculptură cu 2 îngeri ce stau lângă ...?",
@@ -779,7 +779,7 @@
           "loc_id": "loc-163",
           "intro": "Casa în care a locuit Ovid S. Crohmălniceanu, critic și istoric literar important. Strada Portului nr. 3 (fostă Colonel Boyle).",
           "monument": "O căsuță, destul de șic, a familiei doamnei Viorica Ranghilov... Asemănătoare altor case vechi din perioada interbelică, simple, cu un etaj, cu balcon din fier forjat. Este casa în care a locuit Ovid S. Crohmălniceanu, critic și istoric literar important. „Crohmălniceanu” e de fapt pseudonimul sugerat gălățeanului Moise Cohn de către un prieten, traducătorul Iosif Mătăsaru, și pare să vină din moldovenescul „crohmal” sau „crohmală”, adică scrobeală, însă „Krochmal” era și „numele unui șir important de învățați evrei”.",
-          "find_hint": "Te uiți pe căsuța poștală și vezi că scrie numele Colin Gubbins. Răsufli ușurat și bați la ușă — nu răspunde nimeni. Cu maiestrie reușești să desfaci lacătul fără să te vadă nimeni. Înăuntru încă miroase a fum de țigară, semn că a trecut recent cineva. Pe jos găsești o foaie pe care e desenată o carte pentru copii: 2 căluți de mare, o sticlă de apă pe un zid și cuvintele „cim ludiz”.",
+          "find_hint": "Te uiți pe căsuța poștală și vezi că scrie numele Colin Gubbins. Răsufli ușurat și bați la ușă, nu răspunde nimeni. Cu maiestrie reușești să desfaci lacătul fără să te vadă nimeni. Înăuntru încă miroase a fum de țigară, semn că a trecut recent cineva. Pe jos găsești o foaie pe care e desenată o carte pentru copii: 2 căluți de mare, o sticlă de apă pe un zid și cuvintele „cim ludiz”.",
           "riddle": {
             "question": "Ce culoare are placa de pe casa unde este comemorat Ovid S. Crohmălniceanu?",
             "options": [
@@ -807,7 +807,7 @@
           "loc_id": "loc-164",
           "intro": "Faleza Galațiului a evoluat sub influența factorilor naturali, abrupturile fiind erodate sub acțiunea apelor.",
           "monument": "În ultimele secole faleza a evoluat sub influența factorilor naturali, abrupturile sale fiind erodate sub acțiunea apelor din precipitații sau apele subterane. Materialul transportat din Combinatul Siderurgic (loess) a fost folosit la realizarea taluzului ce a acoperit malul abrupt, panta nouă apropiindu-se de 60%. Faleza a fost consolidată pe două benzi: pe faleza superioară s-a construit o arteră de circulație (Bulevardul Marii Uniri), iar în spațiile în care erau localizate râpele au fost amenajate Grădina Botanică, Parcul Viva, Restaurantul Pescărul.",
-          "find_hint": "De la zidul mic observi niște sculpturi de metal ce încă par a fi în construcție. Chiar când vrei să traversezi, te lovește în cap un ghem de hârtie căzut de sus. Îl desfaci și vezi următorul simbol — un soare cu 8 raze (Icar).",
+          "find_hint": "De la zidul mic observi niște sculpturi de metal ce încă par a fi în construcție. Chiar când vrei să traversezi, te lovește în cap un ghem de hârtie căzut de sus. Îl desfaci și vezi următorul simbol, un soare cu 8 raze (Icar).",
           "riddle": {
             "question": "Câte trepte urci la zidul #cuapelecurate?",
             "options": [
@@ -821,7 +821,7 @@
           },
           "next_clue": {
             "kind": "symbol",
-            "hint": "Soarele cu raze sugerează mitul lui Icar — caută Monumentul Icar pe falezeă.",
+            "hint": "Soarele cu raze sugerează mitul lui Icar, caută Monumentul Icar pe falezeă.",
             "decoded": "MONUMENTUL ICAR",
             "image": "../assets/images/hunts/spioni-si-sfinti/cp7-out.jpg"
           }
@@ -833,7 +833,7 @@
           "lat": 45.4225,
           "lon": 28.041,
           "loc_id": "loc-165",
-          "intro": "Sculptură de metal pe falezeă — Icar, simbolul omului ce vrea să-și depășească limitele.",
+          "intro": "Sculptură de metal pe falezeă, Icar, simbolul omului ce vrea să-și depășească limitele.",
           "monument": "„Icar” este una dintre sculpturile create în cadrul taberei de sculptură în metal, în anul 1977, de către artistul Olteanu Stîncă Aurel. Icar este cunoscut ca fiind fiul lui Dedal, împreună cu care a creat labirintul din Creta. Sculptura a fost realizată pentru a satisface una dintre cele mai mari dorințe ale omului: cea de a zbura. Icar este simbolul omului ce vrea să-și depășească propriile limite, însă graba și excesul de zel îl fac să eșueze în drumul său spre îndeplinirea visurilor.",
           "find_hint": "La Icar găsești o mulțime de oameni ce stau să admire sculptura. O femeie se desprinde din mulțime și se îndreaptă spre tine. Cu o privire îngrijorată, îți spune «mai ai puțin» și îți înmânează o foaie cu două ghicitori: «să vă spun o ghicitoare despre ceva de mâncare: crud sau pus la fiert se consumă ca desert, îl dorește oricine că e plin de vitamine» și «fuga-n deal și fuga-n vale, car de jar cu ochi de floare».",
           "riddle": {
@@ -849,7 +849,7 @@
           },
           "next_clue": {
             "kind": "riddle-pair",
-            "hint": "Cele două ghicitori — fruct și soare — te trimit la „Fructul Soarelui”.",
+            "hint": "Cele două ghicitori, fruct și soare, te trimit la „Fructul Soarelui”.",
             "decoded": "FRUCTUL SOARELUI",
             "image": "../assets/images/hunts/spioni-si-sfinti/cp8-out.jpg"
           }
@@ -861,9 +861,9 @@
           "lat": 45.422,
           "lon": 28.042,
           "loc_id": "loc-166",
-          "intro": "Sculptură monumentală pe falezeă — Fructul Soarelui de Gheorghe Apostu, considerat al doilea sculptor român după Brâncuși.",
-          "monument": "„Fructul Soarelui” a fost realizat în 1977 de Gheorghe Apostu, sculptor băcăuan, ce s-a remarcat prin sculpturile sale în lemn, dar a reușit să schimbe fața sobră a fierului prin intermediul creațiilor sale, fapt pentru care este considerat al doilea sculptor român după Constantin Brâncuși. Lucrarea este alcătuită dintr-un ax vertical ce susține spițele unei roți și domină prin înălțime și monumentalitatea peisajului. Sculptura poate reprezenta, de asemenea, un cerc ce are în centrul său un punct — simbolul Soarelui.",
-          "find_hint": "Fructul Soarelui îți oferă panorama perfectă asupra orașului de la Dunăre. Sub placa de pe monument pare că se ascunde un colț de hârtie. Te apleci să verifici — un nou cifru cu cheia (A=14159, D=358, H=359, K=92, M=846, OP=84, T=63, U=63, X=8) și șirurile «233438 21981» care decodate dau «FINAL FOIȘOR FALEZĂ».",
+          "intro": "Sculptură monumentală pe falezeă, Fructul Soarelui de Gheorghe Apostu, considerat al doilea sculptor român după Brâncuși.",
+          "monument": "„Fructul Soarelui” a fost realizat în 1977 de Gheorghe Apostu, sculptor băcăuan, ce s-a remarcat prin sculpturile sale în lemn, dar a reușit să schimbe fața sobră a fierului prin intermediul creațiilor sale, fapt pentru care este considerat al doilea sculptor român după Constantin Brâncuși. Lucrarea este alcătuită dintr-un ax vertical ce susține spițele unei roți și domină prin înălțime și monumentalitatea peisajului. Sculptura poate reprezenta, de asemenea, un cerc ce are în centrul său un punct, simbolul Soarelui.",
+          "find_hint": "Fructul Soarelui îți oferă panorama perfectă asupra orașului de la Dunăre. Sub placa de pe monument pare că se ascunde un colț de hârtie. Te apleci să verifici, un nou cifru cu cheia (A=14159, D=358, H=359, K=92, M=846, OP=84, T=63, U=63, X=8) și șirurile «233438 21981» care decodate dau «FINAL FOIȘOR FALEZĂ».",
           "riddle": {
             "question": "Câte pale are fructul soarelui?",
             "options": [
@@ -885,12 +885,12 @@
         {
           "id": "cp10",
           "order": 10,
-          "title": "Foișor Faleză — Finalul",
+          "title": "Foișor Faleză, Finalul",
           "lat": 45.4267,
           "lon": 28.042,
           "loc_id": "loc-167",
           "intro": "Începutul și sfârșitul. Pe o bancă lângă foișor te așteaptă mesagerul.",
-          "monument": "Foișorul a fost construit o dată cu faleza inferioară cu scopul de a acomoda manifestări culturale de dimensiuni medii și mici. Faleza este amenajată în scop turistic, fiind pietonală, destinată plimbărilor, biciclețiilor și rolelor. Pe traseul Falezei poate fi urmărită expoziția permanentă de sculpturi de metal, una dintre cele mai mari din estul Europei (Taberele Naționale de sculptură 1976, 1977 și 1991 — 24 de sculpturi).",
+          "monument": "Foișorul a fost construit o dată cu faleza inferioară cu scopul de a acomoda manifestări culturale de dimensiuni medii și mici. Faleza este amenajată în scop turistic, fiind pietonală, destinată plimbărilor, biciclețiilor și rolelor. Pe traseul Falezei poate fi urmărită expoziția permanentă de sculpturi de metal, una dintre cele mai mari din estul Europei (Taberele Naționale de sculptură 1976, 1977 și 1991-24 de sculpturi).",
           "find_hint": "Pe o bancă lângă foișor observi un bărbat îmbrăcat exact ca mesagerul. Îți spune că tot traseul a fost un test. Lasă în urmă un plic sigilat cu schițele și planurile armamentului. Trimiți totul către superiorul tău. Eforturile tale au salvat milioane de vieți.",
           "riddle": {
             "question": "Câte stelute sunt în foișor?",
@@ -912,7 +912,7 @@
       "id": "visteria-piratilor",
       "title": "Visteria Piraților",
       "subtitle": "9 obiective · ~2.5h · solo",
-      "description": "Anul este 1484, iar turcii cuceresc cetățile Chilia și Cetatea Albă. Galațiul rămâne singurul port la Dunăre al Moldovei, iar micul târg devine esențial pentru comerțul moldovenesc. Aici se descarcă tot felul de mărfuri și se distribuie mai departe pe cale terestră. Acest aspect a atras atenția unui grup de nelegiuiți cu o afinitate pentru jaf — Pirații.",
+      "description": "Anul este 1484, iar turcii cuceresc cetățile Chilia și Cetatea Albă. Galațiul rămâne singurul port la Dunăre al Moldovei, iar micul târg devine esențial pentru comerțul moldovenesc. Aici se descarcă tot felul de mărfuri și se distribuie mai departe pe cale terestră. Acest aspect a atras atenția unui grup de nelegiuiți cu o afinitate pentru jaf, Pirații.",
       "story": "Orașul-port putea găzdui vase mari maritime. Locuitorii deveneau din ce în ce mai înstăriți. În această aventură, vei face parte dintr-un grup de răzeși însărcinat de însuși Ștefan cel Mare cu paza portului și cu prinderea piraților care au fugit cu o captură importantă. Avem niște indicii spre locul în care pirații își țin visteria plină de furăciuni.",
       "color": "#1a3a5c",
       "estimated_minutes": 150,
@@ -924,7 +924,7 @@
       "treasure": {
         "title": "Visteria piraților recuperată",
         "location": "La velier-ul cu steag negru de pe malul Dunării",
-        "narrative": "Ajunși la zidul mare, priviți în zare spre Dunăre și vedeți tot felul de corăbii. La mal e acostat un velier învechit, cu steag negru rupt cu 2 iatagane încrucișate. Piratii se ceartă între ei — îi arestați. Întorși triumfători la curtea lui Ștefan cel Mare, domnitorul te numește vornic al Moldovei. Comoara recuperată întărește orașul Galați. Ești sărbătorit ca un erou."
+        "narrative": "Ajunși la zidul mare, priviți în zare spre Dunăre și vedeți tot felul de corăbii. La mal e acostat un velier învechit, cu steag negru rupt cu 2 iatagane încrucișate. Piratii se ceartă între ei, îi arestați. Întorși triumfători la curtea lui Ștefan cel Mare, domnitorul te numește vornic al Moldovei. Comoara recuperată întărește orașul Galați. Ești sărbătorit ca un erou."
       },
       "checkpoints": [
         {
@@ -997,7 +997,7 @@
           "loc_id": "loc-170",
           "intro": "Pășești în hanul local, un loc cu pereți din lemn întunecat și mese robuste, pline de personaje pitorești. Marinari bătrâni, negustori cu priviri ascuțite, călători obosiți. Barmanul cu privire înțeleaptă și barbă argintie îți întinde o foaie fără un cuvânt.",
           "clue": null,
-          "find_hint": "Anagramă găsită pe foaia barmanului: „SUAAELCLDAAGIPNL” — scrie pe rânduri, citește pe coloane.",
+          "find_hint": "Anagramă găsită pe foaia barmanului: „SUAAELCLDAAGIPNL”, scrie pe rânduri, citește pe coloane.",
           "riddle": {
             "question": "Ce simboluri ale Galațiului sunt pe muralul din fața sediului Apă-Canal?",
             "options": [
@@ -1011,7 +1011,7 @@
           },
           "next_clue": {
             "kind": "pigpen",
-            "hint": "Cifrul pigpen-style cu marcaje E și U — descifrează mesajul pentru a afla următoarea destinație.",
+            "hint": "Cifrul pigpen-style cu marcaje E și U, descifrează mesajul pentru a afla următoarea destinație.",
             "decoded": "BISERICA SF SPIRIDON",
             "image": "../assets/images/hunts/visteria-piratilor/cp3-out.jpg"
           }
@@ -1039,7 +1039,7 @@
           },
           "next_clue": {
             "kind": "turkish-text",
-            "hint": "Text scris în turcă otomană: „Precista adIndaki eski kiliseye dogru yola çıktım” — am pornit spre vechea biserică numită Precista.",
+            "hint": "Text scris în turcă otomană: „Precista adIndaki eski kiliseye dogru yola çıktım”, am pornit spre vechea biserică numită Precista.",
             "decoded": "BISERICA PRECISTA",
             "image": "../assets/images/hunts/visteria-piratilor/cp4-out.jpg"
           }
@@ -1081,7 +1081,7 @@
           "loc_id": "loc-171",
           "intro": "Soarele începea să apună, aruncând nuanțe arămii pe cerul orașului Galați. Pe măsură ce te îndrepți spre Biserica Precista, simți o liniște neobișnuită.",
           "clue": null,
-          "find_hint": "În curtea bisericii, un staret cu hainele prăfuite se îndreaptă rapid spre tine. Îți povestește cum pirații au invadat biserica. Un băiat de vreo 12 ani apare după gardul bisericii cu o hartă desenată — staretul l-a trimis să urmărească pe bandiți.",
+          "find_hint": "În curtea bisericii, un staret cu hainele prăfuite se îndreaptă rapid spre tine. Îți povestește cum pirații au invadat biserica. Un băiat de vreo 12 ani apare după gardul bisericii cu o hartă desenată, staretul l-a trimis să urmărească pe bandiți.",
           "riddle": {
             "question": "Câte turnulețe are casa albă?",
             "options": [
@@ -1095,7 +1095,7 @@
           },
           "next_clue": {
             "kind": "jigsaw",
-            "hint": "Un puzzle din piese cu literele „a”, „i”, „o”, „s” risipite — așază-le pentru a descoperi următoarea destinație.",
+            "hint": "Un puzzle din piese cu literele „a”, „i”, „o”, „s” risipite, așază-le pentru a descoperi următoarea destinație.",
             "decoded": "POARTA HANULUI OTOMAN",
             "image": "../assets/images/hunts/visteria-piratilor/cp6-out.jpg"
           }
@@ -1107,7 +1107,7 @@
           "lat": 45.4346,
           "lon": 28.0535,
           "loc_id": "loc-157",
-          "intro": "Noaptea se așternea complet peste Galați, cu o lună plină strălucind în cer. Aerul era răcoros, cu un vânt subtil. Ajungeți la casa indicată pe hartă — o clădire veche cu ziduri albe și ferestre mici, parțial ascunsă de vegetația sălbatică.",
+          "intro": "Noaptea se așternea complet peste Galați, cu o lună plină strălucind în cer. Aerul era răcoros, cu un vânt subtil. Ajungeți la casa indicată pe hartă, o clădire veche cu ziduri albe și ferestre mici, parțial ascunsă de vegetația sălbatică.",
           "clue": null,
           "find_hint": "Bandiții dormeau peste tot, rupți de beție. Dați buzna și îi arestați. Interogatoriul dezvăluie că nu sunt pirații căutați, ci doar o bandă de spărgători de biserici. Unul, sub presiune, recunoaște legătura cu pirații și îți oferă o foaie cu un puzzle.",
           "riddle": {
@@ -1123,7 +1123,7 @@
           },
           "next_clue": {
             "kind": "asl",
-            "hint": "Limbajul semnelor americane (ASL) — fiecare mână e o literă. Decodifică pentru a afla următoarea destinație.",
+            "hint": "Limbajul semnelor americane (ASL), fiecare mână e o literă. Decodifică pentru a afla următoarea destinație.",
             "decoded": "BECIUL STRADA MARASESTI",
             "image": "../assets/images/hunts/visteria-piratilor/cp7-out.jpg"
           }
@@ -1137,7 +1137,7 @@
           "loc_id": "loc-172",
           "intro": "Galați începea să fie învăluit într-o ceață subțire. Pe măsură ce te îndrepți spre poarta hanului turcesc, simți un amestec de emoții: nerăbdare, curiozitate, dar și o ușoară tensiune.",
           "clue": null,
-          "find_hint": "Hanul turcesc era un loc cunoscut. La intrare, dai peste o bătaie generală. Întrebi calm despre pirați, dar omul cu ochi vânat îți spune că pirații au plecat acum câteva ore. O fetiță de vreo 12 ani de sub tejghea îți face semne — limbajul semnelor.",
+          "find_hint": "Hanul turcesc era un loc cunoscut. La intrare, dai peste o bătaie generală. Întrebi calm despre pirați, dar omul cu ochi vânat îți spune că pirații au plecat acum câteva ore. O fetiță de vreo 12 ani de sub tejghea îți face semne, limbajul semnelor.",
           "riddle": {
             "question": "Cu ce stradă se intersectează Strada Mărășești?",
             "options": [
@@ -1151,7 +1151,7 @@
           },
           "next_clue": {
             "kind": "music-notes",
-            "hint": "Note muzicale cu marcaje B, K, V — o substituție bazată pe poziția notelor pe portativ.",
+            "hint": "Note muzicale cu marcaje B, K, V, o substituție bazată pe poziția notelor pe portativ.",
             "decoded": "ZIDU MARE",
             "image": "../assets/images/hunts/visteria-piratilor/cp8-out.jpg"
           }
@@ -1159,11 +1159,11 @@
         {
           "id": "cp9",
           "order": 9,
-          "title": "Zidu Mare (Faleza Dunării) — Finalul",
+          "title": "Zidu Mare (Faleza Dunării), Finalul",
           "lat": 45.4288,
           "lon": 28.0552,
           "loc_id": "loc-173",
-          "intro": "Cu inima plină de speranță și curaj, te îndrepți spre casa indicată în indiciu — o construcție veche și umbroasă, ascunsă printre copaci bătrâni. Auzi zgomote slabe din beci. Cobori scările scârțâitoare. Găsești lăzi goale deschise. Investigând, găsești o foaie cu note muzicale.",
+          "intro": "Cu inima plină de speranță și curaj, te îndrepți spre casa indicată în indiciu, o construcție veche și umbroasă, ascunsă printre copaci bătrâni. Auzi zgomote slabe din beci. Cobori scările scârțâitoare. Găsești lăzi goale deschise. Investigând, găsești o foaie cu note muzicale.",
           "clue": null,
           "find_hint": "Ajunși la zidul mare, priviți în zare spre Dunăre și vedeți tot felul de corăbii. La mal este acostat un velier învechit, iar arborat este un steag negru rupt ce pare a avea 2 iatagane încrucișate.",
           "riddle": {

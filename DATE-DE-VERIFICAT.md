@@ -389,3 +389,51 @@ site ca **un singur bloc** de text în loc de 29-31: fără titlul `KEY FACTS`, 
 liste, fără subtitluri. `lint_content.py` le dădea „conforme" fiindcă el
 normalizează `\r\n` înainte de a valida, iar rendererul nu. Reparat de
 traducerea lotului 21; validatorul îl prinde de acum.
+
+---
+
+## 7. Punctuația din restul datelor (august 2026)
+
+Curățarea de ton trecuse doar prin `description` și `excerpt` din
+`locations.json`. Toate celelalte date au rămas neatinse și mai purtau **1.190
+de semne interzise** în 969 de câmpuri: cronologia, trivia, tururile, vânătorile
+de comori, legendele, evenimentele de pe timeline, legendele de galerie și cele
+din Alta Data. Curățate cu `scripts/clean_punctuation.py`.
+
+Cel mai vizibil caz erau legendele de galerie: `caption`/`caption_en` ajung în
+`<figcaption>` și în lightbox (`core-map.js:657-660`), iar `alt` e citit de
+cititoarele de ecran și e rezervă pentru legendă când aceasta lipsește.
+
+`manual_overrides.json` (318 semne), `unplaced_locations.json` și
+`geocode_cache.json` au fost lăsate neatinse: nu sunt încărcate de front-end.
+La fel câmpul `geocoded_as` (81), unde liniuța face parte din notația de
+provenență, nu din proză.
+
+### 7a. Ghilimele neîmperecheate — NEATINSE, de reparat manual
+
+51 de câmpuri au un număr **impar** de ghilimele, adică o pereche care nu se
+închide în datele sursă. Normalizarea alternează deschis/închis, deci pe un
+număr impar ar fi produs un semn de deschidere fără pereche. Scriptul le sare și
+le raportează, în loc să strice textul.
+
+| Fișier și câmp | Câmpuri |
+|---|---|
+| `cronologie.json` · `entries[].text` | 31 |
+| `cronologie.json` · `rosters.disasters[].text` | 6 |
+| `cronologie.json` · `rosters.factories[].text` | 5 |
+| `cronologie.json` · `rosters.population[].ctx` | 4 |
+| `cronologie.json` · `entries[].label_en` | 2 |
+| `locations.json` · `gallery[].alt` și `gallery[].caption` | 2 |
+| `galati-altadata.json` · `caption_ro` | 1 |
+
+Sunt texte OCR-izate din surse tipărite, unde ghilimelele lipsesc din scanare.
+Cele mai multe sunt în cronologie, care amestecă și ghilimele franceze « » cu
+cele românești. Se repară citind sursa, nu ghicind unde se închidea citatul.
+
+### 7b. Săgeți păstrate intenționat
+
+Două săgeți din `treasure_hunts.json` NU au fost înlocuite: în cifrul vânătorii
+de comori, `→` înseamnă „se substituie cu" (`ABCDEFGH...XYZ →
+XCVISPBDHAWLROQFKTNYJZEUMG`, `F=23, I=34, etc. → FINAL FOISOR FALEZA`). Acolo e
+notație, nu punctuație. Scriptul înlocuiește doar săgețile dintre cifre și pe
+cele patru enumerate explicit în `ARROW_TEXT`.

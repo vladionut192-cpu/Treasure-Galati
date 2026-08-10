@@ -380,3 +380,27 @@ Atenție la o capcană: `lint_content.py` normalizează `\r\n` înainte de a val
 rendererul nu. O fișă cu terminatoare de linie Windows trece drept „conformă" și
 se afișează totuși ca un singur bloc. Verificarea stă acum în
 `validate_data.py`, unde textul e citit așa cum îl vede browserul.
+
+---
+
+## 10. Politica de punctuație se aplică tuturor datelor
+
+Mult timp curățarea a atins doar `description` și `excerpt` din
+`locations.json`, iar restul datelor au acumulat 1.190 de semne interzise.
+Regulile din §3.2 se aplică **oriunde ajunge text la utilizator**: legende de
+galerie, cronologie, trivia, tururi, vânători de comori, legende, evenimente de
+timeline, `manifest.json`.
+
+```bash
+python3 scripts/clean_punctuation.py --dry-run              # toate fișierele
+python3 scripts/clean_punctuation.py --dry-run --file trivia.json
+```
+
+Scriptul e idempotent și sare peste ce nu trebuie atins: fișierele care nu ajung
+în front-end, câmpurile tehnice (`geocoded_as`, `src`, coordonate), franceza la
+ghilimele (forma corectă acolo e « », decizie tipografică separată), și
+câmpurile cu număr impar de ghilimele, unde o pereche nu se închide în sursă.
+
+Săgețile nu se înlocuiesc mecanic. `1445 → 1484` e interval și devine cratimă,
+dar `ABCDEFGH...XYZ → XCVISPBDHAWLROQFKTNYJZEUMG` din cifrul vânătorii de comori
+înseamnă „se substituie cu". Ce nu e enumerat în `ARROW_TEXT` rămâne neatins.
