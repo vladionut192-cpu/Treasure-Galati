@@ -120,3 +120,22 @@ test('accesibilitate: skip link, un singur main, markere cu nume', async ({ page
       .filter((e) => !(e.getAttribute('aria-label') || e.getAttribute('title') || '').trim()).length);
   expect(fara, 'markere fără nume accesibil').toBe(0);
 });
+
+test('butonul Back al browserului închide detaliul, nu site-ul', async ({ page }) => {
+  // Regresie: tot ce ținea de navigare folosea `replaceState`, deci nu se
+  // adăuga nicio intrare în istoric. Pe telefon, unde Back e gestul principal,
+  // o singură apăsare după deschiderea unei fișe abandona harta.
+  await page.goto('/index.html');
+  await expect(page.locator('#list .item').first()).toBeVisible({ timeout: 20_000 });
+  const detail = page.locator('#detail');
+
+  await page.locator('#list .item').first().click();
+  await expect(detail).toHaveAttribute('data-open', '1');
+  await expect.poll(() => new URL(page.url()).searchParams.get('loc'),
+    { timeout: 5_000 }).toBeTruthy();
+
+  await page.goBack();
+  await expect(detail).not.toHaveAttribute('data-open', '1');
+  expect(new URL(page.url()).searchParams.get('loc'), 'URL curățat').toBeNull();
+  expect(page.url(), 'utilizatorul rămâne pe site').toContain('/index.html');
+});

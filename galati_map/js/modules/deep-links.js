@@ -71,7 +71,16 @@ export function initDeepLinks(ctx) {
     // statice. Crawlerii social NU execută JS — văd doar HTML-ul static.
     // Browserul normal: URL bar arată acea cale, dar SPA continuă să ruleze (nu
     // se face navigation reală — doar replaceState).
-    function updateDeepLink(params) {
+    // `push = true` adaugă o intrare în istoric în loc să o înlocuiască, ca
+    // butonul Back al browserului să închidă panoul de detaliu în loc să scoată
+    // utilizatorul de pe site. Până acum tot ce ținea de navigare folosea
+    // `replaceState`, deci pe telefon, unde Back e gestul principal, o singură
+    // apăsare după deschiderea unei fișe abandona harta.
+    //
+    // Intrările noastre se marchează în `history.state`. Fără marcaj n-am putea
+    // deosebi „am deschis eu fișa asta" de „utilizatorul a intrat direct pe un
+    // link cu ?loc=", caz în care un `history.back()` l-ar arunca de pe site.
+    function updateDeepLink(params, push) {
       // Folosim querystring (?loc=ID / ?tour=ID / ?hunt=ID), NU rescriem path-ul.
       // Rescrierea către `/loc/<id>.html` strica rezolvarea URL-urilor relative
       // din content-ul injectat dinamic (imagini → 404). Paginile statice SEO
@@ -92,9 +101,29 @@ export function initDeepLinks(ctx) {
         else if (params.triv) q.set('triv', params.triv);
         else if (params.leg) q.set('leg', params.leg);
         url.search = q.toString() ? `?${q.toString()}` : '';
-        history.replaceState(null, '', url);
+        const state = push ? { tg: params } : (history.state || null);
+        if (push) history.pushState(state, '', url);
+        else history.replaceState(state, '', url);
       } catch (e) { /* ignore */ }
     }
+
+    // Back/Forward: aducem interfața la starea din URL. Deocamdată doar pentru
+    // panoul de detaliu, care e navigarea de departe cea mai frecventă; tururile
+    // și vânătorile au stare proprie și se închid separat.
+    window.addEventListener('popstate', () => {
+      const locId = new URLSearchParams(location.search).get('loc');
+      const detail = document.getElementById('detail');
+      const deschis = detail && detail.dataset.open === '1';
+      if (locId) {
+        const item = locations.find(l => l.id === locId);
+        if (item && typeof openDetail === 'function') {
+          highlight(locId, true);
+          openDetail(locId);
+        }
+      } else if (deschis && typeof ctx.closeDetail === 'function') {
+        ctx.closeDetail();
+      }
+    });
     // Expose for use after openDetail / enterTour / enterHunt
     window.__updateDeepLink = updateDeepLink;
     // Apply on load (after data is ready)

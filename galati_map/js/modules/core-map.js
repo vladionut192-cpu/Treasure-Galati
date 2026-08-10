@@ -712,7 +712,12 @@ export function initCoreMap(ctx) {
       if (typeof window.__updateDeepLink === 'function') {
         const params = { loc: id };
         if (ctx.activeTour) params.tour = ctx.activeTour.id;
-        window.__updateDeepLink(params);
+        // Intrare nouă în istoric doar când chiar se schimbă fișa afișată, ca
+        // Back să închidă panoul în loc să scoată utilizatorul de pe site.
+        // Fără condiție, o re-randare a aceleiași fișe ar umple istoricul cu
+        // duplicate și Back ar trebui apăsat de mai multe ori.
+        const alta = new URLSearchParams(location.search).get('loc') !== id;
+        window.__updateDeepLink(params, alta);
       }
       if (ctx.activeTour) drawTourRoute();
       // NB: hero + gallery image clicks are handled by a single delegated
@@ -907,6 +912,16 @@ export function initCoreMap(ctx) {
       detail.setAttribute('aria-hidden', 'true');
       if (ctx.activeTour) drawTourRoute();
       // Reset deep link (păstrăm doar tour/hunt activ, dacă există)
+      // Dacă intrarea curentă din istoric e una împinsă de noi la deschidere,
+      // o consumăm cu `back()` în loc să o suprascriem: altfel ar rămâne un
+      // duplicat, iar prima apăsare de Back după închidere n-ar face nimic.
+      // Marcajul din `history.state` ne ferește de cazul în care utilizatorul a
+      // intrat direct pe un link cu ?loc=, unde `back()` l-ar scoate de pe site.
+      const alNostru = history.state && history.state.tg && history.state.tg.loc;
+      if (alNostru && !ctx.activeTour) {
+        history.back();
+        return;
+      }
       if (typeof window.__updateDeepLink === 'function') {
         const params = {};
         if (ctx.activeTour) params.tour = ctx.activeTour.id;
