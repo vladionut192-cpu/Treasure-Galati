@@ -575,3 +575,58 @@ Ce s-a aflat totuși, și e util pentru o reluare manuală:
   colapsa dublurile `„„`, dar asta ar ascunde problema, nu ar rezolva-o.
 
 Reluarea corectă cere citirea sursei tipărite, fișă cu fișă.
+
+---
+
+## 10. Taxonomia de categorii — REZOLVAT (august 2026)
+
+Punctul 1f și nota din §8d. Aplicat cu `scripts/fix_categories.py`.
+
+Erau **15 categorii**, dintre care patru perechi practic identice, imposibil de
+deosebit de către un vizitator care se uită la chipsurile de filtrare:
+
+| Pereche | Fișe |
+|---|---|
+| `Case istorice` vs `Clădiri Istorice` | 53 vs 9 |
+| `Industrie` vs `Industrial / Tehnic` | 17 vs 14 |
+| `Monumente` vs `Monumente Comemorative` | 42 vs 3 |
+| `Natură și Agrement` vs `Spații verzi` | 10 vs 2 |
+
+`Industrial / Tehnic` devenise coș de gunoi: conținea Stadionul Oțelul, Bazinul
+Olimpic de Înot și patru spitale. Cinci categorii nu aveau iconiță și cădeau pe
+pinul generic.
+
+Trei teme existau în conținut dar nu și în taxonomie: 7 fișe de sănătate
+împrăștiate în patru categorii, 16 de cultură în șase, 8 de sport în trei.
+
+**Rezultat: 14 categorii**, toate cu iconiță proprie și traducere în ambele
+limbi. 49 de fișe au fost reclasificate.
+
+### 10a. Unde regula automată greșea
+
+Clasificarea merge în trei trepte: excepții explicite, apoi reguli pe titlu,
+apoi unificare. Excepțiile există fiindcă unificarea oarbă producea absurdități,
+toate verificate una câte una:
+
+| Fișă | Regula oarbă dădea | Este de fapt |
+|---|---|---|
+| `loc-267` Bazinul Olimpic de Înot | Industrie | Sport |
+| `loc-270` Închisoarea Centrală | Industrie | Alte locuri |
+| `loc-257` Cazarma Regimentului 11 Siret | Case istorice | Alte locuri |
+| `loc-240` Baia Comunală | Case istorice | Alte locuri |
+| `loc-263` Vechea Primărie a Galațiului | Case istorice | Alte locuri |
+| `loc-261` Căminul Municipal | Case istorice | Alte locuri |
+| `loc-220` Fostul Hotel „Union” | Case istorice | Comerț istoric |
+| `loc-260` Complex Țiglina 1 | Case istorice | Comerț istoric |
+| `loc-307` Giurgiulești, capul de pod | Monumente | Alte locuri |
+| `loc-153` Casa Ținc, fostă Farmacia Română | Sănătate | Cultură (azi muzeu) |
+
+Doar două din cele nouă fișe din `Clădiri Istorice` erau într-adevăr case.
+
+### 10b. De verificat la orice categorie nouă
+
+`CATEGORY_SET` din `validate_data.py` semnalează categoriile necunoscute, ca o
+variantă scrisă greșit să nu treacă neobservată. O categorie nouă are nevoie și
+de iconiță în `ICON_PATHS` (`core-map.js`) și de chei `cat.<nume>` în `i18n.js`,
+pentru ambele limbi; altfel pinul cade pe iconița generică, iar chipsul afișează
+cheia brută în engleză.

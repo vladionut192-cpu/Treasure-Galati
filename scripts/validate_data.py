@@ -28,11 +28,20 @@ GMAP = ROOT / "galati_map"
 #   CATEGORY_SET: setul curent cunoscut — o categorie nouă e permisă, dar
 #     produce WARNING (ca o variantă cu typo/case să fie vizibilă la commit).
 STATUS_ENUM = {"active", "demolished", "lost", "ruin"}
+# Taxonomia rearanjată în august 2026 (vezi scripts/fix_categories.py). Erau 15
+# categorii, cu patru perechi practic identice: „Clădiri Istorice" lângă „Case
+# istorice", „Industrial / Tehnic" lângă „Industrie", „Monumente Comemorative"
+# lângă „Monumente", „Spații verzi" lângă „Natură și Agrement". Cele patru
+# dublate au dispărut, iar trei teme care erau împrăștiate au primit categorie
+# proprie: Sănătate, Cultură, Sport.
+#
+# Fiecare categorie de aici trebuie să aibă iconiță în `core-map.js` (ICON_PATHS)
+# și chei `cat.<nume>` în `i18n.js`, pentru ambele limbi. Altfel pinul cade pe
+# iconița generică, iar chipsul de filtrare afișează cheia brută în engleză.
 CATEGORY_SET = {
-    "Alte locuri", "Case istorice", "Clădiri Istorice", "Comerț istoric",
-    "Consulate", "Educație", "Industrial / Tehnic", "Industrie",
-    "Lăcașuri de cult", "Monumente", "Monumente Comemorative",
-    "Natură și Agrement", "Palate", "Sate Istorice", "Spații verzi",
+    "Alte locuri", "Case istorice", "Comerț istoric", "Consulate", "Cultură",
+    "Educație", "Industrie", "Lăcașuri de cult", "Monumente",
+    "Natură și Agrement", "Palate", "Sănătate", "Sate Istorice", "Sport",
 }
 
 errors: list[str] = []

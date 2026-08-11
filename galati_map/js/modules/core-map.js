@@ -13,7 +13,15 @@ export function initCoreMap(ctx) {
       'Monumente':           '<path d="M10 2h4l-1 4h0v15h-2V6h0z"/><path d="M7 21h10"/>',
       'Industrie':           '<path d="M3 21V11l5 3v-3l5 3V8l5 3V21z"/><path d="M3 21h18"/>',
       'Comerț istoric':      '<path d="M3 8l1.5-4h15L21 8"/><path d="M3 8v13h18V8"/><path d="M3 8h18M9 14h6v7H9z"/>',
-      'Spații verzi':        '<path d="M12 3l-4 6h2l-3 5h3l-2 3h8l-2-3h3l-3-5h2z"/><path d="M12 17v4"/>',
+      'Natură și Agrement':  '<path d="M12 3l-4 6h2l-3 5h3l-2 3h8l-2-3h3l-3-5h2z"/><path d="M12 17v4"/>',
+      // Mască de teatru: acoperă teatre, cinematografe și muzee.
+      'Cultură':             '<path d="M4 5h16v7a8 8 0 0 1-16 0z"/><circle cx="9" cy="10" r="1"/><circle cx="15" cy="10" r="1"/><path d="M9 14c1 1 5 1 6 0"/>',
+      // Cruce medicală într-un scut.
+      'Sănătate':            '<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M12 8v7M8.5 11.5h7"/>',
+      // Cupă, cel mai lizibil simbol de sport la 18px.
+      'Sport':               '<path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 6H4v1a3 3 0 0 0 3 3M17 6h3v1a3 3 0 0 1-3 3"/><path d="M10 14v3h4v-3M8 21h8"/>',
+      // Grup de case cu acoperiș, pentru satele istorice.
+      'Sate Istorice':       '<path d="M3 12l4-3 4 3v7H3z"/><path d="M13 10l4-3 4 3v9h-8z"/><path d="M2 19h20"/>',
       'Alte locuri':         '<path d="M12 22s7-7.5 7-12a7 7 0 1 0-14 0c0 4.5 7 12 7 12z"/><circle cx="12" cy="10" r="3"/>',
     };
     function iconSvg(category, size) {
