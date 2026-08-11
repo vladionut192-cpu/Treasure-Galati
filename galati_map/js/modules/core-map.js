@@ -624,8 +624,11 @@ export function initCoreMap(ctx) {
         if (!lines.length) return '';
         const bulletRe = /^[•▪‣]\s*/;
         const bulletLines = lines.filter(l => bulletRe.test(l));
-        // Whole block is a bullet list.
-        if (bulletLines.length >= 2 && bulletLines.length === lines.length) {
+        // Whole block is a bullet list. Pragul e 1, nu 2: un bloc cu o singură
+        // linie care începe cu bullet e tot o listă. Cu pragul la 2, ea cădea
+        // pe regulile de subtitlu de mai jos, iar zece fișe cu o singură sursă
+        // își afișau bibliografia ca titlu de secțiune, cu majuscule.
+        if (bulletLines.length >= 1 && bulletLines.length === lines.length) {
           const items = lines.map(l => `<li>${inlineProse(l.replace(bulletRe, ''))}</li>`).join('');
           return `<ul class="prose-list">${items}</ul>`;
         }

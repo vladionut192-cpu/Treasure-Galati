@@ -630,3 +630,63 @@ variantă scrisă greșit să nu treacă neobservată. O categorie nouă are nev
 de iconiță în `ICON_PATHS` (`core-map.js`) și de chei `cat.<nume>` în `i18n.js`,
 pentru ambele limbi; altfel pinul cade pe iconița generică, iar chipsul afișează
 cheia brută în engleză.
+
+---
+
+## 11. Patru obiective noi din surse (august 2026)
+
+Căutare sistematică în corpusul din `Surse/`, după nume proprii de tip clădire
+și după coduri din Lista Monumentelor Istorice, cu verificarea fiecărui candidat
+în context înainte de a fi propus.
+
+| Fișă | Ce este | Sursă |
+|---|---|---|
+| `loc-308` | Spitalul de Psihiatrie „Elisabeta Doamna”, str. Traian nr. 290 | Sandel Dumitru vol. VII; M. Of. nr. 6 / 1894 |
+| `loc-309` | Statuia lui Ion Vodă cel Viteaz, Roșcani, com. Băneasa | vol. X; LMI GL-III-m-B-03141 |
+| `loc-310` | Situl arheologic Cavadinești „Râpa Glodului” | vol. X; LMI GL-I-s-B-02981 |
+| `loc-311` | Siturile arheologice de la Cuca | vol. X |
+
+### 11a. Coordonatele, de unde vin
+
+`loc-308` are potrivire exactă pe clădire în Nominatim. `loc-309` și `loc-311`
+sunt puse în centrul satului, respectiv al comunei; poziția exactă în sat rămâne
+de verificat. `loc-310` e calculat: 4 km sud-vest de satul Cavadinești, cum
+spune sursa.
+
+Geocodarea nu se ia orbește. Pentru adresa contraamiralului Dumitrescu-Maican,
+Nominatim a întors un punct la 1,5 km nord, în cartierul Ignat Rizea, deși
+numerele vecine cunoscute de pe Domnească (88, 90, 107) sunt toate grupate în
+jurul lui 45,444.
+
+### 11b. Ce nu s-a putut scrie
+
+**Casa contraamiralului Nicolae Dumitrescu-Maican**, str. Domnească nr. 89 bis,
+apare în `unplaced_locations.json` cu adresă precisă, dar articolul local la care
+trimite **nu există pe disc**, iar corpusul de surse dă zero potriviri pentru
+nume. Rămân doar titlul și adresa, adică prea puțin pentru o fișă fără invenție.
+
+### 11c. Candidați respinși, cu motiv
+
+Frecvența singură i-ar fi promovat; verificarea în context i-a eliminat:
+
+| Candidat | De ce nu |
+|---|---|
+| Uzina Nivert, Uzina Fraenckel-Herzog | sunt în **Elbeuf, Franța**, date ca exemplu de patrimoniu industrial conservat |
+| Vila Hagi-Tudorache | e în **București** |
+| Biserica Banu | e la **Nicorești** |
+| Casa Pedemonte, Casa Biga | case de comerț, nu clădiri |
+| Uzina Electrică | comuna Berești, nu orașul |
+| Spitalul Spiridoniei, Templul Meseriașilor, Valul lui Atanaric, siturile Băneasa, Puricani, Berești | deja pe hartă |
+
+### 11d. `loc-142` are nevoie de codul LMI
+
+Institutul „Notre Dame de Sion”, Domnească 111, este aceeași clădire cu
+**`GL-II-m-B-03034`**, listată oficial ca „Facultatea de Medicină”. Codul
+lipsește de pe fișă.
+
+### 11e. Cel mai mare gol tematic
+
+Sursa spune că Galațiul a avut **22 de sinagogi**, dintre care Templul
+Meseriașilor e singura activă. Pe hartă sunt două. `unplaced_locations.json` mai
+are Templul Coral (inaugurat 1885, demolat 1942) și sinagoga din str. Războieni,
+ambele cu adresă doar aproximativă.

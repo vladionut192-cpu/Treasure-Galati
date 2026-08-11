@@ -140,7 +140,8 @@ def render_prose(text: str) -> str:
         def inline(s: str) -> str:
             return BOLD_RE.sub(r"<strong>\1</strong>", escape_html(s))
 
-        if len(bullets) >= 2 and len(bullets) == len(lines):
+        # Pragul e 1, nu 2: un bloc cu o singură linie-bullet e tot o listă.
+        if len(bullets) >= 1 and len(bullets) == len(lines):
             items = "".join(f"<li>{inline(BULLET_RE.sub('', l))}</li>" for l in lines)
             out.append(f"<ul>{items}</ul>")
         elif len(bullets) >= 2 and not BULLET_RE.match(lines[0]):

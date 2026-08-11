@@ -178,3 +178,18 @@ test('CSP-ul din .htaccess nu blochează nimic din aplicație', async ({ page })
   await expect(page.locator('#map .leaflet-tile').first()).toBeVisible({ timeout: 15_000 });
   expect(incalcari, 'încălcări de CSP').toEqual([]);
 });
+
+test('o sursă singură se randează ca listă, nu ca titlu de secțiune', async ({ page }) => {
+  // Regresie: `renderBlock` cerea două linii-bullet ca să facă `<ul>`, așa că
+  // un bloc `SURSE:` cu o singură trimitere cădea pe regula de subtitlu (o
+  // linie, sub 60 de caractere, fără punctuație finală). Zece fișe își afișau
+  // bibliografia ca titlu de secțiune, cu majuscule.
+  await page.goto('/index.html?loc=loc-157#map');
+  const detail = page.locator('#detail');
+  await expect(detail).toHaveAttribute('data-open', '1', { timeout: 20_000 });
+  await page.waitForTimeout(600);
+  const titluri = await detail.locator('h4').allInnerTexts();
+  expect(titluri[titluri.length - 1], 'ultimul subtitlu').toBe('SURSE');
+  const citareCaTitlu = titluri.filter((t) => /Dumitru, Sandel|Revista|Brudiu/.test(t));
+  expect(citareCaTitlu, 'citări bibliografice randate ca subtitlu').toEqual([]);
+});
