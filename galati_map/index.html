@@ -36,8 +36,8 @@
     <link rel="preload" href="vendor/fonts/dm-sans-400-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="vendor/fonts/dm-sans-600-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="vendor/fonts/fonts.css">
-    <link rel="preload" href="vendor/leaflet/leaflet.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preload" href="vendor/leaflet/MarkerCluster.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="vendor/leaflet/leaflet.css" as="style" data-async-style>
+    <link rel="preload" href="vendor/leaflet/MarkerCluster.css" as="style" data-async-style>
     <noscript>
       <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
       <link rel="stylesheet" href="vendor/leaflet/MarkerCluster.css">
@@ -67,6 +67,7 @@
   <link rel="stylesheet" href="styles/main.css">
   <!-- i18n: dicționar + helper. Trebuie încărcat ÎNAINTE de main.js. -->
   <script src="js/i18n.js" defer></script>
+  <script src="js/inline-shims.js"></script>
   <script src="js/analytics.js" defer></script>
 </head>
 <body class="map-mode">

@@ -135,8 +135,10 @@ export function initCoreMap(ctx) {
     // Miniatura de 480px pentru contextele mici (card în listă, popup pe hartă).
     // `assets/images/x/foo.jpg` → `assets/thumbs/x/foo.jpg.webp`, generate de
     // scripts/build_thumbnails.py. Aceeași transformare, în ambele sensuri.
-    // Dacă miniatura lipsește, `onerror` din markup cade înapoi pe original —
-    // deci o imagine nouă neprocesată încă arată corect, doar mai greu.
+    // Dacă miniatura lipsește, ascultătorul din `js/inline-shims.js` cade înapoi
+    // pe originalul din `data-full`, deci o imagine nouă neprocesată încă arată
+    // corect, doar mai greu. Rezerva stătea într-un atribut `onerror` până în
+    // august 2026, dar un `script-src` strict blochează codul din atribute.
     // Detaliul și lightbox-ul folosesc mai departe originalul (vor rezoluție).
     function thumbUrl(src) {
       if (typeof src !== 'string' || !src.includes('/assets/images/')) return null;
@@ -221,7 +223,7 @@ export function initCoreMap(ctx) {
       const excerptTxt = _locField(item, 'excerpt');
       const popThumb = thumbUrl(item.image);
       const img = item.image
-        ? `<img class="pop-img" src="${escapeHtml(popThumb || item.image)}" data-full="${escapeHtml(item.image)}"${popThumb ? ' onerror="this.onerror=null;this.src=this.dataset.full"' : ''} alt="${escapeHtml(title)}" loading="lazy" decoding="async">`
+        ? `<img class="pop-img" src="${escapeHtml(popThumb || item.image)}" data-full="${escapeHtml(item.image)}" alt="${escapeHtml(title)}" loading="lazy" decoding="async">`
         : `<div class="pop-img pop-img-placeholder" aria-hidden="true"><span class="ph-eyebrow">${escapeHtml(catLabel || 'Obiectiv')}</span><svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="0"/><path d="M3 16l5-5 4 4 3-3 6 6"/><circle cx="9" cy="10" r="1.5"/></svg><span class="ph-note">${escapeHtml(phNote)}</span></div>`;
       // Address is intentionally NOT rendered in the popup — the map context
       // already shows the location, and removing it keeps the popup compact.
@@ -468,7 +470,7 @@ export function initCoreMap(ctx) {
         // ~367px lățime. `data-full` + onerror = fallback dacă miniatura lipsește.
         const bgThumb = thumbUrl(item.image);
         const bgImg = hasImage
-          ? `<img class="item-bg" src="${escapeHtml(bgThumb || item.image)}" data-full="${escapeHtml(item.image)}"${bgThumb ? ' onerror="this.onerror=null;this.src=this.dataset.full"' : ''} loading="lazy" decoding="async" alt="" aria-hidden="true">`
+          ? `<img class="item-bg" src="${escapeHtml(bgThumb || item.image)}" data-full="${escapeHtml(item.image)}" loading="lazy" decoding="async" alt="" aria-hidden="true">`
           : '';
         btn.innerHTML = `
           ${bgImg}

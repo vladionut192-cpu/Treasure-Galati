@@ -139,3 +139,42 @@ test('butonul Back al browserului închide detaliul, nu site-ul', async ({ page 
   expect(new URL(page.url()).searchParams.get('loc'), 'URL curățat').toBeNull();
   expect(page.url(), 'utilizatorul rămâne pe site').toContain('/index.html');
 });
+
+test('CSP-ul din .htaccess nu blochează nimic din aplicație', async ({ page }) => {
+  // Politica e citită din configul real, ca testul și producția să nu poată
+  // diverge: dacă cineva adaugă o sursă externă fără să o treacă în CSP, testul
+  // pică aici, nu în browserul unui vizitator.
+  const fs = require('fs');
+  const path = require('path');
+  const htaccess = fs.readFileSync(
+    path.join(__dirname, '..', 'galati_map', '.htaccess'), 'utf8');
+  const politici = [...htaccess.matchAll(
+    /Header set Content-Security-Policy "([^"]+)"/g)].map((m) => m[1]);
+  expect(politici.length, 'CSP definit în .htaccess').toBeGreaterThan(0);
+  const csp = politici[0];   // prima e cea generală, pentru toate paginile
+
+  const incalcari = [];
+  page.on('console', (m) => {
+    const t = m.text();
+    if (/Content Security Policy|Refused to/i.test(t)) incalcari.push(t.slice(0, 200));
+  });
+  page.on('pageerror', (e) => incalcari.push('pageerror: ' + String(e).slice(0, 160)));
+  await page.route('**/*', async (route) => {
+    const raspuns = await route.fetch();
+    const headers = { ...raspuns.headers() };
+    if ((headers['content-type'] || '').includes('text/html')) {
+      headers['content-security-policy'] = csp;
+    }
+    await route.fulfill({ response: raspuns, headers });
+  });
+
+  await page.goto('/index.html');
+  await expect(page.locator('#list .item').first()).toBeVisible({ timeout: 20_000 });
+  await page.locator('#list .item').first().click();
+  await expect(page.locator('#detail')).toHaveAttribute('data-open', '1');
+  await page.locator('#timeline-slider').fill('1900');
+  await page.waitForTimeout(1200);
+  // Harta trebuie să aibă tile-uri: dacă img-src ar rata cartocdn, ar fi zero.
+  await expect(page.locator('#map .leaflet-tile').first()).toBeVisible({ timeout: 15_000 });
+  expect(incalcari, 'încălcări de CSP').toEqual([]);
+});

@@ -11,6 +11,10 @@
 // deci e safe să fie deployat ca atare până îți faci contul.
 (function () {
   'use strict';
+  // Când completezi codul, adaugă și originile în CSP-ul din
+  // galati_map/.htaccess: `script-src … https://gc.zgo.at` și
+  // `connect-src … https://*.goatcounter.com`. Altfel scriptul e blocat
+  // tăcut și pare că analytics-ul pur și simplu nu numără.
   var GC_CODE = '';  // ex: 'heritage-galati'
   if (!GC_CODE) return;
 

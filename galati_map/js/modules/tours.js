@@ -146,7 +146,7 @@ export function initTours(ctx) {
         // Coperta cardului: miniatura de 480px, cu fallback pe original.
         const coverThumb = ctx.thumbUrl ? ctx.thumbUrl(t.cover) : null;
         const coverHtml = t.cover
-          ? `<img class="cover" src="${escapeHtml(coverThumb || t.cover)}" data-full="${escapeHtml(t.cover)}"${coverThumb ? ' onerror="this.onerror=null;this.src=this.dataset.full"' : ''} alt="" loading="lazy" decoding="async">`
+          ? `<img class="cover" src="${escapeHtml(coverThumb || t.cover)}" data-full="${escapeHtml(t.cover)}" alt="" loading="lazy" decoding="async">`
           : `<div class="cover-fallback" style="background:${escapeHtml(t.color || '#d8e4df')};color:white">${escapeHtml((titleStr || '?').charAt(0))}</div>`;
         const stopsLabel = validStops.length === 1 ? ui.stopOne : ui.stopMany;
         card.innerHTML = `

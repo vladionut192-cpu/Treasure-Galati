@@ -80,7 +80,7 @@ export function initHunts(ctx) {
         // titlu care începe cu apostrof rupea handler-ul.
         const coverThumb = ctx.thumbUrl ? ctx.thumbUrl(h.cover) : null;
         const coverHtml = h.cover
-          ? `<img class="cover" src="${escapeHtml(coverThumb || h.cover)}" data-full="${escapeHtml(h.cover)}" data-initial="${escapeHtml(initial)}" alt="${escapeHtml(h.title)}" loading="lazy" decoding="async" onerror="this.dataset.err=(+this.dataset.err||0)+1;if(this.dataset.err==1&amp;&amp;this.dataset.full){this.src=this.dataset.full}else{this.onerror=null;var d=document.createElement('div');d.className='cover-fallback';d.textContent=this.dataset.initial||'';this.replaceWith(d)}">`
+          ? `<img class="cover" src="${escapeHtml(coverThumb || h.cover)}" data-full="${escapeHtml(h.cover)}" data-initial="${escapeHtml(initial)}" alt="${escapeHtml(h.title)}" loading="lazy" decoding="async">`
           : `<div class="cover-fallback">${escapeHtml(initial)}</div>`;
         card.innerHTML = `
           ${coverHtml}

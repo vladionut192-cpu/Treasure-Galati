@@ -55,3 +55,46 @@
 # lista completă de fișiere. Nu e un secret expus, codul e public oricum, dar
 # oferă gratis harta structurii pentru cine caută ce să sondeze.
 Options -Indexes
+
+# ─── Content-Security-Policy ────────────────────────────────────────────────
+# Ce apără: dacă vreodată ajunge conținut străin în pagină (o descriere cu HTML,
+# o legendă de imagine, un parametru de URL reflectat), politica îl împiedică să
+# execute cod sau să trimită date în afară.
+#
+# `script-src 'self'` fără `unsafe-inline` a fost posibil abia după ce cele două
+# tipare de handlere inline au fost mutate în `js/inline-shims.js`: rezerva
+# WebP → JPEG a miniaturilor (217 atribute `onerror`) și comutarea celor două
+# `<link rel=preload as=style>` la `stylesheet`. Codul din atribute e blocat de
+# CSP la fel ca un `<script>` inline.
+#
+# Blocurile `application/ld+json` NU sunt afectate: nu se execută ca JavaScript.
+#
+# `style-src` păstrează `unsafe-inline` fiindcă randarea produce peste 400 de
+# atribute `style` (culori de categorie, poziții pe riglă). Riscul dinspre stiluri
+# e mult mai mic decât cel dinspre scripturi, iar eliminarea lor ar cere
+# rescrierea randării.
+#
+# Origini externe, toate verificate în browser înainte de a fi permise:
+#   *.basemaps.cartocdn.com   tile-urile hărții de bază
+#   services.geo-spatial.org  stratul WMS de hărți istorice (eHarta)
+#
+# ATENȚIE la analytics: `js/analytics.js` e dezactivat (`GC_CODE = ''`). Când îl
+# activezi, GoatCounter încarcă `gc.zgo.at` și trimite către `*.goatcounter.com`,
+# deci trebuie adăugate aici, altfel nu numără nimic și pare că nu merge.
+<IfModule mod_headers.c>
+  <FilesMatch "\.html$">
+    Header set Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://*.basemaps.cartocdn.com https://services.geo-spatial.org; font-src 'self'; connect-src 'self' https://services.geo-spatial.org; worker-src 'self'; manifest-src 'self'; media-src 'self'"
+  </FilesMatch>
+
+  # Pagina AR are nevoie de mai mult: A-Frame și AR.js vin de pe CDN-uri fixate
+  # pe versiune, cu `integrity`, iar A-Frame nu pornește deloc fără
+  # `unsafe-eval` (verificat: fără el aruncă EvalError la inițializare și
+  # `AFRAME` rămâne undefined). Camera livrează cadrele ca `mediastream:` și
+  # `blob:`. Politica largă se aplică strict acestui fișier, nu întregului site.
+  # Scriptul propriu al paginii a fost mutat în `js/piata-regala-ar.js`, iar cele
+  # trei butoane cu `onclick` folosesc acum `data-act`, deci nici aici nu e
+  # nevoie de `unsafe-inline`.
+  <Files "piata-regala-ar.html">
+    Header set Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; script-src 'self' 'unsafe-eval' https://aframe.io https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' https://aframe.io https://cdn.jsdelivr.net; media-src 'self' blob: mediastream:; worker-src 'self' blob:"
+  </Files>
+</IfModule>
